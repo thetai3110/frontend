@@ -1,0 +1,32 @@
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Id</th>
+      <th>Tên</th>
+      <th>CMND</th>
+      <th>Ngày sinh</th>
+      <th>Giới tính</th>
+      <th>Địa chỉ</th>
+      <th>Email</th>
+      <th>Số điện thoại</th>
+      <th>Vai trò</th>
+      <th>Lương</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employee">
+      <td>{{ emp.idEmployee }}</td>
+      <td>{{ emp.employeeName }} </td>
+      <td>{{ emp.CMND }}</td>
+      <td>{{ emp.employeeDate }} </td>
+      <td>{{ emp.sex }}</td>
+      <td>{{ emp.address }} </td>
+      <td>{{ emp.email }}</td>
+      <td>{{ emp.phone }} </td>
+      <td>{{ emp.position }}</td>
+      <td>{{ emp.salary }}</td>
+      <td><a href="" class="btn btn-success">Sửa</a></td>
+    </tr>
+  </tbody>
+</table>

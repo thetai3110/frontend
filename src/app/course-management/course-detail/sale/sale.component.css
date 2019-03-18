@@ -1,0 +1,11 @@
+.sale{
+    margin: 25px;
+}
+.sale h4{
+    text-align: center;
+    padding: 15px 0px;
+}
+.sale h4 span{
+    font-weight: bold;
+    text-decoration: underline;
+}

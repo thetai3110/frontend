@@ -1,0 +1,6 @@
+<div class="alert alert-info content" role="alert">
+  <h4>Nội dung về khóa học <span>{{ course.course }} {{ level.level }}</span></h4>
+  <div *ngFor="let lesson of lessons">
+    <p>- {{ lesson.days }}: {{ lesson.title }}</p>
+  </div>
+</div>

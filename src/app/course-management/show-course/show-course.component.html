@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4" *ngFor="let cour of courses; let i=index">
+      <div class="thumbnail">
+        <div class="detail">
+          <p><a [routerLink]="['/detail', cour.idCourse]">Xem chi tiết</a></p>
+        </div>
+        <img src="../../../assets/images/courses/{{cour.image}}" alt="Lenovo">
+        <div class="caption">
+          <h3>{{ cour.course }} </h3>
+          <p>{{ cour.describes }}</p>
+          <p class="link"><a href="#" class="btn btn-primary btn-buy-now" role="button">Xem lịch học</a> <a href="#" class="btn btn-default" role="button">Đăng ký ngay</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

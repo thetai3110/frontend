@@ -1,0 +1,35 @@
+<table id="example" class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Id</th>
+      <th>Tên</th>
+      <th>CMND</th>
+      <th>Công việc</th>
+      <th>Ngày sinh</th>
+      <th>Giới tính</th>
+      <th>Địa chỉ</th>
+      <th>Email</th>
+      <th>Số điện thoại</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stu of students">
+      <td>{{ stu.idStudent }}</td>
+      <td>{{ stu.studentName }} </td>
+      <td>{{ stu.cmnd }}</td>
+      <td>{{ stu.job }}</td>
+      <td>{{ stu.studentDate | date: 'dd-MM-yyyy' }} </td>
+      <td>{{ stu.sex == 1 ? 'Nam' : 'Nữ' }}</td>
+      <td>{{ stu.address }} </td>
+      <td>{{ stu.email }}</td>
+      <td>{{ stu.phone }} </td>
+      <td><a href="" class="btn btn-success">Sửa</a></td>
+    </tr>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function () {
+    $('#example').DataTable();
+  });
+</script>

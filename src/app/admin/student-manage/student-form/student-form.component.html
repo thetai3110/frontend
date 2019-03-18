@@ -1,0 +1,83 @@
+<div class="student">
+  <form class="regFrom" #regForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="user">Tên đầy đủ</label>
+      <input type="text" placeholder="Nhập họ tên" class="form-control" id="user" name="user" [(ngModel)]="student.studentName" #user="ngModel" required minlength="12" maxlength="30">
+    </div>
+    <div *ngIf="user.invalid && (user.dirty || user.touched)" class="alert alert-danger">
+      <div *ngIf="user.errors.required">
+        Tên người dùng trống!!!
+      </div>
+      <div *ngIf="user.errors.minlength">
+        Tối thiểu 12 kí tự
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cmnd">Số CMND</label>
+      <input type="text" placeholder="Nhập số CMND"  class="form-control" id="cmnd" name="cmnd" [(ngModel)]="student.cmnd" #cmnd="ngModel" required pattern="[0-9]*">
+    </div>
+    <div *ngIf="cmnd.invalid && (cmnd.dirty || cmnd.touched)" class="alert alert-danger">
+      <div *ngIf="cmnd.errors.required">
+        Nhập số CMND
+      </div>
+      <div *ngIf="cmnd.errors.pattern">
+        Số cmnd phải là số
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="date">Ngày sinh</label>
+      <input type="date" class="form-control" placeholder="Chọn ngày sinh" id="date" name="date" [(ngModel)]="student.studentDate" #date="ngModel" required>
+    </div>
+    <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+      <div *ngIf="date.errors.required">
+        Chọn ngày sinh
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="sex">Giới tính</label>
+      <select class="form-control" id="sex" name="sex" [(ngModel)]="student.sex" #sex="ngModel" required>
+        <option value="1">Nam</option>
+        <option value="0">Nữ</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" placeholder="Nhập email"  class="form-control" id="email" name="email" [(ngModel)]="student.email" #email="ngModel" required email>
+    </div>
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+      <div *ngIf="email.errors.required">
+        Nhập địa chỉ email
+      </div>
+      <div *ngIf="email.errors.email">
+        Email sai định dạng
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="address">Địa chỉ</label>
+      <input type="text" placeholder="Nhập địa chỉ nhà"  class="form-control" id="address" name="address" [(ngModel)]="student.address" #address="ngModel" required>
+    </div>
+    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
+      <div *ngIf="address.errors.required">
+        Nhập địa chỉ nhà
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phone">Số điện thoại</label>
+      <input type="text" placeholder="Nhập số điện thoại"  class="form-control" id="phone" name="phone" [(ngModel)]="student.phone" #phone="ngModel" required pattern="[0-9]*">
+    </div>
+    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+      <div *ngIf="phone.errors.required">
+        Nhập số điện thoại
+      </div>
+      <div *ngIf="phone.errors.pattern">
+        Số điện thoại không được chữa các kí tự khác
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="job">Nghề nghiệp</label>
+      <input type="text" placeholder="Nghề nghiệp hiện tại"  class="form-control" id="job" name="job" [(ngModel)]="student.job" #job="ngModel">
+    </div>
+    <button type="submit" class="btn btn-success" >Thêm</button><br>
+  </form>
+  
+</div>

@@ -1,0 +1,23 @@
+.contact{
+    overflow: hidden;
+    background-color: #333333;
+}
+.contact .linkgroup{
+    width: auto;
+    float: right;
+}
+.contact a{
+    color: white;
+    padding-right: 20px;
+}
+@media screen and (max-width: 600px) {
+    .contact a {
+      float: left;
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      height: auto;
+      padding-left: 10px;
+    }       
+}

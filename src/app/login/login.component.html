@@ -1,0 +1,30 @@
+<div class="bd">
+  <div class="login">
+    <h1>Đăng nhập</h1> 
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="formlogin">
+      <div class="form-group">
+        <input type="text" placeholder="Tên đăng nhập" class="form-control" id="userName" required name="userName" [(ngModel)]="account.username" #userName="ngModel">
+      </div>
+      <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert alert-danger">
+        <div *ngIf="userName.errors.required">
+          Tên đăng nhập trống
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Mật khẩu" class="form-control" id="pass" name="pass" [(ngModel)]="account.pass" #pass="ngModel" required>
+      </div>
+      <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert alert-danger">
+        <div *ngIf="pass.errors.required">
+          Mật khẩu trống
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Đăng nhập</button>
+      <div *ngIf="status == true" class="alert alert-danger">
+          Tài khoản hoặc mật khẩu không đúng
+      </div>
+      <h4>Hoặc</h4>
+      <p>Chưa có tài khoản? <a [routerLink]="['/register']">Đăng ký</a></p>
+      <a class="remember" [routerLink]="['/register']">Quên mật khẩu?</a>
+    </form>
+  </div>
+</div>

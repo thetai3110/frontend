@@ -1,0 +1,11 @@
+.content{
+    margin: 25px;
+}
+.content h4{
+    text-align: center;
+    padding: 15px 0px;
+}
+.content h4 span{
+    font-weight: bold;
+    text-decoration: underline;
+}

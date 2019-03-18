@@ -1,0 +1,22 @@
+*{
+    color: white;
+}
+.student{
+    float: right;
+    width: 80%;
+}
+.student h4{
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .student{
+        float: none;
+        width: 100%;
+    }
+    .student h4{
+        display: block;
+        width: 100%;
+    }      
+}

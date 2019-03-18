@@ -1,0 +1,18 @@
+.left{
+    float: left;
+    width: 20%;
+}
+.top{
+    width: 100%;
+    display: block;
+}
+.compo{
+    float: right;
+    width: 80%;
+}
+@media screen and (max-width: 600px) {
+    .left{
+        float: none;
+        width: 100%;
+    } 
+}

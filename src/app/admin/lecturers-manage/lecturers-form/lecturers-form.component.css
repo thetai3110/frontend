@@ -1,0 +1,21 @@
+.msg{
+    color: red;
+    padding-left: 20px;
+}
+.lecturers{
+    margin: 20px 200px;
+}
+.lecturers button{
+    width: 100%;
+}
+@media screen and (max-width: 600px) {
+    table{
+        clear: both;
+        width: 100%;
+        display: block;
+    } 
+    
+    .lecturers{
+        margin: 0;
+    }
+}

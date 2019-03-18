@@ -1,0 +1,32 @@
+.banner{
+    margin-top: 78px;
+    width: 100%;
+    height: 300px;
+}
+.banner img{
+    width: 100%;
+    height: 100%;
+}
+.header{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+.fix{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+}
+@media screen and (max-width: 600px) {
+    .banner {
+      float: none;
+      display: block;
+      width: 100%;
+      margin: 0;
+      height: 200px;
+    }    
+    .fix{
+        position: static;
+    }   
+}

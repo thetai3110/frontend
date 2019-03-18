@@ -1,0 +1,74 @@
+.register{
+    margin: 10px;
+    box-sizing: border-box;
+    width: 700px;
+    height: auto;
+    margin: 25px auto;
+    background-color: white;
+    border-radius: 5px;
+}
+.register h1{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #33b5e5;
+    padding: 20px;
+    font-size: 1.4em;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+}
+.register h4{
+    color: red;
+    padding: 20px;
+    font-weight: normal;
+}
+.register h4 a{
+    font-weight: normal;
+    text-decoration: underline;
+}
+.regFrom{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.regFrom label{
+    color: grey;
+}
+.regFrom input{
+    background: #fff;
+    box-sizing: border-box;
+    display: block;
+    border-style: solid;
+    padding: 20px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.95em;
+    width: 100%;
+}
+.register button{
+    display: block;
+    width: 100%;
+    background-color: #ef4d4d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    font-size: 15px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+    transition: .5s ease-in;
+}
+
+.register button:hover {
+    background:#28d;
+}
+  
+.register button:focus {
+border-color: #05a;
+}
+
+@media screen and (max-width: 600px) {
+    .register{
+        width: 90%;
+    }      
+}

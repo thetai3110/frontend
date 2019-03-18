@@ -1,0 +1,32 @@
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Id</th>
+      <th>Tên</th>
+      <th>Majors</th>
+      <th>CMND</th>
+      <th>Ngày sinh</th>
+      <th>Giới tính</th>
+      <th>Địa chỉ</th>
+      <th>Email</th>
+      <th>Số điện thoại</th>
+      <th>Lương</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lec of lecturers">
+      <td>{{ lec.idLecturers }}</td>
+      <td>{{ lec.lecturersName }} </td>
+      <td>{{ lec.majors.majors }}</td>
+      <td>{{ lec.CMND }}</td>
+      <td>{{ lec.lecturersDate }} </td>
+      <td>{{ lec.sex == 1 ? 'Nam' : 'Nữ' }}</td>
+      <td>{{ lec.address }} </td>
+      <td>{{ lec.email }}</td>
+      <td>{{ lec.phone }} </td>
+      <td>{{ lec.salary }}</td>
+      <td><a href="" class="btn btn-success">Sửa</a></td>
+    </tr>
+  </tbody>
+</table>

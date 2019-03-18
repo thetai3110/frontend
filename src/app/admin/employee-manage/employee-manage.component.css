@@ -1,0 +1,22 @@
+*{
+    color: white;
+}
+.employee{
+    float: right;
+    width: 80%;
+}
+.employee h4{
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .employee{
+        float: none;
+        width: 100%;
+    }
+    .employee h4{
+        display: block;
+        width: 100%;
+    }      
+}

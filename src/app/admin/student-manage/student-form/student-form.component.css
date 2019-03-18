@@ -1,0 +1,21 @@
+.msg{
+    color: red;
+    padding-left: 20px;
+}
+.student{
+    margin: 20px 200px;
+}
+.student button{
+    width: 100%;
+}
+@media screen and (max-width: 600px) {
+    table{
+        clear: both;
+        width: 100%;
+        display: block;
+    } 
+    
+    .student{
+        margin: 0;
+    }
+}

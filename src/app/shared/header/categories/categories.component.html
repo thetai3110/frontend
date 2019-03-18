@@ -1,0 +1,13 @@
+<div class="topnav">
+  <a class="active" href="#home"><fa-icon [icon]="faHome"></fa-icon> Trang chủ</a>
+  <a href="#intro">Giới thiệu</a>
+  <a href="#course">Khóa học</a>
+  <a href="#contact">Liên hệ</a>
+  <a [routerLink]="['/login']">Đăng nhập</a>
+  <a href="#register">Đăng ký học</a>
+  <a [routerLink]="['/admin']">Admin</a>
+  <div class="box">
+    <input type="search" id="search" placeholder="Nhập từ khóa..." />
+    <button class="btn btn-danger"><fa-icon [icon]="faSearch"></fa-icon></button>
+  </div>
+</div>
