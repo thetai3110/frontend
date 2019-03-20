@@ -2,7 +2,7 @@
   <form class="regFrom" #regForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="user">Tên đầy đủ</label>
-      <input type="text" placeholder="Nhập họ tên" class="form-control" id="user" name="user" [(ngModel)]="employee.name" #user="ngModel" required minlength="12" maxlength="30">
+      <input type="text" placeholder="Nhập họ tên" class="form-control" id="user" name="user" [(ngModel)]="employee.employeeName" #user="ngModel" required minlength="12" maxlength="30">
     </div>
     <div *ngIf="user.invalid && (user.dirty || user.touched)" class="alert alert-danger">
       <div *ngIf="user.errors.required">
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
       <label for="date">Ngày sinh</label>
-      <input type="date" class="form-control" placeholder="Chọn ngày sinh" id="date" name="date" [(ngModel)]="employee.date" #date="ngModel" required>
+      <input type="date" class="form-control" placeholder="Chọn ngày sinh" id="date" name="date" [(ngModel)]="employee.employeeDate" #date="ngModel" required>
     </div>
     <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
       <div *ngIf="date.errors.required">
@@ -79,7 +79,7 @@
     </div>
     <div class="form-group">
       <label for="pos">Vai trò</label>
-      <input type="text" placeholder="Vai trò hiện tại"  class="form-control" id="pos" name="pos" [(ngModel)]="employee.pos" #job="ngModel">
+      <input type="text" placeholder="Vai trò hiện tại"  class="form-control" id="pos" name="pos" [(ngModel)]="employee.roles" #job="ngModel">
     </div>
     <button type="submit" class="btn btn-success" >Thêm</button><br>
   </form>

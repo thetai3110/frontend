@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../../../services/employee.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -8,21 +9,25 @@ import { Component, OnInit } from '@angular/core';
 export class EmployeeFormComponent implements OnInit {
 
   public employee = {
-    name : "",
+    employeeName : "",
     cmnd : "",
-    date : "",
+    employeeDate : "",
     sex : "",
     address : "",
     email : "",
     phone : "",
     salary : "",
-    pos : ""
+    roles : ""
   };
 
-  constructor() { }
+  constructor(private employeeService: EmployeeService) { }
 
   onSubmit(){
-    
+    this.employeeService.postData(this.employee).subscribe(data =>{
+      if(data!= null){
+        alert('Success!');
+      }
+    });
   }
 
   ngOnInit() {

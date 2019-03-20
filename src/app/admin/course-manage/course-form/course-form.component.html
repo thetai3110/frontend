@@ -1,3 +1,94 @@
-<p>
-  course-form works!
-</p>
+<div class="course">
+  <form class="regFrom" #courseForm="ngForm" (ngSubmit)="onSubmit()">
+    <!-- Tên khóa học -->
+    <div class="form-group">
+      <label for="courseName">Tên khóa học</label>
+      <input type="text" placeholder="Nhập tên khóa học" class="form-control" id="courseName" name="courseName" [(ngModel)]="course.course" #courseName="ngModel" required>
+    </div>
+    <div *ngIf="courseName.invalid && (courseName.dirty || courseName.touched)" class="alert alert-danger">
+      <div *ngIf="courseName.errors.required">
+        Nhập tên khóa học
+      </div>
+    </div>
+    <!-- Mức độ -->
+    <div class="form-group">
+      <label for="level">Mức độ</label>
+      <select class="form-control" id="level" name="level" [(ngModel)]="course.idLevel" #level="ngModel" required>
+        <option *ngFor="let lev of allLevel" [value]="lev.idLevel">{{ lev.level }}</option>
+      </select>
+    </div>
+    <!-- Ngày bắt đầu -->
+    <div class="form-group">
+      <label for="date">Ngày bắt đầu</label>
+      <input type="date" class="form-control" placeholder="Chọn bắt đầu" id="date" name="date" [(ngModel)]="course.dayStart" #date="ngModel" required>
+    </div>
+    <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+      <div *ngIf="date.errors.required">
+        Chọn ngày bắt đầu khóa học
+      </div>
+    </div>
+    <!-- Thời lượng -->
+    <div class="form-group">
+      <label for="duration">Giới tính</label>
+      <input type="text" placeholder="Nhập thời lượng học" class="form-control" id="duration" name="duration" [(ngModel)]="course.duration" #duration="ngModel" required>
+    </div>
+    <div *ngIf="duration.invalid && (duration.dirty || duration.touched)" class="alert alert-danger">
+      <div *ngIf="duration.errors.required">
+        Nhập thời lượng học
+      </div>
+    </div>
+    <!-- Học phí -->
+    <div class="form-group">
+      <label for="fee">Học phí</label>
+      <input type="text" placeholder="Nhập học phí"  class="form-control" id="fee" name="fee" [(ngModel)]="course.fee" #fee="ngModel" required pattern="[0-9]*">
+    </div>
+    <div *ngIf="fee.invalid && (fee.dirty || fee.touched)" class="alert alert-danger">
+      <div *ngIf="fee.errors.required">
+        Nhập học phí
+      </div>
+      <div *ngIf="email.errors.pattern">
+        Học phí chỉ được điền thừ 0->9
+      </div>
+    </div>
+    <!-- Ưu đãi -->
+    <div class="form-group">
+      <label for="sale">Ưu đãi</label>
+      <input type="text" placeholder="Nhập ưu đãi"  class="form-control" id="sale" name="sale" [(ngModel)]="course.sale" #sale="ngModel">
+    </div>
+   <!-- Địa điểm học -->
+    <div class="form-group">
+      <label for="space">Địa điểm</label>
+      <input type="text" placeholder="Nhập địa điểm"  class="form-control" id="space" name="space" [(ngModel)]="course.space" #space="ngModel" required>
+    </div>
+    <div *ngIf="space.invalid && (space.dirty || space.touched)" class="alert alert-danger">
+      <div *ngIf="space.errors.required">
+        Nhập địa điểm
+      </div>
+    </div>
+    <!-- Điều kiện -->
+    <div class="form-group">
+      <label for="condition">Điều kiện tham gia</label>
+      <input type="text" placeholder="Điều kiện tham gia"  class="form-control" id="condition" name="condition" [(ngModel)]="course.conditions" #condition="ngModel">
+    </div>
+    <!-- Mô tả -->
+    <div class="form-group">
+      <label for="describe">Mô tả</label>
+      <input type="text" placeholder="Mô tả khóa học"  class="form-control" id="describe" name="describe" [(ngModel)]="course.describes" #describe="ngModel">
+    </div>
+    <!-- Trang thái -->
+    <div class="form-group">
+      <label for="status">Trang thái</label>
+      <select class="form-control" id="status" name="status" [(ngModel)]="course.status" #status="ngModel" required>
+        <option value="1">Mở</option>
+        <option value="0">Đóng</option>
+      </select>
+    </div>
+    <!-- Ảnh -->
+    <div class="form-group">
+      <label for="image">Trang thái</label>
+      <input type="file" (change)="onFileSelected($event);" class="form-control" id="image" name="image" [(ngModel)]="course.image" #image="ngModel">
+    </div>
+    <button type="button" class="btn btn-danger" (click)="onUpload();">Thêm</button><br>
+    <button type="submit" class="btn btn-success" >Thêm</button><br>
+  </form>
+</div>

@@ -4,16 +4,15 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-
-export class CourseService {
+export class MajorsService {
 
   constructor(private http:HttpClient) { }
 
   getData(){
-    return this.http.get('http://localhost:8080/course');
+    return this.http.get('http://localhost:8080/majors');
   }
 
   postData(data){
-    return this.http.post('http://localhost:8080/course/add',data);
+    return this.http.post('http://localhost:8080/majors/add',data);
   }
 }

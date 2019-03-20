@@ -1,18 +1,35 @@
 .left{
     float: left;
     width: 20%;
+    position: fixed;
+    top: 56px; 
+    left: 0;
 }
 .top{
     width: 100%;
     display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 .compo{
     float: right;
     width: 80%;
+    margin-top: 70px;
+}
+.footer{
+    clear: both;
+    width: 100%;
+    border: 1px solid black;
+    position: fixed;
+    bottom: 0;
 }
 @media screen and (max-width: 600px) {
     .left{
         float: none;
         width: 100%;
     } 
+    .left, .top, .footer{
+        position: static;
+    }
 }

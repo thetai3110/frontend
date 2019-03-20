@@ -4,7 +4,6 @@
       <th>Id</th>
       <th>Tên</th>
       <th>Majors</th>
-      <th>CMND</th>
       <th>Ngày sinh</th>
       <th>Giới tính</th>
       <th>Địa chỉ</th>
@@ -19,8 +18,7 @@
       <td>{{ lec.idLecturers }}</td>
       <td>{{ lec.lecturersName }} </td>
       <td>{{ lec.majors.majors }}</td>
-      <td>{{ lec.CMND }}</td>
-      <td>{{ lec.lecturersDate }} </td>
+      <td>{{ lec.lecturersDate | date: 'dd-MM-yyyy' }} </td>
       <td>{{ lec.sex == 1 ? 'Nam' : 'Nữ' }}</td>
       <td>{{ lec.address }} </td>
       <td>{{ lec.email }}</td>

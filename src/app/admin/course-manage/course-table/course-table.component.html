@@ -1,0 +1,28 @@
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Tên</th>
+      <th>Mức độ</th>
+      <th>Thời lượng</th>
+      <th>Thời gian</th>
+      <th>Học phí</th>
+      <th>Địa điểm</th>
+      <th>Yêu cầu</th>
+      <th>Mô tả</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courses">
+      <td>{{ course.course }}</td>
+      <td>{{ course.level.level }} </td>
+      <td>{{ course.duration }}</td>
+      <td>{{ course.dayStart | date: 'dd-MM-yyyy' }} </td>
+      <td>{{ course.fee }}</td>
+      <td>{{ course.space }} </td>
+      <td>{{ course.conditions }}</td>
+      <td>{{ course.describes }} </td>
+      <td><a href="" class="btn btn-success">Sửa</a></td>
+    </tr>
+  </tbody>
+</table>

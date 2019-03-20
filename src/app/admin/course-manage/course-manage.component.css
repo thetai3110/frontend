@@ -5,3 +5,18 @@
     float: right;
     width: 80%;
 }
+.course h4{
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .course{
+        float: none;
+        width: 100%;
+    }
+    .course h4{
+        display: block;
+        width: 100%;
+    }      
+}

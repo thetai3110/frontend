@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LecturersService } from '../../../services/lecturers.service';
+import { MajorsService } from '../../../services/majors.service';
 
 @Component({
   selector: 'app-lecturers-form',
@@ -8,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class LecturersFormComponent implements OnInit {
 
   public lecturers = {
-    name : "",
+    lecturersName : "",
     cmnd : "",
-    date : "",
+    lecturersDate : "",
     sex : "",
     address : "",
     email : "",
@@ -19,12 +21,27 @@ export class LecturersFormComponent implements OnInit {
     salary : ""
   };
 
-  constructor() { }
+public allMajors : {};
+
+  constructor(private lecturersService: LecturersService,
+              private majorsService: MajorsService) { }
 
   ngOnInit() {
+    this.getMajors();
   }
 
   onSubmit(){
-
+    this.lecturersService.postData(this.lecturers).subscribe(data =>{
+      if(data!= null){
+        alert('Success!');
+      }
+    });
   }
+
+  getMajors(){
+    this.majorsService.getData().subscribe(data =>{
+      this.allMajors = data;
+    });
+  }
+
 }

@@ -27,9 +27,11 @@ import { from } from 'rxjs';
 import { StudentTableComponent } from './student-manage/student-table/student-table.component';
 import { EmployeeTableComponent } from './employee-manage/employee-table/employee-table.component';
 import { LecturersTableComponent } from './lecturers-manage/lecturers-table/lecturers-table.component';
+import { CourseTableComponent } from './course-manage/course-table/course-table.component';
+import { ClassTableComponent } from './class-manage/class-table/class-table.component';
 
 @NgModule({
-  declarations: [AdminComponent, NavbarTopComponent, NavbarLeftComponent, CourseManageComponent, ClassManageComponent, EmployeeManageComponent, StudentManageComponent, LecturersManageComponent, InvoiceManageComponent, AccountManageComponent, RoomManageComponent, StudentFormComponent, AccountFormComponent, ClassFormComponent, CourseFormComponent, InvoiceFormComponent, LecturersFormComponent, RoomFormComponent, EmployeeFormComponent, StudentTableComponent, EmployeeTableComponent, LecturersTableComponent],
+  declarations: [AdminComponent, NavbarTopComponent, NavbarLeftComponent, CourseManageComponent, ClassManageComponent, EmployeeManageComponent, StudentManageComponent, LecturersManageComponent, InvoiceManageComponent, AccountManageComponent, RoomManageComponent, StudentFormComponent, AccountFormComponent, ClassFormComponent, CourseFormComponent, InvoiceFormComponent, LecturersFormComponent, RoomFormComponent, EmployeeFormComponent, StudentTableComponent, EmployeeTableComponent, LecturersTableComponent, CourseTableComponent, ClassTableComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,

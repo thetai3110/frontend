@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { EmployeeService } from '../../services/employee.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,14 +13,14 @@ export class EmployeeManageComponent implements OnInit {
 
   employees : {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit() {
-    this.getData();
+    this.getEmployee();
   }
 
-  getData(){
-    this.http.get('http://localhost:8080/employee').subscribe(data =>{
+  getEmployee(){
+    this.employeeService.getData().subscribe(data =>{
       this.employees = data;
     });
   }

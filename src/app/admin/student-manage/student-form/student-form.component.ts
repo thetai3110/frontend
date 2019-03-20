@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { StudentService } from '../../../services/student.service';
 
 @Component({
   selector: 'app-student-form',
@@ -19,10 +19,10 @@ export class StudentFormComponent implements OnInit {
     job : ""
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private studentService: StudentService) { }
 
   onSubmit(){
-    this.http.post('http://localhost:8080/student/add', this.student).subscribe(data =>{
+    this.studentService.postData(this.student).subscribe(data =>{
       if(data!= null){
         alert('Success!');
       }

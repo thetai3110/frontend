@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { StudentService } from '../../services/student.service';
 
 @Component({
   selector: 'app-student-manage',
@@ -13,16 +13,16 @@ export class StudentManageComponent implements OnInit {
 
   students: {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private studentService: StudentService) { }
 
   ngOnInit() {
-    this.getData();
+    this.getStudent();
   }
 
-  getData(){
-    this.http.get('http://localhost:8080/student').subscribe(data =>{
+  getStudent(){
+    this.studentService.getData().subscribe(data =>{
       this.students = data;
     });
-  }
+  } 
 
 }

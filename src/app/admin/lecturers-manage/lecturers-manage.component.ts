@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { LecturersService } from '../../services/lecturers.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,14 +13,14 @@ export class LecturersManageComponent implements OnInit {
 
   lecturers: {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private lecturersService: LecturersService) { }
 
   ngOnInit() {
-    this.getData();
+    this.getLecturers();
   }
 
-  getData(){
-    this.http.get('http://localhost:8080/lecturers').subscribe(data =>{
+  getLecturers(){
+    this.lecturersService.getData().subscribe(data =>{
       this.lecturers = data;
     });
   }

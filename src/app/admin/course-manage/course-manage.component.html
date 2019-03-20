@@ -1,30 +1,27 @@
 <div class="course">
-  <table class="table">
-    <thead class="thead-light">
-      <tr>
-        <th>Tên</th>
-        <th>Mức độ</th>
-        <th>Thời lượng</th>
-        <th>Thời gian</th>
-        <th>Học phí</th>
-        <th>Địa điểm</th>
-        <th>Yêu cầu</th>
-        <th>Mô tả</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let course of courses">
-        <td>{{ course.course }}</td>
-        <td>{{ course.level.idLevel }} </td>
-        <td>{{ course.duration }}</td>
-        <td>{{ course.dayStart }} </td>
-        <td>{{ course.fee }}</td>
-        <td>{{ course.space }} </td>
-        <td>{{ course.conditions }}</td>
-        <td>{{ course.describes }} </td>
-        <td><a href="" class="btn btn-success">Sửa</a></td>
-      </tr>
-    </tbody>
-  </table>
+  <h4>Quản lý các khóa học</h4>
+  <div class="container tab">
+    <ul class="nav nav-tabs" id="tabs" role="tablist">
+      <li class="nav-item">
+        <a id="tab-student" class="nav-link active" data-toggle="tab" role="tab" href="#pane-tab-student">Quản lý</a>
+      </li>
+      <li class="nav-item">
+        <a id="tab-add" class="nav-link" data-toggle="tab" role="tab" href="#pane-tab-add">Thêm</a>
+      </li>
+      <li class="nav-item">
+        <a id="tab-edit" class="nav-link" data-toggle="tab" role="tab" href="#pane-tab-edit">Sửa</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="pane-tab-student" role="tabpanel" aria-labelledby="tab-student">
+        <app-course-table [courses]="courses"></app-course-table>
+      </div>
+      <div class="tab-pane fade" id="pane-tab-add" role="tabpanel" aria-labelledby="tab-add">
+        <app-course-form></app-course-form>
+      </div>
+      <div class="tab-pane fade" id="pane-tab-edit" role="tabpanel" aria-labelledby="tab-edit">
+        
+      </div>
+    </div>
+  </div>
 </div>

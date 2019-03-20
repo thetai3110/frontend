@@ -15,16 +15,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let emp of employee">
+    <tr *ngFor="let emp of employees">
       <td>{{ emp.idEmployee }}</td>
       <td>{{ emp.employeeName }} </td>
-      <td>{{ emp.CMND }}</td>
-      <td>{{ emp.employeeDate }} </td>
-      <td>{{ emp.sex }}</td>
+      <td>{{ emp.cmnd }}</td>
+      <td>{{ emp.employeeDate | date: 'dd-MM-yyyy' }} </td>
+      <td>{{ emp.sex == 1 ? 'Nam' : 'Nữ' }}</td>
       <td>{{ emp.address }} </td>
       <td>{{ emp.email }}</td>
       <td>{{ emp.phone }} </td>
-      <td>{{ emp.position }}</td>
+      <td>{{ emp.roles }}</td>
       <td>{{ emp.salary }}</td>
       <td><a href="" class="btn btn-success">Sửa</a></td>
     </tr>

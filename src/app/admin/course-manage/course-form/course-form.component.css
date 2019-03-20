@@ -1,0 +1,21 @@
+.msg{
+    color: red;
+    padding-left: 20px;
+}
+.course{
+    margin: 20px 200px;
+}
+.course button{
+    width: 100%;
+}
+@media screen and (max-width: 600px) {
+    table{
+        clear: both;
+        width: 100%;
+        display: block;
+    } 
+    
+    .course{
+        margin: 0;
+    }
+}
