@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SaleComponent implements OnInit {
 
   @Input() course = {};
-  @Input() level = {};
+  @Input() level : string;
 
   constructor() { }
 

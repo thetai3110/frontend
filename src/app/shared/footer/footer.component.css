@@ -1,3 +1,105 @@
+.full-section{
+	width: 100%;
+	/*float: left;*/
+}
 .footer{
-    height: 50px;
+	background: #303841;
+	color: #fff;
+	padding-top: 20px;
+}
+.footer .phonenumber a:hover,
+.footer .address li a:hover,
+.footer .address li a:hover{
+	color: #8cc63e;
+}
+.footer .tittle h3{
+	font-size: 16px;
+	text-transform: uppercase;
+	margin: 20px 0;
+	font-weight: bold;
+}
+.footer .address li{
+	font-size: 16px;
+	color: #999999;
+}
+.footer .address li a{
+	color: #999999;
+}
+.footer .address i{
+	float: left;
+	font-size: 18px;
+}
+.footer .address p{
+	font-size: 14px;
+	padding-left: 25px;
+}
+.footer .deadline{
+	margin-top: 15px;
+}
+.footer .deadline i{
+	font-size: 30px;
+	color: #78d1e2;
+}
+.footer .phonenumber a{
+	font-size: 30px;
+	font-weight: bold;
+	color: #fff;
+}
+.footer .phonenumber i{
+	margin-right: 10px;
+	color: #78d1e2;
+}
+.footer .deadline span{
+	font-size: 30px;
+	font-weight: bold;
+	color: #fff;
+	margin-left: 10px;
+}
+.footer .deadline p{
+	margin-left: 35px;
+}
+.footer .likepage{
+	margin-top: 20px;
+}
+.footer .coppyright{
+	margin-top: 40px;
+	width: 100%;
+	float: left;
+	border-top: 1px solid #999999;
+	line-height: 30px;
+	padding: 25px 0;
+	color: #999999;
+	text-align: center;
+}
+@media(max-width: 1024px){
+	.footer .deadline span,
+	.footer .phonenumber a{
+		font-size: 24px;
+	}
+}
+@media(max-width: 991px){
+	.footer .deadline p{
+		margin: 0;
+	}
+	.footer .deadline i,
+	.footer .deadline span,
+	.footer .phonenumber a{
+		font-size: 20px;
+	}
+}
+@media(max-width: 425px){
+	.footer .phonenumber a,
+	.footer .deadline span{
+		font-size: 16px;
+	}
+	.footer .tittle h3{
+		font-size: 15px;
+	}
+	.footer .address p{
+		font-size: 13px;
+	}
+	.footer .coppyright{
+		font-size: 12px;
+    	line-height: 18px;
+    }
 }

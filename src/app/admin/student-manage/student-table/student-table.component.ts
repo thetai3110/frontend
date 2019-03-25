@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { StudentService } from '../../../services/student.service';
 
 @Component({
   selector: 'app-student-table',
@@ -7,11 +11,29 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StudentTableComponent implements OnInit {
 
-  @Input() students:{}
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  displayedColumns= ['id','name','cmnd','job','date','sex','address','email','phone'];
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  dataSource;
+
+  constructor(private studentService: StudentService) { }
 
   ngOnInit() {
+    this.studentService.getData().subscribe(rs =>{
+      if(!rs)
+        return;
+      this.dataSource = new MatTableDataSource(rs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
   }
 
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
 }

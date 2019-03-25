@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
 
 import { AdminComponent } from './admin.component';
 import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
@@ -23,7 +28,6 @@ import { InvoiceFormComponent } from './invoice-manage/invoice-form/invoice-form
 import { LecturersFormComponent } from './lecturers-manage/lecturers-form/lecturers-form.component';
 import { RoomFormComponent } from './room-manage/room-form/room-form.component';
 import { EmployeeFormComponent } from './employee-manage/employee-form/employee-form.component';
-import { from } from 'rxjs';
 import { StudentTableComponent } from './student-manage/student-table/student-table.component';
 import { EmployeeTableComponent } from './employee-manage/employee-table/employee-table.component';
 import { LecturersTableComponent } from './lecturers-manage/lecturers-table/lecturers-table.component';
@@ -36,7 +40,12 @@ import { ClassTableComponent } from './class-manage/class-table/class-table.comp
     CommonModule,
     FontAwesomeModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class AdminModule { }

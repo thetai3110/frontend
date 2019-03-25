@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Level } from '../model/level.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,8 @@ export class LevelService {
 
   constructor(private http:HttpClient) { }
 
-  getData(){
-    return this.http.get('http://localhost:8080/level');
+  getData(): Observable<Level[]>{
+    return this.http.get<Level[]>('http://localhost:8080/level');
   }
 
   postData(data){

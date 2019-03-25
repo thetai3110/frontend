@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-class-table',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./class-table.component.css']
 })
 export class ClassTableComponent implements OnInit {
+
+  @Input() classes : {};
 
   constructor() { }
 

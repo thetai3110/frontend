@@ -42,6 +42,9 @@ export class CourseFormComponent implements OnInit {
   onSubmit(){
     this.courseService.postData(this.course).subscribe(data =>{
       if(data!= null){
+        if(this.selectedFiles != null){
+          this.onUpload();
+        }
         alert('Success!');
       }
     });
@@ -52,15 +55,14 @@ export class CourseFormComponent implements OnInit {
       this.allLevel = data;
     });
   }
-  
+
   onFileSelected(event){
-    console.log(event);
     this.selectedFiles = event.target.files;
+    this.course.image = event.target.files[0].name;
   }
 
   onUpload(){
     this.progress.percentage = 0;
- 
     this.currentFileUpload = this.selectedFiles.item(0);
     this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
       if (event.type === HttpEventType.UploadProgress) {
@@ -69,7 +71,6 @@ export class CourseFormComponent implements OnInit {
         console.log('File is completely uploaded!');
       }
     });
- 
     this.selectedFiles = undefined;
   }
 }

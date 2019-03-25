@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { ClassesService } from '../../services/classes.service';
+import { CourseService } from '../../services/course.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -11,11 +12,11 @@ export class CourseDetailComponent implements OnInit {
 
   classes : {};
   course = {};
-  level = {};
-  lessons : {};
+  level : string;
   id : string;
   
-  constructor(private http : HttpClient, 
+  constructor(private classesService : ClassesService,
+              private courseService : CourseService, 
               private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -26,13 +27,13 @@ export class CourseDetailComponent implements OnInit {
   }
 
   getData(){
-    this.http.get('http://localhost:8080/class/follow-course/'+this.id).subscribe(data =>{
+    this.classesService.getDataByIdCourse(this.id).subscribe(data =>{
         this.classes = data;
-        this.course = this.classes[0].course;
-        this.level = this.classes[0].course.level;
-        this.lessons = this.classes[0].course.lessons;
-        console.log(this.level);
     });
+    this.courseService.getDataById(this.id).subscribe(data =>{
+      this.course = data;
+      this.level = this.course['level'].level;
+    })
   }
 
 }

@@ -1,6 +1,10 @@
-*{
-    color: white;
+.manage{
+    margin-top: 20px;
 }
 table{
-    margin-top: 20px;
+    width: 100%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
 }

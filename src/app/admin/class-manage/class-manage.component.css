@@ -1,7 +1,19 @@
-*{
-    color: white;
-}
 .classes{
     float: right;
     width: 80%;
+}
+.classes h4{
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .classes{
+        float: none;
+        width: 100%;
+    }
+    .classes h4{
+        display: block;
+        width: 100%;
+    }      
 }

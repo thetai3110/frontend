@@ -8,9 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ContentComponent implements OnInit {
 
   @Input() course = {};
-  @Input() level = {};
-  @Input() lessons : {};
-
+  @Input() level : string;
+  
   constructor() { }
 
   ngOnInit() {

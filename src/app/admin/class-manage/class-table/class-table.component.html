@@ -1,3 +1,22 @@
-<p>
-  class-table works!
-</p>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Id</th>
+      <th>Tên lớp</th>
+      <th>Sĩ số</th>
+      <th>Trạng thái</th>
+      <th>Khóa học</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cl of classes">
+      <td>{{ cl.idClass }}</td>
+      <td>{{ cl.className }} </td>
+      <td>{{ cl.size }}</td>
+      <td>{{ cl.status }} </td>
+      <td>{{ cl.course.course }} - {{cl.course.level.level}} </td>
+      <td><a href="" class="btn btn-success">Sửa</a></td>
+    </tr>
+  </tbody>
+</table>

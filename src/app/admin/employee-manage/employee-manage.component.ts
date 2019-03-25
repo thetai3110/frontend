@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../../services/employee.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -11,18 +10,9 @@ export class EmployeeManageComponent implements OnInit {
 
   faPlusCircle = faPlusCircle;
 
-  employees : {};
-
-  constructor(private employeeService: EmployeeService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getEmployee();
-  }
-
-  getEmployee(){
-    this.employeeService.getData().subscribe(data =>{
-      this.employees = data;
-    });
   }
 
 }

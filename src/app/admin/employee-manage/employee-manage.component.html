@@ -1,7 +1,5 @@
 <div class="employee">
-  <h4>Quản lý nhân viên <a [routerLink]="['/admin/student-manage/add']">
-      <fa-icon [icon]="faPlusCircle"></fa-icon>
-    </a></h4>
+  <h4>Quản lý nhân viên</h4>
   <div class="container tab">
     <ul class="nav nav-tabs" id="tabs" role="tablist">
       <li class="nav-item">
@@ -16,7 +14,7 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane fade show active" id="pane-tab-student" role="tabpanel" aria-labelledby="tab-student">
-        <app-employee-table [employees]="employees"></app-employee-table>
+        <app-employee-table></app-employee-table>
       </div>
       <div class="tab-pane fade" id="pane-tab-add" role="tabpanel" aria-labelledby="tab-add">
         <app-employee-form></app-employee-form>

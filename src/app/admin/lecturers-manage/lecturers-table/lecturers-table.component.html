@@ -1,30 +1,47 @@
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>Id</th>
-      <th>Tên</th>
-      <th>Majors</th>
-      <th>Ngày sinh</th>
-      <th>Giới tính</th>
-      <th>Địa chỉ</th>
-      <th>Email</th>
-      <th>Số điện thoại</th>
-      <th>Lương</th>
-      <th>Thao tác</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let lec of lecturers">
-      <td>{{ lec.idLecturers }}</td>
-      <td>{{ lec.lecturersName }} </td>
-      <td>{{ lec.majors.majors }}</td>
-      <td>{{ lec.lecturersDate | date: 'dd-MM-yyyy' }} </td>
-      <td>{{ lec.sex == 1 ? 'Nam' : 'Nữ' }}</td>
-      <td>{{ lec.address }} </td>
-      <td>{{ lec.email }}</td>
-      <td>{{ lec.phone }} </td>
-      <td>{{ lec.salary }}</td>
-      <td><a href="" class="btn btn-success">Sửa</a></td>
-    </tr>
-  </tbody>
-</table>
+<div class="manage">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let item">{{ item.idLecturers }}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên</th>
+      <td mat-cell *matCellDef="let item">{{ item.lecturersName }}</td>
+    </ng-container>
+    <ng-container matColumnDef="majors">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Vai trò</th>
+      <td mat-cell *matCellDef="let item">{{ item.majors.majors }}</td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày sinh</th>
+      <td mat-cell *matCellDef="let item">{{ item.lecturersDate | date: 'dd-MM-yyyy' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="sex">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Giới tính</th>
+      <td mat-cell *matCellDef="let item">{{ item.sex == 1 ? 'Nam' : 'Nữ' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Địa chỉ</th>
+      <td mat-cell *matCellDef="let item">{{ item.address }}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td mat-cell *matCellDef="let item">{{ item.email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>SDT</th>
+      <td mat-cell *matCellDef="let item">{{ item.phone }}</td>
+    </ng-container>
+    <ng-container matColumnDef="salary">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Lương</th>
+      <td mat-cell *matCellDef="let item">{{ item.salary }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions">
+  </mat-paginator>
+</div>

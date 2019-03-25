@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faUsers, faMale, faChalkboardTeacher,
+         faUserGraduate, faLaptopCode, faFileInvoice,
+         faDoorOpen, faWarehouse } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar-left',
@@ -8,7 +10,10 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavbarLeftComponent implements OnInit {
 
-  faUser = faUser;
+  faUser = faUser; faUsers = faUsers; faMale = faMale;
+  faChalkboardTeacher = faChalkboardTeacher; faUserGraduate = faUserGraduate;
+  faLaptopCode = faLaptopCode; faFileInvoice = faFileInvoice;
+  faDoorOpen = faDoorOpen; faWarehouse= faWarehouse;
 
   constructor() { }
 

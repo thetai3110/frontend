@@ -9,8 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class InfoComponent implements OnInit {
 
   @Input() course = {};
-  @Input() level = {};
-
+  @Input() level : string;
+  
   constructor() { }
 
   ngOnInit() {

@@ -9,7 +9,7 @@ export class ClassesComponent implements OnInit {
 
   @Input('list-class') classes : {};
   @Input() course = {};
-  @Input() level = {};
+  @Input() level : string;
   
   constructor() { }
 

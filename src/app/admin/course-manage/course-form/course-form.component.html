@@ -46,7 +46,7 @@
       <div *ngIf="fee.errors.required">
         Nhập học phí
       </div>
-      <div *ngIf="email.errors.pattern">
+      <div *ngIf="fee.errors.pattern">
         Học phí chỉ được điền thừ 0->9
       </div>
     </div>
@@ -86,9 +86,8 @@
     <!-- Ảnh -->
     <div class="form-group">
       <label for="image">Trang thái</label>
-      <input type="file" (change)="onFileSelected($event);" class="form-control" id="image" name="image" [(ngModel)]="course.image" #image="ngModel">
+      <input type="file" (change)="onFileSelected($event);" class="form-control" id="image" name="image" ngModel #image="ngModel">
     </div>
-    <button type="button" class="btn btn-danger" (click)="onUpload();">Thêm</button><br>
     <button type="submit" class="btn btn-success" >Thêm</button><br>
   </form>
 </div>

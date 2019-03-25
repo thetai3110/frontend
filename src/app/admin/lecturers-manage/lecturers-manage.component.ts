@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LecturersService } from '../../services/lecturers.service';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -11,18 +10,9 @@ export class LecturersManageComponent implements OnInit {
 
   faPlusCircle = faPlusCircle;
 
-  lecturers: {};
-
-  constructor(private lecturersService: LecturersService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.getLecturers();
   }
-
-  getLecturers(){
-    this.lecturersService.getData().subscribe(data =>{
-      this.lecturers = data;
-    });
-  }
-
+  
 }
