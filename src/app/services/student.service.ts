@@ -14,7 +14,15 @@ export class StudentService {
     return this.http.get<Student[]>('http://localhost:8080/student');
   }
 
+  getDataById(id): Observable<Student[]>{
+    return this.http.get<Student[]>('http://localhost:8080/student/'+id);
+  }
+
   postData(data){
     return this.http.post('http://localhost:8080/student/add',data);
+  }
+
+  updateData(id, data){
+    return this.http.put('http://localhost:8080/student/update/'+id, data);
   }
 }

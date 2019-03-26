@@ -1,19 +1,18 @@
-<h1 mat-dialog-title>Thêm giảng viên</h1>
+<h1 mat-dialog-title>Sửa thông tin</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div mat-dialog-content>
+    <p>Bạn muốn sửa học viên có Id là: {{ data.stu.idStudent }}?</p>
     <!-- Họ tên -->
     <mat-form-field>
-      <input matInput placeholder="Họ tên*" formControlName="lecturersName">
-      <mat-error *ngIf="hasError('lecturersName', 'required')">Tên không được bỏ trống</mat-error>
-      <mat-error *ngIf="hasError('lecturersName', 'maxlength')">Tối đa 30 ký tự</mat-error>
+      <input matInput placeholder="Họ tên*" formControlName="studentName">
+      <mat-error *ngIf="hasError('studentName', 'required')">Tên không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('studentName', 'maxlength')">Tối đa 30 ký tự</mat-error>
     </mat-form-field>
-    <!-- Chuyên ngành -->
+    <!-- CMND -->
     <mat-form-field>
-      <mat-label>Chuyên ngành</mat-label>
-      <select matNativeControl formControlName="idMajors">
-        <option *ngFor="let mj of allMajors " [value]="mj.idMajors">{{ mj.majors }}</option>
-      </select>
-      <mat-error *ngIf="hasError('idMajors', 'required')">Chuyên ngành không được bỏ trống</mat-error>
+      <input matInput placeholder="Số cmnd*" formControlName="cmnd">
+      <mat-error *ngIf="hasError('cmnd', 'required')">CMND không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('cmnd', 'pattern')">CMND chỉ chứa kí tự từ 0->9</mat-error>
     </mat-form-field>
     <!-- Id tài khoản -->
     <mat-form-field>
@@ -24,11 +23,11 @@
     </mat-form-field>
     <!-- Ngày sinh -->
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="lecturersDate" id="date" 
+      <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="studentDate" id="date" 
           readonly (click)="picker.open()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="hasError('lecturersDate', 'required')">Chọn ngày sinh</mat-error>
+      <mat-error *ngIf="hasError('studentDate', 'required')">Chọn ngày sinh</mat-error>
     </mat-form-field>
     <!-- Giới tính -->
     <mat-radio-group aria-label="Giới tính" formControlName="sex">
@@ -52,14 +51,13 @@
       <mat-error *ngIf="hasError('phone', 'pattern')">Số điện thoại chỉ chứa kí tự từ 0->9</mat-error>
       <mat-error *ngIf="hasError('phone', 'required')">Số điện thoại không được bỏ trống</mat-error>
     </mat-form-field>
-    <!-- Lương -->
+    <!-- Nghề nghiệp hiện tại -->
     <mat-form-field>
-      <input matInput placeholder="Lương*" formControlName="salary">
-      <mat-error *ngIf="hasError('salary', 'pattern')">Lương chỉ chứa kí tự từ 0->9</mat-error>
-      <mat-error *ngIf="hasError('salary', 'required')">Lương không được bỏ trống</mat-error>
+      <input matInput placeholder="Nghề nghiệp hiện tại" formControlName="job">
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="action">
-    <button mat-raised-button color="primary" type="submit">Thêm</button>
+    <button mat-raised-button color="warn" (click)="onCancel()">Hủy</button>
+    <button mat-raised-button color="primary" type="submit">Sửa</button>
   </div>
 </form>

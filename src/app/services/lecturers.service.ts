@@ -14,6 +14,10 @@ export class LecturersService {
     return this.http.get<Lecturers[]>('http://localhost:8080/lecturers');
   }
 
+  getDataById(id): Observable<Lecturers[]>{
+    return this.http.get<Lecturers[]>('http://localhost:8080/lecturers/' + id);
+  }
+
   postData(data){
     return this.http.post('http://localhost:8080/lecturers/add',data);
   }

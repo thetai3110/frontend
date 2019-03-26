@@ -1,10 +1,9 @@
 import { Account } from "./account.model";
-import { Majors } from "./majors.model";
 
 export interface Employee{
     idEmployee: Number;
     account: Account;
-    majors: Majors;
+    roles: string;
     employeeName: string;
     cmnd: string;
     employeeDate: Date;

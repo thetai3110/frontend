@@ -3,6 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LecturersService } from 'src/app/services/lecturers.service';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material';
+import { LecturersDialogComponent } from '../lecturers-dialog/lecturers-dialog.component';
 
 @Component({
   selector: 'app-lecturers-table',
@@ -14,13 +17,16 @@ export class LecturersTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns= ['id','name','majors','date','sex','address','email','phone','salary'];
+  faEdit = faEdit; faTrashAlt = faTrashAlt;
+  displayedColumns= ['id','name','majors','date','sex','address','email','phone','salary','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
+  result : any;
 
-  constructor(private lecturersService: LecturersService) { }
+  constructor(private lecturersService: LecturersService,
+          public dialog: MatDialog) { }
 
   ngOnInit() {
     this.lecturersService.getData().subscribe(rs =>{
@@ -34,6 +40,21 @@ export class LecturersTableComponent implements OnInit {
 
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialog(id): void {
+    this.lecturersService.getDataById(id).subscribe(data =>{
+      this.result = data;
+      const dialogRef = this.dialog.open(LecturersDialogComponent, {
+        width: '500px',
+        data:{
+          stu : this.result
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    });
   }
 
 }

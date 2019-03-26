@@ -11,6 +11,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StudentDialogComponent } from './admin/student-manage/student-dialog/student-dialog.component';
+import { EmployeeDialogComponent } from './admin/employee-manage/employee-dialog/employee-dialog.component';
+import { LecturersDialogComponent } from './admin/lecturers-manage/lecturers-dialog/lecturers-dialog.component';
+import { StudentFormComponent } from './admin/student-manage/student-form/student-form.component';
+import { EmployeeFormComponent } from './admin/employee-manage/employee-form/employee-form.component';
+import { LecturersFormComponent } from './admin/lecturers-manage/lecturers-form/lecturers-form.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +33,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FontAwesomeModule,
     BrowserAnimationsModule
+  ],
+  entryComponents:[
+    StudentDialogComponent,
+    EmployeeDialogComponent, 
+    LecturersDialogComponent,
+    StudentFormComponent,
+    EmployeeFormComponent,
+    LecturersFormComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

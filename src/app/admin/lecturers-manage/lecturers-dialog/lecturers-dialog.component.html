@@ -1,6 +1,7 @@
-<h1 mat-dialog-title>Thêm giảng viên</h1>
+<h1 mat-dialog-title>Sửa thông tin</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div mat-dialog-content>
+    <p>Bạn muốn sửa học viên có Id là: {{ data.stu.idStudent }}?</p>
     <!-- Họ tên -->
     <mat-form-field>
       <input matInput placeholder="Họ tên*" formControlName="lecturersName">
@@ -24,8 +25,8 @@
     </mat-form-field>
     <!-- Ngày sinh -->
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="lecturersDate" id="date" 
-          readonly (click)="picker.open()">
+      <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="lecturersDate" id="date"
+        readonly (click)="picker.open()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-error *ngIf="hasError('lecturersDate', 'required')">Chọn ngày sinh</mat-error>
@@ -60,6 +61,7 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="action">
-    <button mat-raised-button color="primary" type="submit">Thêm</button>
+    <button mat-raised-button color="warn" (click)="onCancel()">Hủy</button>
+    <button mat-raised-button color="primary" type="submit">Sửa</button>
   </div>
 </form>

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { StudentFormComponent } from './student-form/student-form.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-student-manage',
@@ -10,9 +12,18 @@ export class StudentManageComponent implements OnInit {
 
   faPlusCircle = faPlusCircle;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
+
+  onOpenDialogAdd(){
+    const dialogRef = this.dialog.open(StudentFormComponent, {
+      width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  } 
 
 }

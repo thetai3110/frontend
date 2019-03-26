@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -8,22 +10,31 @@ import { EmployeeService } from '../../../services/employee.service';
 })
 export class EmployeeFormComponent implements OnInit {
 
-  public employee = {
-    employeeName : "",
-    cmnd : "",
-    employeeDate : "",
-    sex : "",
-    address : "",
-    email : "",
-    phone : "",
-    salary : "",
-    roles : ""
-  };
+  form: FormGroup = new FormGroup({
+    employeeName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    idAccount: new FormControl(''),
+    cmnd: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
+    roles: new FormControl('', [Validators.required]),
+    employeeDate: new FormControl(new Date(),[Validators.required]),
+    sex: new FormControl('1', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
+    salary: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
+    image: new FormControl(null),
+  }); 
 
-  constructor(private employeeService: EmployeeService) { }
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.form.controls[controlName].hasError(errorName);
+  }
 
-  onSubmit(){
-    this.employeeService.postData(this.employee).subscribe(data =>{
+  constructor(private employeeService: EmployeeService,
+    private accountService: AccountService) { }
+
+  allAccount : any;
+
+  onSubmit(form){
+    this.employeeService.postData(form).subscribe(data =>{
       if(data!= null){
         alert('Success!');
       }
@@ -31,6 +42,9 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.accountService.getData().subscribe(data=>{
+      this.allAccount = data;
+    })
   }
 
 }

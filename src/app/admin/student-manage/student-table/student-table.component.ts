@@ -3,6 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentService } from '../../../services/student.service';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material';
+import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 
 @Component({
   selector: 'app-student-table',
@@ -14,13 +17,16 @@ export class StudentTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns= ['id','name','cmnd','job','date','sex','address','email','phone'];
+  faEdit = faEdit; faTrashAlt = faTrashAlt;
+  displayedColumns= ['id','name','cmnd','job','date','sex','address','email','phone','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
+  result = {};
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService,
+            public dialog: MatDialog) { }
 
   ngOnInit() {
     this.studentService.getData().subscribe(rs =>{
@@ -35,5 +41,20 @@ export class StudentTableComponent implements OnInit {
   applyFilter(filterValue: string){
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
+  openDialog(id): void {
+    this.studentService.getDataById(id).subscribe(data =>{
+      this.result = data;
+      const dialogRef = this.dialog.open(StudentDialogComponent, {
+        width: '500px',
+        data:{
+          stu : this.result
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+    });
+  }
+
 }

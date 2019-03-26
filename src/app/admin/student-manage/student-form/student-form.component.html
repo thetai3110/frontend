@@ -1,83 +1,61 @@
-<div class="student">
-  <form class="regFrom" #regForm="ngForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="user">Tên đầy đủ</label>
-      <input type="text" placeholder="Nhập họ tên" class="form-control" id="user" name="user" [(ngModel)]="student.studentName" #user="ngModel" required minlength="12" maxlength="30">
-    </div>
-    <div *ngIf="user.invalid && (user.dirty || user.touched)" class="alert alert-danger">
-      <div *ngIf="user.errors.required">
-        Tên người dùng trống!!!
-      </div>
-      <div *ngIf="user.errors.minlength">
-        Tối thiểu 12 kí tự
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="cmnd">Số CMND</label>
-      <input type="text" placeholder="Nhập số CMND"  class="form-control" id="cmnd" name="cmnd" [(ngModel)]="student.cmnd" #cmnd="ngModel" required pattern="[0-9]*">
-    </div>
-    <div *ngIf="cmnd.invalid && (cmnd.dirty || cmnd.touched)" class="alert alert-danger">
-      <div *ngIf="cmnd.errors.required">
-        Nhập số CMND
-      </div>
-      <div *ngIf="cmnd.errors.pattern">
-        Số cmnd phải là số
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="date">Ngày sinh</label>
-      <input type="date" class="form-control" placeholder="Chọn ngày sinh" id="date" name="date" [(ngModel)]="student.studentDate" #date="ngModel" required>
-    </div>
-    <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
-      <div *ngIf="date.errors.required">
-        Chọn ngày sinh
-      </div>
-    </div>
-    <div class="form-group">
-        <label for="sex">Giới tính</label>
-      <select class="form-control" id="sex" name="sex" [(ngModel)]="student.sex" #sex="ngModel" required>
-        <option value="1">Nam</option>
-        <option value="0">Nữ</option>
+<h1 mat-dialog-title>Thêm học viên</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div mat-dialog-content>
+    <!-- Họ tên -->
+    <mat-form-field>
+      <input matInput placeholder="Họ tên*" formControlName="studentName">
+      <mat-error *ngIf="hasError('studentName', 'required')">Tên không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('studentName', 'maxlength')">Tối đa 30 ký tự</mat-error>
+    </mat-form-field>
+    <!-- CMND -->
+    <mat-form-field>
+      <input matInput placeholder="Số cmnd*" formControlName="cmnd">
+      <mat-error *ngIf="hasError('cmnd', 'required')">CMND không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('cmnd', 'pattern')">CMND chỉ chứa kí tự từ 0->9</mat-error>
+    </mat-form-field>
+    <!-- Id tài khoản -->
+    <mat-form-field>
+      <mat-label>Tài khoản</mat-label>
+      <select matNativeControl formControlName="idAccount">
+        <option *ngFor="let acc of allAccount " [value]="acc.idAccount">{{ acc.username }}</option>
       </select>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" placeholder="Nhập email"  class="form-control" id="email" name="email" [(ngModel)]="student.email" #email="ngModel" required email>
-    </div>
-    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-      <div *ngIf="email.errors.required">
-        Nhập địa chỉ email
-      </div>
-      <div *ngIf="email.errors.email">
-        Email sai định dạng
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="address">Địa chỉ</label>
-      <input type="text" placeholder="Nhập địa chỉ nhà"  class="form-control" id="address" name="address" [(ngModel)]="student.address" #address="ngModel" required>
-    </div>
-    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger">
-      <div *ngIf="address.errors.required">
-        Nhập địa chỉ nhà
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="phone">Số điện thoại</label>
-      <input type="text" placeholder="Nhập số điện thoại"  class="form-control" id="phone" name="phone" [(ngModel)]="student.phone" #phone="ngModel" required pattern="[0-9]*">
-    </div>
-    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
-      <div *ngIf="phone.errors.required">
-        Nhập số điện thoại
-      </div>
-      <div *ngIf="phone.errors.pattern">
-        Số điện thoại không được chữa các kí tự khác
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="job">Nghề nghiệp</label>
-      <input type="text" placeholder="Nghề nghiệp hiện tại"  class="form-control" id="job" name="job" [(ngModel)]="student.job" #job="ngModel">
-    </div>
-    <button type="submit" class="btn btn-success" >Thêm</button><br>
-  </form>
-  
-</div>
+    </mat-form-field>
+    <!-- Ngày sinh -->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Ngày sinh*" formControlName="studentDate" id="date" readonly
+        (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="hasError('studentDate', 'required')">Chọn ngày sinh</mat-error>
+    </mat-form-field>
+    <!-- Giới tính -->
+    <mat-radio-group aria-label="Giới tính*" formControlName="sex">
+      <mat-radio-button value="1">Nam</mat-radio-button>
+      <mat-radio-button value="0">Nữ</mat-radio-button>
+    </mat-radio-group>
+    <!-- Địa chỉ -->
+    <mat-form-field>
+      <input matInput placeholder="Địa chỉ*" formControlName="address">
+      <mat-error *ngIf="hasError('address', 'required')">Địa chỉ không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Email -->
+    <mat-form-field>
+      <input matInput placeholder="Email*" formControlName="email">
+      <mat-error *ngIf="hasError('email', 'required')">Email không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('email', 'email')">Email sai định dạng</mat-error>
+    </mat-form-field>
+    <!-- Số điện thoại -->
+    <mat-form-field>
+      <input matInput placeholder="Số điện thoại*" formControlName="phone">
+      <mat-error *ngIf="hasError('phone', 'pattern')">Số điện thoại chỉ chứa kí tự từ 0->9</mat-error>
+      <mat-error *ngIf="hasError('phone', 'required')">Số điện thoại không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Nghề nghiệp hiện tại -->
+    <mat-form-field>
+      <input matInput placeholder="Nghề nghiệp hiện tại" formControlName="job">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button color="primary" type="submit">Thêm</button>
+  </div>
+</form>
