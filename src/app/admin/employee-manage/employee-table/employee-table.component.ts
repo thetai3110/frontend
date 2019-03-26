@@ -6,6 +6,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
+import { EmployeeDeleteComponent } from '../employee-delete/employee-delete.component';
 
 @Component({
   selector: 'app-employee-table',
@@ -54,6 +55,18 @@ export class EmployeeTableComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
       });
+    });
+  }
+
+  onDelete(id): void {
+    const dialogRef = this.dialog.open(EmployeeDeleteComponent, {
+      width: '250px',
+      data:{
+          id : id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 

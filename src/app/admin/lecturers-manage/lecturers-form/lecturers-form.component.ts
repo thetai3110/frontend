@@ -3,6 +3,7 @@ import { LecturersService } from '../../../services/lecturers.service';
 import { MajorsService } from '../../../services/majors.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-lecturers-form',
@@ -11,7 +12,8 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class LecturersFormComponent implements OnInit {
   constructor(private lecturersService: LecturersService,
-    private majorsService: MajorsService,  private accountService: AccountService) { }
+    private majorsService: MajorsService,  private accountService: AccountService,
+    public dialogRef: MatDialogRef<LecturersFormComponent>) { }
 
 
   form: FormGroup = new FormGroup({
@@ -43,10 +45,15 @@ export class LecturersFormComponent implements OnInit {
     return this.form.controls[controlName].hasError(errorName);
   }
 
+  onCancel(){
+    this.dialogRef.close();
+  }
+
   onSubmit(form) {
     this.lecturersService.postData(form).subscribe(data => {
       if (data != null) {
         alert('Success!');
+        this.onCancel();
       }
     });
   }

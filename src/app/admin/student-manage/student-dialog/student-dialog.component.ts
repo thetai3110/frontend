@@ -45,8 +45,10 @@ export class StudentDialogComponent implements OnInit {
 
   onSubmit(form){
     this.studentService.updateData(this.data.stu.idStudent, form).subscribe(data =>{
-        if(data != null)
-          console.log("success");
+        if(data != null){
+          alert("success");
+          this.onCancel();
+        }
     });
   }
 }

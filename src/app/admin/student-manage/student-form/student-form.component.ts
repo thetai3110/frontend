@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../../../services/student.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-student-form',
@@ -9,8 +10,10 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./student-form.component.css']
 })
 export class StudentFormComponent implements OnInit {
-
-  constructor(private studentService: StudentService, private accountService: AccountService) { }
+ 
+  constructor(private studentService: StudentService,
+         private accountService: AccountService,
+         public dialogRef: MatDialogRef<StudentFormComponent>) { }
 
   form: FormGroup = new FormGroup({
     studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -26,10 +29,15 @@ export class StudentFormComponent implements OnInit {
   });
   allAccount: any;
 
+  onCancel(){
+    this.dialogRef.close();
+  }
+
   onSubmit(form){
     this.studentService.postData(form).subscribe(data =>{
       if(data!= null){
         alert('Success!');
+        this.onCancel();
       }
     });
   }

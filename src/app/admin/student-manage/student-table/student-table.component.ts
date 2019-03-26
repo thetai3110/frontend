@@ -6,6 +6,7 @@ import { StudentService } from '../../../services/student.service';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
+import { StudentDeleteComponent } from '../student-delete/student-delete.component';
 
 @Component({
   selector: 'app-student-table',
@@ -57,4 +58,15 @@ export class StudentTableComponent implements OnInit {
     });
   }
 
+  onDelete(id): void {
+    const dialogRef = this.dialog.open(StudentDeleteComponent, {
+      width: '250px',
+      data:{
+          id : id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

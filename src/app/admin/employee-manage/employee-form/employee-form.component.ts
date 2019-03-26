@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-employee-form',
@@ -29,14 +30,20 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   constructor(private employeeService: EmployeeService,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    public dialogRef: MatDialogRef<EmployeeFormComponent>) { }
 
   allAccount : any;
+
+  onCancel(){
+    this.dialogRef.close();
+  }
 
   onSubmit(form){
     this.employeeService.postData(form).subscribe(data =>{
       if(data!= null){
         alert('Success!');
+        this.onCancel();
       }
     });
   }

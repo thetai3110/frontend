@@ -6,6 +6,7 @@ import { LecturersService } from 'src/app/services/lecturers.service';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { LecturersDialogComponent } from '../lecturers-dialog/lecturers-dialog.component';
+import { LecturersDeleteComponent } from '../lecturers-delete/lecturers-delete.component';
 
 @Component({
   selector: 'app-lecturers-table',
@@ -54,6 +55,18 @@ export class LecturersTableComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
       });
+    });
+  }
+
+  onDelete(id): void {
+    const dialogRef = this.dialog.open(LecturersDeleteComponent, {
+      width: '250px',
+      data:{
+          id : id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 

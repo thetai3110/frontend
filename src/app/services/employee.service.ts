@@ -18,7 +18,15 @@ export class EmployeeService {
     return this.http.get<Employee[]>('http://localhost:8080/employee/' + id);
   }
 
+  deleteData(id): Observable<Employee[]>{
+    return this.http.get<Employee[]>('http://localhost:8080/employee/delete/' + id);
+  }
+
   postData(data){
     return this.http.post('http://localhost:8080/employee/add',data);
+  }
+
+  updateData(id, data){
+    return this.http.post('http://localhost:8080/employee/update/'+id, data);
   }
 }

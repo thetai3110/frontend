@@ -49,7 +49,12 @@ export class LecturersDialogComponent implements OnInit {
     }
   
     onSubmit(form){
-      
+      this.lecturersService.updateData(this.data.stu.idLecturers, form).subscribe(data =>{
+        if(data != null){
+          alert("success");
+          this.onCancel();
+        }
+    });
     }
 
 }

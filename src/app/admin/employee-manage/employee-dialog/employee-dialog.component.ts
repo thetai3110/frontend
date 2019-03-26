@@ -46,7 +46,12 @@ export class EmployeeDialogComponent implements OnInit {
     }
   
     onSubmit(form){
-      
+      this.employeeService.updateData(this.data.stu.idEmployee, form).subscribe(data =>{
+        if(data != null){
+          alert("success");
+          this.onCancel();
+        }
+    });
     }
 
 }

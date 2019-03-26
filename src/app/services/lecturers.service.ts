@@ -18,7 +18,15 @@ export class LecturersService {
     return this.http.get<Lecturers[]>('http://localhost:8080/lecturers/' + id);
   }
 
+  deleteData(id): Observable<Lecturers[]>{
+    return this.http.get<Lecturers[]>('http://localhost:8080/lecturers/delete/' + id);
+  }
+
   postData(data){
     return this.http.post('http://localhost:8080/lecturers/add',data);
+  }
+
+  updateData(id, data){
+    return this.http.post('http://localhost:8080/lecturers/update/'+id, data);
   }
 }
