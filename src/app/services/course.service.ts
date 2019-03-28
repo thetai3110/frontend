@@ -23,4 +23,11 @@ export class CourseService {
     return this.http.get('http://localhost:8080/course/'+id);
   }
 
+  updateData(data, id){
+    return this.http.post('http://localhost:8080/course/update/' + id, data);
+  }
+
+  deleteData(id): Observable<Course[]>{
+    return this.http.get<Course[]>('http://localhost:8080/course/delete/'+ id);
+  }
 }

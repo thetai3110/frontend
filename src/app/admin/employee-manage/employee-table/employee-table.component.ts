@@ -3,10 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
 import { EmployeeDeleteComponent } from '../employee-delete/employee-delete.component';
+import { EmployeeFormComponent } from '../employee-form/employee-form.component';
 
 @Component({
   selector: 'app-employee-table',
@@ -18,7 +19,7 @@ export class EmployeeTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faEdit = faEdit; faTrashAlt = faTrashAlt;
+  faEdit = faEdit; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
   displayedColumns= ['id','name','cmnd','roles','date','sex','address','email','phone','salary','tool'];
   length = 100;
   pageSize = 10;
@@ -30,13 +31,7 @@ export class EmployeeTableComponent implements OnInit {
             public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.employeeService.getData().subscribe(rs =>{
-      if(!rs)
-        return;
-      this.dataSource = new MatTableDataSource(rs);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    });
+    this.reloadTable();
   }
 
   applyFilter(filterValue: string){
@@ -54,6 +49,7 @@ export class EmployeeTableComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.reloadTable();
       });
     });
   }
@@ -67,6 +63,27 @@ export class EmployeeTableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.reloadTable();
+    });
+  }
+  
+  onOpenDialogAdd(){
+    const dialogRef = this.dialog.open(EmployeeFormComponent, {
+      width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.reloadTable();
+    });
+  }
+
+  reloadTable(){
+    this.employeeService.getData().subscribe(rs =>{
+      if(!rs)
+        return;
+      this.dataSource = new MatTableDataSource(rs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 

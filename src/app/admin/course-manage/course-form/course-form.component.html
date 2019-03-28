@@ -1,93 +1,70 @@
-<div class="course">
-  <form class="regFrom" #courseForm="ngForm" (ngSubmit)="onSubmit()">
-    <!-- Tên khóa học -->
-    <div class="form-group">
-      <label for="courseName">Tên khóa học</label>
-      <input type="text" placeholder="Nhập tên khóa học" class="form-control" id="courseName" name="courseName" [(ngModel)]="course.course" #courseName="ngModel" required>
-    </div>
-    <div *ngIf="courseName.invalid && (courseName.dirty || courseName.touched)" class="alert alert-danger">
-      <div *ngIf="courseName.errors.required">
-        Nhập tên khóa học
-      </div>
-    </div>
-    <!-- Mức độ -->
-    <div class="form-group">
-      <label for="level">Mức độ</label>
-      <select class="form-control" id="level" name="level" [(ngModel)]="course.idLevel" #level="ngModel" required>
-        <option *ngFor="let lev of allLevel" [value]="lev.idLevel">{{ lev.level }}</option>
-      </select>
-    </div>
-    <!-- Ngày bắt đầu -->
-    <div class="form-group">
-      <label for="date">Ngày bắt đầu</label>
-      <input type="date" class="form-control" placeholder="Chọn bắt đầu" id="date" name="date" [(ngModel)]="course.dayStart" #date="ngModel" required>
-    </div>
-    <div *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
-      <div *ngIf="date.errors.required">
-        Chọn ngày bắt đầu khóa học
-      </div>
-    </div>
+<h1 mat-dialog-title>Thêm khóa học</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div mat-dialog-content>
+    <!-- Tên -->
+    <mat-form-field>
+      <input matInput placeholder="Tên khóa học*" formControlName="course">
+      <mat-error *ngIf="hasError('course', 'required')">Tên không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('course', 'maxlength')">Tối đa 30 ký tự</mat-error>
+    </mat-form-field>
     <!-- Thời lượng -->
-    <div class="form-group">
-      <label for="duration">Giới tính</label>
-      <input type="text" placeholder="Nhập thời lượng học" class="form-control" id="duration" name="duration" [(ngModel)]="course.duration" #duration="ngModel" required>
-    </div>
-    <div *ngIf="duration.invalid && (duration.dirty || duration.touched)" class="alert alert-danger">
-      <div *ngIf="duration.errors.required">
-        Nhập thời lượng học
-      </div>
-    </div>
-    <!-- Học phí -->
-    <div class="form-group">
-      <label for="fee">Học phí</label>
-      <input type="text" placeholder="Nhập học phí"  class="form-control" id="fee" name="fee" [(ngModel)]="course.fee" #fee="ngModel" required pattern="[0-9]*">
-    </div>
-    <div *ngIf="fee.invalid && (fee.dirty || fee.touched)" class="alert alert-danger">
-      <div *ngIf="fee.errors.required">
-        Nhập học phí
-      </div>
-      <div *ngIf="fee.errors.pattern">
-        Học phí chỉ được điền thừ 0->9
-      </div>
-    </div>
-    <!-- Ưu đãi -->
-    <div class="form-group">
-      <label for="sale">Ưu đãi</label>
-      <input type="text" placeholder="Nhập ưu đãi"  class="form-control" id="sale" name="sale" [(ngModel)]="course.sale" #sale="ngModel">
-    </div>
-   <!-- Địa điểm học -->
-    <div class="form-group">
-      <label for="space">Địa điểm</label>
-      <input type="text" placeholder="Nhập địa điểm"  class="form-control" id="space" name="space" [(ngModel)]="course.space" #space="ngModel" required>
-    </div>
-    <div *ngIf="space.invalid && (space.dirty || space.touched)" class="alert alert-danger">
-      <div *ngIf="space.errors.required">
-        Nhập địa điểm
-      </div>
-    </div>
-    <!-- Điều kiện -->
-    <div class="form-group">
-      <label for="condition">Điều kiện tham gia</label>
-      <input type="text" placeholder="Điều kiện tham gia"  class="form-control" id="condition" name="condition" [(ngModel)]="course.conditions" #condition="ngModel">
-    </div>
-    <!-- Mô tả -->
-    <div class="form-group">
-      <label for="describe">Mô tả</label>
-      <input type="text" placeholder="Mô tả khóa học"  class="form-control" id="describe" name="describe" [(ngModel)]="course.describes" #describe="ngModel">
-    </div>
-    <!-- Trang thái -->
-    <div class="form-group">
-      <label for="status">Trang thái</label>
-      <select class="form-control" id="status" name="status" [(ngModel)]="course.status" #status="ngModel" required>
-        <option value="1">Mở</option>
-        <option value="0">Đóng</option>
+    <mat-form-field>
+      <input matInput placeholder="Thời lượng*" formControlName="duration">
+      <mat-error *ngIf="hasError('duration', 'required')">Thời luợng không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('duration', 'pattern')">CMND chỉ chứa kí tự từ 0->9</mat-error>
+    </mat-form-field>
+    <!-- Mức độ -->
+    <mat-form-field>
+      <mat-label>Mức độ</mat-label>
+      <select matNativeControl formControlName="idLevel">
+        <option *ngFor="let acc of allLevel " [value]="acc.idLevel">{{ acc.level }}</option>
       </select>
-    </div>
-    <!-- Ảnh -->
-    <div class="form-group">
-      <label for="image">Trang thái</label>
-      <input type="file" (change)="onFileSelected($event);" class="form-control" id="image" name="image" ngModel #image="ngModel">
-    </div>
-    <button type="submit" class="btn btn-success" >Thêm</button><br>
-  </form>
-</div>
+      <mat-error *ngIf="hasError('idLevel', 'required')">Chọn mức độ</mat-error>
+    </mat-form-field>
+    <!-- Ngày bắt đầu -->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Ngày bắt đầu" formControlName="dayStart" id="date" readonly
+        (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="hasError('dayStart', 'required')">Chọn ngày sinh</mat-error>
+    </mat-form-field>
+    <!-- Địa điểm -->
+    <mat-form-field>
+      <input matInput placeholder="Địa điểm" formControlName="space">
+      <mat-error *ngIf="hasError('space', 'required')">Địa điểm không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Ưu đãi -->
+    <mat-form-field>
+      <input matInput placeholder="Ưu đãi" formControlName="sale">
+    </mat-form-field>
+    <!-- Điều kiện tham gia -->
+    <mat-form-field>
+      <input matInput placeholder="Điều kiện tham gia" formControlName="conditions">
+    </mat-form-field>
+    <!-- Mô tả -->
+    <mat-form-field>
+      <input matInput placeholder="Mô tả" formControlName="describes">
+    </mat-form-field>
+    <!-- Học phí -->
+    <mat-form-field>
+      <input matInput placeholder="Học phí*" formControlName="fee">
+      <mat-error *ngIf="hasError('fee', 'pattern')">Học phí chỉ chứa kí tự từ 0->9</mat-error>
+      <mat-error *ngIf="hasError('fee', 'required')">Học phí không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Trạng thái -->
+    <mat-form-field>
+      <mat-label>Trạng thái</mat-label>
+      <select matNativeControl formControlName="status">
+        <option value="1">Mở đăng ký</option>
+        <option value="1">Đóng đăng ký</option>
+      </select>
+      <mat-error *ngIf="hasError('idLevel', 'required')">Chọn trạng thái</mat-error>
+    </mat-form-field>
+    <input type="file" (change)="onFileSelected($event);" formControlName="image">
+  </div>
+  <div mat-dialog-actions class="action">
+    <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
+    <button mat-raised-button color="primary" type="submit">Thêm</button>
+  </div>
+</form>

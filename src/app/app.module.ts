@@ -21,6 +21,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { StudentDeleteComponent } from './admin/student-manage/student-delete/student-delete.component';
 import { EmployeeDeleteComponent } from './admin/employee-manage/employee-delete/employee-delete.component';
 import { LecturersDeleteComponent } from './admin/lecturers-manage/lecturers-delete/lecturers-delete.component';
+import { CourseDialogComponent } from './admin/course-manage/course-dialog/course-dialog.component';
+import { CourseDeleteComponent } from './admin/course-manage/course-delete/course-delete.component';
+import { CourseFormComponent } from './admin/course-manage/course-form/course-form.component';
+import { ClassDeleteComponent } from './admin/class-manage/class-delete/class-delete.component';
+import { ClassDialogComponent } from './admin/class-manage/class-dialog/class-dialog.component';
+import { ClassFormComponent } from './admin/class-manage/class-form/class-form.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +53,13 @@ import { LecturersDeleteComponent } from './admin/lecturers-manage/lecturers-del
     LecturersFormComponent,
     StudentDeleteComponent,
     EmployeeDeleteComponent,
-    LecturersDeleteComponent
+    LecturersDeleteComponent,
+    CourseDialogComponent,
+    CourseDeleteComponent,
+    CourseFormComponent,
+    ClassDeleteComponent,
+    ClassDialogComponent,
+    ClassFormComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

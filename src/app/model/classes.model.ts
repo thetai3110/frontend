@@ -3,7 +3,7 @@ import { Course } from "./course.model";
 import { Lecturers } from "./lecturers.model";
 
 export interface Classes{
-    idEmployee: Number;
+    idClass: Number;
     room: Room;
     course: Course;
     lecturers: Lecturers;

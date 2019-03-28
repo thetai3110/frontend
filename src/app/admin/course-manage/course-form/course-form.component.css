@@ -1,21 +1,13 @@
-.msg{
-    color: red;
-    padding-left: 20px;
-}
-.course{
-    margin: 20px 200px;
-}
-.course button{
+mat-form-field{
     width: 100%;
 }
-@media screen and (max-width: 600px) {
-    table{
-        clear: both;
-        width: 100%;
-        display: block;
-    } 
-    
-    .course{
-        margin: 0;
-    }
+mat-radio-button{
+    margin-right: 20px;
+}
+button, input[type="button"]{
+    width: 150px;
+    margin: 0px auto;
+}
+h1{
+    text-align: center; 
 }

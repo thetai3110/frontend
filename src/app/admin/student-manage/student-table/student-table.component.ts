@@ -3,10 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentService } from '../../../services/student.service';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { StudentDeleteComponent } from '../student-delete/student-delete.component';
+import { StudentFormComponent } from '../student-form/student-form.component';
 
 @Component({
   selector: 'app-student-table',
@@ -18,7 +19,7 @@ export class StudentTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faEdit = faEdit; faTrashAlt = faTrashAlt;
+  faEdit = faEdit; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
   displayedColumns= ['id','name','cmnd','job','date','sex','address','email','phone','tool'];
   length = 100;
   pageSize = 10;
@@ -30,13 +31,7 @@ export class StudentTableComponent implements OnInit {
             public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.studentService.getData().subscribe(rs =>{
-      if(!rs)
-        return;
-      this.dataSource = new MatTableDataSource(rs);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    });
+    this.reloadTable();
   }
 
   applyFilter(filterValue: string){
@@ -54,6 +49,7 @@ export class StudentTableComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.reloadTable();
       });
     });
   }
@@ -61,12 +57,36 @@ export class StudentTableComponent implements OnInit {
   onDelete(id): void {
     const dialogRef = this.dialog.open(StudentDeleteComponent, {
       width: '250px',
+      panelClass: 'confirm-dialog-container',
+      disableClose: true,
       data:{
           id : id
       }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.reloadTable();
     });
   }
+
+  onOpenDialogAdd(){
+    const dialogRef = this.dialog.open(StudentFormComponent, {
+      width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.reloadTable();
+    });
+  } 
+
+  reloadTable(){
+    this.studentService.getData().subscribe(rs =>{
+      if(!rs)
+        return;
+      this.dataSource = new MatTableDataSource(rs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
 }

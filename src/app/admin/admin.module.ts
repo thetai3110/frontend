@@ -44,9 +44,11 @@ import { EmployeeDeleteComponent } from './employee-manage/employee-delete/emplo
 import { LecturersDeleteComponent } from './lecturers-manage/lecturers-delete/lecturers-delete.component';
 import { CourseDialogComponent } from './course-manage/course-dialog/course-dialog.component';
 import { CourseDeleteComponent } from './course-manage/course-delete/course-delete.component';
+import { ClassDialogComponent } from './class-manage/class-dialog/class-dialog.component';
+import { ClassDeleteComponent } from './class-manage/class-delete/class-delete.component';
 
 @NgModule({
-  declarations: [AdminComponent, NavbarTopComponent, NavbarLeftComponent, CourseManageComponent, ClassManageComponent, EmployeeManageComponent, StudentManageComponent, LecturersManageComponent, InvoiceManageComponent, AccountManageComponent, RoomManageComponent, StudentFormComponent, AccountFormComponent, ClassFormComponent, CourseFormComponent, InvoiceFormComponent, LecturersFormComponent, RoomFormComponent, EmployeeFormComponent, StudentTableComponent, EmployeeTableComponent, LecturersTableComponent, CourseTableComponent, ClassTableComponent, StudentDialogComponent, LecturersDialogComponent, EmployeeDialogComponent, StudentDeleteComponent, EmployeeDeleteComponent, LecturersDeleteComponent, CourseDialogComponent, CourseDeleteComponent],
+  declarations: [AdminComponent, NavbarTopComponent, NavbarLeftComponent, CourseManageComponent, ClassManageComponent, EmployeeManageComponent, StudentManageComponent, LecturersManageComponent, InvoiceManageComponent, AccountManageComponent, RoomManageComponent, StudentFormComponent, AccountFormComponent, ClassFormComponent, CourseFormComponent, InvoiceFormComponent, LecturersFormComponent, RoomFormComponent, EmployeeFormComponent, StudentTableComponent, EmployeeTableComponent, LecturersTableComponent, CourseTableComponent, ClassTableComponent, StudentDialogComponent, LecturersDialogComponent, EmployeeDialogComponent, StudentDeleteComponent, EmployeeDeleteComponent, LecturersDeleteComponent, CourseDialogComponent, CourseDeleteComponent, ClassDialogComponent, ClassDeleteComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,

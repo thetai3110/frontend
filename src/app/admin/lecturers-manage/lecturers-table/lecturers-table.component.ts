@@ -3,10 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LecturersService } from 'src/app/services/lecturers.service';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { LecturersDialogComponent } from '../lecturers-dialog/lecturers-dialog.component';
 import { LecturersDeleteComponent } from '../lecturers-delete/lecturers-delete.component';
+import { LecturersFormComponent } from '../lecturers-form/lecturers-form.component';
 
 @Component({
   selector: 'app-lecturers-table',
@@ -18,7 +19,7 @@ export class LecturersTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faEdit = faEdit; faTrashAlt = faTrashAlt;
+  faEdit = faEdit; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
   displayedColumns= ['id','name','majors','date','sex','address','email','phone','salary','tool'];
   length = 100;
   pageSize = 10;
@@ -30,13 +31,7 @@ export class LecturersTableComponent implements OnInit {
           public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.lecturersService.getData().subscribe(rs =>{
-      if(!rs)
-        return;
-      this.dataSource = new MatTableDataSource(rs);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    });
+    this.reloadTable();
   }
 
   applyFilter(filterValue: string){
@@ -54,6 +49,7 @@ export class LecturersTableComponent implements OnInit {
       });
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
+        this.reloadTable();
       });
     });
   }
@@ -67,7 +63,27 @@ export class LecturersTableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.reloadTable();
     });
   }
 
+  onOpenDialogAdd(){
+    const dialogRef = this.dialog.open(LecturersFormComponent, {
+      width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.reloadTable();
+    });
+  }
+  
+  reloadTable(){
+    this.lecturersService.getData().subscribe(rs =>{
+      if(!rs)
+        return;
+      this.dataSource = new MatTableDataSource(rs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
 }

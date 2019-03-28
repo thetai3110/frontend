@@ -1,4 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ClassesService } from 'src/app/services/classes.service';
+import { faEdit, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material';
+import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
+import { ClassDeleteComponent } from '../class-delete/class-delete.component';
+import { ClassFormComponent } from '../class-form/class-form.component';
 
 @Component({
   selector: 'app-class-table',
@@ -7,11 +16,76 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ClassTableComponent implements OnInit {
 
-  @Input() classes : {};
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor() { }
+  faEdit = faEdit; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
+  displayedColumns= ['id','name','course','lecturers','room','size','minSize','maxSize','status','tool'];
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  dataSource;
+  result : any;
+
+  constructor(private classesService: ClassesService,
+            public dialog: MatDialog) { }
 
   ngOnInit() {
+    this.reloadTable();
   }
+
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+ 
+  openDialog(id): void {
+    this.classesService.getDataById(id).subscribe(data =>{
+      this.result = data;
+      const dialogRef = this.dialog.open(ClassDialogComponent, {
+        width: '500px',
+        data:{
+          stu : this.result
+        }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        this.reloadTable();
+      });
+    });
+  }
+
+  onDelete(id): void {
+    const dialogRef = this.dialog.open(ClassDeleteComponent, {
+      width: '250px',
+      data:{
+          id : id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.reloadTable();
+    });
+  }
+  
+  onOpenDialogAdd(){
+    const dialogRef = this.dialog.open(ClassFormComponent, {
+      width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.reloadTable();
+    });
+  }
+
+  reloadTable(){
+    this.classesService.getData().subscribe(rs =>{
+      if(!rs)
+        return;
+      this.dataSource = new MatTableDataSource(rs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
 
 }
