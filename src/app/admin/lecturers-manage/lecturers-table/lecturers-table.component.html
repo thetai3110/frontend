@@ -1,5 +1,5 @@
 <div class="manage">
-  <button class="btn btn-success" (click)="onOpenDialogAdd()">
+  <button  mat-mini-fab color="accent" (click)="onOpenDialogAdd()">
     <fa-icon [icon]="faPlusCircle"></fa-icon>
   </button>
   <mat-form-field>
@@ -45,10 +45,10 @@
     <ng-container matColumnDef="tool">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
       <td mat-cell *matCellDef="let item">
-        <button class="btn btn-success" (click)="openDialog(item.idLecturers)">
-          <fa-icon [icon]="faEdit"></fa-icon>
+        <button mat-raised-button color="primary" (click)="openDialog(item.idLecturers)">
+          <fa-icon [icon]="faPen"></fa-icon>
         </button>
-        <button class="btn btn-danger" (click)="onDelete(item.idLecturers)">
+        <button mat-raised-button color="warn" (click)="onDelete(item.idLecturers)">
           <fa-icon [icon]="faTrashAlt"></fa-icon>
         </button>
       </td>

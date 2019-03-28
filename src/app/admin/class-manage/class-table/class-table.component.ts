@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClassesService } from 'src/app/services/classes.service';
-import { faEdit, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { ClassDeleteComponent } from '../class-delete/class-delete.component';
@@ -19,7 +19,7 @@ export class ClassTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faEdit = faEdit; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
+  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
   displayedColumns= ['id','name','course','lecturers','room','size','minSize','maxSize','status','tool'];
   length = 100;
   pageSize = 10;
@@ -86,6 +86,5 @@ export class ClassTableComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
-
 
 }

@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule, MatDialogModule, MatNativeDateModule } from '@angular/material'; 
+import { MatSelectModule } from '@angular/material/select';
 
 import { AdminComponent } from './admin.component';
 import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
@@ -46,9 +47,10 @@ import { CourseDialogComponent } from './course-manage/course-dialog/course-dial
 import { CourseDeleteComponent } from './course-manage/course-delete/course-delete.component';
 import { ClassDialogComponent } from './class-manage/class-dialog/class-dialog.component';
 import { ClassDeleteComponent } from './class-manage/class-delete/class-delete.component';
+import { ClassStudentComponent } from './class-manage/class-student/class-student.component';
 
 @NgModule({
-  declarations: [AdminComponent, NavbarTopComponent, NavbarLeftComponent, CourseManageComponent, ClassManageComponent, EmployeeManageComponent, StudentManageComponent, LecturersManageComponent, InvoiceManageComponent, AccountManageComponent, RoomManageComponent, StudentFormComponent, AccountFormComponent, ClassFormComponent, CourseFormComponent, InvoiceFormComponent, LecturersFormComponent, RoomFormComponent, EmployeeFormComponent, StudentTableComponent, EmployeeTableComponent, LecturersTableComponent, CourseTableComponent, ClassTableComponent, StudentDialogComponent, LecturersDialogComponent, EmployeeDialogComponent, StudentDeleteComponent, EmployeeDeleteComponent, LecturersDeleteComponent, CourseDialogComponent, CourseDeleteComponent, ClassDialogComponent, ClassDeleteComponent],
+  declarations: [AdminComponent, NavbarTopComponent, NavbarLeftComponent, CourseManageComponent, ClassManageComponent, EmployeeManageComponent, StudentManageComponent, LecturersManageComponent, InvoiceManageComponent, AccountManageComponent, RoomManageComponent, StudentFormComponent, AccountFormComponent, ClassFormComponent, CourseFormComponent, InvoiceFormComponent, LecturersFormComponent, RoomFormComponent, EmployeeFormComponent, StudentTableComponent, EmployeeTableComponent, LecturersTableComponent, CourseTableComponent, ClassTableComponent, StudentDialogComponent, LecturersDialogComponent, EmployeeDialogComponent, StudentDeleteComponent, EmployeeDeleteComponent, LecturersDeleteComponent, CourseDialogComponent, CourseDeleteComponent, ClassDialogComponent, ClassDeleteComponent, ClassStudentComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -64,7 +66,8 @@ import { ClassDeleteComponent } from './class-manage/class-delete/class-delete.c
     MatRadioModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ]
 })
 export class AdminModule { }
