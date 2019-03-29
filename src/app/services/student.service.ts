@@ -22,6 +22,14 @@ export class StudentService {
     return this.http.get<Student[]>('http://localhost:8080/student-class/'+id);
   }
 
+  postIntoClass(data){
+    return this.http.post('http://localhost:8080/student-class/add',data);
+  }
+
+  leaveClass(id): Observable<Student[]>{
+    return this.http.get<Student[]>('http://localhost:8080/student-class/delete/'+id);
+  }
+
   deleteData(id): Observable<Student[]>{
     return this.http.get<Student[]>('http://localhost:8080/student/delete/'+id);
   }

@@ -20,7 +20,7 @@ export class ClassTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['id','name','course','lecturers','room','size','minSize','maxSize','status','tool'];
+  displayedColumns= ['id','name','course','lecturers','room','size','minSize','maxSize','status','date','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -58,7 +58,8 @@ export class ClassTableComponent implements OnInit {
     const dialogRef = this.dialog.open(ClassDeleteComponent, {
       width: '250px',
       data:{
-          id : id
+          id : id,
+          title : 1
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -69,7 +70,10 @@ export class ClassTableComponent implements OnInit {
   
   onOpenDialogAdd(){
     const dialogRef = this.dialog.open(ClassFormComponent, {
-      width: '500px'
+      width: '500px',
+      data: {
+        title: "Thêm lớp học mới"
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

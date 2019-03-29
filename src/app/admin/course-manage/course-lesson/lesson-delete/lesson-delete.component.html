@@ -1,9 +1,10 @@
-<h1 mat-dialog-title>{{ data.title == 1 ? 'Xóa lớp hoc' : 'Xóa sinh viên khỏi lớp' }}</h1>
+<h1 mat-dialog-title>Xóa bài giảng</h1>
 <div mat-dialog-content>
-  <p>Bạn muốn xóa {{ data.title == 1 ? 'lớp' : 'sinh viên' }} có Id là: {{ data.title == 1 ? data.id : data.idStu }}?</p>
+  <p>Bạn muốn xóa bài giảng có Id là: {{ data.id }}?</p>
 </div>
 <div mat-dialog-actions class="action">
   <button mat-raised-button color="warn" (click)="onCancel()">Hủy</button>
   <button mat-raised-button color="primary" (click)="onDel(data.id)">Xóa</button>
 </div>
+
 

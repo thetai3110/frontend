@@ -71,7 +71,10 @@ export class StudentTableComponent implements OnInit {
 
   onOpenDialogAdd(){
     const dialogRef = this.dialog.open(StudentFormComponent, {
-      width: '500px'
+      width: '500px',
+      data: {
+        title: "Thêm học viên mới"
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');

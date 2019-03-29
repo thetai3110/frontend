@@ -57,6 +57,24 @@
       </select>
       <mat-error *ngIf="hasError('status', 'required')">Trạng thái không được bỏ trống</mat-error>
     </mat-form-field>
+    <!-- Lịch -->
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Lịch học
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngFor="let sd of allSchoolDay">
+          <label>{{ sd.day }} :</label>
+          <section>
+            <mat-checkbox *ngFor="let ca of allCa"
+                          (change)="changeCk(sd.idSchoolDay,ca.idCa,$event);"
+            >Ca {{ ca.idCa }}</mat-checkbox>
+          </section>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
   <div mat-dialog-actions class="action">
     <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">

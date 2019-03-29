@@ -5,6 +5,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { faPlusCircle, faTrashAlt, faPen } from '@fortawesome/free-solid-svg-icons';
 import { StudentFormComponent } from '../../student-manage/student-form/student-form.component';
 import { StudentDialogComponent } from '../../student-manage/student-dialog/student-dialog.component';
+import { ClassDeleteComponent } from '../class-delete/class-delete.component';
 
 @Component({
   selector: 'app-class-student',
@@ -25,6 +26,11 @@ export class ClassStudentComponent implements OnInit {
   result : any;
   allClass: any;
   public idClass = 1;
+  studentClass = {
+    idClass : 1,
+    idStudent : "",
+    isFee: 0
+  }
 
   constructor(private classesService: ClassesService,
             private studentService: StudentService,
@@ -64,13 +70,36 @@ export class ClassStudentComponent implements OnInit {
 
   onOpenDialogAdd(){
     const dialogRef = this.dialog.open(StudentFormComponent, {
-      width: '500px'
+      width: '500px',
+      data:{
+        title: "Thêm học viên vào lớp có Id: " + this.idClass
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.studentClass.idStudent = result;
+      this.studentClass.idClass = this.idClass;
+      this.studentService.postIntoClass(this.studentClass).subscribe(data =>{
+        if(data!=null){
+          this.reloadTable(Number(this.idClass));
+        }
+      })
+    });
+  } 
+
+  onDelete(id, idStu): void {
+    const dialogRef = this.dialog.open(ClassDeleteComponent, {
+      width: '250px',
+      data:{
+          id : id,
+          idStu : idStu,
+          title : 0
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.reloadTable(Number(this.idClass));
     });
-  } 
+  }
   
   reloadTable(idClass){
     this.studentService.getDataByClass(idClass).subscribe(rs =>{

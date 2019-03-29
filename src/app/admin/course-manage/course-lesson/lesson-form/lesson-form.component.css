@@ -1,11 +1,8 @@
 mat-form-field{
     width: 100%;
 }
-mat-checkbox{
-    margin-right: 25px;
-}
-label{
-    padding-right: 10px;
+mat-radio-button{
+    margin-right: 20px;
 }
 button, input[type="button"]{
     width: 150px;

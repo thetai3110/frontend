@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Sửa thông tin</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div mat-dialog-content>
+    <!-- Ngày thứ -->
+    <mat-form-field>
+      <input matInput placeholder="Ngày học thứ*" formControlName="days">
+      <mat-error *ngIf="hasError('days', 'required')">Ngày học không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Hình thức -->
+    <mat-radio-group aria-label="Hình thức*" formControlName="formality">
+      <mat-radio-button value="Lý thuyết">Lý thuyết</mat-radio-button>
+      <mat-radio-button value="Thực hành">Thực hành</mat-radio-button>
+    </mat-radio-group>
+    <!-- Tiêu đề -->
+    <mat-form-field>
+      <input matInput placeholder="Tiêu đề*" formControlName="title">
+      <mat-error *ngIf="hasError('title', 'required')">Tiêu đề không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Nội dung -->
+    <mat-form-field>
+      <input matInput placeholder="Nội dung*" formControlName="content">
+      <mat-error *ngIf="hasError('content', 'required')">Nội dung không được bỏ trống</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="action">
+    <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
+    <button mat-raised-button color="primary" type="submit">Sửa</button>
+  </div>
+</form>

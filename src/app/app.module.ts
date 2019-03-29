@@ -27,6 +27,9 @@ import { CourseFormComponent } from './admin/course-manage/course-form/course-fo
 import { ClassDeleteComponent } from './admin/class-manage/class-delete/class-delete.component';
 import { ClassDialogComponent } from './admin/class-manage/class-dialog/class-dialog.component';
 import { ClassFormComponent } from './admin/class-manage/class-form/class-form.component';
+import { LessonDialogComponent } from './admin/course-manage/course-lesson/lesson-dialog/lesson-dialog.component';
+import { LessonFormComponent } from './admin/course-manage/course-lesson/lesson-form/lesson-form.component';
+import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesson-delete/lesson-delete.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import { ClassFormComponent } from './admin/class-manage/class-form/class-form.c
     CourseFormComponent,
     ClassDeleteComponent,
     ClassDialogComponent,
-    ClassFormComponent
+    ClassFormComponent,
+    LessonDialogComponent,
+    LessonFormComponent,
+    LessonDeleteComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
