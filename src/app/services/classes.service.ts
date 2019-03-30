@@ -25,6 +25,11 @@ export class ClassesService {
     return this.http.get('http://localhost:8080/class-day/'+idClass);
   }
 
+  // Lấy lịch theo từng phòng
+  getClassDayByRoom(idRoom){
+    return this.http.get('http://localhost:8080/class-day/room/'+idRoom);
+  }
+
   // Thêm lịch học
   addClassDay(data){
     return this.http.post('http://localhost:8080/class-day/add',data);

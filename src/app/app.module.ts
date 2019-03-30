@@ -30,10 +30,12 @@ import { ClassFormComponent } from './admin/class-manage/class-form/class-form.c
 import { LessonDialogComponent } from './admin/course-manage/course-lesson/lesson-dialog/lesson-dialog.component';
 import { LessonFormComponent } from './admin/course-manage/course-lesson/lesson-form/lesson-form.component';
 import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesson-delete/lesson-delete.component';
+import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StringToNumberPipe
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesso
     LessonFormComponent,
     LessonDeleteComponent
   ],
+  exports :[StringToNumberPipe],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule, MatDialogModule, MatNativeDateModule } from '@angular/material'; 
+import { MatInputModule, MatDialogModule, MatNativeDateModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -58,7 +58,47 @@ import { LessonDeleteComponent } from './course-manage/course-lesson/lesson-dele
 import { LessonTableComponent } from './course-manage/course-lesson/lesson-table/lesson-table.component';
 
 @NgModule({
-  declarations: [AdminComponent, NavbarTopComponent, NavbarLeftComponent, CourseManageComponent, ClassManageComponent, EmployeeManageComponent, StudentManageComponent, LecturersManageComponent, InvoiceManageComponent, AccountManageComponent, RoomManageComponent, StudentFormComponent, AccountFormComponent, ClassFormComponent, CourseFormComponent, InvoiceFormComponent, LecturersFormComponent, RoomFormComponent, EmployeeFormComponent, StudentTableComponent, EmployeeTableComponent, LecturersTableComponent, CourseTableComponent, ClassTableComponent, StudentDialogComponent, LecturersDialogComponent, EmployeeDialogComponent, StudentDeleteComponent, EmployeeDeleteComponent, LecturersDeleteComponent, CourseDialogComponent, CourseDeleteComponent, ClassDialogComponent, ClassDeleteComponent, ClassStudentComponent, LessonFormComponent, LessonDialogComponent, LessonDeleteComponent, LessonTableComponent],
+  declarations: [
+    AdminComponent,
+    NavbarTopComponent,
+    NavbarLeftComponent,
+    CourseManageComponent,
+    ClassManageComponent,
+    EmployeeManageComponent,
+    StudentManageComponent,
+    LecturersManageComponent,
+    InvoiceManageComponent,
+    AccountManageComponent,
+    RoomManageComponent,
+    StudentFormComponent,
+    AccountFormComponent,
+    ClassFormComponent,
+    CourseFormComponent,
+    InvoiceFormComponent,
+    LecturersFormComponent,
+    RoomFormComponent,
+    EmployeeFormComponent,
+    StudentTableComponent,
+    EmployeeTableComponent,
+    LecturersTableComponent,
+    CourseTableComponent,
+    ClassTableComponent,
+    StudentDialogComponent,
+    LecturersDialogComponent,
+    EmployeeDialogComponent,
+    StudentDeleteComponent,
+    EmployeeDeleteComponent,
+    LecturersDeleteComponent,
+    CourseDialogComponent,
+    CourseDeleteComponent,
+    ClassDialogComponent,
+    ClassDeleteComponent,
+    ClassStudentComponent,
+    LessonFormComponent,
+    LessonDialogComponent,
+    LessonDeleteComponent,
+    LessonTableComponent,
+  ],
   imports: [
     CommonModule,
     FontAwesomeModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Pipe, PipeTransform } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClassesService } from 'src/app/services/classes.service';
@@ -14,7 +14,7 @@ import { CaService } from 'src/app/services/ca.service';
   styleUrls: ['./class-dialog.component.css']
 })
 export class ClassDialogComponent implements OnInit {
-  
+
   constructor(public dialogRef: MatDialogRef<ClassDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private classesService: ClassesService,
@@ -32,10 +32,12 @@ export class ClassDialogComponent implements OnInit {
     size: new FormControl(this.data.stu.size, [Validators.required, Validators.pattern("[0-9]*")]),
     minSize: new FormControl(this.data.stu.minSize, [Validators.required, Validators.pattern("[0-9]*")]),
     maxSize: new FormControl(this.data.stu.maxSize, [Validators.required, Validators.pattern("[0-9]*")]),
-    status: new FormControl(String(this.data.stu.status), [Validators.required, Validators.pattern("[0-9]*")]),
+    status: new FormControl(String(this.data.stu.status), [Validators.required, Validators.pattern("[0-9]*")])
   });
 
   allCourse: any; allLec: any; allRoom: any; allSchoolDay: any; allCa: any;
+  allNoEmpty: any; allByClass: any; allByRoom: any;
+  cas = []; schoolDays = []; emptys = []; noEmptys = [];
   days = []; classDay = []; daysTemp = [];
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
@@ -53,17 +55,43 @@ export class ClassDialogComponent implements OnInit {
     });
     this.caService.getData().subscribe(data => {
       this.allCa = data;
+      for (var i = 0; i < this.allCa.length; i++) {
+        this.cas.push(this.allCa[i].idCa);
+      }
     });
     this.schooldayService.getData().subscribe(data => {
       this.allSchoolDay = data;
-    });
-    this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data =>{
-      for(var i=0;i<=Array(data).length;i++){
-        this.days.push(data[i].idSchoolday+"-"+data[i].idCa);
-        this.classDay.push(data[i].idClassDay);
+      for (var i = 0; i < this.allSchoolDay.length; i++) {
+        this.schoolDays.push(this.allSchoolDay[i].idSchoolDay);
       }
-      console.log(this.days);
-    }); 
+    });
+    this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data => {
+      this.allByClass = data;
+      for (var i = 0; i < this.allByClass.length; i++) {
+        this.days.push(this.allByClass[i].idSchoolday + "-" + this.allByClass[i].idCa);
+        this.classDay.push(this.allByClass[i].idClassDay);
+      }
+    });
+    this.classesService.getClassDayByRoom(this.data.stu.room.idRoom).subscribe(data => {
+      this.allByRoom = data;
+      for (var i = 0; i < this.allByRoom.length; i++) {
+        this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa);
+      }
+    });
+    this.getEmptys();
+  }
+
+  getEmptys() {
+    for (let i = 0; i < this.schoolDays.length; i++) {
+      for (let j = 0; j < this.cas.length; j++) {
+        var key = this.schoolDays[i] + "-" + this.cas[j];
+        this.emptys.push(key);
+      }
+    }
+    for (let k = 0; k < this.noEmptys.length; k++){
+      var pos = this.emptys.indexOf(this.noEmptys[k]);
+      this.emptys.splice(pos, 1);
+    }
   }
 
   onCancel() {
@@ -73,26 +101,26 @@ export class ClassDialogComponent implements OnInit {
   onSubmit(form) {
     this.classesService.updateData(this.data.stu.idClass, form).subscribe(data => {
       if (data != null) {
-        if(this.daysTemp.length > 0){
-          for(var i=0;i<this.classDay.length;i++){
+        if (this.daysTemp.length > 0) {
+          for (var i = 0; i < this.classDay.length; i++) {
             this.classesService.deleteClassDay(this.classDay[i]).subscribe();
           }
-          for(var i=0;i< this.daysTemp.length;i++){
+          for (var i = 0; i < this.daysTemp.length; i++) {
             var classDayTmp = {
-              idClass : this.data.stu.idClass,
+              idClass: this.data.stu.idClass,
               idSchoolday: this.daysTemp[i].charAt(0),
               idCa: this.daysTemp[i].charAt(2)
             }
             this.classesService.addClassDay(classDayTmp).subscribe();
           }
-        }else{
-          for(var i=0;i< this.days.length;i++){
+        } else {
+          for (var i = 0; i < this.days.length; i++) {
             var classDay = {
-              idClass : this.data.stu.idClass,
+              idClass: this.data.stu.idClass,
               idSchoolday: this.days[i].charAt(0),
               idCa: this.days[i].charAt(2)
             }
-            this.classesService.updateClassDay(classDay,this.classDay[i]).subscribe();
+            this.classesService.updateClassDay(classDay, this.classDay[i]).subscribe();
           }
         }
       }
