@@ -10,7 +10,7 @@
     <mat-form-field>
       <mat-label>Phòng học*</mat-label>
       <select matNativeControl formControlName="idRoom">
-        <option *ngFor="let acc of allRoom " [value]="acc.idRoom">{{ acc.roomName }}</option>
+        <option *ngFor="let acc of allRoom " [value]="acc.idRoom" >{{ acc.roomName }}</option>
       </select>
       <mat-error *ngIf="hasError('idRoom', 'required')">Phòng học không được bỏ trống</mat-error>
     </mat-form-field>
@@ -61,14 +61,18 @@
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title>
+          <mat-panel-title (click)="getEmptys(form.value.idRoom);">
             Lịch học
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div *ngFor="let sd of allSchoolDay">
           <label>{{ sd.day }} :</label>
           <section>
-            <mat-checkbox *ngFor="let ca of allCa" (change)="changeCk(sd.idSchoolDay,ca.idCa,$event)">Ca {{ ca.idCa }}</mat-checkbox>
+            <ng-container *ngFor="let ca of emptys;">
+              <mat-checkbox *ngIf="sd.idSchoolDay+'' == ca.charAt(0)" (change)="changeCk(ca,$event);">
+                Ca {{ ca.charAt(2) }}
+              </mat-checkbox>
+            </ng-container>
           </section>
         </div>
       </mat-expansion-panel>

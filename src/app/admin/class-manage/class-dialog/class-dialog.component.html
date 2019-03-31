@@ -57,11 +57,11 @@
       </select>
       <mat-error *ngIf="hasError('status', 'required')">Trạng thái không được bỏ trống</mat-error>
     </mat-form-field>
-    <!-- Lịch -->
+    <!-- Lịch --> 
     <mat-accordion>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
-          <mat-panel-title (click)="getEmptys();">
+          <mat-panel-title (click)="getEmptys(form.value.idRoom);">
             Lịch học
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -69,7 +69,10 @@
           <label>{{ sd.day }} :</label>
           <section>
             <ng-container *ngFor="let ca of emptys;">
-              <mat-checkbox *ngIf="sd.idSchoolDay+'' == ca.charAt(0)" (change)="changeCk(sd.idSchoolDay,ca.idCa,$event);">
+              <mat-checkbox *ngIf="sd.idSchoolDay+'' == ca.charAt(0) && ca.charAt(4) == 'f'" (change)="changeCk(ca,$event);">
+                Ca {{ ca.charAt(2) }}
+              </mat-checkbox>
+              <mat-checkbox *ngIf="sd.idSchoolDay+'' == ca.charAt(0) && ca.charAt(4) == 't'" checked="true" (change)="changeCk(ca,$event);">
                 Ca {{ ca.charAt(2) }}
               </mat-checkbox>
             </ng-container>

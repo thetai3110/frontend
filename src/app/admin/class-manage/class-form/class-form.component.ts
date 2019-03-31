@@ -16,7 +16,7 @@ import { CaService } from 'src/app/services/ca.service';
 export class ClassFormComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
-    idRoom: new FormControl('', [Validators.required]),
+    idRoom: new FormControl('1', [Validators.required]),
     idCourse: new FormControl('', [Validators.required]),
     idLecturers: new FormControl('', [Validators.required]),
     className: new FormControl('', [Validators.required]),
@@ -37,6 +37,8 @@ export class ClassFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   allCourse: any; allLec: any; allRoom: any; allSchoolDay: any; allCa: any;
+  allNoEmpty: any; allByClass: any; allByRoom: any;
+  days = []; cas = []; schoolDays = []; emptys = []; noEmptys = [];
 
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
@@ -58,9 +60,9 @@ export class ClassFormComponent implements OnInit {
           this.classesService.addClassDay(classDay).subscribe();
         }
       }
+      alert('Success!');
+      this.onCancel();
     });
-    alert('Success!');
-    this.onCancel();
   }
 
   ngOnInit() {
@@ -75,20 +77,46 @@ export class ClassFormComponent implements OnInit {
     });
     this.caService.getData().subscribe(data => {
       this.allCa = data;
+      for (var i = 0; i < this.allCa.length; i++) {
+        this.cas.push(this.allCa[i].idCa);
+      }
     });
     this.schooldayService.getData().subscribe(data => {
       this.allSchoolDay = data;
+      for (var i = 0; i < this.allSchoolDay.length; i++) {
+        this.schoolDays.push(this.allSchoolDay[i].idSchoolDay);
+      }
     });
   }
 
-  days = [];
+  getEmptys(idRoom) {
+    this.noEmptys= [];
+    this.emptys= [];
+    this.classesService.getClassDayByRoom(idRoom).subscribe(data => {
+      this.allByRoom = data;
+      for (var i = 0; i < this.allByRoom.length; i++) {
+        this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa);
+      }
+      for (let i = 0; i < this.schoolDays.length; i++) {
+        for (let j = 0; j < this.cas.length; j++) {
+          var key = this.schoolDays[i] + "-" + this.cas[j];
+          this.emptys.push(key);
+        }
+      }
+      for (let k = 0; k < this.noEmptys.length; k++){
+        var pos = this.emptys.indexOf(this.noEmptys[k]);
+        this.emptys.splice(pos, 1);
+      }
+    });
+  }
 
-  changeCk(sd, ca, event) {
+  changeCk(ca, event) {
     if (event.checked == true) {
-      this.days.push(sd + "-" + ca);
+      this.days.push(ca);
     } else {
-      var pos = this.days.indexOf(sd + "-" + ca);
+      var pos = this.days.indexOf(ca);
       this.days.splice(pos, 1);
     }
+    console.log(this.days);
   }
 }

@@ -38,7 +38,7 @@ export class ClassDialogComponent implements OnInit {
   allCourse: any; allLec: any; allRoom: any; allSchoolDay: any; allCa: any;
   allNoEmpty: any; allByClass: any; allByRoom: any;
   cas = []; schoolDays = []; emptys = []; noEmptys = [];
-  days = []; classDay = []; daysTemp = [];
+  days = []; classDay = []; checkChange= false;
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
   }
@@ -49,7 +49,7 @@ export class ClassDialogComponent implements OnInit {
     });
     this.lecturersService.getData().subscribe(data => {
       this.allLec = data;
-    });
+    }); 
     this.roomService.getData().subscribe(data => {
       this.allRoom = data;
     });
@@ -72,26 +72,33 @@ export class ClassDialogComponent implements OnInit {
         this.classDay.push(this.allByClass[i].idClassDay);
       }
     });
-    this.classesService.getClassDayByRoom(this.data.stu.room.idRoom).subscribe(data => {
-      this.allByRoom = data;
-      for (var i = 0; i < this.allByRoom.length; i++) {
-        this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa);
-      }
-    });
-    this.getEmptys();
   }
 
-  getEmptys() {
-    for (let i = 0; i < this.schoolDays.length; i++) {
-      for (let j = 0; j < this.cas.length; j++) {
-        var key = this.schoolDays[i] + "-" + this.cas[j];
-        this.emptys.push(key);
+  getEmptys(idRoom) {
+    this.noEmptys= [];
+    this.emptys= [];
+    this.classesService.getClassDayByRoom(idRoom).subscribe(data => {
+      this.allByRoom = data;
+      for (var i = 0; i < this.allByRoom.length; i++) {
+        this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa + "-f");
       }
-    }
-    for (let k = 0; k < this.noEmptys.length; k++){
-      var pos = this.emptys.indexOf(this.noEmptys[k]);
-      this.emptys.splice(pos, 1);
-    }
+      for (let i = 0; i < this.schoolDays.length; i++) {
+        for (let j = 0; j < this.cas.length; j++) {
+          var key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
+          this.emptys.push(key);
+        }
+      }
+      for (let k = 0; k < this.noEmptys.length; k++){
+        var pos = this.emptys.indexOf(this.noEmptys[k]);
+        this.emptys.splice(pos, 1);
+      }
+      this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data1 => {
+        this.allByClass = data1;
+        for (var i = 0; i < this.allByClass.length; i++) {
+          this.emptys.push(this.allByClass[i].idSchoolday+'-'+this.allByClass[i].idCa+'-t')
+        }
+      });
+    });
   }
 
   onCancel() {
@@ -101,15 +108,15 @@ export class ClassDialogComponent implements OnInit {
   onSubmit(form) {
     this.classesService.updateData(this.data.stu.idClass, form).subscribe(data => {
       if (data != null) {
-        if (this.daysTemp.length > 0) {
+        if (this.checkChange == true) {
           for (var i = 0; i < this.classDay.length; i++) {
             this.classesService.deleteClassDay(this.classDay[i]).subscribe();
           }
-          for (var i = 0; i < this.daysTemp.length; i++) {
+          for (var i = 0; i < this.days.length; i++) {
             var classDayTmp = {
               idClass: this.data.stu.idClass,
-              idSchoolday: this.daysTemp[i].charAt(0),
-              idCa: this.daysTemp[i].charAt(2)
+              idSchoolday: this.days[i].charAt(0),
+              idCa: this.days[i].charAt(2)
             }
             this.classesService.addClassDay(classDayTmp).subscribe();
           }
@@ -124,17 +131,18 @@ export class ClassDialogComponent implements OnInit {
           }
         }
       }
+      alert("success");
+      this.onCancel();
     });
-    alert("success");
-    this.onCancel();
   }
 
-  changeCk(sd, ca, event) {
+  changeCk(ca, event) {
+    this.checkChange = true;
     if (event.checked == true) {
-      this.daysTemp.push(sd + "-" + ca);
+      this.days.push(ca);
     } else {
-      var pos = this.daysTemp.indexOf(sd + "-" + ca);
-      this.daysTemp.splice(pos, 1);
+      var pos = this.days.indexOf(ca);
+      this.days.splice(pos, 1);
     }
   }
 }
