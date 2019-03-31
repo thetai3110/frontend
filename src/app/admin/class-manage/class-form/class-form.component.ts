@@ -59,9 +59,9 @@ export class ClassFormComponent implements OnInit {
           }
           this.classesService.addClassDay(classDay).subscribe();
         }
+        alert('Success!');
+        this.onCancel();
       }
-      alert('Success!');
-      this.onCancel();
     });
   }
 

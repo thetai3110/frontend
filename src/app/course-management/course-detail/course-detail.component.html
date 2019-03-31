@@ -1,32 +1,16 @@
 <app-header></app-header>
-<div class="container tab">
-    <ul class="nav nav-tabs" id="tabs" role="tablist">
-        <li class="nav-item">
-            <a id="tab-info" class="nav-link active" data-toggle="tab" role="tab"  href="#pane-tab-info">Thông tin</a>
-        </li>
-        <li class="nav-item">
-            <a id="tab-con" class="nav-link" data-toggle="tab" role="tab"  href="#pane-tab-con">Nội dung</a>
-        </li>
-        <li class="nav-item">
-            <a id="tab-sale" class="nav-link" data-toggle="tab" role="tab"  href="#pane-tab-sale">Ưu đãi</a>
-        </li>
-        <li class="nav-item">
-            <a id="tab-classes" class="nav-link" data-toggle="tab" role="tab"  href="#pane-tab-classes">Các lớp học</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="pane-tab-info" role="tabpanel" aria-labelledby="tab-info">
-            <app-info [course]="course" [level]="level"></app-info>
-        </div>
-        <div class="tab-pane fade" id="pane-tab-con" role="tabpanel" aria-labelledby="tab-con">
-            <app-content [course]="course" [level]="level"></app-content>
-        </div>
-        <div class="tab-pane fade" id="pane-tab-sale" role="tabpanel" aria-labelledby="tab-sale">
-            <app-sale [course]="course" [level]="level"></app-sale>
-        </div>
-        <div class="tab-pane fade" id="pane-tab-classes" role="tabpanel" aria-labelledby="tab-classes">
-            <app-classes class="list-class" [list-class]="classes" [course]="course" [level]="level"></app-classes>
-        </div>
-    </div>
-</div>
+<mat-tab-group [color]="'primary'" [backgroundColor]="'primary'">
+    <mat-tab label="Thông tin">
+        <app-info [course]="course" [level]="level"></app-info>
+    </mat-tab>
+    <mat-tab label="Nội dung">
+        <app-content [course]="course" [lessons]="lessons" [level]="level"></app-content>
+    </mat-tab>
+    <mat-tab label="Ưu đãi">
+        <app-sale [course]="course" [level]="level"></app-sale>
+    </mat-tab>
+    <mat-tab label="Lớp học">
+        <app-classes class="list-class" [list-class]="classes" [course]="course" [level]="level"></app-classes>
+    </mat-tab>
+</mat-tab-group>
 <app-footer></app-footer>

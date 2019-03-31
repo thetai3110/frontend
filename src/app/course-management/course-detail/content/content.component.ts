@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
+  @Input() lessons : {};
   @Input() course = {};
   @Input() level : string;
   

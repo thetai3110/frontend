@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ClassesService } from '../services/classes.service';
 
 @Component({
   selector: 'app-register-to-study',
@@ -9,42 +11,40 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RegisterToStudyComponent implements OnInit {
 
-  public student = {
-    name : "",
-    cmnd : "",
-    date : "",
-    sex : "",
-    address : "",
-    email : "",
-    phone : "",
-    job : "",
-    idClass : 0,
-  };
+  classes;
 
-  public classes;
-  public isRegister;
+  form: FormGroup = new FormGroup({
+    studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    cmnd: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
+    studentDate: new FormControl(new Date(),[Validators.required]),
+    sex: new FormControl('1', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
+    job: new FormControl(''),
+    idClass : new FormControl({value: this.classes, disabled: true})
+  });
 
-  constructor(private http: HttpClient,
+  constructor(private classesService: ClassesService,
               private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe(data =>{
-      this.student.idClass = data.id;
-    });
-    this.getData();
-  }
-
-  onSubmit(){
-    this.http.post('http://localhost:8080/register-to-study', this.student).subscribe(data =>{
-      console.log(data);
-      this.isRegister = Number(data);
+      this.classesService.getDataById(data.id).subscribe(data1 =>{
+        this.classes =  data1['className'] + " khóa học " + data1['course'].course + " - " + data1['course']['level'].level;
+        console.log(this.classes);
+      });
     });
   }
 
-  getData(){
-    this.http.get('http://localhost:8080/class/follow-id/'+this.student.idClass).subscribe(data =>{
-      this.classes = data['className'] + " khóa học " + data['course'].course + " - " + data['course']['level'].level;
-    });
+  onSubmit(form){
+    // this.classesService.post(form).subscribe(data =>{
+    //   console.log(data);
+    // });
+  }
+
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.form.controls[controlName].hasError(errorName);
   }
 
 }

@@ -1,6 +1,4 @@
-.course{
-    margin-bottom: 50px;
-}
+/*
 .thumbnail img{
     width: 100%;
     height: 200px;
@@ -32,7 +30,6 @@
     padding-top: 60px;
 }
 .detail p a{
-    color: white;
     font-size: 24pt;
     text-align: center;
     font-weight: bold;
@@ -42,10 +39,8 @@
 }
 .caption h3,p:last-child{
     text-align: center;
-    color: white;
 }
 .caption p{
-    color: white;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -55,4 +50,47 @@
 .caption a:last-child{
     color: #00ffff;
     text-decoration: underline;
+} */
+.course{
+    margin-bottom: 25px;
+}
+.card {
+    max-width: 400px;
+}
+.card img{
+    height: 200px;
+    position: relative;
+}
+mat-card-content{
+    height: 50px;
+}
+.header-image {
+    background-image: url('../../../assets/images/img.PNG');
+    background-size: cover;
+}
+.detail{
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0;
+    transition: height 1s, opacity 1s;
+    border-radius: 3px;
+    z-index: 9999;
+}
+.card:hover .detail{
+    opacity: 0.5;
+    height: 288px;
+}
+.detail p{
+    font-family: Arial, "Times New Roman", Tahoma, serif;
+    text-align: center;
+}
+.detail a{
+    font-size: 24pt;
+    color: white;
+    height: 288px;
+    line-height: 288px;
 }

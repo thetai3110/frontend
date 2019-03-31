@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-/* body{
-    background-image: url('assets/images/bglogin.jpeg');
+body{
+    /* background-image: url('assets/images/bglogin.jpeg');
     background-repeat: repeat-y;
     background-position: center center;
-    background-size: cover;
-} */
+    background-size: cover; */
+    //background-color: #5D8BA1;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

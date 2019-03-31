@@ -82,20 +82,31 @@ export class ClassDialogComponent implements OnInit {
       for (var i = 0; i < this.allByRoom.length; i++) {
         this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa + "-f");
       }
-      for (let i = 0; i < this.schoolDays.length; i++) {
-        for (let j = 0; j < this.cas.length; j++) {
-          var key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
-          this.emptys.push(key);
-        }
-      }
-      for (let k = 0; k < this.noEmptys.length; k++){
-        var pos = this.emptys.indexOf(this.noEmptys[k]);
-        this.emptys.splice(pos, 1);
-      }
       this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data1 => {
         this.allByClass = data1;
-        for (var i = 0; i < this.allByClass.length; i++) {
-          this.emptys.push(this.allByClass[i].idSchoolday+'-'+this.allByClass[i].idCa+'-t')
+        for (let i = 0; i < this.schoolDays.length; i++) {
+          for (let j = 0; j < this.cas.length; j++) {
+            var key = this.schoolDays[i] + "-" + this.cas[j];
+            var ck = 0;
+            for (var k = 0; k < this.allByClass.length; k++) {
+              if(key == this.allByClass[k].idSchoolday+'-'+this.allByClass[k].idCa){
+                ck = 1;
+              }
+            }
+            if(ck == 0){
+              key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
+              this.emptys.push(key);
+            }else{
+              key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
+              this.emptys.push(key);
+              key = this.schoolDays[i] + "-" + this.cas[j] + "-t";
+              this.emptys.push(key);
+            }
+          }
+        }
+        for (let k = 0; k < this.noEmptys.length; k++){
+          var pos = this.emptys.indexOf(this.noEmptys[k]);
+          this.emptys.splice(pos, 1);
         }
       });
     });
@@ -130,19 +141,21 @@ export class ClassDialogComponent implements OnInit {
             this.classesService.updateClassDay(classDay, this.classDay[i]).subscribe();
           }
         }
+        alert("success");
+        this.onCancel();
       }
-      alert("success");
-      this.onCancel();
     });
   }
 
   changeCk(ca, event) {
     this.checkChange = true;
     if (event.checked == true) {
-      this.days.push(ca);
+      this.days.push(ca.charAt(0)+'-'+ca.charAt(2));
     } else {
-      var pos = this.days.indexOf(ca);
+      var pos = this.days.indexOf(ca.charAt(0)+'-'+ca.charAt(2));
       this.days.splice(pos, 1);
     }
+    console.log(this.days);
+    
   }
 }

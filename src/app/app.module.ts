@@ -8,6 +8,7 @@ import { RegisterModule } from './register/register.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterToStudyModule } from './register-to-study/register-to-study.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CourseManagementModule } from './course-management/course-management.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,12 +31,10 @@ import { ClassFormComponent } from './admin/class-manage/class-form/class-form.c
 import { LessonDialogComponent } from './admin/course-manage/course-lesson/lesson-dialog/lesson-dialog.component';
 import { LessonFormComponent } from './admin/course-manage/course-lesson/lesson-form/lesson-form.component';
 import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesson-delete/lesson-delete.component';
-import { StringToNumberPipe } from './pipes/string-to-number.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    StringToNumberPipe
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +42,7 @@ import { StringToNumberPipe } from './pipes/string-to-number.pipe';
     HomeModule,
     LoginModule,
     AdminModule,
+    CourseManagementModule,
     RegisterModule,
     RegisterToStudyModule,
     HttpClientModule,
@@ -69,7 +69,6 @@ import { StringToNumberPipe } from './pipes/string-to-number.pipe';
     LessonFormComponent,
     LessonDeleteComponent
   ],
-  exports :[StringToNumberPipe],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },

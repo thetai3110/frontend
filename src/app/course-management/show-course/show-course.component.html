@@ -1,17 +1,24 @@
 <div class="container course">
   <div class="row">
     <div class="col-sm-6 col-md-4" *ngFor="let cour of courses; let i=index">
-      <div class="thumbnail">
+      <mat-card class="card">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title>{{ cour.course }}-{{ cour.level.level }}</mat-card-title>
+          <mat-card-subtitle>Trung tâm tin học</mat-card-subtitle>
+        </mat-card-header>
         <div class="detail">
           <p><a [routerLink]="['/detail', cour.idCourse]">Xem chi tiết</a></p>
         </div>
-        <img src="http://localhost:8080/downloadFile/{{cour.image}}" alt="{{cour.image}}">
-        <div class="caption">
-          <h3>{{ cour.course }} </h3>
+        <img mat-card-image src="http://localhost:8080/downloadFile/{{cour.image}}" alt="{{cour.image}}">
+        <mat-card-content>
           <p>{{ cour.describes }}</p>
-          <p class="link"><a href="#" class="btn btn-primary btn-buy-now" role="button">Xem lịch học</a> <a href="#" class="btn btn-default" role="button">Đăng ký ngay</a></p>
-        </div>
-      </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button><mat-icon>remove_red_eye</mat-icon> Xem lịch học</button>
+          <button mat-button><mat-icon>description</mat-icon> Đăng ký</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </div>

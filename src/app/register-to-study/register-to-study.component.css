@@ -1,74 +1,33 @@
 .register{
-    margin: 10px;
-    box-sizing: border-box;
-    width: 700px;
-    height: auto;
+    width: 80%;
     margin: 25px auto;
-    background-color: white;
-    border-radius: 5px;
 }
-.register h1{
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    background-color: #33b5e5;
-    padding: 20px;
-    font-size: 1.4em;
-    font-weight: normal;
-    text-align: center;
-    text-transform: uppercase;
-    color: #fff;
+mat-form-field{
+    width: 48%;
+    margin: 0px 10px;
 }
-.register h4{
-    color: red;
-    padding: 20px;
-    font-weight: normal;
+mat-radio-button{
+    margin-right: 20px;
+    margin-left: 10px;
 }
-.register h4 a{
-    font-weight: normal;
-    text-decoration: underline;
+button, input[type="button"]{
+    width: 20%;
+    margin: 0px 20px;
 }
-.regFrom{
-    margin-left: 25px;
-    margin-right: 25px;
+h1{
+    text-align: center; 
 }
-.regFrom label{
-    color: grey;
-}
-.regFrom input{
-    background: #fff;
-    box-sizing: border-box;
-    display: block;
-    border-style: solid;
-    padding: 20px;
-    outline: none;
-    font-family: inherit;
-    font-size: 0.95em;
-    width: 100%;
-}
-.register button{
-    display: block;
-    width: 100%;
-    background-color: #ef4d4d;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    font-size: 15px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    outline: none;
-    transition: .5s ease-in;
-}
-
-.register button:hover {
-    background:#28d;
-}
-  
-.register button:focus {
-border-color: #05a;
-}
-
 @media screen and (max-width: 600px) {
     .register{
-        width: 90%;
+        width: 100%;
+        margin: 10px auto;
     }      
+    mat-form-field{
+        width: 100%; 
+        margin: 0px 10px;
+    }
+    button, input[type="button"]{
+        width: 100%;
+        margin: 10px auto;
+    }
 }
