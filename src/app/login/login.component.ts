@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,24 +10,37 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  public account = {
-    username : "",
-    pass : ""
-  };
+  form: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    pass: new FormControl('', [Validators.required])
+  });
 
-  status : string;
+  status: boolean;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
-    
   }
 
-  onSubmit(){
-    this.http.post('http://localhost:8080/login', this.account).subscribe(data =>{
-      this.status = String(data);
-      if(this.status == "true")
+  onSubmit(form) {
+    this.loginService.postData(form).subscribe(data => {
+      this.status = Boolean(data);
+      if (this.status == true) {
+        this.onRemember(form.username, form.pass);
         this.router.navigate(['']);
+      }
+      else alert("Tài khoản hoặc mật khẩu không chính xác!!!");
     });
+  }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
+  }
+
+  onRemember(username, pass) {
+    if (localStorage.getItem("username") != username && localStorage.getItem("pass") != pass) {
+      localStorage.setItem("username", username);
+      localStorage.setItem("pass", pass);
+    }
   }
 }

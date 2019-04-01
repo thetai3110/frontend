@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatFormFieldModule, MatRadioModule, 
+  MatDatepickerModule,MatButtonModule, 
+  MatInputModule, MatNativeDateModule, 
+  MatSelectModule,
+} from '@angular/material';
 
 import { RegisterComponent } from './register.component';
 
@@ -10,7 +15,12 @@ import { RegisterComponent } from './register.component';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
+    MatFormFieldModule, MatRadioModule, 
+    MatDatepickerModule,MatButtonModule, 
+    MatInputModule, MatNativeDateModule, 
+    MatSelectModule
   ]
 })
 export class RegisterModule { }

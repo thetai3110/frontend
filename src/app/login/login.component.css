@@ -6,6 +6,7 @@
     margin: 140px auto;
     background-color: white;
     border-radius: 5px;
+    border: 1px solid #33b5e5;
 }
 .login h1{
     border-top-left-radius: 5px;
@@ -18,41 +19,35 @@
     text-transform: uppercase;
     color: #fff;
 }
+mat-form-field{
+    width: 100%;
+}
+mat-form-field input{
+    background: #fff;
+    color: #ccc6c6;
+    font-family: inherit;
+    font-size: 0.95em;
+    width: 100%;
+    margin: 10px 0px;
+}
 .formlogin{
     margin-top: 50px;
     margin-left: 25px;
     margin-right: 25px;
 }
-.formlogin input{
-    background: #fff;
-    color: #ccc6c6;
-    box-sizing: border-box;
-    display: block;
-    border-style: solid;
-    padding: 20px;
-    outline: none;
-    font-family: inherit;
-    font-size: 0.95em;
-    width: 100%;
-    margin: 35px 0px;
-}
-
-.login button{
+ .login button{
     display: block;
     width: 100%;
-    background-color: #ef4d4d;
-    color: white;
-    padding: 12px 20px;
-    border: none;
+    padding: 10px 20px;
     font-size: 15px;
-    letter-spacing: 1px;
     cursor: pointer;
     outline: none;
     transition: .5s ease-in;
+    margin-top: 15px;
 }
 
 .login button:hover {
-    background:#28d;
+    background:rgb(49, 67, 223);
 }
   
 .login button:focus {
@@ -85,4 +80,4 @@ border-color: #05a;
     .login{
         width: 90%;
     }      
-}
+} 

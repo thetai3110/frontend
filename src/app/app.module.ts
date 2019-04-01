@@ -31,6 +31,7 @@ import { ClassFormComponent } from './admin/class-manage/class-form/class-form.c
 import { LessonDialogComponent } from './admin/course-manage/course-lesson/lesson-dialog/lesson-dialog.component';
 import { LessonFormComponent } from './admin/course-manage/course-lesson/lesson-form/lesson-form.component';
 import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesson-delete/lesson-delete.component';
+import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesso
     ClassFormComponent,
     LessonDialogComponent,
     LessonFormComponent,
-    LessonDeleteComponent
+    LessonDeleteComponent,
+    AccuracyFormComponent,
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

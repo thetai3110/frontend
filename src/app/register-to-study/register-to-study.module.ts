@@ -6,12 +6,13 @@ import { SharedModule } from '../shared/shared.module';
 import { MatFormFieldModule, MatRadioModule, 
           MatDatepickerModule,MatButtonModule, 
           MatInputModule, MatNativeDateModule, 
-          MatSelectModule } from '@angular/material';
+          MatSelectModule, MatStepperModule } from '@angular/material';
 
 import { RegisterToStudyComponent } from './register-to-study.component';
+import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
 
 @NgModule({
-  declarations: [RegisterToStudyComponent],
+  declarations: [RegisterToStudyComponent, AccuracyFormComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,6 +21,7 @@ import { RegisterToStudyComponent } from './register-to-study.component';
     MatDatepickerModule,
     MatButtonModule,
     MatInputModule,
+    MatStepperModule,
     MatNativeDateModule,
     MatSelectModule,
     MatRadioModule,

@@ -1,34 +1,53 @@
-<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ntop" aria-controls="ntop" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button> -->
-<div class="menu" id="ntop">
-  <div class="user">
-      <fa-icon [icon]="faUser"></fa-icon> Người dùng
+<nav class="navbar navbar-expand-lg navbar-light bg-light ntop">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ntop" aria-controls="ntop"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <div class="collapse navbar-collapse menu" id="ntop">
+    <ul class="nav flex-column">
+        <div class="user">
+            <fa-icon [icon]="faUser"></fa-icon> Người dùng
+          </div>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/account-manage']">
+          <fa-icon [icon]="faUsers"></fa-icon> Tài khoản
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/employee-manage']">
+          <fa-icon [icon]="faMale"></fa-icon> Nhân viên
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/lecturers-manage']">
+          <fa-icon [icon]="faChalkboardTeacher"></fa-icon> Giảng viên
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/student-manage']">
+          <fa-icon [icon]="faUserGraduate"></fa-icon> Học viên
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/course-manage']">
+          <fa-icon [icon]="faLaptopCode"></fa-icon> Khóa học
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/class-manage']">
+          <fa-icon [icon]="faDoorOpen"></fa-icon> Lớp học
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/invoice-manage']">
+          <fa-icon [icon]="faFileInvoice"></fa-icon> Hóa đơn
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/admin/room-manage']">
+          <fa-icon [icon]="faWarehouse"></fa-icon> Phòng
+        </a>
+      </li>
+    </ul>
   </div>
-  <ul class="nav flex-column">
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/account-manage']"><fa-icon [icon]="faUsers"></fa-icon> Tài khoản</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/employee-manage']"><fa-icon [icon]="faMale"></fa-icon> Nhân viên</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/lecturers-manage']"><fa-icon [icon]="faChalkboardTeacher"></fa-icon> Giảng viên</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/student-manage']"><fa-icon [icon]="faUserGraduate"></fa-icon> Học viên</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/course-manage']"><fa-icon [icon]="faLaptopCode"></fa-icon> Khóa học</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/class-manage']"><fa-icon [icon]="faDoorOpen"></fa-icon> Lớp học</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/invoice-manage']"><fa-icon [icon]="faFileInvoice"></fa-icon> Hóa đơn</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/admin/room-manage']"><fa-icon [icon]="faWarehouse"></fa-icon> Phòng</a>
-    </li>
-  </ul>
-</div>
+</nav>

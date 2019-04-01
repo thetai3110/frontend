@@ -15,7 +15,7 @@ export class StudentFormComponent implements OnInit {
          private accountService: AccountService,
          public dialogRef: MatDialogRef<StudentFormComponent>,
          @Inject(MAT_DIALOG_DATA) public data: any) { }
-
+ 
   form: FormGroup = new FormGroup({
     studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     idAccount: new FormControl(''),
