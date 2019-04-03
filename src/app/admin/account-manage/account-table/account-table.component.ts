@@ -13,14 +13,14 @@ import { AccountService } from 'src/app/services/account.service';
   selector: 'app-account-table',
   templateUrl: './account-table.component.html',
   styleUrls: ['./account-table.component.css']
-})
+}) 
 export class AccountTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['id','username','pass','tool'];
+  displayedColumns= ['id','username','pass','permission','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
