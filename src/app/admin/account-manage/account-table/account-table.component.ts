@@ -2,32 +2,32 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { EmployeeService } from 'src/app/services/employee.service';
 import { faPen, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
-import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
-import { EmployeeDeleteComponent } from '../employee-delete/employee-delete.component';
-import { EmployeeFormComponent } from '../employee-form/employee-form.component';
+import { AccountDialogComponent } from '../account-dialog/account-dialog.component';
+import { AccountDeleteComponent } from '../account-delete/account-delete.component';
+import { AccountFormComponent } from '../account-form/account-form.component';
+import { AccountService } from 'src/app/services/account.service';
 
-@Component({ 
-  selector: 'app-employee-table',
-  templateUrl: './employee-table.component.html',
-  styleUrls: ['./employee-table.component.css']
+@Component({
+  selector: 'app-account-table',
+  templateUrl: './account-table.component.html',
+  styleUrls: ['./account-table.component.css']
 })
-export class EmployeeTableComponent implements OnInit {
+export class AccountTableComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['id','name','cmnd','roles','date','sex','address','email','phone','salary','tool'];
+  displayedColumns= ['id','username','pass','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
   result : any;
 
-  constructor(private employeeService: EmployeeService,
+  constructor(private accountService: AccountService,
             public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -39,9 +39,9 @@ export class EmployeeTableComponent implements OnInit {
   }
  
   openDialog(id): void {
-    this.employeeService.getDataById(id).subscribe(data =>{
+    this.accountService.getDataById(id).subscribe(data =>{
       this.result = data;
-      const dialogRef = this.dialog.open(EmployeeDialogComponent, {
+      const dialogRef = this.dialog.open(AccountDialogComponent, {
         width: '500px',
         data:{
           stu : this.result
@@ -55,7 +55,7 @@ export class EmployeeTableComponent implements OnInit {
   }
 
   onDelete(id): void {
-    const dialogRef = this.dialog.open(EmployeeDeleteComponent, {
+    const dialogRef = this.dialog.open(AccountDeleteComponent, {
       width: '250px',
       data:{
           id : id
@@ -68,7 +68,7 @@ export class EmployeeTableComponent implements OnInit {
   }
   
   onOpenDialogAdd(){
-    const dialogRef = this.dialog.open(EmployeeFormComponent, {
+    const dialogRef = this.dialog.open(AccountFormComponent, {
       width: '500px'
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -78,7 +78,7 @@ export class EmployeeTableComponent implements OnInit {
   }
 
   reloadTable(){
-    this.employeeService.getData().subscribe(rs =>{
+    this.accountService.getData().subscribe(rs =>{
       if(!rs)
         return;
       this.dataSource = new MatTableDataSource(rs);

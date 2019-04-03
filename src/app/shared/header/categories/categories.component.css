@@ -1,38 +1,38 @@
- .topnav {
-  overflow: hidden;
+.topnav{
   background-color: #e9e9e9;
+  height: 56px;
 }
- 
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+.topnav .listmenu ul{
+  padding: 0px;
 }
- 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+.topnav .listmenu li{
+  display: inline-block;
+  line-height: 30px;
+  padding-top: 10px;
 }
- 
-.topnav a.active {
-  background-color: #2196F3;
-  color: white;
+.topnav .listmenu li:last-child a{
+	padding-right: 0;
 }
- 
-.topnav .search {
-  float: right;
+.topnav .listmenu li a{
+	display: block;
+	padding: 0 10px;
+	text-transform: uppercase;
+	color: #333;
 }
- 
+.topnav .listmenu .active{
+	color: #8cc63e;
+}
+.topnav .listmenu li a:hover{
+	color: #8cc63e;
+}
+.topnav .listmenu{
+	float: left;
+	margin: 0;
+}
 .box{
-    width: 260px;
-    height: 50px;
+    width: 280px;
     float: right;
   }
-  
   .box input[type=search]{
     color: gray;
     border-top-left-radius: 5px;
@@ -42,24 +42,58 @@
     border: none;
     font-size: 17px;
   }
-  
   .box button{
     margin-bottom: 6px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     height: 37px;
   }
-
-@media screen and (max-width: 600px) {
-  .topnav a{
+  li{
+    position: relative;
+  }
+  .sub-menu{
+    display: none;
+    position: absolute;
+    top: 56;
+    left: 0;
+    width: 200px;
+    background-color: #e9e9e9;
+    padding: 5px 20px;
+  }
+  .sub-menu li{
     float: none;
     display: block;
+    line-height: 30px;
     width: 100%;
-    margin: 0px auto;
   }
-  .topnav .box{
-    float: none;
+  li:hover>.sub-menu{
     display: block;
-    margin: 0px auto;
   }
-}
+  @media screen and (max-width: 600px) {
+    .topnav{
+      height: auto;
+    }
+    .listmenu{
+      width: 100%;
+      display: block;
+    }
+    .topnav ul li{
+      float: none;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .topnav ul li a{
+      padding: 0;
+      text-align: center;
+    }
+    .user{
+      text-align: center;
+    }
+    .topnav .box{
+      float: none;
+      display: block;
+      margin: 0px auto;
+    }
+  }

@@ -4,13 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatFormFieldModule, MatRadioModule,
          MatButtonModule,MatInputModule,
-         MatSelectModule, 
-} from '@angular/material';
+         MatSelectModule, MatIconModule } from '@angular/material';
 
-import { LoginComponent } from './login.component';
+import { LoginComponent, LogOutComponent } from './login.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, LogOutComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -20,7 +19,8 @@ import { LoginComponent } from './login.component';
     MatRadioModule,
     MatButtonModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ]
 })
 

@@ -3,19 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule, MatDialogModule, MatNativeDateModule } from '@angular/material';
-import { MatSelectModule } from '@angular/material/select';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule, MatDialogModule, MatNativeDateModule,
+        MatPaginatorModule, MatTableModule, MatSortModule,
+        MatFormFieldModule, MatDatepickerModule, MatRadioModule,
+        MatButtonModule, MatSelectModule, MatMenuModule,
+        MatIconModule, MatExpansionModule, MatCheckboxModule,
+        MatTabsModule} from '@angular/material';
 
 import { AdminComponent } from './admin.component';
 import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
@@ -56,6 +49,10 @@ import { LessonFormComponent } from './course-manage/course-lesson/lesson-form/l
 import { LessonDialogComponent } from './course-manage/course-lesson/lesson-dialog/lesson-dialog.component';
 import { LessonDeleteComponent } from './course-manage/course-lesson/lesson-delete/lesson-delete.component';
 import { LessonTableComponent } from './course-manage/course-lesson/lesson-table/lesson-table.component';
+import { AccountTableComponent } from './account-manage/account-table/account-table.component';
+import { AccountDialogComponent } from './account-manage/account-dialog/account-dialog.component';
+import { AccountDeleteComponent } from './account-manage/account-delete/account-delete.component';
+import { AccountPermissionComponent } from './account-manage/account-permission/account-permission.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +95,10 @@ import { LessonTableComponent } from './course-manage/course-lesson/lesson-table
     LessonDialogComponent,
     LessonDeleteComponent,
     LessonTableComponent,
+    AccountTableComponent,
+    AccountDialogComponent,
+    AccountDeleteComponent,
+    AccountPermissionComponent,
   ],
   imports: [
     CommonModule,
@@ -119,7 +120,8 @@ import { LessonTableComponent } from './course-manage/course-lesson/lesson-table
     MatMenuModule,
     MatIconModule,
     MatExpansionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTabsModule
   ]
 })
 export class AdminModule { }

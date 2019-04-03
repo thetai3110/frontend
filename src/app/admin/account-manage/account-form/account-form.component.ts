@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { AccountService } from 'src/app/services/account.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-account-form',
@@ -7,7 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountFormComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9]*"), Validators.minLength(6)]),
+    pass: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9]*"), Validators.minLength(6)])
+  }); 
+
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.form.controls[controlName].hasError(errorName);
+  }
+
+  constructor(private accountService: AccountService,
+        public dialogRef: MatDialogRef<AccountFormComponent>) { }
+
+  onCancel(){
+    this.dialogRef.close();
+  }
+
+  onSubmit(form){
+    this.accountService.postData(form).subscribe(data =>{
+      if(data!= null){
+        alert('Success!');
+        this.onCancel();
+      }
+    });
+  }
 
   ngOnInit() {
   }

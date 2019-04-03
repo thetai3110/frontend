@@ -4,6 +4,24 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 
 @Component({
+  selector: 'app-logout',
+  template: ''
+})
+export class LogOutComponent implements OnInit {
+
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    if(localStorage.getItem("username") != null && localStorage.getItem("pass") != null){
+      localStorage.removeItem("username");
+      localStorage.removeItem("pass");
+      this.router.navigate(["/login"]);
+    }
+  }
+
+}
+
+@Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']

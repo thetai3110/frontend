@@ -41,7 +41,7 @@ export class EmployeeDialogComponent implements OnInit {
       })
     }
   
-    onCancel(){
+    onCancel(){ 
       this.dialogRef.close();
     }
   

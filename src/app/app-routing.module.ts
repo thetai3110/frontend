@@ -4,7 +4,7 @@ import { FormsModule }   from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
 import { CourseDetailComponent} from './course-management/course-detail/course-detail.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent, LogOutComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { CourseManageComponent } from './admin/course-manage/course-manage.component';
@@ -23,6 +23,7 @@ const routes: Routes = [
   {path: 'detail/:id', component: CourseDetailComponent},
   {path: 'class/register/:id', component: RegisterToStudyComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogOutComponent},
   {path: 'register', component: RegisterComponent},
   {
     path: 'admin', 

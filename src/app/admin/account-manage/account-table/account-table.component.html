@@ -1,0 +1,31 @@
+<div class="manage">
+    <button  mat-mini-fab color="accent" (click)="onOpenDialogAdd()"><fa-icon [icon]="faPlusCircle"></fa-icon></button>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let item">{{ item.idAccount }}</td>
+      </ng-container>
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên đăng nhập</th>
+        <td mat-cell *matCellDef="let item">{{ item.username }}</td>
+      </ng-container>
+      <ng-container matColumnDef="pass">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mật khẩu</th>
+        <td mat-cell *matCellDef="let item">{{ item.pass }}</td>
+      </ng-container>
+      <ng-container matColumnDef="tool">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
+        <td mat-cell *matCellDef="let item">
+          <button mat-raised-button color="primary" (click)="openDialog(item.idAccount)"><fa-icon [icon]="faPen"></fa-icon></button>
+          <button mat-raised-button color="warn" (click)="onDelete(item.idAccount)"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+  </div>

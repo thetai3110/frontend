@@ -1,7 +1,11 @@
-*{
-    color: white;
-}
-.account{
+.manage{
     float: right;
     width: 80%;
+}
+.manage h4{
+    text-align: center;
+    padding: 10px 0px;
+}
+.manage mat-tab-group{
+    margin: 10px 20px;
 }

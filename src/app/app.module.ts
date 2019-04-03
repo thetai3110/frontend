@@ -32,6 +32,10 @@ import { LessonDialogComponent } from './admin/course-manage/course-lesson/lesso
 import { LessonFormComponent } from './admin/course-manage/course-lesson/lesson-form/lesson-form.component';
 import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesson-delete/lesson-delete.component';
 import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';
+import { SharedModule } from './shared/shared.module';
+import { AccountDeleteComponent } from './admin/account-manage/account-delete/account-delete.component';
+import { AccountFormComponent } from './admin/account-manage/account-form/account-form.component';
+import { AccountDialogComponent } from './admin/account-manage/account-dialog/account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,7 @@ import { AccuracyFormComponent } from './register-to-study/accuracy-form/accurac
     HomeModule,
     LoginModule,
     AdminModule,
+    SharedModule,
     CourseManagementModule,
     RegisterModule,
     RegisterToStudyModule,
@@ -70,6 +75,9 @@ import { AccuracyFormComponent } from './register-to-study/accuracy-form/accurac
     LessonFormComponent,
     LessonDeleteComponent,
     AccuracyFormComponent,
+    AccountDeleteComponent,
+    AccountFormComponent,
+    AccountDialogComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

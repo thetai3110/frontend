@@ -1,22 +1,9 @@
-<div class="account">
-  <table class="table">
-    <thead class="thead-light">
-      <tr>
-        <th>Id</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Permission</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let account of accounts">
-        <td>{{ account.idAccount }}</td>
-        <td>{{ account.username }} </td>
-        <td>{{ account.pass }}</td>
-        <td>{{ account.permission }} </td>
-        <td><a href="" class="btn btn-success">Sửa</a></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="manage">
+  <h4>Quản lý tài khoản</h4>
+  <mat-tab-group>
+    <mat-tab label="Quản lý">
+      <app-account-table></app-account-table>
+    </mat-tab>
+    <mat-tab label="Quyền"> Content 2 </mat-tab>
+  </mat-tab-group>
 </div>

@@ -1,19 +1,11 @@
-.classes{
+.manage{
     float: right;
     width: 80%;
 }
-.classes h4{
-    margin-top: 20px;
-    padding-bottom: 10px;
+.manage h4{
+    text-align: center;
+    padding: 10px 0px;
 }
-
-@media screen and (max-width: 600px) {
-    .classes{
-        float: none;
-        width: 100%;
-    }
-    .classes h4{
-        display: block;
-        width: 100%;
-    }      
+.manage mat-tab-group{
+    margin: 10px 20px;
 }

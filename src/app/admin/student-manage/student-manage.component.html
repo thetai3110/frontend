@@ -1,32 +1,8 @@
-<div class="student">
+<div class="manage">
   <h4>Quản lý học viên</h4>
-  <div class="container tab">
-    <ul class="nav nav-tabs" id="tabs" role="tablist">
-      <li class="nav-item">
-        <a id="tab-student" class="nav-link active" data-toggle="tab" role="tab" href="#pane-tab-student">Quản lý</a>
-      </li>
-      <li class="nav-item">
-        <a id="tab-add" class="nav-link" data-toggle="tab" role="tab" href="#pane-tab-add">Thêm</a>
-      </li>
-      <li class="nav-item">
-        <a id="tab-edit" class="nav-link" data-toggle="tab" role="tab" href="#pane-tab-edit">Sửa</a>
-      </li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="pane-tab-student" role="tabpanel" aria-labelledby="tab-student">
-        <app-student-table></app-student-table>
-      </div>
-      <div class="tab-pane fade" id="pane-tab-add" role="tabpanel" aria-labelledby="tab-add">
-        <app-student-form></app-student-form>
-      </div>
-      <div class="tab-pane fade" id="pane-tab-edit" role="tabpanel" aria-labelledby="tab-edit">
-        
-      </div>
-    </div>
-  </div>
+  <mat-tab-group>
+    <mat-tab label="Quản lý">
+      <app-student-table></app-student-table>
+    </mat-tab>
+  </mat-tab-group>
 </div>
-<script>
-    $(document).ready(function () {
-      $('#example').DataTable();
-    });
-  </script>
