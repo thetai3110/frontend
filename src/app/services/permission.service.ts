@@ -30,12 +30,18 @@ export class PermissionService {
     return this.http.post('http://localhost:8080/permission/update/'+id, data);
   }
 
+  //acc-per
+
   getAllUserPermission(){
     return this.http.get('http://localhost:8080/acc-per');
   }
 
+  getAccountPerByAccount(id){
+    return this.http.get('http://localhost:8080/acc-per/account/'+id);
+  }
+
   deleteAccPer(id){
-    return this.http.get<Permission[]>('http://localhost:8080/acc-per/delete/' + id);
+    return this.http.get('http://localhost:8080/acc-per/delete/' + id);
   }
 
   postAccPer(data){

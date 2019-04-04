@@ -141,8 +141,10 @@ export class ClassDialogComponent implements OnInit {
             this.classesService.updateClassDay(classDay, this.classDay[i]).subscribe();
           }
         }
-        alert("success");
-        this.onCancel();
+        setTimeout(() => {
+          alert("success");
+          this.onCancel();
+        }, 1000);
       }
     });
   }

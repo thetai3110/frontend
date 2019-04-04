@@ -21,8 +21,8 @@ export class AccountPermissionComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
   result: any;
-  accPer: any;
-  acc = [];
+  accPerTmp: any;
+  accPer = [];
   news = [];
   remove = [];
   removeTmp = [];
@@ -53,12 +53,12 @@ export class AccountPermissionComponent implements OnInit {
     this.remove = [];
     this.removeTmp = [];
     this.permissionService.getAllUserPermission().subscribe(data => {
-      this.accPer = data;
-      this.acc = [];
-      for (var i = 0; i < this.accPer.length; i++) {
-        this.acc.push(this.accPer[i].idAccount + "-" + this.accPer[i].idPer);
+      this.accPerTmp = data;
+      this.accPer= [];
+      for (var i = 0; i < this.accPerTmp.length; i++) {
+        this.accPer.push(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer);
       }
-      this.news = this.acc;
+      this.news = this.accPer;
     });
     this.accountService.getData().subscribe(rs => {
       if (!rs)
@@ -81,13 +81,13 @@ export class AccountPermissionComponent implements OnInit {
   }
 
   onSave() {
-    for (var i = 0; i < this.accPer.length; i++) {
-      if (this.news.indexOf(this.accPer[i].idAccount + "-" + this.accPer[i].idPer) != -1) {
-        var pos = this.acc.indexOf(this.accPer[i].idAccount + "-" + this.accPer[i].idPer);
+    for (var i = 0; i < this.accPerTmp.length; i++) {
+      if (this.news.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer) != -1) {
+        var pos = this.news.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer);
         this.news.splice(pos, 1);
       }
-      if (this.removeTmp.indexOf(this.accPer[i].idAccount + "-" + this.accPer[i].idPer) != -1) {
-        this.remove.push(this.accPer[i].idAccountPer);
+      if (this.removeTmp.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer) != -1) {
+        this.remove.push(this.accPerTmp[i].idAccountPer);
       }
     }
     for (var i = 0; i < this.remove.length; i++) {
