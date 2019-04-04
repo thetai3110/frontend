@@ -155,7 +155,5 @@ export class ClassDialogComponent implements OnInit {
       var pos = this.days.indexOf(ca.charAt(0)+'-'+ca.charAt(2));
       this.days.splice(pos, 1);
     }
-    console.log(this.days);
-    
   }
 }

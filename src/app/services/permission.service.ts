@@ -29,4 +29,20 @@ export class PermissionService {
   updateData(id, data){
     return this.http.post('http://localhost:8080/permission/update/'+id, data);
   }
+
+  getAllUserPermission(){
+    return this.http.get('http://localhost:8080/acc-per');
+  }
+
+  deleteAccPer(id){
+    return this.http.get<Permission[]>('http://localhost:8080/acc-per/delete/' + id);
+  }
+
+  postAccPer(data){
+    return this.http.post('http://localhost:8080/acc-per/add',data);
+  }
+
+  updateAccPer(id, data){
+    return this.http.post('http://localhost:8080/acc-per/update/'+id, data);
+  }
 }

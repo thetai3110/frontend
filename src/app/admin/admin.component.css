@@ -4,7 +4,7 @@
     position: fixed;
     top: 56px; 
     left: 0;
-    z-index: 9999999;
+    z-index: 999;
 }
 .top{
     width: 100%;
@@ -12,7 +12,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 9999999;
+    z-index: 999;
 }
 .compo{
     float: right;

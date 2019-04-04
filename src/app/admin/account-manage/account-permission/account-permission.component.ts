@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faPen, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 import { MatPaginator, MatSort, MatDialog, MatTableDataSource } from '@angular/material';
 import { AccountService } from 'src/app/services/account.service';
 import { PermissionService } from 'src/app/services/permission.service';
@@ -14,39 +14,54 @@ export class AccountPermissionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['username'];
+  faSave = faSave;
+  displayedColumns = ['username'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
-  result : any;
-  check = "0";
+  result: any;
+  accPer: any;
+  acc = [];
+  news = [];
+  remove = [];
+  removeTmp = [];
 
   constructor(private accountService: AccountService,
-            private permissionService: PermissionService,
-            public dialog: MatDialog) { }
+    private permissionService: PermissionService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     this.reloadTable();
   }
 
-  add(){
-    this.permissionService.getData().subscribe(data =>{
+  add() {
+    this.permissionService.getData().subscribe(data => {
       this.result = data;
-      for(var i=0;i< this.result.length;i++){
+      this.displayedColumns = ['username'];
+      for (var i = 0; i < this.result.length; i++) {
         this.displayedColumns.push(this.result[i].actionCode);
       }
     });
   }
 
-  applyFilter(filterValue: string){
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  reloadTable(){
-    this.accountService.getData().subscribe(rs =>{
-      if(!rs)
+  reloadTable() {
+    this.remove = [];
+    this.removeTmp = [];
+    this.permissionService.getAllUserPermission().subscribe(data => {
+      this.accPer = data;
+      this.acc = [];
+      for (var i = 0; i < this.accPer.length; i++) {
+        this.acc.push(this.accPer[i].idAccount + "-" + this.accPer[i].idPer);
+      }
+      this.news = this.acc;
+    });
+    this.accountService.getData().subscribe(rs => {
+      if (!rs)
         return;
       this.add();
       this.dataSource = new MatTableDataSource(rs);
@@ -54,5 +69,46 @@ export class AccountPermissionComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
-  
+
+  onChangePer(account, per, event) {
+    if (event.checked == true) {
+      this.news.push(account + "-" + per);
+    } else {
+      this.removeTmp.push(account + "-" + per);
+      var pos = this.news.indexOf(account + "-" + per);
+      this.news.splice(pos, 1);
+    }
+  }
+
+  onSave() {
+    for (var i = 0; i < this.accPer.length; i++) {
+      if (this.news.indexOf(this.accPer[i].idAccount + "-" + this.accPer[i].idPer) != -1) {
+        var pos = this.acc.indexOf(this.accPer[i].idAccount + "-" + this.accPer[i].idPer);
+        this.news.splice(pos, 1);
+      }
+      if (this.removeTmp.indexOf(this.accPer[i].idAccount + "-" + this.accPer[i].idPer) != -1) {
+        this.remove.push(this.accPer[i].idAccountPer);
+      }
+    }
+    for (var i = 0; i < this.remove.length; i++) {
+      this.permissionService.deleteAccPer(this.remove[i]).subscribe(data => {
+        if (Boolean(data) == true)
+          console.log("success");
+      });
+    }
+    for (var i = 0; i < this.news.length; i++) {
+      var accountPer = {
+        idAccount: this.news[i].charAt(0),
+        idPer: this.news[i].charAt(2),
+      }
+      this.permissionService.postAccPer(accountPer).subscribe(data => {
+        if (data != null) {
+          console.log("success");
+        }
+      });
+    }
+    setTimeout(() => {
+      this.reloadTable();
+    }, 1000);
+  }
 }
