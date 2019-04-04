@@ -38,7 +38,7 @@ export class ClassDialogComponent implements OnInit {
   allCourse: any; allLec: any; allRoom: any; allSchoolDay: any; allCa: any;
   allNoEmpty: any; allByClass: any; allByRoom: any;
   cas = []; schoolDays = []; emptys = []; noEmptys = [];
-  days = []; classDay = []; checkChange= false;
+  days = []; classDay = []; checkChange = false;
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
   }
@@ -49,7 +49,7 @@ export class ClassDialogComponent implements OnInit {
     });
     this.lecturersService.getData().subscribe(data => {
       this.allLec = data;
-    }); 
+    });
     this.roomService.getData().subscribe(data => {
       this.allRoom = data;
     });
@@ -66,49 +66,77 @@ export class ClassDialogComponent implements OnInit {
       }
     });
     this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data => {
-      this.allByClass = data;
-      for (var i = 0; i < this.allByClass.length; i++) {
-        this.days.push(this.allByClass[i].idSchoolday + "-" + this.allByClass[i].idCa);
-        this.classDay.push(this.allByClass[i].idClassDay);
+      if (data != null) {
+        this.allByClass = data;
+        for (var i = 0; i < this.allByClass.length; i++) {
+          this.days.push(this.allByClass[i].idSchoolday + "-" + this.allByClass[i].idCa);
+          this.classDay.push(this.allByClass[i].idClassDay);
+        }
       }
     });
   }
 
   getEmptys(idRoom) {
-    this.noEmptys= [];
-    this.emptys= [];
+    this.noEmptys = [];
+    this.emptys = [];
     this.classesService.getClassDayByRoom(idRoom).subscribe(data => {
-      this.allByRoom = data;
-      for (var i = 0; i < this.allByRoom.length; i++) {
-        this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa + "-f");
-      }
-      this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data1 => {
-        this.allByClass = data1;
-        for (let i = 0; i < this.schoolDays.length; i++) {
-          for (let j = 0; j < this.cas.length; j++) {
-            var key = this.schoolDays[i] + "-" + this.cas[j];
-            var ck = 0;
-            for (var k = 0; k < this.allByClass.length; k++) {
-              if(key == this.allByClass[k].idSchoolday+'-'+this.allByClass[k].idCa){
-                ck = 1;
+      if (data != null) {
+        this.allByRoom = data;
+        //Danh sách các ca đã có lớp
+        for (var i = 0; i < this.allByRoom.length; i++) {
+          this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa + "-f");
+        }
+        this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data1 => {
+          if (data1 != null) {
+            this.allByClass = data1;
+            //-f là các ca còn trống , -t là các ca của lớp muốn sửa
+            for (let i = 0; i < this.schoolDays.length; i++) {
+              for (let j = 0; j < this.cas.length; j++) {
+                var key = this.schoolDays[i] + "-" + this.cas[j];
+                var ck = 0;
+                for (var k = 0; k < this.allByClass.length; k++) {
+                  if (key == this.allByClass[k].idSchoolday + '-' + this.allByClass[k].idCa) {
+                    ck = 1;
+                  }
+                }
+                if (ck == 0) {
+                  key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
+                  this.emptys.push(key);
+                } else {
+                  key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
+                  this.emptys.push(key);
+                  key = this.schoolDays[i] + "-" + this.cas[j] + "-t";
+                  this.emptys.push(key);
+                }
               }
             }
-            if(ck == 0){
-              key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
-              this.emptys.push(key);
-            }else{
-              key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
-              this.emptys.push(key);
-              key = this.schoolDays[i] + "-" + this.cas[j] + "-t";
-              this.emptys.push(key);
+            //Danh sách các ca trống
+            for (let k = 0; k < this.noEmptys.length; k++) {
+              var pos = this.emptys.indexOf(this.noEmptys[k]);
+              this.emptys.splice(pos, 1);
+            }
+          } else {
+            for (let i = 0; i < this.schoolDays.length; i++) {
+              for (let j = 0; j < this.cas.length; j++) {
+                key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
+                this.emptys.push(key);
+              }
+            }
+            //Danh sách các ca trống
+            for (let k = 0; k < this.noEmptys.length; k++) {
+              var pos = this.emptys.indexOf(this.noEmptys[k]);
+              this.emptys.splice(pos, 1);
             }
           }
+        });
+      } else {
+        for (let i = 0; i < this.schoolDays.length; i++) {
+          for (let j = 0; j < this.cas.length; j++) {
+            var key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
+            this.emptys.push(key);
+          }
         }
-        for (let k = 0; k < this.noEmptys.length; k++){
-          var pos = this.emptys.indexOf(this.noEmptys[k]);
-          this.emptys.splice(pos, 1);
-        }
-      });
+      }
     });
   }
 
@@ -120,9 +148,11 @@ export class ClassDialogComponent implements OnInit {
     this.classesService.updateData(this.data.stu.idClass, form).subscribe(data => {
       if (data != null) {
         if (this.checkChange == true) {
+          //Xóa class-day cũ
           for (var i = 0; i < this.classDay.length; i++) {
             this.classesService.deleteClassDay(this.classDay[i]).subscribe();
           }
+          //Thêm class-day mới
           for (var i = 0; i < this.days.length; i++) {
             var classDayTmp = {
               idClass: this.data.stu.idClass,
@@ -132,6 +162,7 @@ export class ClassDialogComponent implements OnInit {
             this.classesService.addClassDay(classDayTmp).subscribe();
           }
         } else {
+          //Update lại class-day
           for (var i = 0; i < this.days.length; i++) {
             var classDay = {
               idClass: this.data.stu.idClass,
@@ -152,9 +183,9 @@ export class ClassDialogComponent implements OnInit {
   changeCk(ca, event) {
     this.checkChange = true;
     if (event.checked == true) {
-      this.days.push(ca.charAt(0)+'-'+ca.charAt(2));
+      this.days.push(ca.charAt(0) + '-' + ca.charAt(2));
     } else {
-      var pos = this.days.indexOf(ca.charAt(0)+'-'+ca.charAt(2));
+      var pos = this.days.indexOf(ca.charAt(0) + '-' + ca.charAt(2));
       this.days.splice(pos, 1);
     }
   }

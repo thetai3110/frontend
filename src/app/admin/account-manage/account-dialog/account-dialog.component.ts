@@ -25,19 +25,9 @@ export class AccountDialogComponent implements OnInit {
     public hasError = (controlName: string, errorName: string) =>{
       return this.form.controls[controlName].hasError(errorName);
     }
-  
-    listPerTmp: any;
-    listPer = [];
-    listIdPer = [];
 
     ngOnInit() {
-      this.permissionService.getAccountPerByAccount(this.data.stu.idAccount).subscribe(data =>{
-        this.listPerTmp = data;
-        for(var i=0;i<this.listPerTmp.length;i++){
-          this.listPer.push(this.listPerTmp[i].idPer);
-          this.listIdPer.push(this.listPerTmp[i].idAccountPer);
-        }
-      });
+      
     }
   
     onCancel(){
@@ -46,21 +36,10 @@ export class AccountDialogComponent implements OnInit {
   
     onSubmit(form){
       this.accountService.updateData(this.data.stu.idAccount, form).subscribe(data =>{
-        if(data != null){
-          for(var i=0; i< this.listPer.length; i++){
-            var tmp ={
-              idAccountPer: this.listIdPer[i],
-              idAccount : this.data.stu.idAccount,
-              idPer : this.listPer[i]
-            }
-            this.permissionService.updateAccPer(this.listIdPer[i],tmp).subscribe();
-          }
+        if(Boolean(data) == true){
+          alert("success");
+          this.onCancel();
         }
       });
-      setTimeout(() => {
-        alert("success");
-       this.onCancel();
-      }, 1000);
     }
-
 }

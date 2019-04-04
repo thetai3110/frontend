@@ -52,10 +52,11 @@ export class ClassFormComponent implements OnInit {
     this.classesService.postData(form).subscribe(data =>{
       if(data!= null){
         for(var i=0;i< this.days.length;i++){
+          var str = this.days[i].split("-");
           var classDay = {
             idClass : data['idClass'],
-            idSchoolday: this.days[i].charAt(0),
-            idCa: this.days[i].charAt(2)
+            idSchoolday: str[0],
+            idCa: str[1]
           }
           this.classesService.addClassDay(classDay).subscribe();
         }
@@ -94,15 +95,18 @@ export class ClassFormComponent implements OnInit {
     this.emptys= [];
     this.classesService.getClassDayByRoom(idRoom).subscribe(data => {
       this.allByRoom = data;
+      //Danh sách các ca học đã có lớp 
       for (var i = 0; i < this.allByRoom.length; i++) {
         this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa);
       }
+      //Danh sách tất cả các ca
       for (let i = 0; i < this.schoolDays.length; i++) {
         for (let j = 0; j < this.cas.length; j++) {
           var key = this.schoolDays[i] + "-" + this.cas[j];
           this.emptys.push(key);
         }
       }
+      //Danh sách ca còn trống
       for (let k = 0; k < this.noEmptys.length; k++){
         var pos = this.emptys.indexOf(this.noEmptys[k]);
         this.emptys.splice(pos, 1);

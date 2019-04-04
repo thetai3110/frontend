@@ -97,9 +97,10 @@ export class AccountPermissionComponent implements OnInit {
       });
     }
     for (var i = 0; i < this.news.length; i++) {
+      var str = this.news[i].split('-'); 
       var accountPer = {
-        idAccount: this.news[i].charAt(0),
-        idPer: this.news[i].charAt(2),
+        idAccount: str[0],
+        idPer: str[1]
       }
       this.permissionService.postAccPer(accountPer).subscribe(data => {
         if (data != null) {
