@@ -81,6 +81,7 @@ export class ClassDialogComponent implements OnInit {
     this.emptys = [];
     this.classesService.getClassDayByRoom(idRoom).subscribe(data => {
       if (data != null) {
+        //Nếu phòng học có ca học
         this.allByRoom = data;
         //Danh sách các ca đã có lớp
         for (var i = 0; i < this.allByRoom.length; i++) {
@@ -88,6 +89,7 @@ export class ClassDialogComponent implements OnInit {
         }
         this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data1 => {
           if (data1 != null) {
+            //Nếu lớp học đã có ca học
             this.allByClass = data1;
             //-f là các ca còn trống , -t là các ca của lớp muốn sửa
             for (let i = 0; i < this.schoolDays.length; i++) {
@@ -116,6 +118,7 @@ export class ClassDialogComponent implements OnInit {
               this.emptys.splice(pos, 1);
             }
           } else {
+            //Nếu lớp không có ca học
             for (let i = 0; i < this.schoolDays.length; i++) {
               for (let j = 0; j < this.cas.length; j++) {
                 key = this.schoolDays[i] + "-" + this.cas[j] + "-f";
@@ -130,6 +133,7 @@ export class ClassDialogComponent implements OnInit {
           }
         });
       } else {
+        //Nếu phòng học không có ca học
         for (let i = 0; i < this.schoolDays.length; i++) {
           for (let j = 0; j < this.cas.length; j++) {
             var key = this.schoolDays[i] + "-" + this.cas[j] + "-f";

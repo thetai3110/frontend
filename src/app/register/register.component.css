@@ -19,6 +19,10 @@
     text-transform: uppercase;
     color: #fff;
 }
+mat-icon{
+    color: blue;
+    float: left;
+}
 mat-form-field{
     width: 100%;
 }

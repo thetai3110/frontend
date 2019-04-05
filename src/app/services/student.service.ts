@@ -18,6 +18,10 @@ export class StudentService {
     return this.http.get<Student[]>('http://localhost:8080/student/'+id);
   }
 
+  getDataByAccount(id): Observable<Student[]>{
+    return this.http.get<Student[]>('http://localhost:8080/student/account/'+id);
+  }
+
   getDataByClass(id): Observable<Student[]>{
     return this.http.get<Student[]>('http://localhost:8080/student-class/'+id);
   }

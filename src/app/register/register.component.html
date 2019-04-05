@@ -1,5 +1,5 @@
 <div class="login">
-  <h1 mat-dialog-title>Đăng ký</h1>
+  <h1 mat-dialog-title><a [routerLink]="['']"><mat-icon>home</mat-icon></a> Đăng ký</h1>
   <form [formGroup]="form" class="formlogin" (ngSubmit)="form.valid && onSubmit(form.value)">
     <div mat-dialog-content>
       <!-- Tên đăng nhập -->

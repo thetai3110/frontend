@@ -14,6 +14,10 @@ export class AccountService {
     return this.http.get<Account[]>('http://localhost:8080/account/'+ id);
   }
 
+  getDataByUsername(username): Observable<Account[]>{
+    return this.http.get<Account[]>('http://localhost:8080/account/username/'+ username);
+  }
+
   getData(): Observable<Account[]>{
     return this.http.get<Account[]>('http://localhost:8080/account');
   }

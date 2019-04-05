@@ -9,7 +9,7 @@
       <li *ngIf="isLogin == true;else login">
         <a href="" class="user">{{ username }}</a>
         <ul class="sub-menu">
-          <li><a href=""><fa-icon [icon]="faUser"></fa-icon> Cá nhân</a></li>
+          <li><a [routerLink]="['/personal']"><fa-icon [icon]="faUser"></fa-icon> Cá nhân</a></li>
           <li><a [routerLink]="['/logout']"><fa-icon [icon]="faSignOutAlt"></fa-icon> Đăng xuất</a></li>
         </ul>
       </li>

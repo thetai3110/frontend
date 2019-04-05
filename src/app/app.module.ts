@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 import { AdminModule } from './admin/admin.module';
+import { PersonalPageModule } from './personal-page/personal-page.module'; 
 import { RegisterModule } from './register/register.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterToStudyModule } from './register-to-study/register-to-study.module';
@@ -39,7 +40,7 @@ import { AccountDialogComponent } from './admin/account-manage/account-dialog/ac
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +48,7 @@ import { AccountDialogComponent } from './admin/account-manage/account-dialog/ac
     HomeModule,
     LoginModule,
     AdminModule,
+    PersonalPageModule,
     SharedModule,
     CourseManagementModule,
     RegisterModule,

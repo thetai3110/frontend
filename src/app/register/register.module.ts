@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MatFormFieldModule, MatRadioModule, 
   MatDatepickerModule,MatButtonModule, 
   MatInputModule, MatNativeDateModule, 
-  MatSelectModule,
+  MatSelectModule, MatIconModule
 } from '@angular/material';
 
 import { RegisterComponent } from './register.component';
@@ -20,7 +20,7 @@ import { RegisterComponent } from './register.component';
     MatFormFieldModule, MatRadioModule, 
     MatDatepickerModule,MatButtonModule, 
     MatInputModule, MatNativeDateModule, 
-    MatSelectModule
+    MatSelectModule, MatIconModule
   ]
 })
 export class RegisterModule { }

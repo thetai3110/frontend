@@ -17,6 +17,7 @@ import { AccountManageComponent } from './admin/account-manage/account-manage.co
 import { InvoiceManageComponent } from './admin/invoice-manage/invoice-manage.component';
 import { RegisterToStudyComponent } from './register-to-study/register-to-study.component';
 import { StudentFormComponent } from './admin/student-manage/student-form/student-form.component';
+import { PersonalPageComponent } from './personal-page/personal-page.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'class/register/:id', component: RegisterToStudyComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogOutComponent},
+  {path: 'personal', component: PersonalPageComponent},
   {path: 'register', component: RegisterComponent},
   {
     path: 'admin', 
