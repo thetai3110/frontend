@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StudentService } from 'src/app/services/student.service';
 import { AccountService } from 'src/app/services/account.service';
+import { MatSnackBar } from '@angular/material';
+import { HttpResponse, HttpEventType } from '@angular/common/http';
+import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
   selector: 'app-personal-form',
@@ -10,11 +13,15 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class PersonalFormComponent implements OnInit {
 
+  @Input() student: any;
+
   constructor(private studentService: StudentService,
-              private accountService: AccountService) { }
+    private snackBar: MatSnackBar,
+    private uploadService: UploadService) { }
 
   form: FormGroup = new FormGroup({
     studentName: new FormControl,
+    idAccount: new FormControl,
     cmnd: new FormControl,
     studentDate: new FormControl,
     sex: new FormControl,
@@ -24,31 +31,62 @@ export class PersonalFormComponent implements OnInit {
     job: new FormControl,
     image: new FormControl,
   });
-  
-  student=  {};
+  selectedFiles: FileList;
+  currentFileUpload: File;
+  progress: { percentage: number } = { percentage: 0 };
+  showFiller = false;
 
   ngOnInit() {
-    this.accountService.getDataByUsername(localStorage.getItem("username")).subscribe(data=>{
-      if(data != null){
-        this.studentService.getDataByAccount(Number(data['idAccount'])).subscribe(stu =>{
-          this.form = new FormGroup({
-            studentName: new FormControl(stu['studentName'], [Validators.required, Validators.maxLength(30)]),
-            cmnd: new FormControl(stu['cmnd'], [Validators.required, Validators.pattern("[0-9]*")]),
-            studentDate: new FormControl(new Date(stu['studentDate']),[Validators.required]),
-            sex: new FormControl(String(stu['sex']), [Validators.required]),
-            address: new FormControl(stu['address'], [Validators.required]),
-            email: new FormControl(stu['email'], [Validators.required, Validators.email]),
-            phone: new FormControl(stu['phone'], [Validators.required, Validators.pattern("[0-9]*")]),
-            job: new FormControl(stu['job']),
-            image: new FormControl(null),
-          });
+    setTimeout(() => {
+      this.form = new FormGroup({
+        studentName: new FormControl(this.student['studentName'], [Validators.required, Validators.maxLength(30)]),
+        idAccount: new FormControl(this.student['accountStu'] == null ? '' : this.student['accountStu'].idAccount),
+        cmnd: new FormControl(this.student['cmnd'], [Validators.required, Validators.pattern("[0-9]*")]),
+        studentDate: new FormControl(new Date(this.student['studentDate']), [Validators.required]),
+        sex: new FormControl(String(this.student['sex']), [Validators.required]),
+        address: new FormControl(this.student['address'], [Validators.required]),
+        email: new FormControl(this.student['email'], [Validators.required, Validators.email]),
+        phone: new FormControl(this.student['phone'], [Validators.required, Validators.pattern("[0-9]*")]),
+        job: new FormControl(this.student['job']),
+        image: new FormControl('')
+      });
+    }, 1000);
+  }
+
+  public hasError = (controlName: string, errorName: string) => {
+    return this.form.controls[controlName].hasError(errorName);
+  }
+
+  onSubmit(form) {
+    this.studentService.updateData(this.student['idStudent'], form).subscribe(data => {
+      if (data != null) {
+        if(this.selectedFiles != null){
+          this.onUpload();
+        }
+        this.snackBar.open("Success!!!", "Update", {
+          duration: 2000,
         });
       }
     });
+    setTimeout(() => {
+      this.ngOnInit();
+     }, 1000);
   }
 
-  public hasError = (controlName: string, errorName: string) =>{
-    return this.form.controls[controlName].hasError(errorName);
+  onFileSelected(event){
+    this.selectedFiles = event.target.files;
   }
-  
+
+  onUpload(){
+    this.progress.percentage = 0;
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress.percentage = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        console.log('File is completely uploaded!');
+      }
+    });
+    this.selectedFiles = undefined;
+  }
 }

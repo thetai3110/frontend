@@ -40,4 +40,9 @@ export class TableRegisteredComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
     });
   }
+
+  onPay(){
+
+  }
+  
 }

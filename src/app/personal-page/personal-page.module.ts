@@ -5,7 +5,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MatCardModule, MatButtonModule, MatFormFieldModule,
          MatInputModule, MatRadioModule, MatDatepickerModule,
          MatSidenavModule, MatIconModule, MatExpansionModule, 
-         MatPaginatorModule, MatTableModule, MatSortModule,} from '@angular/material';
+         MatPaginatorModule, MatTableModule, MatSortModule,
+         MatSnackBarModule} from '@angular/material';
 
 import { PersonalPageComponent } from './personal-page.component';
 import { PersonalFormComponent } from './personal-form/personal-form.component';
@@ -29,6 +30,7 @@ import { TableRegisteredComponent } from './table-registered/table-registered.co
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule
   ]

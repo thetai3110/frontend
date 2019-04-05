@@ -14,12 +14,14 @@ export class PersonalPageComponent implements OnInit {
 
   username = localStorage.getItem("username");
   idStudent: Number;
+  student = {};
 
   ngOnInit() {
     this.accountService.getDataByUsername(this.username).subscribe(data=>{
       if(data != null){
         this.studentService.getDataByAccount(Number(data['idAccount'])).subscribe(stu =>{
           this.idStudent = stu['idStudent'];
+          this.student = stu;
         });
       }
     });
