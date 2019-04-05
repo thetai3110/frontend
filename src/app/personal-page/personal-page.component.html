@@ -1,16 +1,26 @@
 <app-header></app-header>
-<mat-card class="card">
-  <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <app-personal-form></app-personal-form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title>{{ username }}</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <app-personal-form></app-personal-form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-drawer>
+  <button type="button" class="toggle" mat-button (click)="drawer.toggle()">
+    <mat-icon>keyboard_arrow_right</mat-icon>  
+  </button>
+  <div class="example-sidenav-content">
+    <app-list-registered></app-list-registered> 
+  </div>
+</mat-drawer-container>
 <app-footer></app-footer>

@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatCardModule, MatButtonModule, MatFormFieldModule,
-         MatInputModule, MatRadioModule, MatDatepickerModule } from '@angular/material';
+         MatInputModule, MatRadioModule, MatDatepickerModule,
+         MatSidenavModule, MatIconModule, MatExpansionModule } from '@angular/material';
 
 import { PersonalPageComponent } from './personal-page.component';
 import { PersonalFormComponent } from './personal-form/personal-form.component';
+import { ListRegisteredComponent } from './list-registered/list-registered.component';
+import { TableRegisteredComponent } from './table-registered/table-registered.component';
 
 @NgModule({
-  declarations: [PersonalPageComponent, PersonalFormComponent],
+  declarations: [PersonalPageComponent, PersonalFormComponent, ListRegisteredComponent, TableRegisteredComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -19,6 +22,9 @@ import { PersonalFormComponent } from './personal-form/personal-form.component';
     MatInputModule, 
     MatRadioModule,
     MatDatepickerModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatExpansionModule,
     FormsModule,
     ReactiveFormsModule
   ]

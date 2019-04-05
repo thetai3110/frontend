@@ -1,9 +1,24 @@
 .card {
     max-width: 400px;
-    margin: 25px 15px;
+    margin: 10px 5px;
   }
   
   .header-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
+  }
+
+  .example-container {
+    width: 100%;
+    height: 650px;
+  }
+  
+  .example-sidenav {
+    padding: 20px;
+  }
+
+  .toggle{
+    margin-top: 270px;
+    padding: 0;
+    float: left;
   }

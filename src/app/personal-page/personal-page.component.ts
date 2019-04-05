@@ -9,6 +9,8 @@ export class PersonalPageComponent implements OnInit {
 
   constructor() { }
 
+  username = localStorage.getItem("username");
+
   ngOnInit() {
   }
 
