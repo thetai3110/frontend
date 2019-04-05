@@ -2,15 +2,15 @@
   <mat-expansion-panel expanded opened>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Personal data
+        Danh sách lớp học đã đăng ký
       </mat-panel-title>
       <mat-panel-description>
-        Type your name and age
+        Có thể đóng học phí online ở đây
       </mat-panel-description>
     </mat-expansion-panel-header>
 
     <ng-template matExpansionPanelContent>
-      Some deferred content
+      <app-table-registered [idStudent]="idStudent"></app-table-registered>
     </ng-template>
   </mat-expansion-panel>
 </mat-accordion>

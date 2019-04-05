@@ -15,6 +15,11 @@ export class ClassesService {
     return this.http.get<Classes[]>('http://localhost:8080/class');
   }
 
+  // Lấy class theo học viên
+  getClassByStudent(id): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/student-class/student/'+id);
+  }
+
   // Lấy lớp theo id
   getDataById(id): Observable<Classes[]>{
     return this.http.get<Classes[]>('http://localhost:8080/class/follow-id/'+id);
@@ -40,7 +45,7 @@ export class ClassesService {
     return this.http.post('http://localhost:8080/class-day/update/'+id,data);
   }
 
-  // Xóa
+  // Xóa lịch học
   deleteClassDay(id){
     return this.http.get<Classes[]>('http://localhost:8080/class-day/delete/' + id);
   }

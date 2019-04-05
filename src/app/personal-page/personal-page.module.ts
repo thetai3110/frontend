@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatCardModule, MatButtonModule, MatFormFieldModule,
          MatInputModule, MatRadioModule, MatDatepickerModule,
-         MatSidenavModule, MatIconModule, MatExpansionModule } from '@angular/material';
+         MatSidenavModule, MatIconModule, MatExpansionModule, 
+         MatPaginatorModule, MatTableModule, MatSortModule,} from '@angular/material';
 
 import { PersonalPageComponent } from './personal-page.component';
 import { PersonalFormComponent } from './personal-form/personal-form.component';
@@ -25,6 +26,9 @@ import { TableRegisteredComponent } from './table-registered/table-registered.co
     MatSidenavModule,
     MatIconModule,
     MatExpansionModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
     FormsModule,
     ReactiveFormsModule
   ]

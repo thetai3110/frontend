@@ -16,11 +16,11 @@
       </mat-card-actions>
     </mat-card>
   </mat-drawer>
-  <button type="button" class="toggle" mat-button (click)="drawer.toggle()">
+  <button type="button" class="toggle" mat-icon-button (click)="drawer.toggle()">
     <mat-icon>keyboard_arrow_right</mat-icon>  
   </button>
   <div class="example-sidenav-content">
-    <app-list-registered></app-list-registered> 
+    <app-list-registered [idStudent]="idStudent"></app-list-registered> 
   </div>
 </mat-drawer-container>
 <app-footer></app-footer>
