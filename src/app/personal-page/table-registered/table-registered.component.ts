@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { ClassesService } from 'src/app/services/classes.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { PersonalDialogComponent } from '../personal-dialog/personal-dialog.component';
+import { StudentClassService } from 'src/app/services/student-class.service';
 
 @Component({
   selector: 'app-table-registered',
@@ -20,7 +20,7 @@ export class TableRegisteredComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
 
-  constructor(private classesService: ClassesService,
+  constructor(private studentClassService: StudentClassService,
               public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class TableRegisteredComponent implements OnInit {
   }
 
   reloadTable(id){
-    this.classesService.getClassByStudent(id).subscribe(rs =>{
+    this.studentClassService.getClassByStudent(id).subscribe(rs =>{
       if(!rs)
         return;
       this.dataSource = new MatTableDataSource(rs);
@@ -49,7 +49,7 @@ export class TableRegisteredComponent implements OnInit {
       data : this.dataSource.data
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.reloadTable(this.idStudent);
     });
   }
   
