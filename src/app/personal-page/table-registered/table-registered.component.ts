@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ClassesService } from 'src/app/services/classes.service';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { PersonalDialogComponent } from '../personal-dialog/personal-dialog.component';
 
 @Component({
   selector: 'app-table-registered',
@@ -19,7 +20,8 @@ export class TableRegisteredComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
 
-  constructor(private classesService: ClassesService) { }
+  constructor(private classesService: ClassesService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -41,8 +43,14 @@ export class TableRegisteredComponent implements OnInit {
     });
   }
 
-  onPay(){
-
+  openPay(){
+    const dialogRef = this.dialog.open(PersonalDialogComponent, {
+      width: '700px',
+      data : this.dataSource.data
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
   
 }

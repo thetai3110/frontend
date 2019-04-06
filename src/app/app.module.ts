@@ -37,6 +37,7 @@ import { SharedModule } from './shared/shared.module';
 import { AccountDeleteComponent } from './admin/account-manage/account-delete/account-delete.component';
 import { AccountFormComponent } from './admin/account-manage/account-form/account-form.component';
 import { AccountDialogComponent } from './admin/account-manage/account-dialog/account-dialog.component';
+import { PersonalDialogComponent } from './personal-page/personal-dialog/personal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { AccountDialogComponent } from './admin/account-manage/account-dialog/ac
     AccuracyFormComponent,
     AccountDeleteComponent,
     AccountFormComponent,
-    AccountDialogComponent
+    AccountDialogComponent,
+    PersonalDialogComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

@@ -1,0 +1,40 @@
+<h5>Thanh toán</h5>
+<mat-horizontal-stepper [linear]="'true'" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Nhập email</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Nhập email" formControlName="email">
+        <mat-error *ngIf="hasError(firstFormGroup ,'email', 'email')">Email sai định dạng</mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Tiếp</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Chọn phương thức thanh toán</ng-template>
+      <mat-form-field>
+        <mat-label>Phương thức</mat-label>
+        <mat-select formControlName="payment">
+          <mat-option value="vietcombank"> VietcomBank </mat-option>
+          <mat-option value="viettinbank"> ViettinBank </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Lùi</button>
+        <button mat-button matStepperNext>Tiếp</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Thanh toán</ng-template>
+    Đã hoàn thành tất cả các bước, nhấn "Xong" để thanh toán
+    <div>
+      <button mat-button matStepperPrevious>Lùi</button>
+      <button mat-button (click)="onPay()">Xong</button>
+      <button mat-button (click)="stepper.reset()">Làm mới</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
