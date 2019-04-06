@@ -18,7 +18,10 @@
     <mat-form-field>
       <mat-label>Tài khoản</mat-label>
       <select matNativeControl formControlName="idAccount">
-        <option *ngFor="let acc of allAccount " [value]="acc.idAccount">{{ acc.username }}</option>
+        <option [value]=""></option>
+        <ng-container *ngIf="allAccount != null">
+          <option *ngFor="let acc of allAccount " [value]="acc.idAccount">{{ acc.username }}</option>
+        </ng-container>
       </select>
     </mat-form-field>
     <!-- Vai trò -->

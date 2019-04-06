@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-employee-form',
@@ -31,9 +31,17 @@ export class EmployeeFormComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService,
     private accountService: AccountService,
-    public dialogRef: MatDialogRef<EmployeeFormComponent>) { }
+    public dialogRef: MatDialogRef<EmployeeFormComponent>,
+    private snackBar: MatSnackBar) { }
 
   allAccount : any;
+
+  ngOnInit() {
+    this.accountService.getData().subscribe(data=>{
+      if(data != null)
+        this.allAccount = data;
+    })
+  }
 
   onCancel(){
     this.dialogRef.close();
@@ -42,16 +50,16 @@ export class EmployeeFormComponent implements OnInit {
   onSubmit(form){
     this.employeeService.postData(form).subscribe(data =>{
       if(data!= null){
-        alert('Success!');
-        this.onCancel();
+        this.snackBar.open("Success!!!", "Add", {
+          duration: 2000,
+        });
+      }else{
+        this.snackBar.open("Fail!!!", "Add", {
+          duration: 2000,
+        });
       }
+      this.onCancel();
     });
-  }
-
-  ngOnInit() {
-    this.accountService.getData().subscribe(data=>{
-      this.allAccount = data;
-    })
   }
 
 }

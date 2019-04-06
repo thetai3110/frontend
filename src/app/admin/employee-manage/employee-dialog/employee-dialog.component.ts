@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { EmployeeService } from '../../../services/employee.service';
 import { AccountService } from 'src/app/services/account.service';
@@ -13,7 +13,7 @@ export class EmployeeDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EmployeeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private employeeService: EmployeeService,
-    private accountService: AccountService) { }
+    private accountService: AccountService, private snackBar: MatSnackBar) { }
 
     form: FormGroup = new FormGroup({
       employeeName: new FormControl(this.data.stu.employeeName, [Validators.required, Validators.maxLength(30)]),
@@ -37,7 +37,8 @@ export class EmployeeDialogComponent implements OnInit {
   
     ngOnInit() {
       this.accountService.getData().subscribe(data=>{
-        this.allAccount = data;
+        if(data != null)
+          this.allAccount = data;
       })
     }
   
@@ -48,9 +49,15 @@ export class EmployeeDialogComponent implements OnInit {
     onSubmit(form){
       this.employeeService.updateData(this.data.stu.idEmployee, form).subscribe(data =>{
         if(data != null){
-          alert("success");
-          this.onCancel();
+          this.snackBar.open("Success!!!", "Update", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Update", {
+            duration: 2000,
+          });
         }
+        this.onCancel();
     });
     }
 

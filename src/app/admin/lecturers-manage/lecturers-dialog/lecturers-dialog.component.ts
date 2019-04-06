@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { LecturersService } from 'src/app/services/lecturers.service';
 import { MajorsService } from 'src/app/services/majors.service';
@@ -14,7 +14,8 @@ export class LecturersDialogComponent implements OnInit {
  
   constructor(public dialogRef: MatDialogRef<LecturersDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private lecturersService: LecturersService,
-    private majorsService: MajorsService, private accountService: AccountService) { }
+    private majorsService: MajorsService, private accountService: AccountService,
+    private snackBar: MatSnackBar) { }
 
     form: FormGroup = new FormGroup({
       lecturersName: new FormControl(this.data.stu.lecturersName, [Validators.required, Validators.maxLength(30)]),
@@ -37,10 +38,12 @@ export class LecturersDialogComponent implements OnInit {
   
     ngOnInit() {
       this.accountService.getData().subscribe(data =>{
-        this.allAccount = data;
+        if(data != null)
+          this.allAccount = data;
       });
       this.majorsService.getData().subscribe(data =>{
-        this.allMajors = data;
+        if(data != null)
+          this.allMajors = data;
       });
     }
   
@@ -51,9 +54,15 @@ export class LecturersDialogComponent implements OnInit {
     onSubmit(form){
       this.lecturersService.updateData(this.data.stu.idLecturers, form).subscribe(data =>{
         if(data != null){
-          alert("success");
-          this.onCancel();
+          this.snackBar.open("Success!!!", "Update", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Update", {
+            duration: 2000,
+          });
         }
+        this.onCancel();
     });
     }
 

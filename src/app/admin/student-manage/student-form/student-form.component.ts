@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { StudentService } from '../../../services/student.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-student-form',
@@ -14,7 +14,8 @@ export class StudentFormComponent implements OnInit {
   constructor(private studentService: StudentService,
          private accountService: AccountService,
          public dialogRef: MatDialogRef<StudentFormComponent>,
-         @Inject(MAT_DIALOG_DATA) public data: any) { }
+         @Inject(MAT_DIALOG_DATA) public data: any,
+         private snackBar: MatSnackBar) { }
  
   form: FormGroup = new FormGroup({
     studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -33,7 +34,8 @@ export class StudentFormComponent implements OnInit {
 
   ngOnInit() {
     this.accountService.getData().subscribe(data =>{
-      this.allAccount = data;
+      if(data != null)
+        this.allAccount = data;
     });
   }
 
@@ -44,8 +46,15 @@ export class StudentFormComponent implements OnInit {
   onSubmit(form){
     this.studentService.postData(form).subscribe(data =>{
       if(data!= null){
-        alert('Success!');
+        this.snackBar.open("Success!!!", "Add", {
+          duration: 2000,
+        });
         this.dialogRef.close(data['idStudent']);
+      }else{
+        this.snackBar.open("Fail!!!", "Add", {
+          duration: 2000,
+        });
+        this.onCancel();
       }
     });
   }

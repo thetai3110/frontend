@@ -3,7 +3,7 @@ import { LecturersService } from '../../../services/lecturers.service';
 import { MajorsService } from '../../../services/majors.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-lecturers-form',
@@ -13,7 +13,8 @@ import { MatDialogRef } from '@angular/material';
 export class LecturersFormComponent implements OnInit {
   constructor(private lecturersService: LecturersService,
     private majorsService: MajorsService,  private accountService: AccountService,
-    public dialogRef: MatDialogRef<LecturersFormComponent>) { }
+    public dialogRef: MatDialogRef<LecturersFormComponent>,
+    private snackBar: MatSnackBar) { }
 
 
   form: FormGroup = new FormGroup({
@@ -34,10 +35,12 @@ export class LecturersFormComponent implements OnInit {
 
   ngOnInit() {
     this.accountService.getData().subscribe(data =>{
-      this.allAccount = data;
+      if(data != null)
+        this.allAccount = data;
     });
     this.majorsService.getData().subscribe(data =>{
-      this.allMajors = data;
+      if(data != null)
+        this.allMajors = data;
     });
   }
 
@@ -52,9 +55,15 @@ export class LecturersFormComponent implements OnInit {
   onSubmit(form) {
     this.lecturersService.postData(form).subscribe(data => {
       if (data != null) {
-        alert('Success!');
-        this.onCancel();
+        this.snackBar.open("Success!!!", "Add", {
+          duration: 2000,
+        });
+      }else{
+        this.snackBar.open("Fail!!!", "Add", {
+          duration: 2000,
+        });
       }
+      this.onCancel();
     });
   }
 

@@ -8,7 +8,7 @@ import { MatInputModule, MatDialogModule, MatNativeDateModule,
         MatFormFieldModule, MatDatepickerModule, MatRadioModule,
         MatButtonModule, MatSelectModule, MatMenuModule,
         MatIconModule, MatExpansionModule, MatCheckboxModule,
-        MatTabsModule} from '@angular/material';
+        MatTabsModule, MatSnackBarModule} from '@angular/material';
 
 import { AdminComponent } from './admin.component';
 import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
@@ -121,7 +121,8 @@ import { AccountPermissionComponent } from './account-manage/account-permission/
     MatIconModule,
     MatExpansionModule,
     MatCheckboxModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSnackBarModule
   ]
 })
 export class AdminModule { }

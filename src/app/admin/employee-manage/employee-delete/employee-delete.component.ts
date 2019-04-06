@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-employee-delete',
@@ -11,7 +11,8 @@ export class EmployeeDeleteComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EmployeeDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private employeeService: EmployeeService) { }
+    private employeeService: EmployeeService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -23,10 +24,15 @@ export class EmployeeDeleteComponent implements OnInit {
   onDel(id){
     this.employeeService.deleteData(id).subscribe(data =>{
       if(String(data) === "true"){
-        this.onCancel();
+        this.snackBar.open("Success!!!", "Delete", {
+          duration: 2000,
+        });
       }else{
-        console.log(data);
+        this.snackBar.open("Fail!!!", "Delete", {
+          duration: 2000,
+        });
       }
+      this.onCancel();
     })
   }
 
