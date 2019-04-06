@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { CourseService } from '../../../services/course.service';
 import { LevelService } from 'src/app/services/level.service';
@@ -16,7 +16,8 @@ export class CourseDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<CourseDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private courseService: CourseService,
     private levelService: LevelService,
-    private uploadService: UploadService,) { }
+    private uploadService: UploadService,
+    private snackBar: MatSnackBar) { }
 
     form: FormGroup = new FormGroup({
       course: new FormControl(this.data.stu.course, [Validators.required]),
@@ -43,7 +44,8 @@ export class CourseDialogComponent implements OnInit {
   
     ngOnInit() {
       this.levelService.getData().subscribe(data=>{
-        this.allLevel = data;
+        if(data != null)
+          this.allLevel = data;
       })
     }
   
@@ -57,16 +59,20 @@ export class CourseDialogComponent implements OnInit {
           if(this.selectedFiles != null){
             this.onUpload();
           }
-          alert('Success!');
-          this.onCancel();
+          this.snackBar.open("Success!!!", "Update", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Update", {
+            duration: 2000,
+          });
         }
+        this.onCancel();
       });
     }
 
     onFileSelected(event){
       this.selectedFiles = event.target.files;
-      console.log(this.selectedFiles);
-      //this.course.image = event.target.files[0].name;
     }
   
     onUpload(){

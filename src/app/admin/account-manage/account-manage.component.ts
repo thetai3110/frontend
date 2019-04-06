@@ -13,12 +13,5 @@ export class AccountManageComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getData();
-  }
-
-  getData(){
-    this.http.get('http://localhost:8080/account').subscribe(data =>{
-      this.accounts = data;
-    });
   }
 }

@@ -53,6 +53,9 @@ import { AccountTableComponent } from './account-manage/account-table/account-ta
 import { AccountDialogComponent } from './account-manage/account-dialog/account-dialog.component';
 import { AccountDeleteComponent } from './account-manage/account-delete/account-delete.component';
 import { AccountPermissionComponent } from './account-manage/account-permission/account-permission.component';
+import { InvoiceTableComponent } from './invoice-manage/invoice-table/invoice-table.component';
+import { InvoiceDialogComponent } from './invoice-manage/invoice-dialog/invoice-dialog.component';
+import { InvoiceDeleteComponent } from './invoice-manage/invoice-delete/invoice-delete.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +102,9 @@ import { AccountPermissionComponent } from './account-manage/account-permission/
     AccountDialogComponent,
     AccountDeleteComponent,
     AccountPermissionComponent,
+    InvoiceTableComponent,
+    InvoiceDialogComponent,
+    InvoiceDeleteComponent,
   ],
   imports: [
     CommonModule,

@@ -28,7 +28,7 @@ export class LecturersDeleteComponent implements OnInit {
           duration: 2000,
         });
       }else{
-        this.snackBar.open("Success!!!", "Delete", {
+        this.snackBar.open("Fail!!!", "Delete", {
           duration: 2000,
         });
       }

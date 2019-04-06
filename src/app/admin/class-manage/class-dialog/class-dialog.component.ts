@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Pipe, PipeTransform } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClassesService } from 'src/app/services/classes.service';
 import { LecturersService } from 'src/app/services/lecturers.service';
@@ -22,7 +22,8 @@ export class ClassDialogComponent implements OnInit {
     private courseService: CourseService,
     private schooldayService: SchooldayService,
     private caService: CaService,
-    private roomService: RoomService) { }
+    private roomService: RoomService,
+    private snackBar: MatSnackBar) { }
 
   form: FormGroup = new FormGroup({
     idRoom: new FormControl(this.data.stu.room != null ? this.data.stu.room.idRoom : '', [Validators.required]),
@@ -45,24 +46,31 @@ export class ClassDialogComponent implements OnInit {
 
   ngOnInit() {
     this.courseService.getData().subscribe(data => {
-      this.allCourse = data;
+      if (data != null)
+        this.allCourse = data;
     });
     this.lecturersService.getData().subscribe(data => {
-      this.allLec = data;
+      if (data != null)
+        this.allLec = data;
     });
     this.roomService.getData().subscribe(data => {
-      this.allRoom = data;
+      if (data != null)
+        this.allRoom = data;
     });
     this.caService.getData().subscribe(data => {
-      this.allCa = data;
-      for (var i = 0; i < this.allCa.length; i++) {
-        this.cas.push(this.allCa[i].idCa);
+      if (data != null) {
+        this.allCa = data;
+        for (var i = 0; i < this.allCa.length; i++) {
+          this.cas.push(this.allCa[i].idCa);
+        }
       }
     });
     this.schooldayService.getData().subscribe(data => {
-      this.allSchoolDay = data;
-      for (var i = 0; i < this.allSchoolDay.length; i++) {
-        this.schoolDays.push(this.allSchoolDay[i].idSchoolDay);
+      if (data != null) {
+        this.allSchoolDay = data;
+        for (var i = 0; i < this.allSchoolDay.length; i++) {
+          this.schoolDays.push(this.allSchoolDay[i].idSchoolDay);
+        }
       }
     });
     this.classesService.getClassDayByClass(this.data.stu.idClass).subscribe(data => {
@@ -91,7 +99,7 @@ export class ClassDialogComponent implements OnInit {
           if (data1 != null) {
             //Nếu lớp học đã có ca học
             this.allByClass = data1;
-            //-f là các ca còn trống , -t là các ca của lớp muốn sửa
+            //-f là các ca còn trống , -t là các ca của lớp đã có ca học
             for (let i = 0; i < this.schoolDays.length; i++) {
               for (let j = 0; j < this.cas.length; j++) {
                 var key = this.schoolDays[i] + "-" + this.cas[j];
@@ -177,9 +185,11 @@ export class ClassDialogComponent implements OnInit {
           }
         }
         setTimeout(() => {
-          alert("success");
+          this.snackBar.open("Success!!!", "Update", {
+            duration: 1500,
+          });
           this.onCancel();
-        }, 1000);
+        }, 2000);
       }
     });
   }
@@ -193,4 +203,5 @@ export class ClassDialogComponent implements OnInit {
       this.days.splice(pos, 1);
     }
   }
+  
 }

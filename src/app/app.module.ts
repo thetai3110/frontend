@@ -38,6 +38,9 @@ import { AccountDeleteComponent } from './admin/account-manage/account-delete/ac
 import { AccountFormComponent } from './admin/account-manage/account-form/account-form.component';
 import { AccountDialogComponent } from './admin/account-manage/account-dialog/account-dialog.component';
 import { PersonalDialogComponent } from './personal-page/personal-dialog/personal-dialog.component';
+import { InvoiceDeleteComponent } from './admin/invoice-manage/invoice-delete/invoice-delete.component';
+import { InvoiceDialogComponent } from './admin/invoice-manage/invoice-dialog/invoice-dialog.component';
+import { InvoiceFormComponent } from './admin/invoice-manage/invoice-form/invoice-form.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import { PersonalDialogComponent } from './personal-page/personal-dialog/persona
     AccountDeleteComponent,
     AccountFormComponent,
     AccountDialogComponent,
-    PersonalDialogComponent
+    PersonalDialogComponent,
+    InvoiceDeleteComponent,
+    InvoiceDialogComponent,
+    InvoiceFormComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

@@ -13,13 +13,6 @@ export class ClassManageComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getData();
-  }
-
-  getData(){
-    this.http.get('http://localhost:8080/class').subscribe(data =>{
-      this.classes = data;
-    });
   }
 
 }

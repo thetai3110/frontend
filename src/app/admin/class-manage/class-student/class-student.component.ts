@@ -48,7 +48,6 @@ export class ClassStudentComponent implements OnInit {
   }
 
   onSelected(){
-    console.log("change");
     this.reloadTable(Number(this.idClass));
   }
 
@@ -62,7 +61,6 @@ export class ClassStudentComponent implements OnInit {
         }
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
         this.reloadTable(Number(this.idClass));
       });
     });
@@ -96,7 +94,6 @@ export class ClassStudentComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.reloadTable(Number(this.idClass));
     });
   }

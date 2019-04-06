@@ -57,7 +57,6 @@ export class LessonTableComponent implements OnInit {
         }
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
         this.reloadTable(Number(this.idCourse));
       });
     });
@@ -85,7 +84,6 @@ export class LessonTableComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       this.reloadTable(Number(this.idCourse));
     });
   }

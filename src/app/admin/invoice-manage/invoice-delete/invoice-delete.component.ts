@@ -1,17 +1,17 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import { CourseService } from 'src/app/services/course.service';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
-  selector: 'app-course-delete',
-  templateUrl: './course-delete.component.html',
-  styleUrls: ['./course-delete.component.css']
+  selector: 'app-invoice-delete',
+  templateUrl: './invoice-delete.component.html',
+  styleUrls: ['./invoice-delete.component.css']
 })
-export class CourseDeleteComponent implements OnInit {
+export class InvoiceDeleteComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<CourseDeleteComponent>,
+  constructor(public dialogRef: MatDialogRef<InvoiceDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private courseService: CourseService,
+    private invoiceService: InvoiceService,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -22,7 +22,7 @@ export class CourseDeleteComponent implements OnInit {
   }
 
   onDel(id){
-    this.courseService.deleteData(id).subscribe(data =>{
+    this.invoiceService.deleteData(id).subscribe(data =>{
       if(String(data) === "true"){
         this.snackBar.open("Success!!!", "Delete", {
           duration: 2000,

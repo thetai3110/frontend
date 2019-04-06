@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { AccountService } from 'src/app/services/account.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-account-delete',
@@ -11,7 +11,8 @@ export class AccountDeleteComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AccountDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -23,10 +24,15 @@ export class AccountDeleteComponent implements OnInit {
   onDel(id){
     this.accountService.deleteData(id).subscribe(data =>{
       if(String(data) === "true"){
-        this.onCancel();
+        this.snackBar.open("Success!!!", "Delete", {
+          duration: 2000,
+        });
       }else{
-        console.log(data);
+        this.snackBar.open("Fail!!!", "Delete", {
+          duration: 2000,
+        });
       }
+      this.onCancel();
     })
   }
 

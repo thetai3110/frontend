@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Lập hóa đơn</h1>
+<h1 mat-dialog-title>Sửa thông tin</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div mat-dialog-content>
     <!-- Khóa học -->
@@ -54,6 +54,6 @@
   </div>
   <div mat-dialog-actions class="action">
     <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
-    <button mat-raised-button color="primary" type="submit">Thêm</button>
+    <button mat-raised-button color="primary" type="submit">Sửa</button>
   </div>
 </form>

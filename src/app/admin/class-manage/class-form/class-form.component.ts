@@ -4,7 +4,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { LecturersService } from 'src/app/services/lecturers.service';
 import { ClassesService } from 'src/app/services/classes.service';
 import { RoomService } from 'src/app/services/room.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { SchooldayService } from 'src/app/services/schoolday.service';
 import { CaService } from 'src/app/services/ca.service';
 
@@ -34,7 +34,8 @@ export class ClassFormComponent implements OnInit {
     private schooldayService: SchooldayService,
     private caService: CaService,
     public dialogRef: MatDialogRef<ClassFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar) { }
 
   allCourse: any; allLec: any; allRoom: any; allSchoolDay: any; allCa: any;
   allNoEmpty: any; allByClass: any; allByRoom: any;
@@ -42,28 +43,6 @@ export class ClassFormComponent implements OnInit {
 
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
-  }
-  
-  onCancel() {
-    this.dialogRef.close();
-  }
-
-  onSubmit(form) {
-    this.classesService.postData(form).subscribe(data =>{
-      if(data!= null){
-        for(var i=0;i< this.days.length;i++){
-          var str = this.days[i].split("-");
-          var classDay = {
-            idClass : data['idClass'],
-            idSchoolday: str[0],
-            idCa: str[1]
-          }
-          this.classesService.addClassDay(classDay).subscribe();
-        }
-        alert('Success!');
-        this.onCancel();
-      }
-    });
   }
 
   ngOnInit() {
@@ -90,9 +69,40 @@ export class ClassFormComponent implements OnInit {
     });
   }
 
+  onCancel() {
+    this.dialogRef.close();
+  }
+
+  onSubmit(form) {
+    this.classesService.postData(form).subscribe(data => {
+      if (data != null) {
+        for (var i = 0; i < this.days.length; i++) {
+          var str = this.days[i].split("-");
+          var classDay = {
+            idClass: data['idClass'],
+            idSchoolday: str[0],
+            idCa: str[1]
+          }
+          this.classesService.addClassDay(classDay).subscribe();
+        }
+        setTimeout(() => {
+          this.snackBar.open("Success!!!", "Add", {
+            duration: 1500,
+          });
+          this.onCancel();
+        }, 2000);
+      } else {
+        this.snackBar.open("Fail!!!", "Add", {
+          duration: 2000,
+        });
+        this.onCancel();
+      }
+    });
+  }
+
   getEmptys(idRoom) {
-    this.noEmptys= [];
-    this.emptys= [];
+    this.noEmptys = [];
+    this.emptys = [];
     this.classesService.getClassDayByRoom(idRoom).subscribe(data => {
       this.allByRoom = data;
       //Danh sách các ca học đã có lớp 
@@ -107,7 +117,7 @@ export class ClassFormComponent implements OnInit {
         }
       }
       //Danh sách ca còn trống
-      for (let k = 0; k < this.noEmptys.length; k++){
+      for (let k = 0; k < this.noEmptys.length; k++) {
         var pos = this.emptys.indexOf(this.noEmptys[k]);
         this.emptys.splice(pos, 1);
       }

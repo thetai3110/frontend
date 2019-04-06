@@ -1,26 +1,8 @@
-<div class="invoice">
-  <table class="table">
-    <thead class="thead-light">
-      <tr>
-        <th>Id</th>
-        <th>Ngày lập</th>
-        <th>Học viên</th>
-        <th>Khóa học</th>
-        <th>Nhân viên</th>
-        <th>Thành tiền</th>
-        <th>Thao tác</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let invoice of invoices">
-        <td>{{ invoice.idInvoice }}</td>
-        <td>{{ invoice.dateInvoice }} </td>
-        <td>{{ invoice.student.idStudent }}</td>
-        <td>{{ invoice.course.idCourse }} </td>
-        <td>{{ invoice.employee.idEmployee }}</td>
-        <td>{{ invoice.cost }} </td>
-        <td><a href="" class="btn btn-success">Sửa</a></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="manage">
+  <h4>Quản lý hóa đơn</h4>
+  <mat-tab-group>
+    <mat-tab label="Quản lý">
+      <app-invoice-table></app-invoice-table>
+    </mat-tab>
+  </mat-tab-group>
 </div>

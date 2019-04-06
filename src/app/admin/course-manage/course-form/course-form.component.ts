@@ -3,7 +3,7 @@ import { UploadService } from '../../../services/upload.service';
 import { CourseService } from '../../../services/course.service';
 import { LevelService } from '../../../services/level.service';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -36,7 +36,8 @@ export class CourseFormComponent implements OnInit {
   constructor(private levelService: LevelService, 
               private uploadService: UploadService,
               private courseService: CourseService,
-              public dialogRef: MatDialogRef<CourseFormComponent>) { }
+              public dialogRef: MatDialogRef<CourseFormComponent>,
+              private snackBar: MatSnackBar) { }
               
   public hasError = (controlName: string, errorName: string) =>{
     return this.form.controls[controlName].hasError(errorName);
@@ -56,9 +57,15 @@ export class CourseFormComponent implements OnInit {
         if(this.selectedFiles != null){
           this.onUpload();
         }
-        alert('Success!');
-        this.onCancel();
+        this.snackBar.open("Success!!!", "Add", {
+          duration: 2000,
+        });
+      }else{
+        this.snackBar.open("Fail!!!", "Add", {
+          duration: 2000,
+        });
       }
+      this.onCancel();
     });
     console.log(form);
     
@@ -66,14 +73,14 @@ export class CourseFormComponent implements OnInit {
 
   getLevel(){
     this.levelService.getData().subscribe(data =>{
-      this.allLevel = data;
+      if(data != null)
+        this.allLevel = data;
     });
   }
 
   onFileSelected(event){
     this.selectedFiles = event.target.files;
     console.log(this.selectedFiles);
-    //this.course.image = event.target.files[0].name;
   }
 
   onUpload(){

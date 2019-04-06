@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { faSave } from '@fortawesome/free-solid-svg-icons';
-import { MatPaginator, MatSort, MatDialog, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { AccountService } from 'src/app/services/account.service';
 import { PermissionService } from 'src/app/services/permission.service';
 
@@ -29,7 +29,8 @@ export class AccountPermissionComponent implements OnInit {
 
   constructor(private accountService: AccountService,
     private permissionService: PermissionService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.reloadTable();
@@ -53,12 +54,14 @@ export class AccountPermissionComponent implements OnInit {
     this.remove = [];
     this.removeTmp = [];
     this.permissionService.getAllUserPermission().subscribe(data => {
-      this.accPerTmp = data;
-      this.accPer= [];
-      for (var i = 0; i < this.accPerTmp.length; i++) {
-        this.accPer.push(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer);
+      if (data != null) {
+        this.accPerTmp = data;
+        this.accPer = [];
+        for (var i = 0; i < this.accPerTmp.length; i++) {
+          this.accPer.push(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer);
+        }
+        this.news = this.accPer;
       }
-      this.news = this.accPer;
     });
     this.accountService.getData().subscribe(rs => {
       if (!rs)
@@ -97,7 +100,7 @@ export class AccountPermissionComponent implements OnInit {
       });
     }
     for (var i = 0; i < this.news.length; i++) {
-      var str = this.news[i].split('-'); 
+      var str = this.news[i].split('-');
       var accountPer = {
         idAccount: str[0],
         idPer: str[1]
@@ -109,7 +112,10 @@ export class AccountPermissionComponent implements OnInit {
       });
     }
     setTimeout(() => {
+      this.snackBar.open("Success!!!", "Update", {
+        duration: 1500,
+      });
       this.reloadTable();
-    }, 1000);
+    }, 2000);
   }
 }

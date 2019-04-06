@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AccountService } from 'src/app/services/account.service';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-account-form',
@@ -20,7 +20,8 @@ export class AccountFormComponent implements OnInit {
   }
 
   constructor(private accountService: AccountService,
-        public dialogRef: MatDialogRef<AccountFormComponent>) { }
+        public dialogRef: MatDialogRef<AccountFormComponent>,
+        private snackBar: MatSnackBar) { }
 
   onCancel(){
     this.dialogRef.close();
@@ -29,9 +30,15 @@ export class AccountFormComponent implements OnInit {
   onSubmit(form){
     this.accountService.postData(form).subscribe(data =>{
       if(data!= null){
-        alert('Success!');
-        this.onCancel();
+        this.snackBar.open("Success!!!", "Add", {
+          duration: 2000,
+        });
+      }else{
+        this.snackBar.open("Fail!!!", "Add", {
+          duration: 2000,
+        });
       }
+      this.onCancel();
     });
   }
 
