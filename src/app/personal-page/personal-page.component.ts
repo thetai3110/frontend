@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../services/account.service';
 import { StudentService } from '../services/student.service';
 
 @Component({
@@ -9,20 +8,17 @@ import { StudentService } from '../services/student.service';
 })
 export class PersonalPageComponent implements OnInit {
 
-  constructor(private studentService: StudentService,
-              private accountService: AccountService) { }
+  constructor(private studentService: StudentService) { }
 
   username = localStorage.getItem("username");
   idStudent: Number;
   student = {};
 
   ngOnInit() {
-    this.accountService.getDataByUsername(this.username).subscribe(data=>{
-      if(data != null){
-        this.studentService.getDataByAccount(Number(data['idAccount'])).subscribe(stu =>{
-          this.idStudent = stu['idStudent'];
-          this.student = stu;
-        });
+    this.studentService.getDataByUsername(localStorage.getItem("username")).subscribe(data => {
+      if (data != null) {
+        this.idStudent = data['idStudent'];
+        this.student = data;
       }
     });
   }
