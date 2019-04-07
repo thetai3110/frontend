@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-logout',
@@ -35,7 +36,8 @@ export class LoginComponent implements OnInit {
 
   status: boolean;
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -46,8 +48,15 @@ export class LoginComponent implements OnInit {
       if (this.status == true) {
         this.onRemember(form.username, form.pass);
         this.router.navigate(['']);
+        this.snackBar.open("Success!!!", "Login", {
+          duration: 2000,
+        });
       }
-      else alert("Tài khoản hoặc mật khẩu không chính xác!!!");
+      else{
+        this.snackBar.open("Tài khoản hoặc mật khẩu không chính xác!!!", "Login", {
+          duration: 2000,
+        });
+      }
     });
   }
 

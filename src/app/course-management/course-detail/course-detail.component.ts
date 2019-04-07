@@ -11,34 +11,38 @@ import { LessonService } from 'src/app/services/lesson.service';
 })
 export class CourseDetailComponent implements OnInit {
 
-  lessons : {};
-  classes : {};
+  lessons: {};
+  classes: {};
   course = {};
-  level : string;
-  id : string;
-  
+  level: string;
+  id: string;
+
   constructor(private lessonService: LessonService,
-              private classesService : ClassesService,
-              private courseService : CourseService, 
-              private activateRoute: ActivatedRoute) { }
+    private classesService: ClassesService,
+    private courseService: CourseService,
+    private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activateRoute.params.subscribe(data =>{
-        this.id = data.id;
+    this.activateRoute.params.subscribe(data => {
+      this.id = data.id;
     });
     this.getData();
   }
 
-  getData(){
-    this.lessonService.getDataByCourse(this.id).subscribe(data =>{
-      this.lessons = data;
+  getData() {
+    this.lessonService.getDataByCourse(this.id).subscribe(data => {
+      if (data != null)
+        this.lessons = data;
     })
-    this.classesService.getDataByIdCourse(this.id).subscribe(data =>{
+    this.classesService.getDataByIdCourse(this.id).subscribe(data => {
+      if (data != null)
         this.classes = data;
     });
-    this.courseService.getDataById(this.id).subscribe(data =>{
-      this.course = data;
-      this.level = this.course['level'].level;
+    this.courseService.getDataById(this.id).subscribe(data => {
+      if (data != null) {
+        this.course = data;
+        this.level = this.course['level'].level;
+      }
     })
   }
 

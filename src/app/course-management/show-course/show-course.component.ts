@@ -18,7 +18,8 @@ export class ShowCourseComponent implements OnInit {
 
   getCourse(){
     this.courseService.getData().subscribe(data => {
-      this.courses = data;
+      if(data != null)
+        this.courses = data;
     });
   }
 

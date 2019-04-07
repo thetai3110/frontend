@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -25,25 +26,39 @@ export class RegisterComponent implements OnInit {
   });
 
   
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
   }
 
   onSubmit(form){
-    if(form.pass != form.repass)
-      alert("Mật khẩu không giống nhau!!!");
+    if(form.pass != form.repass){
+      this.snackBar.open("Mật khẩu không giống nhau!!!", "Register", {
+        duration: 2000,
+      });
+    }
     else{
       this.loginService.checkAccount(form.username).subscribe(data =>{
-        if(Boolean(data)== true)
-          alert("Tài khoản đã tồn tại");
+        if(Boolean(data)== true){
+          this.snackBar.open("Tài khoản đã tồn tại!!!", "Register", {
+            duration: 2000,
+          });
+        }
         else{
           this.loginService.register(form).subscribe(data =>{
-            if(data != null)
+            if(data != null){
+              this.snackBar.open("Success!!!", "Register", {
+                duration: 2000,
+              });
               this.router.navigate(['/login']);
-            else
-              alert("Đăng ký thất bại");
+            }
+            else{
+              this.snackBar.open("Đăng ký thất bại!!!", "Register", {
+                duration: 2000,
+              });
+            }
           });
         }
       });

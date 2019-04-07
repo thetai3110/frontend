@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatFormFieldModule, MatRadioModule,
          MatButtonModule,MatInputModule,
-         MatSelectModule, MatIconModule } from '@angular/material';
+         MatSelectModule, MatIconModule, MatSnackBarModule } from '@angular/material';
 
 import { LoginComponent, LogOutComponent } from './login.component';
 
@@ -20,7 +20,8 @@ import { LoginComponent, LogOutComponent } from './login.component';
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ]
 })
 
