@@ -12,4 +12,7 @@ export class RegisterToStudyService {
     return this.http.post('http://localhost:8080/register-to-study',data);
   }
 
+  pay(data){
+    return this.http.post('http://localhost:8080/payment',data);
+  }
 }

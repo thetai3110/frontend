@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClassesService } from '../services/classes.service';
 import { RegisterToStudyService } from '../services/register-to-study.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
 
 @Component({
@@ -32,36 +31,46 @@ export class RegisterToStudyComponent implements OnInit {
   constructor(private classesService: ClassesService,
     private registerToStudyService: RegisterToStudyService,
     private activateRoute: ActivatedRoute,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe(data => {
-      this.id = data.id;
-      this.classesService.getDataById(data.id).subscribe(data1 => {
-        this.classes = data1['className'] + " khóa học " + data1['course'].course + " - " + data1['course']['level'].level;
-      });
+      if (data != null) {
+        this.id = data.id;
+        this.classesService.getDataById(data.id).subscribe(data1 => {
+          this.classes = data1['className'] + " khóa học " + data1['course'].course + " - " + data1['course']['level'].level;
+        });
+      }
     });
   }
 
   onSubmit(form) {
     form.idClass = this.id;
     this.registerToStudyService.postData(form).subscribe(data => {
-      if (data == "1")
-        alert("success!!!");
-      else if (data == 2) { 
+      if (data == "1") {
+        this.snackBar.open("Success!!!", "Register", {
+          duration: 2000,
+        });
+      }
+      else if (data == 2) {
         this.openDialog(form.cmnd);
       }
-      else alert("fail!!!")
+      else {
+        this.snackBar.open("Fail!!!", "Register", {
+          duration: 2000,
+        });
+      }
     });
   }
 
   openDialog(cmnd): void {
     const dialogRef = this.dialog.open(AccuracyFormComponent, {
       width: '700px',
-      data : cmnd
+      data: cmnd
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+
     });
   }
 

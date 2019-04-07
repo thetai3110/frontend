@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { StudentClassService } from 'src/app/services/student-class.service';
+import { RegisterToStudyService } from 'src/app/services/register-to-study.service';
 
 @Component({
   selector: 'app-personal-dialog',
@@ -24,7 +25,7 @@ export class PersonalDialogComponent implements OnInit {
             @Inject(MAT_DIALOG_DATA) public data: any,
             private invoiceService: InvoiceService,
             private snackBar: MatSnackBar,
-            private studentClassService: StudentClassService) {}
+            private registerToStudyService: RegisterToStudyService) {}
 
   ngOnInit() {
  
@@ -35,31 +36,29 @@ export class PersonalDialogComponent implements OnInit {
   }
   
   onPay(){
-    var invoice = {
+    var payment = {
       idCourse: this.data[0].idCourse,
       idEmployee: '',
       idStudent: this.data[0].idStudent,
       dateInvoice: new Date(),
       cost: this.data[0].fee,
       payment: this.secondFormGroup.value.payment,
-      email: this.firstFormGroup.value.email
-    }
-    var studentClass = {
-      idStudent: this.data[0].idStudent,
+      email: this.firstFormGroup.value.email,
       idClass: this.data[0].idClass,
-      isFee: 1
+      isFee: 1,
+      idStudentclass: this.data[0].idStudentclass
     }
-    this.invoiceService.postData(invoice).subscribe(invoice =>{
-      if(invoice != null){
-        this.studentClassService.updateData(this.data[0].idStudentclass, studentClass).subscribe(stu =>{
-          if(stu != null){
-            this.snackBar.open("Success!!!", "Payment", {
-              duration: 2000,
-            });
-            this.dialogRef.close();
-          }
+    this.registerToStudyService.pay(payment).subscribe(pay =>{
+      if(Number(pay) == 1){
+        this.snackBar.open("Success!!!", "Payment", {
+          duration: 2000,
+        });
+      }else{
+        this.snackBar.open("Fail!!!", "Payment", {
+          duration: 2000,
         });
       }
+      this.dialogRef.close();
     });
   }
 }
