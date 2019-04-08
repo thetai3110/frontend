@@ -12,15 +12,16 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
 })
 export class LecturersFormComponent implements OnInit {
   constructor(private lecturersService: LecturersService,
-    private majorsService: MajorsService,  private accountService: AccountService,
+    private majorsService: MajorsService, 
+    private accountService: AccountService,
     public dialogRef: MatDialogRef<LecturersFormComponent>,
     private snackBar: MatSnackBar) { }
-
 
   form: FormGroup = new FormGroup({
     lecturersName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     idAccount: new FormControl(''),
-    idMajors: new FormControl('', [Validators.required]),
+    idMajors: new FormControl(''),
+    other: new FormControl(''),
     lecturersDate: new FormControl(new Date(), [Validators.required]),
     sex: new FormControl('1', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -32,6 +33,8 @@ export class LecturersFormComponent implements OnInit {
 
   allAccount: any; 
   allMajors: any;
+  showMajors = true;
+  showOther = false;
 
   ngOnInit() {
     this.accountService.getData().subscribe(data =>{
@@ -53,18 +56,45 @@ export class LecturersFormComponent implements OnInit {
   }
 
   onSubmit(form) {
-    this.lecturersService.postData(form).subscribe(data => {
-      if (data != null) {
-        this.snackBar.open("Success!!!", "Add", {
-          duration: 2000,
-        });
-      }else{
-        this.snackBar.open("Fail!!!", "Add", {
-          duration: 2000,
-        });
+    if(this.showOther == true){
+      var majors = {
+        majors : this.form.value.other
       }
-      this.onCancel();
-    });
+      this.majorsService.postData(majors).subscribe(data =>{
+        this.form.value.idMajors = data['idMajors'];
+        this.lecturersService.postData(form).subscribe(data => {
+          if (data != null) {
+            this.snackBar.open("Success!!!", "Add", {
+              duration: 2000,
+            });
+          }else{
+            this.snackBar.open("Fail!!!", "Add", {
+              duration: 2000,
+            });
+          }
+          this.onCancel();
+        });
+      });
+    }else{
+      this.lecturersService.postData(form).subscribe(data => {
+        if (data != null) {
+          this.snackBar.open("Success!!!", "Add", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Add", {
+            duration: 2000,
+          });
+        }
+        this.onCancel();
+      });
+    }
+    
+  }
+
+  onChange(){
+    this.showMajors = !this.showMajors;
+    this.showOther = !this.showOther;    
   }
 
 }

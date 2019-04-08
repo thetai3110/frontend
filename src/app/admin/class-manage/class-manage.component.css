@@ -9,3 +9,12 @@
 .manage mat-tab-group{
     margin: 10px 20px;
 }
+
+@media screen and (max-width: 600px) {
+    .manage{
+        width: 100%;
+    }
+    .manage mat-tab-group{
+        margin: 0;
+    }
+}

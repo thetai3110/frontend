@@ -6,6 +6,7 @@ import { faPlusCircle, faTrashAlt, faPen } from '@fortawesome/free-solid-svg-ico
 import { StudentFormComponent } from '../../student-manage/student-form/student-form.component';
 import { StudentDialogComponent } from '../../student-manage/student-dialog/student-dialog.component';
 import { ClassDeleteComponent } from '../class-delete/class-delete.component';
+import { StudentTableComponent } from '../../student-manage/student-table/student-table.component';
 
 @Component({
   selector: 'app-class-student',
@@ -95,6 +96,16 @@ export class ClassStudentComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.reloadTable(Number(this.idClass));
+    });
+  }
+
+  onOpenDialogChoose(){
+    const dialogRef = this.dialog.open(StudentTableComponent, {
+      width: '800px',
+      data : 'choose'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+     
     });
   }
   

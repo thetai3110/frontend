@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentService } from '../../../services/student.service';
-import { faPen, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog } from '@angular/material';
+import { faPen, faTrashAlt, faPlusCircle, faHandPointer } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { StudentDeleteComponent } from '../student-delete/student-delete.component';
 import { StudentFormComponent } from '../student-form/student-form.component';
@@ -19,16 +19,18 @@ export class StudentTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
+  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle; faHandPointer = faHandPointer;
   displayedColumns= ['id','name','cmnd','job','date','sex','address','email','phone','tool'];
   length = 100;
-  pageSize = 10;
+  pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
   result = {};
+  isShow = false;
 
   constructor(private studentService: StudentService,
-            public dialog: MatDialog) { }
+            public dialog: MatDialog, public dialogRef: MatDialogRef<StudentTableComponent>,
+            @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.reloadTable();

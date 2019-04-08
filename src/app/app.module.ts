@@ -41,6 +41,7 @@ import { PersonalDialogComponent } from './personal-page/personal-dialog/persona
 import { InvoiceDeleteComponent } from './admin/invoice-manage/invoice-delete/invoice-delete.component';
 import { InvoiceDialogComponent } from './admin/invoice-manage/invoice-dialog/invoice-dialog.component';
 import { InvoiceFormComponent } from './admin/invoice-manage/invoice-form/invoice-form.component';
+import { StudentTableComponent } from './admin/student-manage/student-table/student-table.component';
 
 @NgModule({
   declarations: [
@@ -62,32 +63,16 @@ import { InvoiceFormComponent } from './admin/invoice-manage/invoice-form/invoic
     BrowserAnimationsModule
   ],
   entryComponents:[
-    StudentDialogComponent,
-    EmployeeDialogComponent, 
-    LecturersDialogComponent,
-    StudentFormComponent,
-    EmployeeFormComponent,
-    LecturersFormComponent,
-    StudentDeleteComponent,
-    EmployeeDeleteComponent,
-    LecturersDeleteComponent,
-    CourseDialogComponent,
-    CourseDeleteComponent,
-    CourseFormComponent,
-    ClassDeleteComponent,
-    ClassDialogComponent,
-    ClassFormComponent,
-    LessonDialogComponent,
-    LessonFormComponent,
-    LessonDeleteComponent,
+    StudentDialogComponent, StudentFormComponent, StudentDeleteComponent, StudentTableComponent,
+    EmployeeDialogComponent, EmployeeDeleteComponent, EmployeeFormComponent,
+    LecturersFormComponent, LecturersDeleteComponent, LecturersDialogComponent,
+    CourseDialogComponent, CourseDeleteComponent, CourseFormComponent,
+    ClassDeleteComponent, ClassDialogComponent, ClassFormComponent,
+    LessonDialogComponent, LessonFormComponent ,LessonDeleteComponent,
     AccuracyFormComponent,
-    AccountDeleteComponent,
-    AccountFormComponent,
-    AccountDialogComponent,
+    AccountDeleteComponent, AccountFormComponent, AccountDialogComponent,
     PersonalDialogComponent,
-    InvoiceDeleteComponent,
-    InvoiceDialogComponent,
-    InvoiceFormComponent
+    InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

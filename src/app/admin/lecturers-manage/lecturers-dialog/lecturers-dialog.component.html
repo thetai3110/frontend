@@ -9,16 +9,23 @@
       <mat-error *ngIf="hasError('lecturersName', 'maxlength')">Tối đa 30 ký tự</mat-error>
     </mat-form-field>
     <!-- Chuyên ngành -->
-    <mat-form-field>
-      <mat-label>Chuyên ngành</mat-label>
-      <select matNativeControl formControlName="idMajors">
-        <option [value]=""></option>
-        <ng-container *ngIf="allMajors != null">
-          <option *ngFor="let mj of allMajors " [value]="mj.idMajors">{{ mj.majors }}</option>
-        </ng-container>
-      </select>
-      <mat-error *ngIf="hasError('idMajors', 'required')">Chuyên ngành không được bỏ trống</mat-error>
-    </mat-form-field>
+    <div class="majors">
+      <mat-form-field *ngIf="showMajors">
+        <mat-label>Chuyên ngành</mat-label>
+        <select matNativeControl formControlName="idMajors">
+          <option [value]=""></option>
+          <ng-container *ngIf="allMajors != null">
+            <option *ngFor="let mj of allMajors " [value]="mj.idMajors">{{ mj.majors }}</option>
+          </ng-container>
+        </select>
+      </mat-form-field>
+      <mat-form-field *ngIf="showOther">
+        <input matInput placeholder="Khác*" formControlName="other">
+      </mat-form-field>
+    </div>
+    <a (click)="onChange()" class="toggle" mat-icon-button color="primary">
+      <mat-icon>autorenew</mat-icon>
+    </a>
     <!-- Id tài khoản -->
     <mat-form-field>
       <mat-label>Tài khoản</mat-label>
