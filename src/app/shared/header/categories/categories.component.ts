@@ -26,7 +26,8 @@ export class CategoriesComponent implements OnInit {
     this.accountService.getDataByUsername(this.username).subscribe(data=>{
       if(data != null){
         this.studentService.getDataByAccount(Number(data['idAccount'])).subscribe(stu =>{
-         this.img = stu['image'];
+          if(stu != null)
+            this.img =  stu['image'] == null ? "" :  stu['image'];
         });
       }
     });

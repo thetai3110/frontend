@@ -39,15 +39,15 @@ export class PersonalFormComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.form = new FormGroup({
-        studentName: new FormControl(this.student['studentName'], [Validators.required, Validators.maxLength(30)]),
-        idAccount: new FormControl(this.student['accountStu'] == null ? '' : this.student['accountStu'].idAccount),
-        cmnd: new FormControl(this.student['cmnd'], [Validators.required, Validators.pattern("[0-9]*")]),
-        studentDate: new FormControl(new Date(this.student['studentDate']), [Validators.required]),
-        sex: new FormControl(String(this.student['sex']), [Validators.required]),
-        address: new FormControl(this.student['address'], [Validators.required]),
-        email: new FormControl(this.student['email'], [Validators.required, Validators.email]),
-        phone: new FormControl(this.student['phone'], [Validators.required, Validators.pattern("[0-9]*")]),
-        job: new FormControl(this.student['job']),
+        studentName: new FormControl(this.student != null ? this.student['studentName'] : "", [Validators.required, Validators.maxLength(30)]),
+        idAccount: new FormControl(this.student != null ? this.student['accountStu'] == null ? '' : this.student['accountStu'].idAccount : ""),
+        cmnd: new FormControl(this.student != null ? this.student['cmnd'] : "", [Validators.required, Validators.pattern("[0-9]*")]),
+        studentDate: new FormControl(new Date(this.student != null ? this.student['studentDate'] : ""), [Validators.required]),
+        sex: new FormControl(String(this.student != null ? this.student['sex'] : ""), [Validators.required]),
+        address: new FormControl(this.student != null ? this.student['address'] : "", [Validators.required]),
+        email: new FormControl(this.student != null ? this.student['email'] : "", [Validators.required, Validators.email]),
+        phone: new FormControl(this.student != null ? this.student['phone'] : "", [Validators.required, Validators.pattern("[0-9]*")]),
+        job: new FormControl(this.student != null ? this.student['job'] : ""),
         image: new FormControl('')
       });
     }, 1000);
@@ -68,9 +68,6 @@ export class PersonalFormComponent implements OnInit {
         });
       }
     });
-    setTimeout(() => {
-      this.ngOnInit();
-     }, 1000);
   }
 
   onFileSelected(event){

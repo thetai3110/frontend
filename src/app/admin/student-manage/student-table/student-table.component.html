@@ -1,5 +1,5 @@
 <div class="manage">
-  <button *ngIf="data != '' ? isShow : !isShow" mat-mini-fab color="accent" (click)="onOpenDialogAdd()"><fa-icon [icon]="faPlusCircle"></fa-icon></button>
+  <button *ngIf="data.method != '' ? isShow : !isShow" mat-mini-fab color="accent" (click)="onOpenDialogAdd()"><fa-icon [icon]="faPlusCircle"></fa-icon></button>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
   </mat-form-field>
@@ -43,9 +43,9 @@
     <ng-container matColumnDef="tool">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
       <td mat-cell *matCellDef="let item">
-        <button mat-raised-button color="primary" *ngIf="data != '' ? isShow : !isShow" (click)="openDialog(item.idStudent)"><fa-icon [icon]="faPen"></fa-icon></button>
-        <button mat-raised-button color="warn" *ngIf="data != '' ? isShow : !isShow" (click)="onDelete(item.idStudent)"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
-        <button mat-raised-button color="warn" *ngIf="data != '' ? !isShow : isShow" (click)="onDelete(item.idStudent)"><fa-icon [icon]="faHandPointer"></fa-icon></button>
+        <button mat-raised-button color="primary" *ngIf="data.method != '' ? isShow : !isShow" (click)="openDialog(item.idStudent)"><fa-icon [icon]="faPen"></fa-icon></button>
+        <button mat-raised-button color="warn" *ngIf="data.method != '' ? isShow : !isShow" (click)="onDelete(item.idStudent)"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+        <button mat-raised-button color="warn" *ngIf="data.method != '' ? !isShow : isShow" (click)="onChoose(item.idStudent)"><fa-icon [icon]="faHandPointer"></fa-icon></button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>

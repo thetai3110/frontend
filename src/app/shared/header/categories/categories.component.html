@@ -8,7 +8,7 @@
       <li><a [routerLink]="['/admin']">Admin</a></li>
       <li *ngIf="isLogin == true;else login">
         <a href="" class="user">
-          <img *ngIf="img == ''; else isImg" src="../../assets/images/img.PNG" alt="person"> 
+          <img *ngIf="img == '' || img==null; else isImg" src="../../assets/images/img.PNG" alt="person"> 
           <ng-template #isImg>
             <img mat-card-avatar src="http://localhost:8080/downloadFile/{{img}}" alt="person">
           </ng-template>

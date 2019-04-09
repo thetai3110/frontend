@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentService } from '../../../services/student.service';
 import { faPen, faTrashAlt, faPlusCircle, faHandPointer } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { StudentDeleteComponent } from '../student-delete/student-delete.component';
 import { StudentFormComponent } from '../student-form/student-form.component';
@@ -30,7 +30,8 @@ export class StudentTableComponent implements OnInit {
 
   constructor(private studentService: StudentService,
             public dialog: MatDialog, public dialogRef: MatDialogRef<StudentTableComponent>,
-            @Inject(MAT_DIALOG_DATA) public data: any) { }
+            @Inject(MAT_DIALOG_DATA) public data: any,
+            private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.reloadTable();
@@ -80,6 +81,26 @@ export class StudentTableComponent implements OnInit {
       this.reloadTable();
     });
   } 
+
+  onChoose(idStudent){
+    var studentClass = {
+      idStudent: idStudent,
+      idClass: this.data.class,
+      isFee: 0
+    }
+    this.studentService.postIntoClass(studentClass).subscribe(rs =>{
+      if(rs != null){
+        this.snackBar.open("Success!!!", "IntoClass", {
+          duration: 2000,
+        });
+      }else{
+        this.snackBar.open("Fail!!!", "IntoClass", {
+          duration: 2000,
+        });
+      }
+      this.dialogRef.close(this.data.class);
+    });
+  }
 
   reloadTable(){
     this.studentService.getData().subscribe(rs =>{

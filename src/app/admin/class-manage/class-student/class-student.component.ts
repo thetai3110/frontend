@@ -102,10 +102,13 @@ export class ClassStudentComponent implements OnInit {
   onOpenDialogChoose(){
     const dialogRef = this.dialog.open(StudentTableComponent, {
       width: '800px',
-      data : 'choose'
+      data : {
+        method : 'choose',
+        class : this.idClass
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
-     
+      this.reloadTable(Number(this.idClass));
     });
   }
   

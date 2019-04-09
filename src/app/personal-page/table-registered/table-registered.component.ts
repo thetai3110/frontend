@@ -25,7 +25,8 @@ export class TableRegisteredComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.reloadTable(this.idStudent);
+      if(this.idStudent != null)
+        this.reloadTable(this.idStudent);
     }, 1000);
   }
 

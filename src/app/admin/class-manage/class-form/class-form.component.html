@@ -30,12 +30,6 @@
       </select>
       <mat-error *ngIf="hasError('idLecturers', 'required')">Giảng viên không được bỏ trống</mat-error>
     </mat-form-field>
-    <!-- Sĩ số -->
-    <mat-form-field>
-      <input matInput placeholder="Sĩ số*" formControlName="size">
-      <mat-error *ngIf="hasError('size', 'required')">Sĩ số không được bỏ trống</mat-error>
-      <mat-error *ngIf="hasError('size', 'pattern')">Sĩ số chỉ chứa kí tự 0->9</mat-error>
-    </mat-form-field>
     <!-- Sĩ số tối thiểu-->
     <mat-form-field>
       <input matInput placeholder="Sĩ số tối thiểu*" formControlName="minSize">

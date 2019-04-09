@@ -20,7 +20,7 @@ export class ClassFormComponent implements OnInit {
     idCourse: new FormControl('', [Validators.required]),
     idLecturers: new FormControl('', [Validators.required]),
     className: new FormControl('', [Validators.required]),
-    size: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
+    size: new FormControl('0'),
     minSize: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     maxSize: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     status: new FormControl('0', [Validators.required, Validators.pattern("[0-9]*")]),
