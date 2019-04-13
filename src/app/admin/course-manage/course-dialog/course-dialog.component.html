@@ -15,13 +15,37 @@
       <mat-error *ngIf="hasError('duration', 'pattern')">CMND chỉ chứa kí tự từ 0->9</mat-error>
     </mat-form-field>
     <!-- Mức độ -->
-    <mat-form-field>
-      <mat-label>Mức độ</mat-label>
-      <select matNativeControl formControlName="idLevel">
-        <option *ngFor="let acc of allLevel " [value]="acc.idLevel">{{ acc.level }}</option>
-      </select>
-      <mat-error *ngIf="hasError('idLevel', 'required')">Chọn mức độ</mat-error>
-    </mat-form-field>
+    <div class="majors">
+        <mat-form-field *ngIf="showLevel">
+          <mat-label>Mức độ</mat-label>
+          <select matNativeControl formControlName="idLevel">
+            <option *ngFor="let acc of allLevel " [value]="acc.idLevel">{{ acc.level }}</option>
+          </select>
+          <mat-error *ngIf="hasError('idLevel', 'required')">Chọn mức độ</mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="showOther1">
+          <input matInput placeholder="Khác*" formControlName="other1">
+        </mat-form-field>
+        <a (click)="onChange1()" class="toggle" mat-icon-button color="primary">
+          <mat-icon>autorenew</mat-icon>
+        </a>
+      </div>
+      <!-- Chuyên môn -->
+      <div class="majors">
+        <mat-form-field *ngIf="showEdu">
+          <mat-label>Chuyên môn</mat-label>
+          <select matNativeControl formControlName="idEdu">
+            <option *ngFor="let acc of allEdu " [value]="acc.idEdu">{{ acc.eduName }}</option>
+          </select>
+          <mat-error *ngIf="hasError('idEdu', 'required')">Chọn mức độ</mat-error>
+        </mat-form-field>
+        <mat-form-field *ngIf="showOther2">
+          <input matInput placeholder="Khác*" formControlName="other2">
+        </mat-form-field>
+        <a (click)="onChange2()" class="toggle" mat-icon-button color="primary">
+          <mat-icon>autorenew</mat-icon>
+        </a>
+      </div>
     <!-- Ngày bắt đầu -->
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="Ngày bắt đầu" formControlName="dayStart" id="date" readonly

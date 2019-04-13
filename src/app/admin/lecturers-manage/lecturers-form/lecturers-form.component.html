@@ -21,10 +21,10 @@
       <mat-form-field *ngIf="showOther">
         <input matInput placeholder="Khác*" formControlName="other">
       </mat-form-field>
+      <a (click)="onChange()" class="toggle" mat-icon-button color="primary">
+        <mat-icon>autorenew</mat-icon>
+      </a>
     </div>
-    <a (click)="onChange()" class="toggle" mat-icon-button color="primary">
-      <mat-icon>autorenew</mat-icon>
-    </a>
     <!-- Id tài khoản -->
     <mat-form-field>
       <mat-label>Tài khoản</mat-label>

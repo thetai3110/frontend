@@ -84,20 +84,22 @@ export class AccountPermissionComponent implements OnInit {
   }
 
   onSave() {
-    for (var i = 0; i < this.accPerTmp.length; i++) {
-      if (this.news.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer) != -1) {
-        var pos = this.news.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer);
-        this.news.splice(pos, 1);
+    if (this.accPerTmp != null) {
+      for (var i = 0; i < this.accPerTmp.length; i++) {
+        if (this.news.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer) != -1) {
+          var pos = this.news.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer);
+          this.news.splice(pos, 1);
+        }
+        if (this.removeTmp.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer) != -1) {
+          this.remove.push(this.accPerTmp[i].idAccountPer);
+        }
       }
-      if (this.removeTmp.indexOf(this.accPerTmp[i].idAccount + "-" + this.accPerTmp[i].idPer) != -1) {
-        this.remove.push(this.accPerTmp[i].idAccountPer);
+      for (var i = 0; i < this.remove.length; i++) {
+        this.permissionService.deleteAccPer(this.remove[i]).subscribe(data => {
+          if (Boolean(data) == true)
+            console.log("success");
+        });
       }
-    }
-    for (var i = 0; i < this.remove.length; i++) {
-      this.permissionService.deleteAccPer(this.remove[i]).subscribe(data => {
-        if (Boolean(data) == true)
-          console.log("success");
-      });
     }
     for (var i = 0; i < this.news.length; i++) {
       var str = this.news[i].split('-');

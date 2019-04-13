@@ -96,7 +96,7 @@ export class StudentTableComponent implements OnInit {
       }else{
         this.snackBar.open("Fail!!!", "IntoClass", {
           duration: 2000,
-        });
+        }); 
       }
       this.dialogRef.close(this.data.class);
     });

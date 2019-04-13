@@ -1,9 +1,14 @@
 <div class="topnav">
   <div class="listmenu">
     <ul>
-      <li><a href="" class="active"><fa-icon [icon]="faHome"></fa-icon> Trang chủ</a></li>
+      <li><a [routerLink]="['']" class="active"><fa-icon [icon]="faHome"></fa-icon> Trang chủ</a></li>
       <li><a href="#intro">Giới thiệu</a></li>
-      <li><a href="#course">Khóa học</a></li>
+      <li>
+        <a href="#course">Chương trình học</a>
+        <ul class="sub-menu">
+          <li><a *ngFor="let e of edu" [routerLink]="['']">{{ e.eduName }}</a></li>
+        </ul>
+      </li>
       <li><a href="#register">Đăng ký học</a></li>
       <li><a [routerLink]="['/admin']">Admin</a></li>
       <li *ngIf="isLogin == true;else login">

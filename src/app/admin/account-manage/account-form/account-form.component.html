@@ -5,14 +5,12 @@
     <mat-form-field>
       <input matInput placeholder="Tên đăng nhập*" formControlName="username">
       <mat-error *ngIf="hasError('username', 'required')">Trường này không được bỏ trống</mat-error>
-      <mat-error *ngIf="hasError('username', 'minLength')">Ít nhât 6 ký tự</mat-error>
       <mat-error *ngIf="hasError('username', 'pattern')">Trường này chỉ chứa ký tự a->z, A->Z, 0->9</mat-error>
     </mat-form-field>
     <!-- Mật khẩu -->
     <mat-form-field>
       <input matInput placeholder="Mật khẩu*" formControlName="pass">
       <mat-error *ngIf="hasError('pass', 'required')">Trường này không được bỏ trống</mat-error>
-      <mat-error *ngIf="hasError('pass', 'minLength')">Ít nhât 6 ký tự</mat-error>
       <mat-error *ngIf="hasError('pass', 'pattern')">Trường này chỉ chứa ký tự a->z, A->Z, 0->9</mat-error>
     </mat-form-field>
   </div>

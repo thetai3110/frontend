@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faHome, faSearch, faUser, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from 'src/app/services/account.service';
 import { StudentService } from 'src/app/services/student.service';
+import { EducationprogramService } from 'src/app/services/educationprogram.service';
 
 @Component({
   selector: 'app-categories',
@@ -15,8 +16,10 @@ export class CategoriesComponent implements OnInit {
   username : string;
   isLogin= false;
   img = "";
+  edu : {};
   constructor(private accountService: AccountService,
-            private studentService: StudentService) { }
+            private studentService: StudentService,
+            private educationProgramService: EducationprogramService) { }
 
   ngOnInit() {
     if(localStorage.getItem("username") != null){
@@ -30,6 +33,10 @@ export class CategoriesComponent implements OnInit {
             this.img =  stu['image'] == null ? "" :  stu['image'];
         });
       }
+    });
+    this.educationProgramService.getData().subscribe(data =>{
+      if(data !=null)
+        this.edu = data;
     });
   }
 

@@ -10,6 +10,7 @@ export class InfoComponent implements OnInit {
 
   @Input() course = {};
   @Input() level : string;
+  @Input() education: string;
   
   constructor() { }
 

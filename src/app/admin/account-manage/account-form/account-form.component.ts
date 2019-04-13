@@ -11,8 +11,8 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
 export class AccountFormComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9]*"), Validators.minLength(6)]),
-    pass: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9]*"), Validators.minLength(6)])
+    username: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9]*")]),
+    pass: new FormControl('', [Validators.required, Validators.pattern("[a-zA-Z0-9]*")])
   }); 
 
   public hasError = (controlName: string, errorName: string) =>{

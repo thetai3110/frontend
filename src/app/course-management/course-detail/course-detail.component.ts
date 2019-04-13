@@ -15,6 +15,7 @@ export class CourseDetailComponent implements OnInit {
   classes: {};
   course = {};
   level: string;
+  education: string;
   id: string;
 
   constructor(private lessonService: LessonService,
@@ -42,6 +43,7 @@ export class CourseDetailComponent implements OnInit {
       if (data != null) {
         this.course = data;
         this.level = this.course['level'].level;
+        this.education = this.course['educationProgram'].eduName;
       }
     })
   }

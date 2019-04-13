@@ -11,3 +11,14 @@ button, input[type="button"]{
 h1{
     text-align: center; 
 }
+.majors{
+    width: 100%;
+    margin-right: 5px;
+    float: left;
+}
+.majors mat-form-field{
+    width: 88%;
+}
+.majors a{
+    width: 12%;
+}

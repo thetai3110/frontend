@@ -90,7 +90,12 @@ export class RegisterToStudyComponent implements OnInit {
           duration: 2000,
         });
       }
-      else if (data == 2) {
+      else if(data == "2"){
+        this.snackBar.open("Full!!!", "Register", {
+          duration: 2000,
+        });
+      }
+      else if (data == "3") {
         this.snackBar.open("Duplicate!!!", "Register", {
           duration: 2000,
         });

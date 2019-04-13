@@ -16,6 +16,10 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Mức độ</th>
         <td mat-cell *matCellDef="let item">{{ item.level != null ? item.level.level : '' }}</td>
       </ng-container>
+      <ng-container matColumnDef="edu">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Mức độ</th>
+        <td mat-cell *matCellDef="let item">{{ item.educationProgram != null ? item.educationProgram.eduName : '' }}</td>
+      </ng-container>
       <ng-container matColumnDef="duration">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Thời lượng</th>
         <td mat-cell *matCellDef="let item">{{ item.duration }}</td>

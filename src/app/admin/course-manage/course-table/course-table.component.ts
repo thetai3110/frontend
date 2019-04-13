@@ -20,7 +20,7 @@ export class CourseTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['id','name','level','duration','dayStart','fee','space','condition','describe','tool'];
+  displayedColumns= ['id','name','level','edu','duration','dayStart','fee','space','condition','describe','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
