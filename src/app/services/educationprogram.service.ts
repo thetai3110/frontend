@@ -12,6 +12,10 @@ export class EducationprogramService {
     return this.http.get<[]>('http://localhost:8080/education-program');
   }
 
+  getDataById(id){
+    return this.http.get('http://localhost:8080/education-program/'+id);
+  }
+
   postData(data){
     return this.http.post('http://localhost:8080/education-program/add',data);
   }

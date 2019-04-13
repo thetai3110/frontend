@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { CourseService } from '../../services/course.service';
 })
 export class ShowCourseComponent implements OnInit {
 
-  courses : {};
+  @Input() courses : {};
 
   constructor(private courseService : CourseService) { }
 
@@ -17,10 +17,7 @@ export class ShowCourseComponent implements OnInit {
   }
 
   getCourse(){
-    this.courseService.getData().subscribe(data => {
-      if(data != null)
-        this.courses = data;
-    });
+   
   }
 
 }

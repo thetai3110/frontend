@@ -1,0 +1,11 @@
+mat-tab-group{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+h4{
+    text-align: center;
+    padding: 25px 0px 5px 0px;
+}
+h4 span{
+    text-decoration: underline;
+}

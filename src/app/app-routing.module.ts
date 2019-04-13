@@ -18,10 +18,12 @@ import { InvoiceManageComponent } from './admin/invoice-manage/invoice-manage.co
 import { RegisterToStudyComponent } from './register-to-study/register-to-study.component';
 import { StudentFormComponent } from './admin/student-manage/student-form/student-form.component';
 import { PersonalPageComponent } from './personal-page/personal-page.component';
+import { CoursesComponent } from './courses/courses.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'detail/:id', component: CourseDetailComponent},
+  {path: 'courses/:id', component: CoursesComponent},
   {path: 'class/register/:id', component: RegisterToStudyComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogOutComponent},

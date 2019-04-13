@@ -42,6 +42,7 @@ import { InvoiceDeleteComponent } from './admin/invoice-manage/invoice-delete/in
 import { InvoiceDialogComponent } from './admin/invoice-manage/invoice-dialog/invoice-dialog.component';
 import { InvoiceFormComponent } from './admin/invoice-manage/invoice-form/invoice-form.component';
 import { StudentTableComponent } from './admin/student-manage/student-table/student-table.component';
+import { CoursesModule } from './courses/courses.module';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { StudentTableComponent } from './admin/student-manage/student-table/stud
     AdminModule,
     PersonalPageModule,
     SharedModule,
+    CoursesModule,
     CourseManagementModule,
     RegisterModule,
     RegisterToStudyModule,

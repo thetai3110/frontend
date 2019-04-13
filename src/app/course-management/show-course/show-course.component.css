@@ -1,58 +1,6 @@
-/*
-.thumbnail img{
-    width: 100%;
-    height: 200px;
-    border-radius: 5px;
-}
-.thumbnail{
-    position: relative;
-    width: 100%;
-    background-color: grey;
-    border-radius: 5px;
-}
-.detail{
-    width: 100%;
-    height: 0px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: black;
-    opacity: 0;
-    transition: height 1s, opacity 1s;
-    border-radius: 3px;
-}
-
-.thumbnail:hover .detail{
-    opacity: 0.6;
-    height: 200px;
-}
-.detail p {
-    padding-top: 60px;
-}
-.detail p a{
-    font-size: 24pt;
-    text-align: center;
-    font-weight: bold;
-}
-.caption{
-    height: 170px;
-}
-.caption h3,p:last-child{
-    text-align: center;
-}
-.caption p{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.caption .link{
-    padding-bottom: 20px;
-}
-.caption a:last-child{
-    color: #00ffff;
-    text-decoration: underline;
-} */
 .course{
     margin-bottom: 25px;
+    margin-top: 25px;
 }
 .card {
     max-width: 400px;

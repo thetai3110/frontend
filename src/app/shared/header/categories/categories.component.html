@@ -6,7 +6,7 @@
       <li>
         <a href="#course">Chương trình học</a>
         <ul class="sub-menu">
-          <li><a *ngFor="let e of edu" [routerLink]="['']">{{ e.eduName }}</a></li>
+          <li><a *ngFor="let e of edu" [routerLink]="['/courses', e.idEdu]">{{ e.eduName }}</a></li>
         </ul>
       </li>
       <li><a href="#register">Đăng ký học</a></li>

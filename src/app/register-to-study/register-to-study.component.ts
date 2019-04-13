@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClassesService } from '../services/classes.service';
 import { RegisterToStudyService } from '../services/register-to-study.service';
@@ -36,6 +36,7 @@ export class RegisterToStudyComponent implements OnInit {
     private studentService: StudentService,
     private activateRoute: ActivatedRoute,
     public dialog: MatDialog,
+    private router: Router,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -89,6 +90,7 @@ export class RegisterToStudyComponent implements OnInit {
         this.snackBar.open("Success!!!", "Register", {
           duration: 2000,
         });
+        this.router.navigate(['/personal']);
       }
       else if(data == "2"){
         this.snackBar.open("Full!!!", "Register", {
