@@ -7,7 +7,7 @@
     <div class="bg">
       <div class="container">
         <div class="row">
-          <a *ngFor="let e of edu; index as i " [routerLink]="['/courses', e.idEdu]" class="col-sm-6 col-md-2 test"
+          <a *ngFor="let e of edu; index as i " [routerLink]="['/courses', e.idEdu]" class="col-xs-4 col-sm-4 col-md-2 test"
             [style.background-color]="color[i]">
             <h5>{{ e.eduName }}</h5>
             <p>

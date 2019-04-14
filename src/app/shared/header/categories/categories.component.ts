@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faSearch, faUser, faSignOutAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSearch, faUser, faSignOutAlt, faSignInAlt, faCalendarAlt, faNetworkWired, faMobileAlt, faDatabase, faPalette, faCheckSquare, faLaptopCode, faPrint, faWifi } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from 'src/app/services/account.service';
 import { StudentService } from 'src/app/services/student.service';
 import { EducationprogramService } from 'src/app/services/educationprogram.service';
@@ -12,7 +12,12 @@ import { EducationprogramService } from 'src/app/services/educationprogram.servi
 export class CategoriesComponent implements OnInit {
 
   faHome = faHome; faSearch = faSearch; faUser = faUser; 
-  faSignOutAlt = faSignOutAlt; faSignInAlt = faSignInAlt;
+  faSignOutAlt = faSignOutAlt; faSignInAlt = faSignInAlt; faCalendarAlt = faCalendarAlt;
+  icons = {
+    faNetworkWired: faNetworkWired, faLaptopCode: faLaptopCode,
+    faMobileAlt: faMobileAlt, faCheckSquare: faCheckSquare,
+    faDatabase: faDatabase, faPalette: faPalette, faPrint: faPrint, faWifi: faWifi
+  };
   username : string;
   isLogin= false;
   img = "";

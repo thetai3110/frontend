@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="container course">
+  <h1>Lịch khai giảng</h1>
+  <mat-accordion>
+    <ng-container *ngFor="let cour of courses; index as i">
+      <ng-container *ngIf="i != 0; else elseBlock">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ cour.course }} - {{ cour.level.level }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-class-by-course [idCourse]="cour.idCourse"></app-class-by-course>
+        </mat-expansion-panel>
+      </ng-container>
+      <ng-template #elseBlock>
+        <mat-expansion-panel expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ cour.course }} - {{ cour.level.level }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-class-by-course [idCourse]="cour.idCourse"></app-class-by-course>
+        </mat-expansion-panel>
+      </ng-template>
+    </ng-container>
+  </mat-accordion>
+</div>
+<app-footer></app-footer>

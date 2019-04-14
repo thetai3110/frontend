@@ -1,36 +1,57 @@
-<div class="topnav">
-  <div class="listmenu">
-    <ul>
-      <li><a [routerLink]="['']" class="active"><fa-icon [icon]="faHome"></fa-icon> Trang chủ</a></li>
-      <li><a href="#intro">Giới thiệu</a></li>
-      <li>
-        <a href="#course">Chương trình học</a>
-        <ul class="sub-menu">
-          <li><a *ngFor="let e of edu" [routerLink]="['/courses', e.idEdu]">{{ e.eduName }}</a></li>
-        </ul>
-      </li>
-      <li><a href="#register">Đăng ký học</a></li>
-      <li><a [routerLink]="['/admin']">Admin</a></li>
-      <li *ngIf="isLogin == true;else login">
-        <a href="" class="user">
-          <img *ngIf="img == '' || img==null; else isImg" src="../../assets/images/img.PNG" alt="person"> 
-          <ng-template #isImg>
-            <img mat-card-avatar src="http://localhost:8080/downloadFile/{{img}}" alt="person">
-          </ng-template>
+<div class="bg">
+  <div class="topnav container">
+    <div class="listmenu">
+      <ul class="nav">
+        <li><a [routerLink]="['']" class="active">
+            <fa-icon [icon]="faHome"></fa-icon>
+          </a></li>
+        <li>
+          <a href="#intro">Lịch khai giảng</a>
+          <ul class="sub-menu">
+            <li *ngFor="let e of edu"><a [routerLink]="['/calendar', e.idEdu]">
+                <fa-icon [icon]="faCalendarAlt"></fa-icon> {{ e.eduName }}
+              </a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#course">Chương trình học</a>
+          <ul class="sub-menu">
+            <li *ngFor="let e of edu"><a [routerLink]="['/courses', e.idEdu]">
+                <fa-icon [icon]="icons[e.image]"></fa-icon> {{ e.eduName }}
+              </a></li>
+          </ul>
+        </li>
+        <li><a href="#register">Đăng ký học</a></li>
+        <li><a [routerLink]="['/admin']">Admin</a></li>
+        <li *ngIf="isLogin == true;else login">
+          <a href="" class="user">
+            <img *ngIf="img == '' || img==null; else isImg" src="../../assets/images/img.PNG" alt="person">
+            <ng-template #isImg>
+              <img mat-card-avatar src="http://localhost:8080/downloadFile/{{img}}" alt="person">
+            </ng-template>
             {{ username }}
-        </a>
-        <ul class="sub-menu">
-          <li><a [routerLink]="['/personal']"><fa-icon [icon]="faUser"></fa-icon> Cá nhân</a></li>
-          <li><a [routerLink]="['/logout']"><fa-icon [icon]="faSignOutAlt"></fa-icon> Đăng xuất</a></li>
-        </ul>
-      </li>
-      <ng-template #login><li><a [routerLink]="['/login']"><fa-icon [icon]="faSignInAlt"></fa-icon> Đăng nhập</a></li></ng-template>
-    </ul>
-  </div>
-  <div class="box">
-    <input type="search" id="search" placeholder="Nhập từ khóa..." />
-    <button class="btn btn-danger">
-      <fa-icon [icon]="faSearch"></fa-icon>
-    </button>
+          </a>
+          <ul class="sub-menu">
+            <li><a [routerLink]="['/personal']">
+                <fa-icon [icon]="faUser"></fa-icon> Cá nhân
+              </a></li>
+            <li><a [routerLink]="['/logout']">
+                <fa-icon [icon]="faSignOutAlt"></fa-icon> Đăng xuất
+              </a></li>
+          </ul>
+        </li>
+        <ng-template #login>
+          <li><a [routerLink]="['/login']">
+              <fa-icon [icon]="faSignInAlt"></fa-icon> Đăng nhập
+            </a></li>
+        </ng-template>
+      </ul>
+    </div>
+    <div class="box">
+      <input type="search" id="search" placeholder="Nhập từ khóa..." />
+      <button class="btn btn-danger">
+        <fa-icon [icon]="faSearch"></fa-icon>
+      </button>
+    </div>
   </div>
 </div>

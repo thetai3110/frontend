@@ -12,7 +12,7 @@ export class TableRegisteredComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @Input() idStudent: Number;
+  @Input() idStudent: Number; 
 
   displayedColumns: string[] = ['id', 'className', 'course', 'fee', 'isFee','tool'];
   length = 100;

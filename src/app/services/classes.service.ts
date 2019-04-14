@@ -46,8 +46,8 @@ export class ClassesService {
   }
 
   // Lấy lớp theo khóa học
-  getDataByIdCourse(id){
-    return this.http.get('http://localhost:8080/class/follow-course/'+id);
+  getDataByIdCourse(id): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/class/follow-course/'+id);
   } 
 
   // Xóa

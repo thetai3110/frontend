@@ -19,11 +19,13 @@ import { RegisterToStudyComponent } from './register-to-study/register-to-study.
 import { StudentFormComponent } from './admin/student-manage/student-form/student-form.component';
 import { PersonalPageComponent } from './personal-page/personal-page.component';
 import { CoursesComponent } from './courses/courses.component';
+import { CalendarOpenComponent } from './calendar-open/calendar-open.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'detail/:id', component: CourseDetailComponent},
   {path: 'courses/:id', component: CoursesComponent},
+  {path: 'calendar/:id', component: CalendarOpenComponent},
   {path: 'class/register/:id', component: RegisterToStudyComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogOutComponent},

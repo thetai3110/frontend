@@ -43,6 +43,7 @@ import { InvoiceDialogComponent } from './admin/invoice-manage/invoice-dialog/in
 import { InvoiceFormComponent } from './admin/invoice-manage/invoice-form/invoice-form.component';
 import { StudentTableComponent } from './admin/student-manage/student-table/student-table.component';
 import { CoursesModule } from './courses/courses.module';
+import { CalendarOpenModule } from './calendar-open/calendar-open.module';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { CoursesModule } from './courses/courses.module';
     CourseManagementModule,
     RegisterModule,
     RegisterToStudyModule,
+    CalendarOpenModule,
     HttpClientModule,
     FontAwesomeModule,
     BrowserAnimationsModule

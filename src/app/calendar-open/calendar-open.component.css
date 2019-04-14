@@ -1,0 +1,12 @@
+.course{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+h1{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+mat-accordion{
+  margin-top: 15px;
+}
