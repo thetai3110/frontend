@@ -13,11 +13,6 @@ export class ShowCourseComponent implements OnInit {
   constructor(private courseService : CourseService) { }
 
   ngOnInit() {
-    this.getCourse();
-  }
-
-  getCourse(){
-   
   }
 
 }

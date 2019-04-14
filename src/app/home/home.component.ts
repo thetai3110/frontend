@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from '../services/course.service';
 import { EducationprogramService } from '../services/educationprogram.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,20 +8,14 @@ import { EducationprogramService } from '../services/educationprogram.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private courseService: CourseService,
-              private educationProgramService: EducationprogramService) { }
+  constructor(private courseService: CourseService) { }
 
   courses: any;
-  edu: any;
 
   ngOnInit() {
     this.courseService.getData().subscribe(data => {
-      if(data != null)
+      if (data != null)
         this.courses = data;
-    });
-    this.educationProgramService.getData().subscribe(data =>{
-      if(data !=null)
-        this.edu = data;
     });
   }
 

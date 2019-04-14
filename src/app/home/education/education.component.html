@@ -1,0 +1,20 @@
+<div>
+    <h1>Chương trình đào tạo</h1>
+    <p>
+      Chương trình học đa dạng và thường xuyên cập nhật công nghệ mới.<br>
+      Hãy để chúng tôi đồng hành cùng bạn trên hành trình chinh phục tri thức - vững vàng bước vào thế giới công nghệ 4.0.
+    </p>
+    <div class="bg">
+      <div class="container">
+        <div class="row">
+          <a *ngFor="let e of edu; index as i " [routerLink]="['/courses', e.idEdu]" class="col-sm-6 col-md-2 test"
+            [style.background-color]="color[i]">
+            <h5>{{ e.eduName }}</h5>
+            <p>
+              <fa-icon [icon]="icons[e.image]"></fa-icon>
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+</div>
