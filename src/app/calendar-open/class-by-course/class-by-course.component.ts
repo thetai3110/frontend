@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { ClassesService } from 'src/app/services/classes.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-class-by-course',
@@ -12,20 +13,27 @@ export class ClassByCourseComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @Input() idCourse: Number;
 
-  displayedColumns: string[] = ['className', 'date', 'dayStart', 'space','tool'];
+  displayedColumns: string[] = ['className', 'date', 'dayStart', 'space', 'tool'];
   dataSource;
 
-  constructor(private classService: ClassesService) { }
+  constructor(private classService: ClassesService,
+    private router: ActivatedRoute) { }
 
   ngOnInit() {
     setTimeout(() => {
-      this.reloadTable(this.idCourse);
+      if (this.idCourse != null)
+        this.reloadTable(this.idCourse);
+      else {
+        this.router.params.subscribe(data =>{
+          this.reloadTable(data.idC);
+        });
+      }
     }, 500);
   }
 
-  reloadTable(id){
-    this.classService.getDataByIdCourse(id).subscribe(rs =>{
-      if(!rs)
+  reloadTable(id) {
+    this.classService.getDataByIdCourse(id).subscribe(rs => {
+      if (!rs)
         return;
       this.dataSource = new MatTableDataSource(rs);
       this.dataSource.sort = this.sort;

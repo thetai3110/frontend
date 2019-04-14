@@ -20,11 +20,18 @@ import { StudentFormComponent } from './admin/student-manage/student-form/studen
 import { PersonalPageComponent } from './personal-page/personal-page.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CalendarOpenComponent } from './calendar-open/calendar-open.component';
+import { ClassByCourseComponent } from './calendar-open/class-by-course/class-by-course.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'detail/:id', component: CourseDetailComponent},
-  {path: 'courses/:id', component: CoursesComponent},
+  {
+    path: 'courses/:id', 
+    component: CoursesComponent,
+    children: [
+      {path: 'open/:idC', component: ClassByCourseComponent}
+    ]
+  },
   {path: 'calendar/:id', component: CalendarOpenComponent},
   {path: 'class/register/:id', component: RegisterToStudyComponent},
   {path: 'login', component: LoginComponent},

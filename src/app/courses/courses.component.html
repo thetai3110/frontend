@@ -4,11 +4,23 @@
   <mat-tab label="Tất cả">
     <app-show-course [courses]="courses"></app-show-course>
   </mat-tab>
-  <mat-tab label="Cơ bản" #basic> 
-    <app-show-course [courses]="courseBasic"></app-show-course>  
+  <mat-tab label="Cơ bản" #basic>
+    <app-show-course [courses]="courseBasic"></app-show-course>
   </mat-tab>
-  <mat-tab label="Nâng cao"> 
-    <app-show-course [courses]="courseAdvance"></app-show-course>    
+  <mat-tab label="Nâng cao">
+    <app-show-course [courses]="courseAdvance"></app-show-course>
   </mat-tab>
 </mat-tab-group>
+<div class="container">
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Lịch khai giảng
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    <router-outlet></router-outlet>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
 <app-footer></app-footer>

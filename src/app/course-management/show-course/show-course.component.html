@@ -16,8 +16,8 @@
             <p>{{ cour.describes }}</p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button><mat-icon>remove_red_eye</mat-icon> Xem lịch học</button>
-            <button mat-button><mat-icon>description</mat-icon> Đăng ký</button>
+            <a routerLink="/courses/{{cour.educationProgram.idEdu}}/open/{{cour.idCourse}}" mat-button><mat-icon>remove_red_eye</mat-icon> Xem lịch học</a>
+            <a [routerLink]="['/class/register',0]" mat-button><mat-icon>description</mat-icon> Đăng ký</a>
           </mat-card-actions>
         </mat-card>
       </div>

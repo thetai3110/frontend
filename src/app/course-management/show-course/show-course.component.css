@@ -9,6 +9,9 @@
     height: 200px;
     position: relative;
 }
+mat-card{
+    margin-bottom: 15px;
+}
 mat-card-content{
     height: 50px;
 }
@@ -41,4 +44,5 @@ mat-card-content{
     color: white;
     height: 288px;
     line-height: 288px;
+    text-decoration: none;
 }

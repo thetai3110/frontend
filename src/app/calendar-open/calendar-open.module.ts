@@ -17,6 +17,7 @@ import { ClassByCourseComponent } from './class-by-course/class-by-course.compon
     MatSortModule,
     MatFormFieldModule,
     MatInputModule
-  ]
+  ],
+  exports: [ ClassByCourseComponent ]
 })
 export class CalendarOpenModule { }

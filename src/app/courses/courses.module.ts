@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CoursesComponent } from './courses.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 import { CourseManagementModule } from '../course-management/course-management.module';
-import { MatTabsModule } from '@angular/material';
+import { MatTabsModule, MatExpansionModule } from '@angular/material';
 
 @NgModule({
   declarations: [CoursesComponent],
@@ -11,7 +12,9 @@ import { MatTabsModule } from '@angular/material';
     SharedModule,
     CommonModule,
     CourseManagementModule,
-    MatTabsModule
+    MatTabsModule,
+    RouterModule,
+    MatExpansionModule
   ]
 })
 export class CoursesModule { }

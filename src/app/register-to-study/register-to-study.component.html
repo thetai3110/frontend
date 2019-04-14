@@ -51,7 +51,18 @@
       </mat-form-field>
       <!-- Lớp đã chọn -->
       <mat-form-field>
-        <input matInput placeholder="Lớp đã chọn" formControlName="idClass" [value]="classes">
+        <ng-container *ngIf="id != 0; else elseBlock">
+          <input matInput placeholder="Lớp đã chọn" formControlName="idClass" [value]="classes">
+        </ng-container>
+        <ng-template #elseBlock>
+          <mat-label>Lớp</mat-label>
+          <select matNativeControl formControlName="idClass">
+            <option *ngFor="let acc of allClass " [value]="acc.idClass">
+              Lớp {{ acc.className }}-Khóa học {{ acc.course.course }}-{{ acc.course.level.level }} 
+              <p *ngFor="let cd of acc.classDays">-{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )</p>
+            </option>
+          </select>
+        </ng-template>
       </mat-form-field>
     </div>
     <div mat-dialog-actions class="action">

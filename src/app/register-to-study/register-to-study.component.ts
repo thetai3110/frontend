@@ -16,6 +16,7 @@ export class RegisterToStudyComponent implements OnInit {
 
   classes;
   id;
+  allClass: any;
 
   form: FormGroup = new FormGroup({
     studentName: new FormControl,
@@ -36,16 +37,18 @@ export class RegisterToStudyComponent implements OnInit {
     private studentService: StudentService,
     private activateRoute: ActivatedRoute,
     public dialog: MatDialog,
-    private router: Router,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.activateRoute.params.subscribe(data => {
-      if (data != null) {
+      if (data != null && Number(data.id)!=0) {
         this.id = data.id;
         this.classesService.getDataById(data.id).subscribe(data1 => {
           this.classes = data1['className'] + " khóa học " + data1['course'].course + " - " + data1['course']['level'].level;
         });
+      }else{
+        this.id  = data.id;
+        this.getAll();
       }
     });
     if (localStorage.getItem("username") != null) {
@@ -90,7 +93,6 @@ export class RegisterToStudyComponent implements OnInit {
         this.snackBar.open("Success!!!", "Register", {
           duration: 2000,
         });
-        this.router.navigate(['/personal']);
       }
       else if(data == "2"){
         this.snackBar.open("Full!!!", "Register", {
@@ -99,6 +101,11 @@ export class RegisterToStudyComponent implements OnInit {
       }
       else if (data == "3") {
         this.snackBar.open("Duplicate!!!", "Register", {
+          duration: 2000,
+        });
+      }
+      else if(data == "4"){
+        this.snackBar.open("Close!!!", "Register", {
           duration: 2000,
         });
       }
@@ -122,6 +129,12 @@ export class RegisterToStudyComponent implements OnInit {
 
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
+  }
+
+  getAll(){
+    this.classesService.getData().subscribe(data =>{
+      this.allClass = data;
+    });
   }
 
 }
