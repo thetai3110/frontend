@@ -21,6 +21,7 @@ import { PersonalPageComponent } from './personal-page/personal-page.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CalendarOpenComponent } from './calendar-open/calendar-open.component';
 import { ClassByCourseComponent } from './calendar-open/class-by-course/class-by-course.component';
+import { ExamCertificateComponent } from './admin/exam-certificate/exam-certificate.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
@@ -57,7 +58,8 @@ const routes: Routes = [
       {path: 'lecturers-manage', component: LecturersManageComponent},
       {path: 'room-manage', component: RoomManageComponent},
       {path: 'account-manage', component: AccountManageComponent},
-      {path: 'invoice-manage', component: InvoiceManageComponent}
+      {path: 'invoice-manage', component: InvoiceManageComponent},
+      {path: 'exam-certificate', component: ExamCertificateComponent}
     ]  
   }
 ];

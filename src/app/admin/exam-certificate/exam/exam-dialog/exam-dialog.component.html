@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Tạo kỳ thi</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div mat-dialog-content>
+    <!-- Lớp -->
+    <mat-form-field>
+      <mat-label>Lớp</mat-label>
+      <select matNativeControl formControlName="idClass">
+        <option [value]=""></option>
+        <ng-container *ngIf="allClass != null">
+          <option *ngFor="let acc of allClass " [value]="acc.idClass">{{ acc.className }}</option>
+        </ng-container>
+      </select>
+    </mat-form-field>
+    <!-- Ngày thi -->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="dayExam" id="date" readonly
+        (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="hasError('dayExam', 'required')">Chọn ngày sinh</mat-error>
+    </mat-form-field>
+     <!-- Thời gian thi -->
+     <mat-form-field>
+      <input matInput placeholder="Thời gian thi" formControlName="timeExam">
+      <mat-error *ngIf="hasError('timeExam', 'required')">Trường này không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Thời lượng -->
+    <mat-form-field>
+      <input matInput placeholder="Thời lượng*" formControlName="duration">
+      <mat-error *ngIf="hasError('duration', 'required')">Trường này không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Trạng thái -->
+    <mat-radio-group aria-label="Trạng thái" formControlName="status">
+      <mat-radio-button value="1">Đã mở</mat-radio-button>
+      <mat-radio-button value="0">Chưa mở</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div mat-dialog-actions class="action">
+    <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
+    <button mat-raised-button color="primary" type="submit">Sửa</button>
+  </div>
+</form>

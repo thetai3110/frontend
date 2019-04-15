@@ -56,6 +56,15 @@ import { AccountPermissionComponent } from './account-manage/account-permission/
 import { InvoiceTableComponent } from './invoice-manage/invoice-table/invoice-table.component';
 import { InvoiceDialogComponent } from './invoice-manage/invoice-dialog/invoice-dialog.component';
 import { InvoiceDeleteComponent } from './invoice-manage/invoice-delete/invoice-delete.component';
+import { ExamCertificateComponent } from './exam-certificate/exam-certificate.component';
+import { ExamTableComponent } from './exam-certificate/exam/exam-table/exam-table.component';
+import { ExamFormComponent } from './exam-certificate/exam/exam-form/exam-form.component';
+import { ExamDialogComponent } from './exam-certificate/exam/exam-dialog/exam-dialog.component';
+import { ExamDeleteComponent } from './exam-certificate/exam/exam-delete/exam-delete.component';
+import { CertificateTableComponent } from './exam-certificate/certificate/certificate-table/certificate-table.component';
+import { CertificateFormComponent } from './exam-certificate/certificate/certificate-form/certificate-form.component';
+import { CertificateDialogComponent } from './exam-certificate/certificate/certificate-dialog/certificate-dialog.component';
+import { CertificateDeleteComponent } from './exam-certificate/certificate/certificate-delete/certificate-delete.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +114,15 @@ import { InvoiceDeleteComponent } from './invoice-manage/invoice-delete/invoice-
     InvoiceTableComponent,
     InvoiceDialogComponent,
     InvoiceDeleteComponent,
+    ExamCertificateComponent,
+    ExamTableComponent,
+    ExamFormComponent,
+    ExamDialogComponent,
+    ExamDeleteComponent,
+    CertificateTableComponent,
+    CertificateFormComponent,
+    CertificateDialogComponent,
+    CertificateDeleteComponent,
   ],
   imports: [
     CommonModule,

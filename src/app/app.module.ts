@@ -44,6 +44,12 @@ import { InvoiceFormComponent } from './admin/invoice-manage/invoice-form/invoic
 import { StudentTableComponent } from './admin/student-manage/student-table/student-table.component';
 import { CoursesModule } from './courses/courses.module';
 import { CalendarOpenModule } from './calendar-open/calendar-open.module';
+import { ExamFormComponent } from './admin/exam-certificate/exam/exam-form/exam-form.component';
+import { ExamDialogComponent } from './admin/exam-certificate/exam/exam-dialog/exam-dialog.component';
+import { ExamDeleteComponent } from './admin/exam-certificate/exam/exam-delete/exam-delete.component';
+import { CertificateFormComponent } from './admin/exam-certificate/certificate/certificate-form/certificate-form.component';
+import { CertificateDialogComponent } from './admin/exam-certificate/certificate/certificate-dialog/certificate-dialog.component';
+import { CertificateDeleteComponent } from './admin/exam-certificate/certificate/certificate-delete/certificate-delete.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +82,9 @@ import { CalendarOpenModule } from './calendar-open/calendar-open.module';
     AccuracyFormComponent,
     AccountDeleteComponent, AccountFormComponent, AccountDialogComponent,
     PersonalDialogComponent,
-    InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent
+    InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent,
+    ExamFormComponent, ExamDialogComponent, ExamDeleteComponent,
+    CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
