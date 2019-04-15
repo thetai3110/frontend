@@ -18,7 +18,7 @@
           <td>
             <p *ngFor="let cd of class.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )</p>
           </td>
-          <td>{{ class.course.dayStart | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ class.dayStart | date: 'dd-MM-yyyy' }}</td>
           <td>{{ class.course.space }}, {{ class.room.roomName }}</td>
           <td>{{ class.size }}/{{ class.maxSize }}</td>
           <td><a [routerLink]="['/class/register', class.idClass]">Đăng ký</a></td>

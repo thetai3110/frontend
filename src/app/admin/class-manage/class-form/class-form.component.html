@@ -30,6 +30,14 @@
       </select>
       <mat-error *ngIf="hasError('idLecturers', 'required')">Giảng viên không được bỏ trống</mat-error>
     </mat-form-field>
+    <!-- Ngày bắt đầu -->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Ngày bắt đầu*" formControlName="dayStart" id="date" readonly
+        (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="hasError('dayStart', 'required')">Chọn ngày sinh</mat-error>
+    </mat-form-field>
     <!-- Sĩ số tối thiểu-->
     <mat-form-field>
       <input matInput placeholder="Sĩ số tối thiểu*" formControlName="minSize">

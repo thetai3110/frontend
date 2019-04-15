@@ -20,7 +20,7 @@ export class ClassTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['id','name','course','lecturers','room','size','minSize','maxSize','status','date','tool'];
+  displayedColumns= ['id','name','course','lecturers','room','dayStart','size','minSize','maxSize','status','date','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];

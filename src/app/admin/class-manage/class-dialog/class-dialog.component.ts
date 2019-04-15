@@ -30,6 +30,7 @@ export class ClassDialogComponent implements OnInit {
     idCourse: new FormControl(this.data.stu.course != null ? this.data.stu.course.idCourse : '', [Validators.required]),
     idLecturers: new FormControl(this.data.stu.lecturers != null ? this.data.stu.lecturers.idLecturers : '', [Validators.required]),
     className: new FormControl(this.data.stu.className, [Validators.required]),
+    dayStart: new FormControl(new Date(this.data.stu.dayStart), [Validators.required]),
     size: new FormControl(this.data.stu.size, [Validators.required, Validators.pattern("[0-9]*")]),
     minSize: new FormControl(this.data.stu.minSize, [Validators.required, Validators.pattern("[0-9]*")]),
     maxSize: new FormControl(this.data.stu.maxSize, [Validators.required, Validators.pattern("[0-9]*")]),

@@ -15,7 +15,7 @@
             </ng-container>
             <ng-container matColumnDef="dayStart">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày khai giảng</th>
-                <td mat-cell *matCellDef="let item">{{ item.course.dayStart | date: 'dd-MM-yyyy' }}</td>
+                <td mat-cell *matCellDef="let item">{{ item.dayStart | date: 'dd-MM-yyyy' }}</td>
             </ng-container>
             <ng-container matColumnDef="space">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Địa điểm</th>
