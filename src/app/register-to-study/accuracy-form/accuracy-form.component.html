@@ -1,34 +1,118 @@
-<h5>Số CMND này đã được sử dụng để đăng ký, bạn cần xác thực để nhận được ưu đãi khi là thành viên cũ</h5>
-<mat-horizontal-stepper [linear]="'true'" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
+<app-header></app-header>
+<div class="container step">
+  <mat-horizontal-stepper [linear]="'true'" #stepper>
+    <!-- Bước 1 -->
+    <mat-step [stepControl]="firstFormGroup">
+      <ng-template matStepLabel>Thông tin</ng-template>
+      <h3>Chào bạn, bạn đã đăng ký lớp học với các thông tin như sau: </h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Lớp</th>
+            <th>Thời gian</th>
+            <th>Học phí</th>
+            <th>Ngày bắt đầu</th>
+            <th>Địa điểm</th>
+            <th>Số lượt đăng ký</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ classes.className }}</td>
+            <td>
+              <p *ngFor="let cd of classes.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )
+              </p>
+            </td>
+            <td>{{ fee }}đ</td>
+            <td>{{ classes.dayStart | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ space }}, {{ roomName }}</td>
+            <td>{{ classes.size }}/{{ classes.maxSize }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="actions">
+        <button mat-raised-button color="warn" matStepperNext>Tiếp tục</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+    </mat-step>
+    <!-- Bước 2 -->
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Xác nhận đăng ký</ng-template>
+        <h3>Vui lòng hoàn tất thông tin tại đây: </h3>
+        <mat-form-field>
+          <input matInput placeholder="Họ tên" formControlName="studentName">
+          <mat-error *ngIf="hasError(secondFormGroup ,'studentName', 'required')">Trường này không được bỏ trống
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="hasError(secondFormGroup ,'email', 'required')">Trường này không được bỏ trống</mat-error>
+          <mat-error *ngIf="hasError(secondFormGroup ,'email', 'email')">Email sai định dạng</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Đối tượng" formControlName="job">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Điện thoại" formControlName="phone">
+          <mat-error *ngIf="hasError(secondFormGroup ,'phone', 'required')">Trường này không được bỏ trống</mat-error>
+          <mat-error *ngIf="hasError(secondFormGroup ,'phone', 'pattern')">Số điện thoại sai định dạng</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Mã ưu đãi" formControlName="idSale">
+        </mat-form-field>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Lớp</th>
+              <th>Thời gian</th>
+              <th>Học phí</th>
+              <th>Ngày bắt đầu</th>
+              <th>Địa điểm</th>
+              <th>Số lượt đăng ký</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ classes.className }}</td>
+              <td>
+                <p *ngFor="let cd of classes.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )
+                </p>
+              </td>
+              <td>{{ fee }}đ</td>
+              <td>{{ classes.dayStart | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ space }}, {{ roomName }}</td>
+              <td>{{ classes.size }}/{{ classes.maxSize }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Học phí thực đóng : {{ fee }}đ</p>
+        <div class="actions">
+          <button mat-raised-button color="primary" matStepperPrevious>Quay lại</button>
+          <button mat-raised-button color="warn" matStepperNext>Tiếp tục</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Thanh toán</ng-template>
+      <h3>Vui lòng chọn hình thức thanh toán: <span>{{ fee }}đ</span></h3>
+      <mat-radio-group aria-label="Select an option" (change)="onChange($event);">
+        <mat-radio-button value="1">Thẻ ngân hàng</mat-radio-button>
+        <mat-radio-button value="0">Trực tiếp</mat-radio-button>
+      </mat-radio-group>
+      <mat-form-field [hidden]="isCard">
+        <mat-label>Phương thức</mat-label>
+        <mat-select (change)="onChoose();">
+          <mat-option value="vietcombank"> VietcomBank </mat-option>
+          <mat-option value="viettinbank"> ViettinBank </mat-option>
+        </mat-select>
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+      <p [hidden]="isPlace">Địa chỉ: {{ space }}</p>
+      <div class="actions"> 
+        <button mat-raised-button color="primary" matStepperPrevious>Quay lại</button>
+        <button mat-raised-button color="warn" (click)="onSubmit(secondFormGroup.value)">Hoàn thành</button>
+        <button mat-raised-button color="basic" (click)="stepper.reset()">Làm mới</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+<app-footer></app-footer>

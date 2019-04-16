@@ -1,74 +1,57 @@
 <app-header></app-header>
 <div class="register">
   <h1 mat-dialog-title>Đăng ký</h1>
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-    <div mat-dialog-content>
-      <!-- Họ tên -->
-      <mat-form-field>
-        <input matInput placeholder="Họ tên*" formControlName="studentName">
-        <mat-error *ngIf="hasError('studentName', 'required')">Tên không được bỏ trống</mat-error>
-        <mat-error *ngIf="hasError('studentName', 'maxlength')">Tối đa 30 ký tự</mat-error>
-      </mat-form-field>
-      <!-- CMND -->
-      <mat-form-field>
-        <input matInput placeholder="Số cmnd*" formControlName="cmnd">
-        <mat-error *ngIf="hasError('cmnd', 'required')">CMND không được bỏ trống</mat-error>
-        <mat-error *ngIf="hasError('cmnd', 'pattern')">CMND chỉ chứa kí tự từ 0->9</mat-error>
-      </mat-form-field>
-      <!-- Ngày sinh -->
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Ngày sinh*" formControlName="studentDate" id="date"
-          readonly (click)="picker.open()">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="hasError('studentDate', 'required')">Chọn ngày sinh</mat-error>
-      </mat-form-field>
-      <!-- Giới tính -->
-      <mat-radio-group aria-label="Giới tính*" formControlName="sex">
-        <mat-radio-button value="1">Nam</mat-radio-button>
-        <mat-radio-button value="0">Nữ</mat-radio-button>
-      </mat-radio-group>
-      <!-- Địa chỉ -->
-      <mat-form-field>
-        <input matInput placeholder="Địa chỉ*" formControlName="address">
-        <mat-error *ngIf="hasError('address', 'required')">Địa chỉ không được bỏ trống</mat-error>
-      </mat-form-field>
-      <!-- Email -->
-      <mat-form-field>
-        <input matInput placeholder="Email*" formControlName="email">
-        <mat-error *ngIf="hasError('email', 'required')">Email không được bỏ trống</mat-error>
-        <mat-error *ngIf="hasError('email', 'email')">Email sai định dạng</mat-error>
-      </mat-form-field>
-      <!-- Số điện thoại -->
-      <mat-form-field>
-        <input matInput placeholder="Số điện thoại*" formControlName="phone">
-        <mat-error *ngIf="hasError('phone', 'pattern')">Số điện thoại chỉ chứa kí tự từ 0->9</mat-error>
-        <mat-error *ngIf="hasError('phone', 'required')">Số điện thoại không được bỏ trống</mat-error>
-      </mat-form-field>
-      <!-- Nghề nghiệp hiện tại -->
-      <mat-form-field>
-        <input matInput placeholder="Nghề nghiệp hiện tại" formControlName="job">
-      </mat-form-field>
-      <!-- Lớp đã chọn -->
-      <mat-form-field>
-        <ng-container *ngIf="id != 0; else elseBlock">
-          <input matInput placeholder="Lớp đã chọn" formControlName="idClass" [value]="classes">
+  <button *ngFor="let edu of allEdu" mat-raised-button color="primary"
+    (click)="showCourse(edu.idEdu)">{{ edu.eduName }}</button>
+  <!-- Khóa học -->
+  <h5 *ngIf="courseByEdu != null" [hidden]="isCourse">{{ courseByEdu[0].educationProgram.eduName }}</h5>
+  <mat-form-field [hidden]="isCourse" *ngIf="courseByEdu != null; else elseBlock">
+    <mat-label>Lớp</mat-label>
+    <select matNativeControl (change)="onChange($event)">
+      <option value=""></option>
+      <option *ngFor="let cour of courseByEdu " [value]="cour.idCourse">
+        {{ cour.course }} - {{ cour.level.level }}
+      </option>
+    </select>
+  </mat-form-field>
+  <ng-template #elseBlock><p [hidden]="isCourse">Không có khóa học nào</p></ng-template>
+  <!-- Lớp -->
+  <div class="manage" [hidden]="isClass">
+    <table mat-table *ngIf="dataSource != null; else isNull" [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="className">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên lớp</th>
+        <td mat-cell *matCellDef="let item">{{ item.className }}</td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Lịch học</th>
+        <td mat-cell *matCellDef="let item">
+          <p *ngFor="let cd of item.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}}
+            )
+          </p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="dayStart">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày khai giảng</th>
+        <td mat-cell *matCellDef="let item">{{ item.dayStart | date: 'dd-MM-yyyy' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="space">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Địa điểm</th>
+        <td mat-cell *matCellDef="let item">{{ item.course.space }}</td>
+      </ng-container>
+      <ng-container matColumnDef="size">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Đã đăng ký</th>
+          <td mat-cell *matCellDef="let item">{{ item.size }}/{{ item.maxSize }}</td>
         </ng-container>
-        <ng-template #elseBlock>
-          <mat-label>Lớp</mat-label>
-          <select matNativeControl formControlName="idClass">
-            <option *ngFor="let acc of allClass " [value]="acc.idClass">
-              Lớp {{ acc.className }}-Khóa học {{ acc.course.course }}-{{ acc.course.level.level }} 
-              <p *ngFor="let cd of acc.classDays">-{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )</p>
-            </option>
-          </select>
-        </ng-template>
-      </mat-form-field>
-    </div>
-    <div mat-dialog-actions class="action">
-      <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
-      <button mat-raised-button color="primary" type="submit">Đăng ký</button>
-    </div>
-  </form>
+      <ng-container matColumnDef="tool">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Đăng ký</th>
+        <td mat-cell *matCellDef="let item">
+          <a [routerLink]="['/course/register/reg/', item.idClass]" mat-raised-button color="primary">Đăng ký</a>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <ng-template #isNull>Không có lớp học nào</ng-template>
+  </div>
 </div>
 <app-footer></app-footer>

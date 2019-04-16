@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClassesService } from '../services/classes.service';
 import { RegisterToStudyService } from '../services/register-to-study.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatTableDataSource, MatSort } from '@angular/material';
 import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
 import { StudentService } from '../services/student.service';
+import { EducationprogramService } from '../services/educationprogram.service';
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'app-register-to-study',
@@ -15,86 +17,42 @@ import { StudentService } from '../services/student.service';
 export class RegisterToStudyComponent implements OnInit {
 
   classes;
-  id;
-  allClass: any;
-
-  form: FormGroup = new FormGroup({
-    studentName: new FormControl,
-    cmnd: new FormControl,
-    studentDate: new FormControl,
-    sex: new FormControl,
-    address: new FormControl,
-    email: new FormControl,
-    phone: new FormControl,
-    job: new FormControl,
-    idClass: new FormControl,
-    isLogin: new FormControl,
-    idStudent: new FormControl,
-  });
 
   constructor(private classesService: ClassesService,
     private registerToStudyService: RegisterToStudyService,
     private studentService: StudentService,
     private activateRoute: ActivatedRoute,
-    public dialog: MatDialog,
+    private courseService: CourseService,
+    private educationProgramService: EducationprogramService,
     private snackBar: MatSnackBar) { }
 
+  allEdu: any;
+  isCourse = true;
+  courseByEdu: any;
+  title = "";
+  isClass = true;
+  classByCourse = 1;
+  @ViewChild(MatSort) sort: MatSort;
+
+  displayedColumns: string[] = ['className', 'date', 'dayStart', 'space', 'size', 'tool'];
+  dataSource;
+
+
   ngOnInit() {
-    this.activateRoute.params.subscribe(data => {
-      if (data != null && Number(data.id)!=0) {
-        this.id = data.id;
-        this.classesService.getDataById(data.id).subscribe(data1 => {
-          this.classes = data1['className'] + " khóa học " + data1['course'].course + " - " + data1['course']['level'].level;
-        });
-      }else{
-        this.id  = data.id;
-        this.getAll();
-      }
+    this.educationProgramService.getData().subscribe(data => {
+      if (data != null)
+        this.allEdu = data;
     });
-    if (localStorage.getItem("username") != null) {
-      this.studentService.getDataByUsername(localStorage.getItem("username")).subscribe(data => {
-        if (data != null) {
-          this.form = new FormGroup({
-            studentName: new FormControl(data['studentName'], [Validators.required, Validators.maxLength(30)]),
-            cmnd: new FormControl(data['cmnd'], [Validators.required, Validators.pattern("[0-9]*")]),
-            studentDate: new FormControl(new Date(data['studentDate']), [Validators.required]),
-            sex: new FormControl(String(data['sex']), [Validators.required]),
-            address: new FormControl(data['address'], [Validators.required]),
-            email: new FormControl(data['email'], [Validators.required, Validators.email]),
-            phone: new FormControl(data['phone'], [Validators.required, Validators.pattern("[0-9]*")]),
-            job: new FormControl(data['job']),
-            idClass: new FormControl(''),
-            isLogin: new FormControl(1), 
-            idStudent: new FormControl(data['idStudent'])
-          });
-        }
-      });
-    }else{
-      this.form = new FormGroup({
-        studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-        cmnd: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
-        studentDate: new FormControl(new Date(), [Validators.required]),
-        sex: new FormControl('1', [Validators.required]),
-        address: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
-        job: new FormControl(''),
-        idClass: new FormControl(''),
-        isLogin: new FormControl(0),
-        idStudent: new FormControl('')
-      });
-    }
   }
 
   onSubmit(form) {
-    form.idClass = this.id;
     this.registerToStudyService.postData(form).subscribe(data => {
       if (data == "1") {
         this.snackBar.open("Success!!!", "Register", {
           duration: 2000,
         });
       }
-      else if(data == "2"){
+      else if (data == "2") {
         this.snackBar.open("Full!!!", "Register", {
           duration: 2000,
         });
@@ -104,7 +62,7 @@ export class RegisterToStudyComponent implements OnInit {
           duration: 2000,
         });
       }
-      else if(data == "4"){
+      else if (data == "4") {
         this.snackBar.open("Close!!!", "Register", {
           duration: 2000,
         });
@@ -117,23 +75,29 @@ export class RegisterToStudyComponent implements OnInit {
     });
   }
 
-  openDialog(cmnd): void {
-    const dialogRef = this.dialog.open(AccuracyFormComponent, {
-      width: '700px',
-      data: cmnd
-    });
-    dialogRef.afterClosed().subscribe(result => {
-
-    });
+  onChange(event) {
+    this.reloadTable(event.target.value);
+    this.isClass = false;
   }
 
-  public hasError = (controlName: string, errorName: string) => {
-    return this.form.controls[controlName].hasError(errorName);
+  showCourse(idEdu) {
+    this.isClass = true;
+    this.courseByEdu = null;
+    this.isCourse = true;
+    this.courseService.getDataByEducation(idEdu).subscribe(data => {
+      this.courseByEdu = data;
+    });
+    this.isCourse = false;
   }
 
-  getAll(){
-    this.classesService.getData().subscribe(data =>{
-      this.allClass = data;
+  reloadTable(id) {
+    this.classesService.getDataByIdCourse(id).subscribe(rs => {
+      if (rs != null) {
+        this.dataSource = new MatTableDataSource(rs);
+        this.dataSource.sort = this.sort;
+      }else{
+        this.dataSource = null;
+      }
     });
   }
 

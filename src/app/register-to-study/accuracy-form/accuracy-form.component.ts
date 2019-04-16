@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { ClassesService } from 'src/app/services/classes.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-accuracy-form',
@@ -9,18 +11,56 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 export class AccuracyFormComponent implements OnInit {
 
   isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  isCard = true;
+  isPlace = true;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private classService: ClassesService,
+              private router: ActivatedRoute) {}
+  classes = [];
+  fee: Number; space: String; roomName: String;
+
+  firstFormGroup: FormGroup;
+
+  secondFormGroup: FormGroup = new FormGroup({
+    studentName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
+    job: new FormControl(''),
+    idSale: new FormControl(''),
+  });
 
   ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    setTimeout(()=>{
+      this.router.params.subscribe(data =>{
+        this.classService.getDataById(data.idClass).subscribe(classes =>{
+          this.classes = classes;
+          this.fee = classes['course'].fee;
+          this.space = classes['course'].space;
+          this.roomName = classes['room'].roomName;
+        });
+      });
+    }, 1000)
   }
 
+  public hasError = (form: FormGroup, controlName: string, errorName: string) => {
+    return form.controls[controlName].hasError(errorName);
+  }
+
+  onChange(e){
+    if(Number(e.value) == 1){
+      this.isCard = false;
+      this.isPlace = true;
+    }else{
+      this.isPlace = false;
+      this.isCard = true;
+    }
+  }
+
+  onChoose(){
+
+  }
+  
+  onSubmit(form){
+    console.log(form);
+  }
 }

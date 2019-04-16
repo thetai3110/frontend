@@ -23,6 +23,7 @@ import { CalendarOpenComponent } from './calendar-open/calendar-open.component';
 import { ClassByCourseComponent } from './calendar-open/class-by-course/class-by-course.component';
 import { ExamCertificateComponent } from './admin/exam-certificate/exam-certificate.component';
 import { SearchsComponent } from './searchs/searchs.component';
+import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
@@ -36,7 +37,8 @@ const routes: Routes = [
   },
   {path: 'searchs', component: SearchsComponent},
   {path: 'calendar/:id', component: CalendarOpenComponent},
-  {path: 'class/register/:id', component: RegisterToStudyComponent},
+  {path: 'course/register', component: RegisterToStudyComponent},
+  {path: 'course/register/reg/:idClass', component: AccuracyFormComponent},
   {path: 'login', component: LoginComponent},
   {path: 'logout', component: LogOutComponent},
   {path: 'personal', component: PersonalPageComponent},

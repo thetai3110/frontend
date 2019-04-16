@@ -81,7 +81,6 @@ import { SearchsModule } from './searchs/searchs.module';
     CourseDialogComponent, CourseDeleteComponent, CourseFormComponent,
     ClassDeleteComponent, ClassDialogComponent, ClassFormComponent,
     LessonDialogComponent, LessonFormComponent ,LessonDeleteComponent,
-    AccuracyFormComponent,
     AccountDeleteComponent, AccountFormComponent, AccountDialogComponent,
     PersonalDialogComponent,
     InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent,
