@@ -13,7 +13,7 @@ export class CalendarOpenComponent implements OnInit {
               private courseService: CourseService) { }
 
   courses : any;
-
+  edu : String;
   ngOnInit() {
     this.activateRoute.params.subscribe(data => {
       this.courseService.getDataByEducation(data.id).subscribe(lstCourse =>{

@@ -6,9 +6,10 @@ import { CourseManagementModule } from '../course-management/course-management.m
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home.component';
 import { EducationComponent } from './education/education.component';
+import { CommonComponent } from './common/common.component';
 
 @NgModule({
-  declarations: [HomeComponent, EducationComponent],
+  declarations: [HomeComponent, EducationComponent, CommonComponent],
   imports: [
     CommonModule,
     SharedModule,

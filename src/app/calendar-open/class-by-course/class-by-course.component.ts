@@ -24,7 +24,7 @@ export class ClassByCourseComponent implements OnInit {
       if (this.idCourse != null)
         this.reloadTable(this.idCourse);
       else {
-        this.router.params.subscribe(data =>{
+        this.router.params.subscribe(data => {
           this.reloadTable(data.idC);
         });
       }
@@ -33,10 +33,12 @@ export class ClassByCourseComponent implements OnInit {
 
   reloadTable(id) {
     this.classService.getDataByIdCourse(id).subscribe(rs => {
-      if (!rs)
-        return;
-      this.dataSource = new MatTableDataSource(rs);
-      this.dataSource.sort = this.sort;
+      if (rs != null) {
+        this.dataSource = new MatTableDataSource(rs);
+        this.dataSource.sort = this.sort;
+      } else {
+        this.dataSource = null;
+      }
     });
   }
 

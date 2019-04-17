@@ -28,13 +28,7 @@ import { AccuracyFormComponent } from './register-to-study/accuracy-form/accurac
 const routes: Routes = [
   {path: '', component: HomeComponent },
   {path: 'detail/:id', component: CourseDetailComponent},
-  {
-    path: 'courses/:id', 
-    component: CoursesComponent,
-    children: [
-      {path: 'open/:idC', component: ClassByCourseComponent}
-    ]
-  },
+  {path: 'courses/:id', component: CoursesComponent},
   {path: 'searchs', component: SearchsComponent},
   {path: 'calendar/:id', component: CalendarOpenComponent},
   {path: 'course/register', component: RegisterToStudyComponent},

@@ -24,7 +24,7 @@
             <ng-container matColumnDef="tool">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Đăng ký</th>
                 <td mat-cell *matCellDef="let item">
-                    <a href="" mat-raised-button color="warn" disabled>Đăng ký</a>
+                    <a [routerLink]="['/course/register/reg/', item.idClass]" mat-raised-button color="primary">Đăng ký</a>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>
