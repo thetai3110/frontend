@@ -17,7 +17,7 @@ export class StudentFormComponent implements OnInit {
          @Inject(MAT_DIALOG_DATA) public data: any,
          private snackBar: MatSnackBar) { }
  
-  form: FormGroup = new FormGroup({
+  form: FormGroup = new FormGroup({ 
     studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     idAccount: new FormControl(''),
     cmnd: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),

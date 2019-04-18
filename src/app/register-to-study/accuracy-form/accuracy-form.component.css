@@ -32,3 +32,14 @@ button{
 .actions{
     float: right;
 }
+.success h1,p{
+    text-align: center;
+}
+.success h1{
+    font-size: 100px;
+    color: #26a8d3;
+}
+.success span{
+    font-weight: 500;
+    color: black;
+}

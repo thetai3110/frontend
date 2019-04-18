@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ClassesService } from '../services/classes.service';
 import { RegisterToStudyService } from '../services/register-to-study.service';
-import { MatDialog, MatSnackBar, MatTableDataSource, MatSort } from '@angular/material';
-import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
+import { MatSnackBar, MatTableDataSource, MatSort } from '@angular/material';
 import { StudentService } from '../services/student.service';
 import { EducationprogramService } from '../services/educationprogram.service';
 import { CourseService } from '../services/course.service';
@@ -42,36 +40,6 @@ export class RegisterToStudyComponent implements OnInit {
     this.educationProgramService.getData().subscribe(data => {
       if (data != null)
         this.allEdu = data;
-    });
-  }
-
-  onSubmit(form) {
-    this.registerToStudyService.postData(form).subscribe(data => {
-      if (data == "1") {
-        this.snackBar.open("Success!!!", "Register", {
-          duration: 2000,
-        });
-      }
-      else if (data == "2") {
-        this.snackBar.open("Full!!!", "Register", {
-          duration: 2000,
-        });
-      }
-      else if (data == "3") {
-        this.snackBar.open("Duplicate!!!", "Register", {
-          duration: 2000,
-        });
-      }
-      else if (data == "4") {
-        this.snackBar.open("Close!!!", "Register", {
-          duration: 2000,
-        });
-      }
-      else {
-        this.snackBar.open("Fail!!!", "Register", {
-          duration: 2000,
-        });
-      }
     });
   }
 

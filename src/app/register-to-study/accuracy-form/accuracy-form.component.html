@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container step">
-  <mat-horizontal-stepper [linear]="'true'" #stepper>
+  <mat-horizontal-stepper [linear]="'false'" #stepper>
     <!-- Bước 1 -->
     <mat-step [stepControl]="firstFormGroup">
       <ng-template matStepLabel>Thông tin</ng-template>
@@ -40,8 +40,8 @@
         <ng-template matStepLabel>Xác nhận đăng ký</ng-template>
         <h3>Vui lòng hoàn tất thông tin tại đây: </h3>
         <mat-form-field>
-          <input matInput placeholder="Họ tên" formControlName="studentName">
-          <mat-error *ngIf="hasError(secondFormGroup ,'studentName', 'required')">Trường này không được bỏ trống
+          <input matInput placeholder="Họ tên" formControlName="nameRegister">
+          <mat-error *ngIf="hasError(secondFormGroup ,'nameRegister', 'required')">Trường này không được bỏ trống
           </mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -68,7 +68,8 @@
               <th>Học phí</th>
               <th>Ngày bắt đầu</th>
               <th>Địa điểm</th>
-              <th>Số lượt đăng ký</th>
+              <th>Số lượt đã đăng ký</th>
+              <th>Số người đăng ký</th>
             </tr>
           </thead>
           <tbody>
@@ -82,6 +83,17 @@
               <td>{{ classes.dayStart | date: 'dd-MM-yyyy' }}</td>
               <td>{{ space }}, {{ roomName }}</td>
               <td>{{ classes.size }}/{{ classes.maxSize }}</td>
+              <td>
+                <mat-form-field>
+                  <mat-label>Số người</mat-label>
+                  <select matNativeControl (change)="selectNum($event)">
+                    <option value="1">1</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="7">7</option>
+                  </select>
+                </mat-form-field>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -94,23 +106,29 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Thanh toán</ng-template>
-      <h3>Vui lòng chọn hình thức thanh toán: <span>{{ fee }}đ</span></h3>
-      <mat-radio-group aria-label="Select an option" (change)="onChange($event);">
-        <mat-radio-button value="1">Thẻ ngân hàng</mat-radio-button>
-        <mat-radio-button value="0">Trực tiếp</mat-radio-button>
-      </mat-radio-group>
-      <mat-form-field [hidden]="isCard">
-        <mat-label>Phương thức</mat-label>
-        <mat-select (change)="onChoose();">
-          <mat-option value="vietcombank"> VietcomBank </mat-option>
-          <mat-option value="viettinbank"> ViettinBank </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <p [hidden]="isPlace">Địa chỉ: {{ space }}</p>
-      <div class="actions"> 
-        <button mat-raised-button color="primary" matStepperPrevious>Quay lại</button>
-        <button mat-raised-button color="warn" (click)="onSubmit(secondFormGroup.value)">Hoàn thành</button>
-        <button mat-raised-button color="basic" (click)="stepper.reset()">Làm mới</button>
+      <div [hidden]="isPay">
+        <h3>Vui lòng chọn hình thức thanh toán: <span>{{ fee }}đ</span></h3>
+        <mat-radio-group aria-label="Select an option" (change)="onChange($event);">
+          <mat-radio-button value="1">Thẻ ngân hàng</mat-radio-button>
+          <mat-radio-button value="0">Trực tiếp</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field [hidden]="isCard">
+          <mat-label>Phương thức</mat-label>
+          <mat-select (change)="onChoose();">
+            <mat-option value="vietcombank"> VietcomBank </mat-option>
+            <mat-option value="viettinbank"> ViettinBank </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p [hidden]="isPlace">Địa chỉ: {{ space }}</p>
+        <div class="actions">
+          <button mat-raised-button color="primary" matStepperPrevious>Quay lại</button>
+          <button mat-raised-button color="warn" (click)="onSubmit(secondFormGroup.value)">Hoàn thành</button>
+          <button mat-raised-button color="basic" (click)="stepper.reset()">Làm mới</button>
+        </div>
+      </div>
+      <div [hidden]="!isPay" class="success">
+          <h1><fa-icon [icon]="faHandshake"></fa-icon></h1>
+          <p>Bạn đã thanh toán thành công, vui lòng <span>kiểm tra email và hoàn tất thông tin</span> trên đường link!!!</p>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

@@ -43,14 +43,16 @@ import { InvoiceDialogComponent } from './admin/invoice-manage/invoice-dialog/in
 import { InvoiceFormComponent } from './admin/invoice-manage/invoice-form/invoice-form.component';
 import { StudentTableComponent } from './admin/student-manage/student-table/student-table.component';
 import { CoursesModule } from './courses/courses.module';
+import { SearchsModule } from './searchs/searchs.module';
 import { CalendarOpenModule } from './calendar-open/calendar-open.module';
+import { InfomationModule } from './infomation/infomation.module';
+
 import { ExamFormComponent } from './admin/exam-certificate/exam/exam-form/exam-form.component';
 import { ExamDialogComponent } from './admin/exam-certificate/exam/exam-dialog/exam-dialog.component';
 import { ExamDeleteComponent } from './admin/exam-certificate/exam/exam-delete/exam-delete.component';
 import { CertificateFormComponent } from './admin/exam-certificate/certificate/certificate-form/certificate-form.component';
 import { CertificateDialogComponent } from './admin/exam-certificate/certificate/certificate-dialog/certificate-dialog.component';
 import { CertificateDeleteComponent } from './admin/exam-certificate/certificate/certificate-delete/certificate-delete.component';
-import { SearchsModule } from './searchs/searchs.module';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import { SearchsModule } from './searchs/searchs.module';
     RegisterModule,
     RegisterToStudyModule,
     CalendarOpenModule,
+    InfomationModule,
     HttpClientModule,
     FontAwesomeModule,
     BrowserAnimationsModule

@@ -7,10 +7,11 @@ import { MatFormFieldModule, MatRadioModule,
           MatDatepickerModule,MatButtonModule, 
           MatInputModule, MatNativeDateModule, 
           MatSelectModule, MatStepperModule, MatTableModule,
-          MatSortModule, } from '@angular/material';
+          MatSortModule, MatSnackBarModule} from '@angular/material';
 
 import { RegisterToStudyComponent } from './register-to-study.component';
 import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarOpenModule } from '../calendar-open/calendar-open.module';
 
 @NgModule({
@@ -31,6 +32,8 @@ import { CalendarOpenModule } from '../calendar-open/calendar-open.module';
     SharedModule,
     MatTableModule,
     MatSortModule,
+    MatSnackBarModule,
+    FontAwesomeModule
   ]
 })
 export class RegisterToStudyModule { }

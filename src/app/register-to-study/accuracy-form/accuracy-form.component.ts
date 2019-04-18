@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { ClassesService } from 'src/app/services/classes.service';
 import { ActivatedRoute } from '@angular/router';
+import { RegisterService } from 'src/app/services/register.service';
+import { MatSnackBar } from '@angular/material';
+import { faHandshake } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-accuracy-form',
@@ -13,20 +17,26 @@ export class AccuracyFormComponent implements OnInit {
   isLinear = false;
   isCard = true;
   isPlace = true;
+  group = 1;
+  isPay = false;
+  faHandshake = faHandshake;
 
   constructor(private classService: ClassesService,
-              private router: ActivatedRoute) {}
+              private router: ActivatedRoute,
+              private registerService: RegisterService,
+              private snackBar: MatSnackBar) {}
   classes = [];
   fee: Number; space: String; roomName: String;
 
   firstFormGroup: FormGroup;
 
   secondFormGroup: FormGroup = new FormGroup({
-    studentName: new FormControl('', [Validators.required]),
+    nameRegister: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     job: new FormControl(''),
     idSale: new FormControl(''),
+    groupNum: new FormControl('')
   });
 
   ngOnInit() {
@@ -59,8 +69,24 @@ export class AccuracyFormComponent implements OnInit {
   onChoose(){
 
   }
+
+  selectNum(event){
+    this.group = event.target.value
+  }
   
   onSubmit(form){
-    console.log(form);
+    form.groupNum = this.group;
+    this.registerService.postData(form).subscribe(data =>{
+      if(data != null){
+        this.snackBar.open("Success!!!", "Add", {
+          duration: 2000,
+        });
+        this.isPay = true;
+      }else{
+        this.snackBar.open("Fail!!!", "Add", {
+          duration: 2000,
+        });
+      }
+    })
   }
 }

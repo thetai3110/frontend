@@ -24,6 +24,7 @@ import { ClassByCourseComponent } from './calendar-open/class-by-course/class-by
 import { ExamCertificateComponent } from './admin/exam-certificate/exam-certificate.component';
 import { SearchsComponent } from './searchs/searchs.component';
 import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';
+import { InfomationComponent } from './infomation/infomation.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'logout', component: LogOutComponent},
   {path: 'personal', component: PersonalPageComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'information/:id', component: InfomationComponent},
   {
     path: 'admin', 
     component: AdminComponent,
