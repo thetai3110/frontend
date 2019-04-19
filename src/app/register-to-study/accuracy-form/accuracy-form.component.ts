@@ -20,6 +20,8 @@ export class AccuracyFormComponent implements OnInit {
   group = 1;
   isPay = false;
   faHandshake = faHandshake;
+  isFee = 0 ;
+  formula = "";
 
   constructor(private classService: ClassesService,
               private router: ActivatedRoute,
@@ -27,7 +29,7 @@ export class AccuracyFormComponent implements OnInit {
               private snackBar: MatSnackBar) {}
   classes = [];
   fee: Number; space: String; roomName: String;
-
+  payment = "no";
   firstFormGroup: FormGroup;
 
   secondFormGroup: FormGroup = new FormGroup({
@@ -36,7 +38,10 @@ export class AccuracyFormComponent implements OnInit {
     phone: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     job: new FormControl(''),
     idSale: new FormControl(''),
-    groupNum: new FormControl('')
+    groupNum: new FormControl(''),
+    isFee: new FormControl(''),
+    payment: new FormControl(''),
+    formula: new FormControl('')
   });
 
   ngOnInit() {
@@ -60,22 +65,28 @@ export class AccuracyFormComponent implements OnInit {
     if(Number(e.value) == 1){
       this.isCard = false;
       this.isPlace = true;
+      this.formula = "VietComBank";
     }else{
       this.isPlace = false;
       this.isCard = true;
+      this.payment = "no";
+      this.formula = "VietTinBank";
     }
   }
 
-  onChoose(){
-
-  }
-
   selectNum(event){
-    this.group = event.target.value
+    this.group = event.target.value;
   }
   
   onSubmit(form){
     form.groupNum = this.group;
+    form.formula = this.formula;
+    if(this.payment != 'no'){
+      form.payment = this.payment;
+      form.isFee = 1;
+    }else{
+      form.isFee = 0;
+    }
     this.registerService.postData(form).subscribe(data =>{
       if(data != null){
         this.snackBar.open("Success!!!", "Add", {
@@ -87,6 +98,7 @@ export class AccuracyFormComponent implements OnInit {
           duration: 2000,
         });
       }
-    })
+    });
+    
   }
 }

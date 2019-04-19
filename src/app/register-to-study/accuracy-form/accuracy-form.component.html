@@ -114,7 +114,7 @@
         </mat-radio-group>
         <mat-form-field [hidden]="isCard">
           <mat-label>Phương thức</mat-label>
-          <mat-select (change)="onChoose();">
+          <mat-select [(ngModel)]="payment">
             <mat-option value="vietcombank"> VietcomBank </mat-option>
             <mat-option value="viettinbank"> ViettinBank </mat-option>
           </mat-select>
