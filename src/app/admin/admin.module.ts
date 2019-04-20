@@ -65,6 +65,10 @@ import { CertificateTableComponent } from './exam-certificate/certificate/certif
 import { CertificateFormComponent } from './exam-certificate/certificate/certificate-form/certificate-form.component';
 import { CertificateDialogComponent } from './exam-certificate/certificate/certificate-dialog/certificate-dialog.component';
 import { CertificateDeleteComponent } from './exam-certificate/certificate/certificate-delete/certificate-delete.component';
+import { RoomDialogComponent } from './room-manage/room-dialog/room-dialog.component';
+import { RoomDeleteComponent } from './room-manage/room-delete/room-delete.component';
+import { RoomCalenderComponent } from './room-manage/room-calender/room-calender.component';
+import { RoomTableComponent } from './room-manage/room-table/room-table.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +127,10 @@ import { CertificateDeleteComponent } from './exam-certificate/certificate/certi
     CertificateFormComponent,
     CertificateDialogComponent,
     CertificateDeleteComponent,
+    RoomDialogComponent,
+    RoomDeleteComponent,
+    RoomCalenderComponent,
+    RoomTableComponent,
   ],
   imports: [
     CommonModule,

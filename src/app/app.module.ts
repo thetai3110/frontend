@@ -53,10 +53,13 @@ import { ExamDeleteComponent } from './admin/exam-certificate/exam/exam-delete/e
 import { CertificateFormComponent } from './admin/exam-certificate/certificate/certificate-form/certificate-form.component';
 import { CertificateDialogComponent } from './admin/exam-certificate/certificate/certificate-dialog/certificate-dialog.component';
 import { CertificateDeleteComponent } from './admin/exam-certificate/certificate/certificate-delete/certificate-delete.component';
+import { RoomDialogComponent } from './admin/room-manage/room-dialog/room-dialog.component';
+import { RoomDeleteComponent } from './admin/room-manage/room-delete/room-delete.component';
+import { RoomFormComponent } from './admin/room-manage/room-form/room-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +91,8 @@ import { CertificateDeleteComponent } from './admin/exam-certificate/certificate
     PersonalDialogComponent,
     InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent,
     ExamFormComponent, ExamDialogComponent, ExamDeleteComponent,
-    CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent
+    CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent,
+    RoomDialogComponent, RoomDeleteComponent, RoomFormComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
