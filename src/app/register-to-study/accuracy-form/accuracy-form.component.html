@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="container step">
-  <mat-horizontal-stepper [linear]="'false'" #stepper>
+  <mat-horizontal-stepper [linear]="'true'" #stepper>
     <!-- Bước 1 -->
     <mat-step [stepControl]="firstFormGroup">
       <ng-template matStepLabel>Thông tin</ng-template>
@@ -23,7 +23,7 @@
               <p *ngFor="let cd of classes.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )
               </p>
             </td>
-            <td>{{ fee }}đ</td>
+            <td>{{ fee | currency }}</td>
             <td>{{ classes.dayStart | date: 'dd-MM-yyyy' }}</td>
             <td>{{ space }}, {{ roomName }}</td>
             <td>{{ classes.size }}/{{ classes.maxSize }}</td>
@@ -79,7 +79,7 @@
                 <p *ngFor="let cd of classes.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )
                 </p>
               </td>
-              <td>{{ fee }}đ</td>
+              <td>{{ curFee | currency }}</td>
               <td>{{ classes.dayStart | date: 'dd-MM-yyyy' }}</td>
               <td>{{ space }}, {{ roomName }}</td>
               <td>{{ classes.size }}/{{ classes.maxSize }}</td>
@@ -97,7 +97,7 @@
             </tr>
           </tbody>
         </table>
-        <p>Học phí thực đóng : {{ fee }}đ</p>
+        <p>Học phí thực đóng : {{ fee | currency }}</p>
         <div class="actions">
           <button mat-raised-button color="primary" matStepperPrevious>Quay lại</button>
           <button mat-raised-button color="warn" matStepperNext>Tiếp tục</button>
@@ -107,9 +107,9 @@
     <mat-step>
       <ng-template matStepLabel>Thanh toán</ng-template>
       <div [hidden]="isPay">
-        <h3>Vui lòng chọn hình thức thanh toán: <span>{{ fee }}đ</span></h3>
+        <h3>Vui lòng chọn hình thức thanh toán: <span>{{ fee | currency}}</span></h3>
         <mat-radio-group aria-label="Select an option" (change)="onChange($event);">
-          <mat-radio-button value="1">Thẻ ngân hàng</mat-radio-button>
+          <mat-radio-button value="1" checked>Thẻ ngân hàng</mat-radio-button>
           <mat-radio-button value="0">Trực tiếp</mat-radio-button>
         </mat-radio-group>
         <mat-form-field [hidden]="isCard">

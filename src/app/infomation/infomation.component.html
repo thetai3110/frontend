@@ -1,5 +1,7 @@
 <app-header></app-header>
-<div class="container info">
+<div class="container info" *ngIf="status == 0; else elseBlock">
+  <h1>Bạn đã đăng ký nhóm {{ num }} người, vui lòng hoàn tất thông tin: </h1>
+  <h5><span>*</span> Thông tin người thứ {{ n }}: </h5>
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <div mat-dialog-content>
       <!-- Họ tên -->
@@ -60,4 +62,7 @@
     </ng-container>
   </form>
 </div>
+<ng-template #elseBlock>
+  <h1>Bạn đã xác hoàn tất thông tin rồi vui lòng chờ đến ngày học</h1>
+</ng-template>
 <app-footer></app-footer>

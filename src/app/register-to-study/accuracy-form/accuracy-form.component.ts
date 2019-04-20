@@ -15,7 +15,7 @@ import { faHandshake } from '@fortawesome/free-solid-svg-icons';
 export class AccuracyFormComponent implements OnInit {
 
   isLinear = false;
-  isCard = true;
+  isCard = false;
   isPlace = true;
   group = 1;
   isPay = false;
@@ -29,8 +29,10 @@ export class AccuracyFormComponent implements OnInit {
               private snackBar: MatSnackBar) {}
   classes = [];
   fee: Number; space: String; roomName: String;
+  curFee: Number;
   payment = "no";
   firstFormGroup: FormGroup;
+  idClass = 0;
 
   secondFormGroup: FormGroup = new FormGroup({
     nameRegister: new FormControl('', [Validators.required]),
@@ -41,15 +43,19 @@ export class AccuracyFormComponent implements OnInit {
     groupNum: new FormControl(''),
     isFee: new FormControl(''),
     payment: new FormControl(''),
-    formula: new FormControl('')
+    formula: new FormControl(''),
+    status: new FormControl('0'),
+    idClass: new FormControl('')
   });
 
   ngOnInit() {
     setTimeout(()=>{
       this.router.params.subscribe(data =>{
+        this.idClass = data.idClass;
         this.classService.getDataById(data.idClass).subscribe(classes =>{
           this.classes = classes;
-          this.fee = classes['course'].fee;
+          this.curFee = classes['course'].fee;
+          this.fee = this.curFee;
           this.space = classes['course'].space;
           this.roomName = classes['room'].roomName;
         });
@@ -65,22 +71,28 @@ export class AccuracyFormComponent implements OnInit {
     if(Number(e.value) == 1){
       this.isCard = false;
       this.isPlace = true;
-      this.formula = "VietComBank";
+      this.formula = "Thẻ ngân hàng";
     }else{
       this.isPlace = false;
       this.isCard = true;
       this.payment = "no";
-      this.formula = "VietTinBank";
+      this.formula = "Trực tiếp";
     }
   }
 
   selectNum(event){
     this.group = event.target.value;
+    if(Number(this.group) == 1) this.fee = Number(this.group) * Number(this.curFee);
+    if(Number(this.group) == 3) this.fee = Number(this.group) * Number(this.curFee) - 150000;
+    if(Number(this.group) == 5) this.fee = Number(this.group) * Number(this.curFee) - 350000;
+    if(Number(this.group) == 7) this.fee = Number(this.group) * Number(this.curFee) - 700000;
+    
   }
   
   onSubmit(form){
     form.groupNum = this.group;
     form.formula = this.formula;
+    form.idClass = this.idClass;
     if(this.payment != 'no'){
       form.payment = this.payment;
       form.isFee = 1;
