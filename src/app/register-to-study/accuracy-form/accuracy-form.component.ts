@@ -33,6 +33,7 @@ export class AccuracyFormComponent implements OnInit {
   payment = "no";
   firstFormGroup: FormGroup;
   idClass = 0;
+  days: Date;
 
   secondFormGroup: FormGroup = new FormGroup({
     nameRegister: new FormControl('', [Validators.required]),
@@ -96,6 +97,13 @@ export class AccuracyFormComponent implements OnInit {
     if(this.payment != 'no'){
       form.payment = this.payment;
       form.isFee = 1;
+      this.classService.getDataById(this.idClass).subscribe(classes =>{
+        this.days = classes['dayStart'];
+        // var invoice = {
+        //   idCourse: classes['course'].idCourse,
+        //   studentName: 
+        // }
+      });
     }else{
       form.isFee = 0;
     }

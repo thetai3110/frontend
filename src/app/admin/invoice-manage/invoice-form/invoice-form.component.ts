@@ -15,12 +15,13 @@ export class InvoiceFormComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     idCourse : new FormControl('', [Validators.required]),
-    idStudent: new FormControl('', [Validators.required]),
+    studentName: new FormControl('', [Validators.required]),
     idEmployee: new FormControl('', [Validators.required]),
     dateInvoice: new FormControl(new Date(), [Validators.required]),
     cost: new FormControl('',[Validators.required]),
     payment: new FormControl('', [Validators.required]),
-    email: new FormControl('')
+    email: new FormControl(''),
+    groupNum: new FormControl(''),
   }); 
 
   public hasError = (controlName: string, errorName: string) =>{
@@ -58,6 +59,13 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   onSubmit(form){
+    if(Number(form.groupNum) == 3){
+      form.cost = Number(form.cost) * 3 - 150000;
+    }else if(Number(form.groupNum) == 5){
+      form.cost = Number(form.cost) * 5 - 350000;
+    }else if(Number(form.groupNum) == 7){
+      form.cost = Number(form.cost) * 7 - 700000;
+    }
     this.invoiceService.postData(form).subscribe(data =>{
       if(data!= null){
         this.snackBar.open("Success!!!", "Add", {

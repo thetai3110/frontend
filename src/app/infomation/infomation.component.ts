@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from '../services/register.service';
 import { RegisterToStudyService } from '../services/register-to-study.service';
 import { MatSnackBar } from '@angular/material';
+import { ClassesService } from '../services/classes.service';
 
 @Component({
   selector: 'app-infomation',
@@ -15,6 +16,7 @@ export class InfomationComponent implements OnInit {
   constructor(private router: ActivatedRoute,
     private registerService: RegisterService,
     private registerToStudyService: RegisterToStudyService,
+    private classesService: ClassesService,
     private snackBar: MatSnackBar) { }
 
   form: FormGroup = new FormGroup({
@@ -35,6 +37,7 @@ export class InfomationComponent implements OnInit {
   num = 1;
   n = 1;
   data = [];
+  days: Date;
 
   ngOnInit() {
     this.router.params.subscribe(data => {
@@ -42,6 +45,9 @@ export class InfomationComponent implements OnInit {
         this.id = data.id;
         this.registerService.getDataById(data.id).subscribe(reg => {
           if (reg != null)
+            this.classesService.getDataById(reg['idClass']).subscribe(classes =>{
+              this.days = classes['dayStart'];
+            });
             if (Number(reg['status']) == 0) {
               this.register = reg;
               this.num = reg['groupNum'];
@@ -62,6 +68,7 @@ export class InfomationComponent implements OnInit {
         this.snackBar.open("Success!!!", "Info", {
           duration: 2000,
         });
+        this.status = 1;
       } else {
         this.snackBar.open("Fail!!!", "Info", {
           duration: 2000,

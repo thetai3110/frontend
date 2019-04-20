@@ -8,9 +8,10 @@ import { MatFormFieldModule, MatRadioModule,
          MatDatepickerModule,MatButtonModule, 
          MatInputModule, MatNativeDateModule, 
          MatSelectModule, MatSnackBarModule } from '@angular/material';
+import { CountdownComponent } from './countdown/countdown.component';
 
 @NgModule({
-  declarations: [InfomationComponent],
+  declarations: [InfomationComponent, CountdownComponent],
   imports: [
     SharedModule,
     CommonModule,
@@ -20,6 +21,7 @@ import { MatFormFieldModule, MatRadioModule,
     MatButtonModule,MatInputModule,
     MatSelectModule, MatDatepickerModule, 
     MatSnackBarModule, MatNativeDateModule
-  ]
+  ],
+  exports: [ CountdownComponent ]
 })
 export class InfomationModule { }

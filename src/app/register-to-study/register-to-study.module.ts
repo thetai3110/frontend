@@ -13,6 +13,7 @@ import { RegisterToStudyComponent } from './register-to-study.component';
 import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CalendarOpenModule } from '../calendar-open/calendar-open.module';
+import { InfomationModule } from '../infomation/infomation.module';
 
 @NgModule({
   declarations: [RegisterToStudyComponent, AccuracyFormComponent],
@@ -33,7 +34,8 @@ import { CalendarOpenModule } from '../calendar-open/calendar-open.module';
     MatTableModule,
     MatSortModule,
     MatSnackBarModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    InfomationModule
   ]
 })
 export class RegisterToStudyModule { }

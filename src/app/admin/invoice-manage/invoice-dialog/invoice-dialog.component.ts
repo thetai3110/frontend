@@ -23,11 +23,12 @@ export class InvoiceDialogComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     idCourse: new FormControl(this.data.stu.course == null ? '' : String(this.data.stu.course.idCourse), [Validators.required]),
-    idStudent: new FormControl(this.data.stu.student == null ? '' : String(this.data.stu.student.idStudent), [Validators.required]),
+    studentName: new FormControl(this.data.stu.studentName, [Validators.required]),
     idEmployee: new FormControl(this.data.stu.idEmployee == null ? '' : String(this.data.stu.employee.idEmployee), [Validators.required]),
     dateInvoice: new FormControl(new Date(this.data.stu.dateInvoice), [Validators.required]),
     cost: new FormControl(this.data.stu.cost, [Validators.required]),
-    payment: new FormControl(this.data.stu.payment, [Validators.required])
+    payment: new FormControl(this.data.stu.payment, [Validators.required]),
+    groupNum: new FormControl(this.data.stu.groupNum),
   });
 
   allAccount: any;

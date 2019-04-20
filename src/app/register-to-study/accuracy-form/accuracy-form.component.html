@@ -129,7 +129,8 @@
       <div [hidden]="!isPay" class="success">
           <h1><fa-icon [icon]="faHandshake"></fa-icon></h1>
           <p>Bạn đã thanh toán thành công, vui lòng <span>kiểm tra email và hoàn tất thông tin</span> trên đường link!!!</p>
-      </div>
+          <app-countdown [dayStart]="days"></app-countdown>
+        </div>
     </mat-step>
   </mat-horizontal-stepper>
 </div>

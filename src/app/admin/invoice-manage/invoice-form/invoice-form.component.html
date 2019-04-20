@@ -7,19 +7,15 @@
       <select matNativeControl formControlName="idCourse">
         <option [value]=""></option>
         <ng-container *ngIf="allCourse != null">
-          <option *ngFor="let cour of allCourse " [value]="cour.idCourse">{{ cour.course + '-' +cour.level.level }}</option>
+          <option *ngFor="let cour of allCourse " [value]="cour.idCourse">{{ cour.course + '-' +cour.level.level }}
+          </option>
         </ng-container>
       </select>
     </mat-form-field>
     <!-- Học viên -->
     <mat-form-field>
-      <mat-label>Học viên</mat-label>
-      <select matNativeControl formControlName="idStudent">
-        <option [value]=""></option>
-        <ng-container *ngIf="allStudent != null">
-          <option *ngFor="let stu of allStudent " [value]="stu.idStudent">{{ stu.studentName }}</option>
-        </ng-container>
-      </select>
+        <input matInput placeholder="Tên người đóng" formControlName="studentName">
+        <mat-error *ngIf="hasError('studentName', 'required')">Trường này không được bỏ trống</mat-error>
     </mat-form-field>
     <!-- Nhân viên -->
     <mat-form-field>
@@ -49,6 +45,15 @@
       <mat-select formControlName="payment">
         <mat-option value="vietcombank"> VietcomBank </mat-option>
         <mat-option value="viettinbank"> ViettinBank </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- Nhóm -->
+    <mat-form-field>
+      <mat-select formControlName="groupNum">
+        <mat-option value="1"> 1 </mat-option>
+        <mat-option value="3"> 3 </mat-option>
+        <mat-option value="5"> 5 </mat-option>
+        <mat-option value="7"> 7 </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
