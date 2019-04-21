@@ -8,6 +8,7 @@ import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.compone
 import { InvoiceDeleteComponent } from '../invoice-delete/invoice-delete.component';
 import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import { InvoiceDetailComponent } from '../invoice-detail/invoice-detail.component';
 
 @Component({
   selector: 'app-invoice-table',
@@ -20,7 +21,7 @@ export class InvoiceTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['id','course','student','employee','date','cost','payment','tool'];
+  displayedColumns= ['id','course','student','employee','date','group','cost','payment','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
@@ -68,6 +69,19 @@ export class InvoiceTableComponent implements OnInit {
   onOpenDialogAdd(){
     const dialogRef = this.dialog.open(InvoiceFormComponent, {
       width: '500px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.reloadTable();
+    });
+  }
+
+  onOpenDetail(id, idClass): void{
+    const dialogRef = this.dialog.open(InvoiceDetailComponent, {
+      width: '700px',
+      data:{
+          id : id,
+          idClass: idClass
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.reloadTable();

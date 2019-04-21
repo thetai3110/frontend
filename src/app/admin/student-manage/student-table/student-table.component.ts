@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/
 import { StudentDialogComponent } from '../student-dialog/student-dialog.component';
 import { StudentDeleteComponent } from '../student-delete/student-delete.component';
 import { StudentFormComponent } from '../student-form/student-form.component';
+import { InvoiceDetailService } from 'src/app/services/invoice-detail.service';
 
 @Component({
   selector: 'app-student-table',
@@ -31,6 +32,7 @@ export class StudentTableComponent implements OnInit {
   constructor(private studentService: StudentService,
             public dialog: MatDialog, public dialogRef: MatDialogRef<StudentTableComponent>,
             @Inject(MAT_DIALOG_DATA) public data: any,
+            private invoiceDetailService: InvoiceDetailService,
             private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -92,13 +94,33 @@ export class StudentTableComponent implements OnInit {
       if(rs != null){
         this.snackBar.open("Success!!!", "IntoClass", {
           duration: 2000,
-        });
+        }); 
       }else{
         this.snackBar.open("Fail!!!", "IntoClass", {
           duration: 2000,
         }); 
       }
       this.dialogRef.close(this.data.class);
+    });
+  }
+
+  onChoose1(idStudent){
+    var detail = {
+      idStudent: idStudent,
+      idClass: this.data.idClass,
+      idInvoice: this.data.idInvoice
+    }
+    this.invoiceDetailService.postData(detail).subscribe(rs =>{
+      if(rs != null){
+        this.snackBar.open("Success!!!", "IntoClass", {
+          duration: 2000,
+        }); 
+      }else{
+        this.snackBar.open("Fail!!!", "IntoClass", {
+          duration: 2000,
+        }); 
+      }
+      this.dialogRef.close();
     });
   }
 

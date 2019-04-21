@@ -18,6 +18,10 @@ export class StudentService {
     return this.http.get<Student[]>('http://localhost:8080/student/'+id);
   }
 
+  getDataByInvoice(id): Observable<Student[]>{
+    return this.http.get<Student[]>('http://localhost:8080/student/invoice/'+id);
+  }
+
   getDataByNameAndCmnd(name, cmnd): Observable<Student[]>{
     return this.http.get<Student[]>('http://localhost:8080/student/'+name+"/"+cmnd);
   }

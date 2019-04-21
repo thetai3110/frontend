@@ -43,6 +43,7 @@ export class InfomationComponent implements OnInit {
   data = [];
   days: Date;
   idInvoice = 0;
+  idClass = 0;
 
   ngOnInit() {
     this.router.params.subscribe(data => {
@@ -55,6 +56,7 @@ export class InfomationComponent implements OnInit {
         });
         this.registerService.getDataById(data.id).subscribe(reg => {
           if (reg != null)
+            this.idClass = reg['idClass'];
             this.classesService.getDataById(reg['idClass']).subscribe(classes =>{
               this.days = classes['dayStart'];
             });
@@ -79,7 +81,8 @@ export class InfomationComponent implements OnInit {
           for(var i=0;i<this.num;i++){
             var detail = {
               idInvoice: this.idInvoice,
-              idStudent: res[i].idStudent
+              idStudent: res[i].idStudent,
+              idClass: this.idClass
             }
             this.invoiceDetailService.postData(detail).subscribe(det =>{
               if(det != null){

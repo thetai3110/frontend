@@ -13,6 +13,10 @@ export class StudentClassService {
     return this.http.get<[]>('http://localhost:8080/student-class/student/'+id);
   }
 
+  getDataByStudentAndClass(idStudent, idClass){
+    return this.http.get<[]>('http://localhost:8080/student-class/stu-class/'+idStudent+"/"+idClass);
+  }
+
   deleteData(id): Observable<[]>{
     return this.http.get<[]>('http://localhost:8080/student-class/delete/' + id);
   }

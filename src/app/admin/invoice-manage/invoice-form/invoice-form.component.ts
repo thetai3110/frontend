@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MatSnackBar, MatDialog } from '@angular/material';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { StudentService } from 'src/app/services/student.service';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { CourseService } from 'src/app/services/course.service';
+import { InvoiceDetailComponent } from '../invoice-detail/invoice-detail.component';
+import { ClassesService } from 'src/app/services/classes.service';
 
 @Component({
   selector: 'app-invoice-form',
@@ -14,7 +15,7 @@ import { CourseService } from 'src/app/services/course.service';
 export class InvoiceFormComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
-    idCourse : new FormControl('', [Validators.required]),
+    idClass : new FormControl('', [Validators.required]),
     studentName: new FormControl('', [Validators.required]),
     idEmployee: new FormControl('', [Validators.required]),
     dateInvoice: new FormControl(new Date(), [Validators.required]),
@@ -22,6 +23,7 @@ export class InvoiceFormComponent implements OnInit {
     payment: new FormControl('', [Validators.required]),
     email: new FormControl(''),
     groupNum: new FormControl(''),
+    idStudent: new FormControl('')
   }); 
 
   public hasError = (controlName: string, errorName: string) =>{
@@ -30,17 +32,18 @@ export class InvoiceFormComponent implements OnInit {
 
   constructor(private invoiceService: InvoiceService,
     private employeeService: EmployeeService,
-    private courseService: CourseService,
+    private classService: ClassesService,
     public dialogRef: MatDialogRef<InvoiceFormComponent>,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
 
-  allCourse : any;
+  allClass : any;
   allEmployee : any;
 
   ngOnInit() {
-    this.courseService.getData().subscribe(data =>{
+    this.classService.getData().subscribe(data =>{
       if(data != null)
-        this.allCourse = data;
+        this.allClass = data;
     });
     this.employeeService.getData().subscribe(data =>{
       if(data != null)

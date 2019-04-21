@@ -8,7 +8,7 @@ import { MatInputModule, MatDialogModule, MatNativeDateModule,
         MatFormFieldModule, MatDatepickerModule, MatRadioModule,
         MatButtonModule, MatSelectModule, MatMenuModule,
         MatIconModule, MatExpansionModule, MatCheckboxModule,
-        MatTabsModule, MatSnackBarModule} from '@angular/material';
+        MatTabsModule, MatSnackBarModule, MatTooltipModule} from '@angular/material';
 
 import { AdminComponent } from './admin.component';
 import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
@@ -69,6 +69,7 @@ import { RoomDialogComponent } from './room-manage/room-dialog/room-dialog.compo
 import { RoomDeleteComponent } from './room-manage/room-delete/room-delete.component';
 import { RoomCalenderComponent } from './room-manage/room-calender/room-calender.component';
 import { RoomTableComponent } from './room-manage/room-table/room-table.component';
+import { InvoiceDetailComponent } from './invoice-manage/invoice-detail/invoice-detail.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { RoomTableComponent } from './room-manage/room-table/room-table.componen
     RoomDeleteComponent,
     RoomCalenderComponent,
     RoomTableComponent,
+    InvoiceDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -154,7 +156,8 @@ import { RoomTableComponent } from './room-manage/room-table/room-table.componen
     MatExpansionModule,
     MatCheckboxModule,
     MatTabsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ]
 })
 export class AdminModule { }

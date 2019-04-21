@@ -56,6 +56,7 @@ import { CertificateDeleteComponent } from './admin/exam-certificate/certificate
 import { RoomDialogComponent } from './admin/room-manage/room-dialog/room-dialog.component';
 import { RoomDeleteComponent } from './admin/room-manage/room-delete/room-delete.component';
 import { RoomFormComponent } from './admin/room-manage/room-form/room-form.component';
+import { InvoiceDetailComponent } from './admin/invoice-manage/invoice-detail/invoice-detail.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,7 @@ import { RoomFormComponent } from './admin/room-manage/room-form/room-form.compo
     LessonDialogComponent, LessonFormComponent ,LessonDeleteComponent,
     AccountDeleteComponent, AccountFormComponent, AccountDialogComponent,
     PersonalDialogComponent,
-    InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent,
+    InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent, InvoiceDetailComponent,
     ExamFormComponent, ExamDialogComponent, ExamDeleteComponent,
     CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent,
     RoomDialogComponent, RoomDeleteComponent, RoomFormComponent

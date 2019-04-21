@@ -112,7 +112,7 @@ export class AccuracyFormComponent implements OnInit {
           this.days = classes['dayStart'];
           if (Number(form.isFee) == 1) {
             var invoice = {
-              idCourse: classes['course'].idCourse,
+              idClass: classes['idClass'],
               studentName: form.nameRegister,
               idEmployee: '',
               dateInvoice: new Date(),

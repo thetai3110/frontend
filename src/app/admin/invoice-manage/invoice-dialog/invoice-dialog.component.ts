@@ -5,6 +5,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ClassesService } from 'src/app/services/classes.service';
 
 @Component({
   selector: 'app-invoice-dialog',
@@ -17,11 +18,11 @@ export class InvoiceDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private invoiceService: InvoiceService,
     private employeeService: EmployeeService,
-    private courseService: CourseService,
+    private classService: ClassesService,
     private snackBar: MatSnackBar) { }
 
   form: FormGroup = new FormGroup({
-    idCourse: new FormControl(this.data.stu.course == null ? '' : String(this.data.stu.course.idCourse), [Validators.required]),
+    idClass: new FormControl(this.data.stu.clazz == null ? '' : String(this.data.stu.clazz.idClass), [Validators.required]),
     studentName: new FormControl(this.data.stu.studentName, [Validators.required]),
     idEmployee: new FormControl(this.data.stu.idEmployee == null ? '' : String(this.data.stu.employee.idEmployee), [Validators.required]),
     dateInvoice: new FormControl(new Date(this.data.stu.dateInvoice), [Validators.required]),
@@ -30,19 +31,17 @@ export class InvoiceDialogComponent implements OnInit {
     groupNum: new FormControl(this.data.stu.groupNum),
   });
 
-  allAccount: any;
-
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
   }
 
-  allCourse: any;
+  allClass: any;
   allEmployee: any;
 
   ngOnInit() {
-    this.courseService.getData().subscribe(data => {
-      if (data != null)
-        this.allCourse = data;
+    this.classService.getData().subscribe(data =>{
+      if(data != null)
+        this.allClass = data;
     });
     this.employeeService.getData().subscribe(data => {
       if (data != null)
