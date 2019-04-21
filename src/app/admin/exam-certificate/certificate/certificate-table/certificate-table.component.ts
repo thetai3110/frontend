@@ -12,7 +12,7 @@ import { CertificateFormComponent } from '../certificate-form/certificate-form.c
 @Component({
   selector: 'app-certificate-table',
   templateUrl: './certificate-table.component.html',
-  styleUrls: ['./certificate-table.component.css']
+  styleUrls: ['../../../../../assets/css/table.css']
 })
 export class CertificateTableComponent implements OnInit {
 

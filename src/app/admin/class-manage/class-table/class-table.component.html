@@ -1,63 +1,79 @@
 <div class="manage">
-  <button mat-mini-fab color="accent" (click)="onOpenDialogAdd()"><fa-icon [icon]="faPlusCircle"></fa-icon></button>
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
-  </mat-form-field>
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let item">{{ item.idClass }}</td>
-    </ng-container>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên</th>
-      <td mat-cell *matCellDef="let item">{{ item.className }}</td>
-    </ng-container>
-    <ng-container matColumnDef="course">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Khóa học</th>
-      <td mat-cell *matCellDef="let item">{{ item.course !=null ? item.course.course +'-'+item.course.level.level : '' }}</td>
-    </ng-container>
-    <ng-container matColumnDef="lecturers">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Giảng viên</th>
-      <td mat-cell *matCellDef="let item">{{ item.lecturers !=null ? item.lecturers.lecturersName : '' }}</td>
-    </ng-container>
-    <ng-container matColumnDef="room">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng học</th>
-      <td mat-cell *matCellDef="let item">{{ item.room ? item.room.roomName : '' }}</td>
-    </ng-container>
-    <ng-container matColumnDef="dayStart">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày bắt đầu</th>
-      <td mat-cell *matCellDef="let item">{{ item.dayStart | date: 'dd-MM-yyyy' }}</td>
-    </ng-container>
-    <ng-container matColumnDef="size">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sĩ số</th>
-      <td mat-cell *matCellDef="let item">{{ item.size }}</td>
-    </ng-container>
-    <ng-container matColumnDef="minSize">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sĩ số tối thiêu</th>
-      <td mat-cell *matCellDef="let item">{{ item.minSize }}</td>
-    </ng-container>
-    <ng-container matColumnDef="maxSize">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sĩ số tối đa</th>
-      <td mat-cell *matCellDef="let item">{{ item.maxSize }}</td>
-    </ng-container>
-    <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái</th>
-      <td mat-cell *matCellDef="let item">{{ item.status == 0 ? 'Chưa mở' : 'Đã mở' }}</td>
-    </ng-container>
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Thời gian</th>
-      <td mat-cell *matCellDef="let item"><p *ngFor="let cd of item.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )</p></td>
-    </ng-container>
-    <ng-container matColumnDef="tool">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
-      <td mat-cell *matCellDef="let item">
-        <button mat-raised-button color="primary" (click)="openDialog(item.idClass)"><fa-icon [icon]="faPen"></fa-icon></button>
-        <button mat-raised-button color="warn" (click)="onDelete(item.idClass)"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
-      </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions">
-  </mat-paginator>
+  <div class="card-header">
+    Table
+  </div>
+  <div class="card-body">
+    <div class="add">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
+      </mat-form-field>
+      <button mat-mini-fab color="primary" (click)="onOpenDialogAdd()">
+        <fa-icon [icon]="faPlusCircle"></fa-icon>
+      </button>
+    </div>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let item">{{ item.idClass }}</td>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên</th>
+        <td mat-cell *matCellDef="let item">{{ item.className }}</td>
+      </ng-container>
+      <ng-container matColumnDef="course">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Khóa học</th>
+        <td mat-cell *matCellDef="let item">
+          {{ item.course !=null ? item.course.course +'-'+item.course.level.level : '' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="lecturers">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Giảng viên</th>
+        <td mat-cell *matCellDef="let item">{{ item.lecturers !=null ? item.lecturers.lecturersName : '' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="room">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng học</th>
+        <td mat-cell *matCellDef="let item">{{ item.room ? item.room.roomName : '' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="dayStart">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày bắt đầu</th>
+        <td mat-cell *matCellDef="let item">{{ item.dayStart | date: 'dd-MM-yyyy' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="size">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sĩ số</th>
+        <td mat-cell *matCellDef="let item">{{ item.size }}</td>
+      </ng-container>
+      <ng-container matColumnDef="minSize">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sĩ số tối thiêu</th>
+        <td mat-cell *matCellDef="let item">{{ item.minSize }}</td>
+      </ng-container>
+      <ng-container matColumnDef="maxSize">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Sĩ số tối đa</th>
+        <td mat-cell *matCellDef="let item">{{ item.maxSize }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái</th>
+        <td mat-cell *matCellDef="let item">{{ item.status == 0 ? 'Chưa mở' : 'Đã mở' }}</td>
+      </ng-container>
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Thời gian</th>
+        <td mat-cell *matCellDef="let item">
+          <p *ngFor="let cd of item.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )</p>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="tool">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
+        <td mat-cell *matCellDef="let item">
+          <button mat-raised-button color="primary" (click)="openDialog(item.idClass)">
+            <fa-icon [icon]="faPen"></fa-icon>
+          </button>
+          <button mat-raised-button color="warn" (click)="onDelete(item.idClass)">
+            <fa-icon [icon]="faTrashAlt"></fa-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions">
+    </mat-paginator>
+  </div>
 </div>

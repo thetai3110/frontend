@@ -11,7 +11,7 @@ import { StudentTableComponent } from '../../student-manage/student-table/studen
 @Component({
   selector: 'app-class-student',
   templateUrl: './class-student.component.html',
-  styleUrls: ['./class-student.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class ClassStudentComponent implements OnInit {
 

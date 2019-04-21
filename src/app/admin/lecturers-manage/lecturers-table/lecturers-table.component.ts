@@ -12,7 +12,7 @@ import { LecturersFormComponent } from '../lecturers-form/lecturers-form.compone
 @Component({
   selector: 'app-lecturers-table',
   templateUrl: './lecturers-table.component.html',
-  styleUrls: ['./lecturers-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class LecturersTableComponent implements OnInit {
 

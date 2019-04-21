@@ -12,7 +12,7 @@ import { RoomFormComponent } from '../room-form/room-form.component';
 @Component({
   selector: 'app-room-table',
   templateUrl: './room-table.component.html',
-  styleUrls: ['./room-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class RoomTableComponent implements OnInit {
 

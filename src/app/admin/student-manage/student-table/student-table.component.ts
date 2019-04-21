@@ -13,7 +13,7 @@ import { InvoiceDetailService } from 'src/app/services/invoice-detail.service';
 @Component({
   selector: 'app-student-table',
   templateUrl: './student-table.component.html',
-  styleUrls: ['./student-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class StudentTableComponent implements OnInit {
 

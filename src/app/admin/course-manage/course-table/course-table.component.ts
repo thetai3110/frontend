@@ -12,7 +12,7 @@ import { CourseDialogComponent } from '../course-dialog/course-dialog.component'
 @Component({
   selector: 'app-course-table',
   templateUrl: './course-table.component.html',
-  styleUrls: ['./course-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class CourseTableComponent implements OnInit {
 

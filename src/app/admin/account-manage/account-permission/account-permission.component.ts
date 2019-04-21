@@ -7,7 +7,7 @@ import { PermissionService } from 'src/app/services/permission.service';
 @Component({
   selector: 'app-account-permission',
   templateUrl: './account-permission.component.html',
-  styleUrls: ['./account-permission.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class AccountPermissionComponent implements OnInit {
 

@@ -12,7 +12,7 @@ import { AccountService } from 'src/app/services/account.service';
 @Component({
   selector: 'app-account-table',
   templateUrl: './account-table.component.html',
-  styleUrls: ['./account-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 }) 
 export class AccountTableComponent implements OnInit {
 

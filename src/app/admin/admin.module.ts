@@ -70,6 +70,8 @@ import { RoomDeleteComponent } from './room-manage/room-delete/room-delete.compo
 import { RoomCalenderComponent } from './room-manage/room-calender/room-calender.component';
 import { RoomTableComponent } from './room-manage/room-table/room-table.component';
 import { InvoiceDetailComponent } from './invoice-manage/invoice-detail/invoice-detail.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { HeaderNavigationComponent } from './layout/header-navigation/header-navigation.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +135,8 @@ import { InvoiceDetailComponent } from './invoice-manage/invoice-detail/invoice-
     RoomCalenderComponent,
     RoomTableComponent,
     InvoiceDetailComponent,
+    SidebarComponent,
+    HeaderNavigationComponent,
   ],
   imports: [
     CommonModule,

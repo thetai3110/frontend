@@ -12,7 +12,7 @@ import { ExamService } from 'src/app/services/exam.service';
 @Component({
   selector: 'app-exam-table',
   templateUrl: './exam-table.component.html',
-  styleUrls: ['./exam-table.component.css']
+  styleUrls: ['../../../../../assets/css/table.css']
 })
 export class ExamTableComponent implements OnInit {
 

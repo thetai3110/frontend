@@ -1,10 +1,33 @@
 .manage{
     margin-top: 20px;
+    width: 100%;
 }
 table{
     width: 100%;
+}
+.add mat-form-field{
+    width: 93%;
 }
 .mat-form-field {
     font-size: 14px;
     width: 100%;
 }
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    color: inherit;
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid #dee2e6;
+    width: 100%;
+  }
+  
+  .card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+  }
+  
+  .card-header + .list-group .list-group-item:first-child {
+    border-top: 0;
+  }
+  .card-body {
+    border: 1px solid #dee2e6;
+  }

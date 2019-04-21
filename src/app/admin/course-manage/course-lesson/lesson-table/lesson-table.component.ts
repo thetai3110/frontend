@@ -10,7 +10,7 @@ import { CourseService } from 'src/app/services/course.service';
 @Component({
   selector: 'app-lesson-table',
   templateUrl: './lesson-table.component.html',
-  styleUrls: ['./lesson-table.component.css']
+  styleUrls: ['../../../../../assets/css/table.css']
 })
 export class LessonTableComponent implements OnInit {
 

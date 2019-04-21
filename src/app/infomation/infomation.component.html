@@ -58,7 +58,7 @@
       <input class="btn btn-primary" type="button" value="Tiếp" (click)="next(form.value);">
     </ng-container>
     <ng-container *ngIf="n == num">
-      <button mat-raised-button color="warn" type="submit">Đăng ký</button>
+      <button mat-raised-button color="warn" [disabled]="!form.valid" type="submit">Đăng ký</button>
     </ng-container>
   </form>
 </div>

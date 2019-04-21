@@ -12,7 +12,7 @@ import { EmployeeFormComponent } from '../employee-form/employee-form.component'
 @Component({ 
   selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
-  styleUrls: ['./employee-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class EmployeeTableComponent implements OnInit {
 

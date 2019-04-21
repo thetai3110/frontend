@@ -74,6 +74,6 @@
   </div>
   <div mat-dialog-actions class="action">
     <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
-    <button mat-raised-button color="primary" type="submit">Thêm</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">Thêm</button>
   </div>
 </form>

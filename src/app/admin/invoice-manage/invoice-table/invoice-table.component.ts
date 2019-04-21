@@ -13,7 +13,7 @@ import { InvoiceDetailComponent } from '../invoice-detail/invoice-detail.compone
 @Component({
   selector: 'app-invoice-table',
   templateUrl: './invoice-table.component.html',
-  styleUrls: ['./invoice-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class InvoiceTableComponent implements OnInit {
 

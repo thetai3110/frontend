@@ -12,7 +12,7 @@ import { ClassFormComponent } from '../class-form/class-form.component';
 @Component({
   selector: 'app-class-table',
   templateUrl: './class-table.component.html',
-  styleUrls: ['./class-table.component.css']
+  styleUrls: ['../../../../assets/css/table.css']
 })
 export class ClassTableComponent implements OnInit {
 
