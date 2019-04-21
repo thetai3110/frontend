@@ -17,6 +17,10 @@ export class InvoiceService {
     return this.http.get<[]>('http://localhost:8080/invoice/' + id);
   }
 
+  getDataByRegister(id): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/invoice/register/' + id);
+  }
+
   deleteData(id): Observable<[]>{
     return this.http.get<[]>('http://localhost:8080/invoice/delete/' + id);
   }

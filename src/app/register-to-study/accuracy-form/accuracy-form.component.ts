@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from 'src/app/services/register.service';
 import { MatSnackBar } from '@angular/material';
 import { faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 
 @Component({
@@ -20,13 +21,14 @@ export class AccuracyFormComponent implements OnInit {
   group = 1;
   isPay = false;
   faHandshake = faHandshake;
-  isFee = 0 ;
+  isFee = 0;
   formula = "";
 
   constructor(private classService: ClassesService,
-              private router: ActivatedRoute,
-              private registerService: RegisterService,
-              private snackBar: MatSnackBar) {}
+    private invoiceService: InvoiceService,
+    private router: ActivatedRoute,
+    private registerService: RegisterService,
+    private snackBar: MatSnackBar) { }
   classes = [];
   fee: Number; space: String; roomName: String;
   curFee: Number;
@@ -50,10 +52,10 @@ export class AccuracyFormComponent implements OnInit {
   });
 
   ngOnInit() {
-    setTimeout(()=>{
-      this.router.params.subscribe(data =>{
+    setTimeout(() => {
+      this.router.params.subscribe(data => {
         this.idClass = data.idClass;
-        this.classService.getDataById(data.idClass).subscribe(classes =>{
+        this.classService.getDataById(data.idClass).subscribe(classes => {
           this.classes = classes;
           this.curFee = classes['course'].fee;
           this.fee = this.curFee;
@@ -68,12 +70,12 @@ export class AccuracyFormComponent implements OnInit {
     return form.controls[controlName].hasError(errorName);
   }
 
-  onChange(e){
-    if(Number(e.value) == 1){
+  onChange(e) {
+    if (Number(e.value) == 1) {
       this.isCard = false;
       this.isPlace = true;
       this.formula = "Thẻ ngân hàng";
-    }else{
+    } else {
       this.isPlace = false;
       this.isCard = true;
       this.payment = "no";
@@ -81,44 +83,59 @@ export class AccuracyFormComponent implements OnInit {
     }
   }
 
-  selectNum(event){
+  selectNum(event) {
     this.group = event.target.value;
-    if(Number(this.group) == 1) this.fee = Number(this.group) * Number(this.curFee);
-    if(Number(this.group) == 3) this.fee = Number(this.group) * Number(this.curFee) - 150000;
-    if(Number(this.group) == 5) this.fee = Number(this.group) * Number(this.curFee) - 350000;
-    if(Number(this.group) == 7) this.fee = Number(this.group) * Number(this.curFee) - 700000;
-    
+    if (Number(this.group) == 1) this.fee = Number(this.group) * Number(this.curFee);
+    if (Number(this.group) == 3) this.fee = Number(this.group) * Number(this.curFee) - 150000;
+    if (Number(this.group) == 5) this.fee = Number(this.group) * Number(this.curFee) - 350000;
+    if (Number(this.group) == 7) this.fee = Number(this.group) * Number(this.curFee) - 700000;
+
   }
-  
-  onSubmit(form){
+
+  onSubmit(form) {
     form.groupNum = this.group;
     form.formula = this.formula;
     form.idClass = this.idClass;
-    if(this.payment != 'no'){
+    if (this.payment != 'no') {
       form.payment = this.payment;
       form.isFee = 1;
-      this.classService.getDataById(this.idClass).subscribe(classes =>{
-        this.days = classes['dayStart'];
-        // var invoice = {
-        //   idCourse: classes['course'].idCourse,
-        //   studentName: 
-        // }
-      });
-    }else{
+    } else {
       form.isFee = 0;
     }
-    this.registerService.postData(form).subscribe(data =>{
-      if(data != null){
+    this.registerService.postData(form).subscribe(data => {
+      if (data != null) {
         this.snackBar.open("Success!!!", "Add", {
           duration: 2000,
         });
         this.isPay = true;
-      }else{
+        this.classService.getDataById(this.idClass).subscribe(classes => {
+          this.days = classes['dayStart'];
+          if (Number(form.isFee) == 1) {
+            var invoice = {
+              idCourse: classes['course'].idCourse,
+              studentName: form.nameRegister,
+              idEmployee: '',
+              dateInvoice: new Date(),
+              groupNum: form.groupNum,
+              cost: this.fee,
+              payment: form.payment,
+              idRegister: data['idRegister']
+            }
+            this.invoiceService.postData(invoice).subscribe(inv => {
+              if (inv != null) {
+                console.log("Success");
+              } else {
+                console.log("fail");
+              }
+            });
+          }
+        });
+      } else {
         this.snackBar.open("Fail!!!", "Add", {
           duration: 2000,
         });
       }
     });
-    
+
   }
 }

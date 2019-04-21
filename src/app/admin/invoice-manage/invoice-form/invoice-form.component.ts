@@ -29,24 +29,18 @@ export class InvoiceFormComponent implements OnInit {
   }
 
   constructor(private invoiceService: InvoiceService,
-    private studentService: StudentService,
     private employeeService: EmployeeService,
     private courseService: CourseService,
     public dialogRef: MatDialogRef<InvoiceFormComponent>,
     private snackBar: MatSnackBar) { }
 
   allCourse : any;
-  allStudent : any;
   allEmployee : any;
 
   ngOnInit() {
     this.courseService.getData().subscribe(data =>{
       if(data != null)
         this.allCourse = data;
-    });
-    this.studentService.getData().subscribe(data =>{
-      if(data != null)
-        this.allStudent = data;
     });
     this.employeeService.getData().subscribe(data =>{
       if(data != null)

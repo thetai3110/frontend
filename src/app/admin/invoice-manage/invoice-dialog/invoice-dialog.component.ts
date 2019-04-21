@@ -16,7 +16,6 @@ export class InvoiceDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<InvoiceDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private invoiceService: InvoiceService,
-    private studentService: StudentService,
     private employeeService: EmployeeService,
     private courseService: CourseService,
     private snackBar: MatSnackBar) { }
@@ -38,17 +37,12 @@ export class InvoiceDialogComponent implements OnInit {
   }
 
   allCourse: any;
-  allStudent: any;
   allEmployee: any;
 
   ngOnInit() {
     this.courseService.getData().subscribe(data => {
       if (data != null)
         this.allCourse = data;
-    });
-    this.studentService.getData().subscribe(data => {
-      if (data != null)
-        this.allStudent = data;
     });
     this.employeeService.getData().subscribe(data => {
       if (data != null)

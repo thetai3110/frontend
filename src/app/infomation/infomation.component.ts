@@ -5,6 +5,8 @@ import { RegisterService } from '../services/register.service';
 import { RegisterToStudyService } from '../services/register-to-study.service';
 import { MatSnackBar } from '@angular/material';
 import { ClassesService } from '../services/classes.service';
+import { InvoiceService } from '../services/invoice.service';
+import { InvoiceDetailService } from '../services/invoice-detail.service';
 
 @Component({
   selector: 'app-infomation',
@@ -15,6 +17,8 @@ export class InfomationComponent implements OnInit {
 
   constructor(private router: ActivatedRoute,
     private registerService: RegisterService,
+    private invoiceService: InvoiceService,
+    private invoiceDetailService: InvoiceDetailService,
     private registerToStudyService: RegisterToStudyService,
     private classesService: ClassesService,
     private snackBar: MatSnackBar) { }
@@ -38,11 +42,17 @@ export class InfomationComponent implements OnInit {
   n = 1;
   data = [];
   days: Date;
+  idInvoice = 0;
 
   ngOnInit() {
     this.router.params.subscribe(data => {
       if (data != null) {
         this.id = data.id;
+        this.invoiceService.getDataByRegister(data.id).subscribe(inv =>{
+          if(inv != null){
+            this.idInvoice = inv['idInvoice'];
+          }
+        });
         this.registerService.getDataById(data.id).subscribe(reg => {
           if (reg != null)
             this.classesService.getDataById(reg['idClass']).subscribe(classes =>{
@@ -64,7 +74,21 @@ export class InfomationComponent implements OnInit {
   onSubmit(form) {
     this.data[this.n - 1] = form;
     this.registerToStudyService.postData(this.data, this.id).subscribe(res => {
-      if (Number(res) == 1) {
+      if (res!= null) {
+        if(Number(this.idInvoice) != 0){
+          for(var i=0;i<this.num;i++){
+            var detail = {
+              idInvoice: this.idInvoice,
+              idStudent: res[i].idStudent
+            }
+            this.invoiceDetailService.postData(detail).subscribe(det =>{
+              if(det != null){
+                console.log("success");
+                
+              }
+            });
+          }
+        }
         this.snackBar.open("Success!!!", "Info", {
           duration: 2000,
         });
