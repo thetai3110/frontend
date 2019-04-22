@@ -25,6 +25,7 @@ import { ExamCertificateComponent } from './admin/exam-certificate/exam-certific
 import { SearchsComponent } from './searchs/searchs.component';
 import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';
 import { InfomationComponent } from './infomation/infomation.component';
+import { AcceptComponent } from './admin/class-manage/teaching-assignment/accept/accept.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'personal', component: PersonalPageComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'information/:id', component: InfomationComponent},
+  {path: 'class/teaching-assignment/:id/:idLec', component: AcceptComponent},
   {
     path: 'admin', 
     component: AdminComponent,

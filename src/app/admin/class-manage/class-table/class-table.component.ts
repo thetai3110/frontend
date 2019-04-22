@@ -3,11 +3,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClassesService } from 'src/app/services/classes.service';
-import { faPen, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrashAlt, faPlusCircle, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material';
 import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { ClassDeleteComponent } from '../class-delete/class-delete.component';
 import { ClassFormComponent } from '../class-form/class-form.component';
+import { TeachingAssignmentComponent } from '../teaching-assignment/teaching-assignment.component';
 
 @Component({
   selector: 'app-class-table',
@@ -19,7 +20,7 @@ export class ClassTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
+  faPaperPlane = faPaperPlane; faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle; 
   displayedColumns= ['id','name','course','lecturers','room','dayStart','size','minSize','maxSize','status','date','tool'];
   length = 100;
   pageSize = 10;
@@ -75,6 +76,15 @@ export class ClassTableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.reloadTable();
+    });
+  }
+
+  onOpenLecturers(idClass) {
+    const dialogRef = this.dialog.open(TeachingAssignmentComponent, {
+      width: '900px',
+      data: idClass
+    });
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

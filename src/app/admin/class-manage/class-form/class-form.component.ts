@@ -18,18 +18,17 @@ export class ClassFormComponent implements OnInit {
   form: FormGroup = new FormGroup({
     idRoom: new FormControl('1', [Validators.required]),
     idCourse: new FormControl('', [Validators.required]),
-    idLecturers: new FormControl('', [Validators.required]),
+    idLecturers: new FormControl(''),
     className: new FormControl('', [Validators.required]),
     dayStart: new FormControl('', [Validators.required]),
     size: new FormControl('0'),
     minSize: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     maxSize: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     status: new FormControl('0', [Validators.required, Validators.pattern("[0-9]*")]),
-    caculator: new FormControl('', [Validators.required])
+    caculator: new FormControl('')
   });
 
   constructor(private classesService: ClassesService,
-    private lecturersService: LecturersService,
     private courseService: CourseService,
     private roomService: RoomService,
     private schooldayService: SchooldayService,
@@ -49,9 +48,6 @@ export class ClassFormComponent implements OnInit {
   ngOnInit() {
     this.courseService.getData().subscribe(data => {
       this.allCourse = data;
-    });
-    this.lecturersService.getData().subscribe(data => {
-      this.allLec = data;
     });
     this.roomService.getData().subscribe(data => {
       this.allRoom = data;

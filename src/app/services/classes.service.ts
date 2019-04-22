@@ -65,4 +65,12 @@ export class ClassesService {
     return this.http.post('http://localhost:8080/class/update/'+id, data);
   }
 
+  updateData1(id, data){
+    return this.http.post('http://localhost:8080/class/update1/'+id, data);
+  }
+
+  teachingAssignment(id, data){
+    return this.http.post('http://localhost:8080/class/teaching-assignment/'+id, data);
+  }
+
 }

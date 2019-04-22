@@ -10,7 +10,7 @@
     <mat-form-field>
       <mat-label>Phòng học*</mat-label>
       <select matNativeControl formControlName="idRoom">
-        <option *ngFor="let acc of allRoom " [value]="acc.idRoom" >{{ acc.roomName }}</option>
+        <option *ngFor="let acc of allRoom " [value]="acc.idRoom">{{ acc.roomName }}</option>
       </select>
       <mat-error *ngIf="hasError('idRoom', 'required')">Phòng học không được bỏ trống</mat-error>
     </mat-form-field>
@@ -21,14 +21,6 @@
         <option *ngFor="let acc of allCourse " [value]="acc.idCourse">{{ acc.course + '-' + acc.level.level }}</option>
       </select>
       <mat-error *ngIf="hasError('idCourse', 'required')">Khóa học không được bỏ trống</mat-error>
-    </mat-form-field>
-    <!-- Giảng viên -->
-    <mat-form-field>
-      <mat-label>Giảng viên*</mat-label>
-      <select matNativeControl formControlName="idLecturers">
-        <option *ngFor="let acc of allLec " [value]="acc.idLecturers">{{ acc.lecturersName }}</option>
-      </select>
-      <mat-error *ngIf="hasError('idLecturers', 'required')">Giảng viên không được bỏ trống</mat-error>
     </mat-form-field>
     <!-- Ngày bắt đầu -->
     <mat-form-field>

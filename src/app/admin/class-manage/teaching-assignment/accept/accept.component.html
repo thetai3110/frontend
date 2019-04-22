@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="container">
+  <div [hidden]="notReg">
+    <h3>Bạn là: {{ lecturers.lecturersName }} - Email: {{ lecturers.email }}</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Lớp</th>
+          <th>Thời gian</th>
+          <th>Ngày bắt đầu</th>
+          <th>Địa điểm</th>
+          <th>Số lượt đăng ký</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ classes.className }}</td>
+          <td>
+            <p *ngFor="let cd of classes.classDays">{{cd.schoolDay.day}} ( {{ cd.ca.timeStart }}-{{cd.ca.timeEnd}} )
+            </p>
+          </td>
+          <td>{{ classes.dayStart | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ space }}, {{ roomName }}</td>
+          <td>{{ classes.size }}/{{ classes.maxSize }}</td>
+          <td><button mat-raised-button color="primary" (click)="onAccept();">Chấp nhận</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h1 [hidden]="isReg">Lớp này đã có giảng viên đăng ký dạy!!!</h1>
+</div>
+<app-footer></app-footer>

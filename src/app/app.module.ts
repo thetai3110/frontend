@@ -57,6 +57,7 @@ import { RoomDialogComponent } from './admin/room-manage/room-dialog/room-dialog
 import { RoomDeleteComponent } from './admin/room-manage/room-delete/room-delete.component';
 import { RoomFormComponent } from './admin/room-manage/room-form/room-form.component';
 import { InvoiceDetailComponent } from './admin/invoice-manage/invoice-detail/invoice-detail.component';
+import { TeachingAssignmentComponent } from './admin/class-manage/teaching-assignment/teaching-assignment.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,7 @@ import { InvoiceDetailComponent } from './admin/invoice-manage/invoice-detail/in
     EmployeeDialogComponent, EmployeeDeleteComponent, EmployeeFormComponent,
     LecturersFormComponent, LecturersDeleteComponent, LecturersDialogComponent,
     CourseDialogComponent, CourseDeleteComponent, CourseFormComponent,
-    ClassDeleteComponent, ClassDialogComponent, ClassFormComponent,
+    ClassDeleteComponent, ClassDialogComponent, ClassFormComponent, TeachingAssignmentComponent,
     LessonDialogComponent, LessonFormComponent ,LessonDeleteComponent,
     AccountDeleteComponent, AccountFormComponent, AccountDialogComponent,
     PersonalDialogComponent,

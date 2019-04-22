@@ -27,7 +27,11 @@
       </ng-container>
       <ng-container matColumnDef="lecturers">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Giảng viên</th>
-        <td mat-cell *matCellDef="let item">{{ item.lecturers !=null ? item.lecturers.lecturersName : '' }}</td>
+        <td mat-cell *matCellDef="let item">{{ item.lecturers !=null ? item.lecturers.lecturersName : '' }}  
+          <ng-container *ngIf="item.lecturers ==null">
+            <button mat-raised-button color="primary" (click)="onOpenLecturers(item.idClass)"><fa-icon [icon]="faPaperPlane"></fa-icon></button>
+          </ng-container>
+        </td>
       </ng-container>
       <ng-container matColumnDef="room">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Phòng học</th>

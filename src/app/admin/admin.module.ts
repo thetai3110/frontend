@@ -72,6 +72,9 @@ import { RoomTableComponent } from './room-manage/room-table/room-table.componen
 import { InvoiceDetailComponent } from './invoice-manage/invoice-detail/invoice-detail.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { HeaderNavigationComponent } from './layout/header-navigation/header-navigation.component';
+import { TeachingAssignmentComponent } from './class-manage/teaching-assignment/teaching-assignment.component';
+import { AcceptComponent } from './class-manage/teaching-assignment/accept/accept.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -137,8 +140,11 @@ import { HeaderNavigationComponent } from './layout/header-navigation/header-nav
     InvoiceDetailComponent,
     SidebarComponent,
     HeaderNavigationComponent,
+    TeachingAssignmentComponent,
+    AcceptComponent,
   ],
   imports: [
+    SharedModule,
     CommonModule,
     FontAwesomeModule,
     RouterModule,
