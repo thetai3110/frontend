@@ -11,3 +11,14 @@ button, input[type="button"]{
 h1{
     text-align: center; 
 }
+mat-checkbox{
+   display: block;
+}
+.group .txt{
+    width: 70%;
+    padding-right: 3%;
+}
+.group .select{
+    width: 30%;
+    padding-left: 2%;
+}
