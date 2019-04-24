@@ -20,7 +20,7 @@ export class ExamTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
-  displayedColumns= ['id','class','dayExam','timeExam','duration','status','tool'];
+  displayedColumns= ['id','course','duration','status','tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];

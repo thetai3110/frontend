@@ -18,6 +18,8 @@ export class SearchsComponent implements OnInit {
 
   isInfo = true;
   isMarks = true;
+  student = [];
+  showData = true;
 
   ngOnInit() {
   }
@@ -41,7 +43,12 @@ export class SearchsComponent implements OnInit {
 
   onSubmit(form){
     this.studentService.getDataByNameAndCmnd(form.studentName, form.cmnd).subscribe(data =>{
-      console.log(data);
+      if(data != null){
+        this.student = data;
+        this.showData = false;
+      }else{
+        this.showData = true;
+      }
     });
   }
 }

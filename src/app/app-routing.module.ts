@@ -20,7 +20,6 @@ import { StudentFormComponent } from './admin/student-manage/student-form/studen
 import { PersonalPageComponent } from './personal-page/personal-page.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CalendarOpenComponent } from './calendar-open/calendar-open.component';
-import { ClassByCourseComponent } from './calendar-open/class-by-course/class-by-course.component';
 import { ExamCertificateComponent } from './admin/exam-certificate/exam-certificate.component';
 import { SearchsComponent } from './searchs/searchs.component';
 import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';

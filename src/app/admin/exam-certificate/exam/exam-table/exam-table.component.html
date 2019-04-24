@@ -16,17 +16,9 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
         <td mat-cell *matCellDef="let item">{{ item.idExam }}</td>
       </ng-container>
-      <ng-container matColumnDef="class">
+      <ng-container matColumnDef="course">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Lớp</th>
-        <td mat-cell *matCellDef="let item">{{ item.clazz.className }}</td>
-      </ng-container>
-      <ng-container matColumnDef="dayExam">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ngày thi</th>
-        <td mat-cell *matCellDef="let item">{{ item.dayExam | date: 'dd-MM-yyyy'  }}</td>
-      </ng-container>
-      <ng-container matColumnDef="timeExam">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Giờ thi</th>
-        <td mat-cell *matCellDef="let item">{{ item.timeExam }}</td>
+        <td mat-cell *matCellDef="let item">{{ item.course.course }} - {{ item.course.level.level }}</td>
       </ng-container>
       <ng-container matColumnDef="duration">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Thời lượng</th>
