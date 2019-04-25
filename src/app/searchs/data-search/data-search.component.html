@@ -1,3 +1,43 @@
-<p>
-  {{ student.studentName }}
-</p>
+<div class="info">
+  <h3>Thông tin</h3>
+  <div class="student">
+    <ul *ngFor="let stu of student; index as i">
+      <ng-container *ngIf="i==0">
+        <li>Tên: {{ stu.studentName }}</li>
+        <li>CMND: {{ stu.cmnd }}</li>
+        <li>Ngày sinh: {{ stu.studentDate | date: 'dd-MM-yyyy' }}</li>
+        <li>Giới tính: {{ stu.sex == 1 ? 'Nam' : 'Nữ' }}</li>
+        <li>Địa chỉ: {{ stu.address }}</li>
+        <li>Email: {{ stu.email }}</li>
+        <li>Phone: {{ stu.phone }}</li>
+        <li>Đối tượng: {{ stu.job }}</li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="course">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Khóa học</th>
+          <th>Lớp</th>
+          <th>Ngày bắt đầu</th>
+          <th>Địa điểm</th>
+          <th>Số lượt đăng ký</th>
+          <th>Học phí</th>
+          <th>Trạng thái lớp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stu of student">
+          <td>{{ stu.course }}-{{ stu.levelCourse}}</td>
+          <td>{{ stu.className }}</td>
+          <td>{{ stu.dayStart | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ stu.space }}</td>
+          <td>{{ stu.size }}/{{ stu.maxsize }}</td>
+          <td>{{ stu.isfee == 1 ? 'Đã đóng' : 'Chưa đóng' }}</td>
+          <td>{{ stu.statusClass == 1 ? 'Đã mở' : 'Chưa mở' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

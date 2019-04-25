@@ -1,0 +1,26 @@
+.student{
+    float: left;
+    width: 30%;
+}
+.course{
+    float: right;
+    width: 70%;
+}
+h3{
+    text-align: center;
+    font-weight: 300;
+    color: blue;
+    padding: 10px 0px 15px 0px;
+}
+table th{
+    font-weight: 350;
+    background-color: #26a8d3;
+    color: #ffffff;
+}
+table th, td{
+    border: 1px solid rgb(192, 192, 192);
+}
+.info{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}

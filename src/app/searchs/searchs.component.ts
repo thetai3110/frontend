@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StudentService } from '../services/student.service';
+import { StudentClassService } from '../services/student-class.service';
 
 @Component({
   selector: 'app-searchs',
@@ -9,7 +10,8 @@ import { StudentService } from '../services/student.service';
 })
 export class SearchsComponent implements OnInit {
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService,
+             private studentClassService: StudentClassService) { }
 
   form: FormGroup = new FormGroup({
     studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -20,6 +22,7 @@ export class SearchsComponent implements OnInit {
   isMarks = true;
   student = [];
   showData = true;
+  dataSearch = [];
 
   ngOnInit() {
   }
@@ -40,6 +43,7 @@ export class SearchsComponent implements OnInit {
   public hasError = (controlName: string, errorName: string) =>{
     return this.form.controls[controlName].hasError(errorName);
   }
+
 
   onSubmit(form){
     this.studentService.getDataByNameAndCmnd(form.studentName, form.cmnd).subscribe(data =>{

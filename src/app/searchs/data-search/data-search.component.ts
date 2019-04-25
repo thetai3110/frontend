@@ -7,11 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DataSearchComponent implements OnInit {
 
-  @Input() student:[];
+  @Input() student:{};
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(){
+
   }
 
 }
