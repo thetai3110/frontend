@@ -1,3 +1,41 @@
-<p>
-  room-calender works!
-</p>
+<div class='main'>
+  <div class="month"><button mat-stroked-button color="basic" (click)="prev()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button><button mat-stroked-button color="basic">{{ month }}</button><button mat-stroked-button color="basic" (click)="next()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button></div>
+  <table class="heavyTable">
+    <thead>
+      <tr>
+        <th>Thứ 2</th>
+        <th>Thứ 3</th>
+        <th>Thứ 4</th>
+        <th>Thứ 5</th>
+        <th>Thứ 6</th>
+        <th>Thứ 7</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <button *ngFor="let ca of cas" mat-stroked-button color="basic">{{ ca.idCa }}</button>
+        </td>
+        <td>
+          <button *ngFor="let ca of cas" mat-stroked-button color="basic">{{ ca.idCa }}</button>
+        </td>
+        <td>
+          <button *ngFor="let ca of cas" mat-stroked-button color="basic">{{ ca.idCa }}</button>
+        </td>
+        <td>
+          <button *ngFor="let ca of cas" mat-stroked-button color="basic">{{ ca.idCa }}</button>
+        </td>
+        <td>
+          <button *ngFor="let ca of cas" mat-stroked-button color="basic">{{ ca.idCa }}</button>
+        </td>
+        <td>
+          <button *ngFor="let ca of cas" mat-stroked-button color="basic">{{ ca.idCa }}</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
