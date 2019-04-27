@@ -3,8 +3,8 @@
     margin: 25px auto;
 }
 mat-form-field{
-    width: 40%;
-    margin: 15px auto;
+    width: 300px;
+    margin-left: 15px;;
 }
 mat-radio-button{
     margin-right: 20px;

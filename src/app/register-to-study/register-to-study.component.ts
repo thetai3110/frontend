@@ -44,8 +44,12 @@ export class RegisterToStudyComponent implements OnInit {
   }
 
   onChange(event) {
-    this.reloadTable(event.target.value);
-    this.isClass = false;
+    if (event.target.value == "") {
+      this.isClass = true;
+    } else {
+      this.reloadTable(event.target.value);
+      this.isClass = false;
+    }
   }
 
   showCourse(idEdu) {
@@ -63,7 +67,7 @@ export class RegisterToStudyComponent implements OnInit {
       if (rs != null) {
         this.dataSource = new MatTableDataSource(rs);
         this.dataSource.sort = this.sort;
-      }else{
+      } else {
         this.dataSource = null;
       }
     });
