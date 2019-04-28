@@ -5,25 +5,28 @@
       (click)="next()">
       <mat-icon>keyboard_arrow_right</mat-icon>
     </button></div>
-  <table class="heavyTable">
-    <thead>
-      <tr>
-        <th *ngFor="let sd of schoolday">{{ sd.day }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td *ngFor="let sd of schoolday">
-          <ng-container *ngFor="let ca of cas">
-            <ng-container *ngFor="let cd of classDay">
-              <button *ngIf="sd.idSchoolDay+'' == cd.charAt(0) && ca.idCa+'' == cd.charAt(2) && cd.charAt(4) == 'f'"
-                mat-flat-button color="basic">{{ ca.idCa }}</button>
-              <button *ngIf="sd.idSchoolDay == cd.charAt(0) && ca.idCa == cd.charAt(2) && cd.charAt(4) == 't'" mat-flat-button
-                color="primary">{{ ca.idCa }}</button>
+  <div *ngFor="let item of classDays; index as i">
+    <h5>Phòng {{ i+1 }}</h5>
+    <table class="heavyTable">
+      <thead>
+        <tr>
+          <th *ngFor="let sd of schoolday">{{ sd.day }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td *ngFor="let sd of schoolday">
+            <ng-container *ngFor="let ca of cas">
+              <ng-container *ngFor="let cd of item">
+                <button *ngIf="sd.idSchoolDay+'' == cd.charAt(0) && ca.idCa+'' == cd.charAt(2) && cd.charAt(4) == 'f'"
+                  mat-flat-button color="basic">{{ ca.idCa }}</button>
+                <button *ngIf="sd.idSchoolDay == cd.charAt(0) && ca.idCa == cd.charAt(2) && cd.charAt(4) == 't'"
+                  mat-flat-button color="primary">{{ ca.idCa }}</button>
+              </ng-container>
             </ng-container>
-          </ng-container>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

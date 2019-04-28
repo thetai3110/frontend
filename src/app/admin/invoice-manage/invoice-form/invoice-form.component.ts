@@ -3,8 +3,6 @@ import { MatDialogRef, MatSnackBar, MatDialog } from '@angular/material';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { CourseService } from 'src/app/services/course.service';
-import { InvoiceDetailComponent } from '../invoice-detail/invoice-detail.component';
 import { ClassesService } from 'src/app/services/classes.service';
 
 @Component({

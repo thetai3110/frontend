@@ -3,6 +3,7 @@ import { MatDatepickerInputEvent } from '@angular/material';
 import { CaService } from 'src/app/services/ca.service';
 import { ClassesService } from 'src/app/services/classes.service';
 import { SchooldayService } from 'src/app/services/schoolday.service';
+import { RoomService } from 'src/app/services/room.service';
 
 @Component({
   selector: 'app-room-calender',
@@ -13,20 +14,32 @@ export class RoomCalenderComponent implements OnInit {
 
   constructor(private caService: CaService,
     private classesService: ClassesService,
-    private schooldayService: SchooldayService) { }
+    private schooldayService: SchooldayService,
+    private roomService: RoomService) { }
 
   cas: any;
   schoolday: any;
   month = "01/2019";
   datas: any;
-  classDay = [];
+  classDays = [];
+  allRoom: any;
 
   ngOnInit() {
+    this.roomService.getData().subscribe(rooms =>{
+      this.allRoom = rooms;
+      for(var i = 0;i<this.allRoom.length;i++){
+        this.getCalender(this.allRoom[i].idRoom);
+      }
+    });
+  }
+
+  getCalender(idRoom){
+    var classDay = [];
     this.caService.getData().subscribe(data => {
       this.cas = data;
       this.schooldayService.getData().subscribe(data1 => {
         this.schoolday = data1;
-        this.classesService.getClassDayByRoom(1).subscribe(data2 => {
+        this.classesService.getClassDayByRoom(idRoom).subscribe(data2 => {
           this.datas = data2;
           for (let i = 0; i < this.schoolday.length; i++) {
             for (let j = 0; j < this.cas.length; j++) {
@@ -39,20 +52,21 @@ export class RoomCalenderComponent implements OnInit {
               }
               if (ck == 0) {
                 key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f";
-                this.classDay.push(key);
+                classDay.push(key);
               } else {
                 key = this.schoolday[i].idSchoolDay+ "-" + this.cas[j].idCa + "-f";
-                this.classDay.push(key);
+                classDay.push(key);
                 key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-t";
-                this.classDay.push(key);
+                classDay.push(key);
               }
             }
           }
           //Danh sách
           for (let k = 0; k < this.datas.length; k++) {
-            var pos = this.classDay.indexOf(this.datas[k].idSchoolday + "-" + this.datas[k].idCa + "-f");
-            this.classDay.splice(pos, 1);
+            var pos = classDay.indexOf(this.datas[k].idSchoolday + "-" + this.datas[k].idCa + "-f");
+            classDay.splice(pos, 1);
           }
+          this.classDays.push(classDay);
         });
       });
     });
@@ -88,6 +102,10 @@ export class RoomCalenderComponent implements OnInit {
       a = m;
     }
     this.month = a + "/" + y;
+  }
+
+  finDay(dayStart, duration){
+    
   }
 
 }
