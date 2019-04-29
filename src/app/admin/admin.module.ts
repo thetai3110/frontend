@@ -8,11 +8,10 @@ import { MatInputModule, MatDialogModule, MatNativeDateModule,
         MatFormFieldModule, MatDatepickerModule, MatRadioModule,
         MatButtonModule, MatSelectModule, MatMenuModule,
         MatIconModule, MatExpansionModule, MatCheckboxModule,
-        MatTabsModule, MatSnackBarModule, MatTooltipModule} from '@angular/material';
+        MatTabsModule, MatSnackBarModule, MatTooltipModule,
+        MatSlideToggleModule } from '@angular/material';
 
 import { AdminComponent } from './admin.component';
-import { NavbarTopComponent } from './layout/navbar-top/navbar-top.component';
-import { NavbarLeftComponent } from './layout/navbar-left/navbar-left.component';
 import { CourseManageComponent } from './course-manage/course-manage.component';
 import { ClassManageComponent } from './class-manage/class-manage.component';
 import { EmployeeManageComponent } from './employee-manage/employee-manage.component';
@@ -70,17 +69,18 @@ import { RoomDeleteComponent } from './room-manage/room-delete/room-delete.compo
 import { RoomCalenderComponent } from './room-manage/room-calender/room-calender.component';
 import { RoomTableComponent } from './room-manage/room-table/room-table.component';
 import { InvoiceDetailComponent } from './invoice-manage/invoice-detail/invoice-detail.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { HeaderNavigationComponent } from './layout/header-navigation/header-navigation.component';
 import { TeachingAssignmentComponent } from './class-manage/teaching-assignment/teaching-assignment.component';
 import { AcceptComponent } from './class-manage/teaching-assignment/accept/accept.component';
 import { SharedModule } from '../shared/shared.module';
+import { RegistrationInfomationComponent } from './invoice-manage/registration-infomation/registration-infomation.component';
+import { MarksComponent } from './exam-certificate/marks/marks.component';
+import { EditMarksComponent } from './exam-certificate/marks/edit-marks/edit-marks.component';
+import { EditRegisterComponent } from './invoice-manage/registration-infomation/edit-register/edit-register.component';
+import { DeleteRegisterComponent } from './invoice-manage/registration-infomation/delete-register/delete-register.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
-    NavbarTopComponent,
-    NavbarLeftComponent,
     CourseManageComponent,
     ClassManageComponent,
     EmployeeManageComponent,
@@ -138,10 +138,13 @@ import { SharedModule } from '../shared/shared.module';
     RoomCalenderComponent,
     RoomTableComponent,
     InvoiceDetailComponent,
-    SidebarComponent,
-    HeaderNavigationComponent,
     TeachingAssignmentComponent,
     AcceptComponent,
+    RegistrationInfomationComponent,
+    MarksComponent,
+    EditMarksComponent,
+    EditRegisterComponent,
+    DeleteRegisterComponent,
   ],
   imports: [
     SharedModule,
@@ -167,7 +170,8 @@ import { SharedModule } from '../shared/shared.module';
     MatCheckboxModule,
     MatTabsModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSlideToggleModule
   ]
 })
 export class AdminModule { }

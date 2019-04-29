@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClassesService } from 'src/app/services/classes.service';
 import { faPen, faTrashAlt, faPlusCircle, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { ClassDeleteComponent } from '../class-delete/class-delete.component';
 import { ClassFormComponent } from '../class-form/class-form.component';
@@ -29,7 +29,8 @@ export class ClassTableComponent implements OnInit {
   result : any;
 
   constructor(private classesService: ClassesService,
-            public dialog: MatDialog) { }
+            public dialog: MatDialog,
+            private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.reloadTable();
@@ -96,6 +97,44 @@ export class ClassTableComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  openClass(e, id, name){
+    if(e.checked == true){ 
+      var rs = confirm("Mở lớp "+ name +"?");
+      if (rs == true) {
+        this.classesService.openClass(id).subscribe(data =>{
+          if(Boolean(data) == true) {
+            this.snackBar.open("Success!!!", "OpenClass", {
+              duration: 2000,
+            });
+          }else{
+            this.snackBar.open("Fail!!!", "OpenClass", {
+              duration: 2000,
+            });
+          }
+          this.reloadTable();
+        });
+      }
+      this.reloadTable();
+    }else{
+      var rs = confirm("Đóng lớp "+ name +"?");
+      if (rs == true) {
+        this.classesService.closeClass(id).subscribe(data =>{
+          if(Boolean(data) == true) {
+            this.snackBar.open("Success!!!", "CloseClass", {
+              duration: 2000,
+            });
+          }else{
+            this.snackBar.open("Fail!!!", "CloseClass", {
+              duration: 2000,
+            });
+          }
+          this.reloadTable();
+        });
+      }
+      this.reloadTable();
+    }
   }
 
 }

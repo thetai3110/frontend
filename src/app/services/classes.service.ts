@@ -69,8 +69,19 @@ export class ClassesService {
     return this.http.post('http://localhost:8080/class/update1/'+id, data);
   }
 
+  //Phân công giảng dạy
   teachingAssignment(id, data){
     return this.http.post('http://localhost:8080/class/teaching-assignment/'+id, data);
+  }
+
+  //Mở lớp
+  openClass(id){
+    return this.http.get('http://localhost:8080/class/open/'+id);
+  }
+
+  //Mở lớp
+  closeClass(id){
+    return this.http.get('http://localhost:8080/class/close/'+id);
   }
 
 }

@@ -32,7 +32,6 @@ import { ClassFormComponent } from './admin/class-manage/class-form/class-form.c
 import { LessonDialogComponent } from './admin/course-manage/course-lesson/lesson-dialog/lesson-dialog.component';
 import { LessonFormComponent } from './admin/course-manage/course-lesson/lesson-form/lesson-form.component';
 import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesson-delete/lesson-delete.component';
-import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';
 import { SharedModule } from './shared/shared.module';
 import { AccountDeleteComponent } from './admin/account-manage/account-delete/account-delete.component';
 import { AccountFormComponent } from './admin/account-manage/account-form/account-form.component';
@@ -58,6 +57,8 @@ import { RoomDeleteComponent } from './admin/room-manage/room-delete/room-delete
 import { RoomFormComponent } from './admin/room-manage/room-form/room-form.component';
 import { InvoiceDetailComponent } from './admin/invoice-manage/invoice-detail/invoice-detail.component';
 import { TeachingAssignmentComponent } from './admin/class-manage/teaching-assignment/teaching-assignment.component';
+import { EditRegisterComponent } from './admin/invoice-manage/registration-infomation/edit-register/edit-register.component';
+import { DeleteRegisterComponent } from './admin/invoice-manage/registration-infomation/delete-register/delete-register.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { TeachingAssignmentComponent } from './admin/class-manage/teaching-assig
     InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent, InvoiceDetailComponent,
     ExamFormComponent, ExamDialogComponent, ExamDeleteComponent,
     CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent,
-    RoomDialogComponent, RoomDeleteComponent, RoomFormComponent
+    RoomDialogComponent, RoomDeleteComponent, RoomFormComponent,
+    EditRegisterComponent, DeleteRegisterComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
