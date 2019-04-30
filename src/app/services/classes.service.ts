@@ -98,4 +98,8 @@ export class ClassesService {
     return this.http.get('http://localhost:8080/class/finish/'+id);
   }
 
+  //Hủy lớp
+  cancelClass(id){
+    return this.http.get('http://localhost:8080/class/cancel/'+id);
+  }
 }

@@ -130,4 +130,5 @@ export class ClassFormComponent implements OnInit {
     }
     console.log(this.days);
   }
+  
 }

@@ -8,6 +8,7 @@
       <select matNativeControl (change)="onChangeStatus($event)">
         <option value="0">Đang mở đăng ký</option>
         <option value="1">Đã mở</option>
+        <option value="2">Lớp đã hủy</option>
         <option value="3">Đã kết thúc</option>
       </select>
     </mat-form-field>
@@ -84,13 +85,13 @@
           <button mat-raised-button color="primary" (click)="openDialog(item.idClass)">
             <fa-icon [icon]="faPen"></fa-icon>
           </button>
-          <button mat-raised-button color="accent" (click)="onFinish1(item.idClass, item.className)">
+          <button mat-raised-button color="accent" (click)="onFinish(item.idClass, item.className)">
             <fa-icon [icon]="faCalendarCheck"></fa-icon>
           </button><br>
           <button mat-raised-button color="warn" (click)="onDelete(item.idClass)">
             <fa-icon [icon]="faTrashAlt"></fa-icon>
           </button>
-          <button mat-raised-button color="basic" (click)="onDestroy(item.idClass)">
+          <button mat-raised-button color="basic" (click)="onCancel(item.idClass)">
             <fa-icon [icon]="faTimesCircle"></fa-icon>
           </button>
         </td>

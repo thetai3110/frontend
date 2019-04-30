@@ -25,15 +25,15 @@ export class RoomCalenderComponent implements OnInit {
   allRoom: any;
 
   ngOnInit() {
-    this.roomService.getData().subscribe(rooms =>{
+    this.roomService.getData().subscribe(rooms => {
       this.allRoom = rooms;
-      for(var i = 0;i<this.allRoom.length;i++){
+      for (var i = 0; i < this.allRoom.length; i++) {
         this.getCalender(this.allRoom[i].idRoom);
       }
     });
   }
 
-  getCalender(idRoom){
+  getCalender(idRoom) {
     var classDay = [];
     this.caService.getData().subscribe(data => {
       this.cas = data;
@@ -45,18 +45,20 @@ export class RoomCalenderComponent implements OnInit {
             for (let j = 0; j < this.cas.length; j++) {
               var key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa;
               var ck = 0;
+              var name = "";
               for (var k = 0; k < this.datas.length; k++) {
-                if (key == this.datas[k].idSchoolday + "-" + this.datas[k].idCa){
+                if (key == this.datas[k].idSchoolday + "-" + this.datas[k].idCa) {
                   ck = 1;
+                  name = this.datas[k].className;
                 }
               }
               if (ck == 0) {
                 key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f";
                 classDay.push(key);
               } else {
-                key = this.schoolday[i].idSchoolDay+ "-" + this.cas[j].idCa + "-f";
+                key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f";
                 classDay.push(key);
-                key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-t";
+                key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-t-"+ name;
                 classDay.push(key);
               }
             }
@@ -102,10 +104,6 @@ export class RoomCalenderComponent implements OnInit {
       a = m;
     }
     this.month = a + "/" + y;
-  }
-
-  finDay(dayStart, duration){
-    
   }
 
 }

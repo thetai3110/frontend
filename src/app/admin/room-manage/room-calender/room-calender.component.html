@@ -19,9 +19,9 @@
             <ng-container *ngFor="let ca of cas">
               <ng-container *ngFor="let cd of item">
                 <button *ngIf="sd.idSchoolDay+'' == cd.charAt(0) && ca.idCa+'' == cd.charAt(2) && cd.charAt(4) == 'f'"
-                  mat-flat-button color="basic">{{ ca.idCa }}</button>
+                  mat-flat-button color="basic" [matTooltip]="ca.timeStart + '-' + ca.timeEnd">{{ ca.idCa }}</button>
                 <button *ngIf="sd.idSchoolDay == cd.charAt(0) && ca.idCa == cd.charAt(2) && cd.charAt(4) == 't'"
-                  mat-flat-button color="primary">{{ ca.idCa }}</button>
+                  mat-flat-button color="primary" [matTooltip]="ca.timeStart + '-' + ca.timeEnd + ' ( Lớp ' + cd.split('-')[3] +' )'">{{ ca.idCa }}</button>
               </ng-container>
             </ng-container>
           </td>

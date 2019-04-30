@@ -70,12 +70,22 @@ export class ClassTableComponent implements OnInit {
     });
   }
 
-  onFinish(id) {
-
-  }
-
-  onDestroy(id) {
-
+  onCancel(id) {
+    var rs = confirm("Hủy lớp có id là :"  + id + "?");
+    if (rs == true) {
+      this.classesService.cancelClass(id).subscribe(data => {
+        if (Boolean(data) == true) {
+          this.snackBar.open("Success!!!", "Cancel", {
+            duration: 2000,
+          });
+        } else {
+          this.snackBar.open("Fail!!!", "Cancel", {
+            duration: 2000,
+          });
+        }
+        this.reloadTable(this.status);
+      });
+    }
   }
 
   onOpenDialogAdd() {
@@ -154,7 +164,7 @@ export class ClassTableComponent implements OnInit {
     }
   }
 
-  onFinish1(id, name) {
+  onFinish(id, name) {
     var rs = confirm("Kết thuc lớp " + name + "?");
     if (rs == true) {
       this.classesService.finish(id).subscribe(data => {
