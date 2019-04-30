@@ -20,38 +20,39 @@ export class ClassTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faPaperPlane = faPaperPlane; faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle; 
+  faPaperPlane = faPaperPlane; faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
   faCalendarCheck = faCalendarCheck; faTimesCircle = faTimesCircle;
-  displayedColumns= ['id','name','course','lecturers','room','dayStart','size','minSize','maxSize','status','date','tool'];
+  displayedColumns = ['id', 'name', 'course', 'lecturers', 'room', 'dayStart', 'size', 'minSize', 'maxSize', 'status', 'date', 'tool'];
   length = 100;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   dataSource;
-  result : any;
+  result: any;
+  status = 0;
 
   constructor(private classesService: ClassesService,
-            public dialog: MatDialog,
-            private snackBar: MatSnackBar) { }
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.reloadTable();
+    this.reloadTable(this.status);
   }
 
-  applyFilter(filterValue: string){
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
- 
+
   openDialog(id): void {
-    this.classesService.getDataById(id).subscribe(data =>{
+    this.classesService.getDataById(id).subscribe(data => {
       this.result = data;
       const dialogRef = this.dialog.open(ClassDialogComponent, {
         width: '500px',
-        data:{
-          stu : this.result
+        data: {
+          stu: this.result
         }
       });
       dialogRef.afterClosed().subscribe(result => {
-        this.reloadTable();
+        this.reloadTable(this.status);
       });
     });
   }
@@ -59,25 +60,25 @@ export class ClassTableComponent implements OnInit {
   onDelete(id): void {
     const dialogRef = this.dialog.open(ClassDeleteComponent, {
       width: '250px',
-      data:{
-          id : id,
-          title : 1
+      data: {
+        id: id,
+        title: 1
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.reloadTable();
+      this.reloadTable(this.status);
     });
   }
 
-  onFinish(id){
-    
-  }
-
-  onDestroy(id){
+  onFinish(id) {
 
   }
-  
-  onOpenDialogAdd(){
+
+  onDestroy(id) {
+
+  }
+
+  onOpenDialogAdd() {
     const dialogRef = this.dialog.open(ClassFormComponent, {
       width: '500px',
       data: {
@@ -85,7 +86,7 @@ export class ClassTableComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.reloadTable();
+      this.reloadTable(this.status);
     });
   }
 
@@ -98,68 +99,75 @@ export class ClassTableComponent implements OnInit {
     });
   }
 
-  reloadTable(){
-    this.classesService.getData().subscribe(rs =>{
-      if(!rs)
-        return;
-      this.dataSource = new MatTableDataSource(rs);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
+  reloadTable(status) {
+    this.classesService.getDataByStatus(status).subscribe(rs => {
+      if (rs != null) {
+        this.dataSource = new MatTableDataSource(rs);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      }else{
+        this.dataSource = null;
+      }
     });
   }
 
-  openClass(e, id, name){
-    if(e.checked == true){ 
-      var rs = confirm("Mở lớp "+ name +"?");
+  onChangeStatus(e) {
+    this.status = e.target.value;
+    this.reloadTable(this.status);
+  }
+
+  openClass(e, id, name) {
+    if (e.checked == true) {
+      var rs = confirm("Mở lớp " + name + "?");
       if (rs == true) {
-        this.classesService.openClass(id).subscribe(data =>{
-          if(Boolean(data) == true) {
+        this.classesService.openClass(id).subscribe(data => {
+          if (Boolean(data) == true) {
             this.snackBar.open("Success!!!", "OpenClass", {
               duration: 2000,
             });
-          }else{
+          } else {
             this.snackBar.open("Fail!!!", "OpenClass", {
               duration: 2000,
             });
           }
-          this.reloadTable();
+          this.reloadTable(this.status);
         });
       }
-      this.reloadTable();
-    }else{
-      var rs = confirm("Đóng lớp "+ name +"?");
+      this.reloadTable(this.status);
+    } else {
+      var rs = confirm("Đóng lớp " + name + "?");
       if (rs == true) {
-        this.classesService.closeClass(id).subscribe(data =>{
-          if(Boolean(data) == true) {
+        this.classesService.closeClass(id).subscribe(data => {
+          if (Boolean(data) == true) {
             this.snackBar.open("Success!!!", "CloseClass", {
               duration: 2000,
             });
-          }else{
+          } else {
             this.snackBar.open("Fail!!!", "CloseClass", {
               duration: 2000,
             });
           }
-          this.reloadTable();
+          this.reloadTable(this.status);
         });
       }
-      this.reloadTable();
+      this.reloadTable(this.status);
     }
   }
 
-  onFinish1(id, name){
-    var rs = confirm("Kết thuc lớp "+ name +"?");
+  onFinish1(id, name) {
+    var rs = confirm("Kết thuc lớp " + name + "?");
     if (rs == true) {
-      this.classesService.finish(id).subscribe(data =>{
-        if(Boolean(data) == true) {
+      this.classesService.finish(id).subscribe(data => {
+        if (Boolean(data) == true) {
           this.snackBar.open("Success!!!", "Finish", {
             duration: 2000,
           });
-        }else{
+        } else {
           this.snackBar.open("Fail!!!", "Finish", {
             duration: 2000,
           });
         }
-        this.reloadTable();
+        this.reloadTable(this.status);
       });
     }
   }

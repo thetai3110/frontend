@@ -35,7 +35,7 @@ export class CourseDetailComponent implements OnInit {
       if (data != null)
         this.lessons = data;
     })
-    this.classesService.getDataByIdCourse(this.id).subscribe(data => {
+    this.classesService.getDataByIdCourseAndStatus(this.id, 0).subscribe(data => {
       if (data != null)
         this.classes = data;
     });

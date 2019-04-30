@@ -3,6 +3,13 @@
     Table
   </div>
   <div class="card-body">
+    <mat-form-field>
+      <mat-label>Tình trạng</mat-label>
+      <select matNativeControl (change)="onChangeStatus($event)">
+        <option value="1">Đang mở</option>
+        <option value="0">Đã đóng</option>
+      </select>
+    </mat-form-field>
     <div class="add">
       <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">

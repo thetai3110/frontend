@@ -63,7 +63,7 @@ export class RegisterToStudyComponent implements OnInit {
   }
 
   reloadTable(id) {
-    this.classesService.getDataByIdCourse(id).subscribe(rs => {
+    this.classesService.getDataByIdCourseAndStatus(id, 0).subscribe(rs => {
       if (rs != null) {
         this.dataSource = new MatTableDataSource(rs);
         this.dataSource.sort = this.sort;

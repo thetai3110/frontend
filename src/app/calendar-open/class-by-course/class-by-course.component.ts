@@ -32,7 +32,7 @@ export class ClassByCourseComponent implements OnInit {
   }
 
   reloadTable(id) {
-    this.classService.getDataByIdCourse(id).subscribe(rs => {
+    this.classService.getDataByIdCourseAndStatus(id, 0).subscribe(rs => {
       if (rs != null) {
         this.dataSource = new MatTableDataSource(rs);
         this.dataSource.sort = this.sort;

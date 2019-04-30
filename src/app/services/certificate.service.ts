@@ -28,4 +28,8 @@ export class CertificateService {
   updateData(id, data){
     return this.http.post('http://localhost:8080/certificate/update/'+id, data);
   } 
+
+  createCertificate(data){
+    return this.http.post('http://localhost:8080/certificate/create',data);
+  }
 }

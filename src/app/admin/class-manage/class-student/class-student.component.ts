@@ -27,6 +27,7 @@ export class ClassStudentComponent implements OnInit {
   result : any;
   allClass: any;
   public idClass = 1;
+  status = 3;
   studentClass = {
     idClass : 1,
     idStudent : "",
@@ -48,7 +49,13 @@ export class ClassStudentComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onSelected(){
+  onSelected(e){
+    this.idClass = e.target.value;
+    this.classesService.getDataById(this.idClass).subscribe(data =>{
+      if(data != null){
+        this.status = data['status'];
+      }
+    });
     this.reloadTable(Number(this.idClass));
   }
 

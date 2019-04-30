@@ -25,21 +25,21 @@ export class CoursesComponent implements OnInit {
         if(edu != null)
           this.title = edu['eduName'];
       });
-      this.courseService.getDataByEducation(Number(data.id)).subscribe(courses =>{
+      this.courseService.getDataByEducationAndStatus(Number(data.id), 1).subscribe(courses =>{
         if(courses != null){
           this.courses = courses;
         }else{
           this.courses = null;
         }
       });
-      this.courseService.getDataByLevelAndEducation(Number(data.id), 1).subscribe(courses =>{
+      this.courseService.getDataByLevelAndEducationAndStatus(Number(data.id), 1, 1).subscribe(courses =>{
         if(courses != null){
           this.courseBasic = courses;
         }else{
           this.courseBasic = null;
         }
       });
-      this.courseService.getDataByLevelAndEducation(Number(data.id), 2).subscribe(courses =>{
+      this.courseService.getDataByLevelAndEducationAndStatus(Number(data.id), 2, 1).subscribe(courses =>{
         if(courses != null){
           this.courseAdvance = courses;
         }else{

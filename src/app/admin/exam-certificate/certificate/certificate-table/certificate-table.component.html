@@ -17,8 +17,8 @@
         <td mat-cell *matCellDef="let item">{{ item.idCertificate }}</td>
       </ng-container>
       <ng-container matColumnDef="exam">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Lớp học</th>
-        <td mat-cell *matCellDef="let item">{{ item.exam.clazz.className }}</td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Khóa học</th>
+        <td mat-cell *matCellDef="let item">{{ item.exam.course.course }} - {{ item.exam.course.level.level }}</td>
       </ng-container>
       <ng-container matColumnDef="student">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Tên học viên</th>

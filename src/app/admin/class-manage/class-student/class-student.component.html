@@ -1,7 +1,7 @@
 <form class="manage">
   <div class="card-header">
     Danh sách lớp học
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button  *ngIf="status == 0" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
     </button>
   </div>
@@ -18,9 +18,9 @@
     </mat-menu>
     <mat-form-field>
       <mat-label>Danh sách lớp học</mat-label>
-      <select matNativeControl name="classes" [(ngModel)]="idClass" (change)="onSelected();">
+      <select matNativeControl name="classes" (change)="onSelected($event);">
         <option *ngFor="let class of allClass" [value]="class.idClass">
-          {{ class.className }}
+          {{ class.className }} ( {{ class.status == 3 ? 'Đã kết thúc' : class.status == 1 ? 'Đã mở' : 'Đang chờ đăng ký' }} )
         </option>
       </select>
     </mat-form-field>

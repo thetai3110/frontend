@@ -13,20 +13,11 @@ import { ExamDetailService } from 'src/app/services/exam-detail.service';
 })
 export class ExamFormComponent implements OnInit {
 
-  // form: FormGroup = new FormGroup({
-  //   idClass: new FormControl(''),
-  //   dayExam: new FormControl(new Date(), [Validators.required]),
-  //   timeExam: new FormControl('', [Validators.required]),
-  //   duration: new FormControl('',[Validators.required]),
-  //   status: new FormControl('1', [Validators.required])
-  // }); 
-
   form: FormGroup = new FormGroup({
     idCourse: new FormControl,
     duration: new FormControl,
     status: new FormControl,
   });
-
 
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);

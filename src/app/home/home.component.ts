@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   courses: any;
 
   ngOnInit() {
-    this.courseService.getData().subscribe(data => {
+    this.courseService.getDataByStatus(1).subscribe(data => {
       if (data != null)
         this.courses = data;
     });

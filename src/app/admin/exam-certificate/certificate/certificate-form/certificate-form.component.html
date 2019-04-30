@@ -10,8 +10,8 @@
       <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
       </mat-form-field>
-      <button mat-mini-fab color="primary" (click)="onOpenDialogAdd()">
-        <mat-icon>save</mat-icon>
+      <button mat-mini-fab color="primary" (click)="onCreateCertificate()">
+        <mat-icon>done</mat-icon>
       </button>
     </div>
     <table mat-table [dataSource]="dataSource" matSort>
@@ -44,7 +44,7 @@
       <ng-container matColumnDef="tool">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
         <td mat-cell *matCellDef="let item">
-          <mat-checkbox></mat-checkbox>
+          <mat-checkbox (change)="onChange($event, item.idMarks)" checked="true" color="primary"></mat-checkbox>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>
