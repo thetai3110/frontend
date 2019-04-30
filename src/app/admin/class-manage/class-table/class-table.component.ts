@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClassesService } from 'src/app/services/classes.service';
-import { faPen, faTrashAlt, faPlusCircle, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faTrashAlt, faPlusCircle, faPaperPlane, faCalendarCheck, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ClassDialogComponent } from '../class-dialog/class-dialog.component';
 import { ClassDeleteComponent } from '../class-delete/class-delete.component';
@@ -21,6 +21,7 @@ export class ClassTableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   faPaperPlane = faPaperPlane; faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle; 
+  faCalendarCheck = faCalendarCheck; faTimesCircle = faTimesCircle;
   displayedColumns= ['id','name','course','lecturers','room','dayStart','size','minSize','maxSize','status','date','tool'];
   length = 100;
   pageSize = 10;
@@ -66,6 +67,14 @@ export class ClassTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.reloadTable();
     });
+  }
+
+  onFinish(id){
+    
+  }
+
+  onDestroy(id){
+
   }
   
   onOpenDialogAdd(){
@@ -134,6 +143,24 @@ export class ClassTableComponent implements OnInit {
         });
       }
       this.reloadTable();
+    }
+  }
+
+  onFinish1(id, name){
+    var rs = confirm("Kết thuc lớp "+ name +"?");
+    if (rs == true) {
+      this.classesService.finish(id).subscribe(data =>{
+        if(Boolean(data) == true) {
+          this.snackBar.open("Success!!!", "Finish", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Finish", {
+            duration: 2000,
+          });
+        }
+        this.reloadTable();
+      });
     }
   }
 

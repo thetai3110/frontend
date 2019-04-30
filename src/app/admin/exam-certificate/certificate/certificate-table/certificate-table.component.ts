@@ -67,7 +67,7 @@ export class CertificateTableComponent implements OnInit {
   
   onOpenDialogAdd(){
     const dialogRef = this.dialog.open(CertificateFormComponent, {
-      width: '500px'
+      width: '850px'
     });
     dialogRef.afterClosed().subscribe(result => {
       this.reloadTable();

@@ -84,4 +84,9 @@ export class ClassesService {
     return this.http.get('http://localhost:8080/class/close/'+id);
   }
 
+  //Kết thúc
+  finish(id){
+    return this.http.get('http://localhost:8080/class/finish/'+id);
+  }
+
 }

@@ -36,4 +36,13 @@ export class MarksService {
   updateData(id, data){
     return this.http.post('http://localhost:8080/marks/update/'+id, data);
   }
+
+  save(id, marks){
+    return this.http.get('http://localhost:8080/marks/save/'+id+'/'+marks);
+  }
+
+  saveAll(data){
+    return this.http.post('http://localhost:8080/marks/saveall', data);
+  }
+
 }

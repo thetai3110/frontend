@@ -32,3 +32,6 @@ table{
   .card-body {
     border: 1px solid #dee2e6;
   }
+  .marks{
+    width: 50px;
+  }

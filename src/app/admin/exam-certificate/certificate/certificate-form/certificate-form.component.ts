@@ -1,56 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
-import { ExamService } from 'src/app/services/exam.service';
-import { StudentService } from 'src/app/services/student.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CertificateService } from 'src/app/services/certificate.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatDialog, MatPaginator, MatSort } from '@angular/material';
+import { MarksService } from 'src/app/services/marks.service';
+import { ClassesService } from 'src/app/services/classes.service';
 
 @Component({
   selector: 'app-certificate-form',
   templateUrl: './certificate-form.component.html',
-  styleUrls: ['./certificate-form.component.css']
+  styleUrls: ['../../../../../assets/css/table.css']
 })
 export class CertificateFormComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({
-    idExam: new FormControl(''),
-    idStudent: new FormControl('',[Validators.required]),
-    idMarks: new FormControl('', [Validators.required]),
-    dateCertificate: new FormControl(new Date(),[Validators.required]),
-    classification: new FormControl('', [Validators.required])
-  }); 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  public hasError = (controlName: string, errorName: string) =>{
-    return this.form.controls[controlName].hasError(errorName);
-  }
+  displayedColumns= ['id','course','class','student','cmnd','marks','tool'];
+  length = 100;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
+  dataSource;
+  allClass: any;
 
-  constructor(private examService: ExamService,
-    private studentService: StudentService,
-    private certificateService: CertificateService,
-    public dialogRef: MatDialogRef<CertificateFormComponent>,
-    private snackBar: MatSnackBar) { }
+  constructor(private marksService: MarksService,
+            private classesService: ClassesService,
+            public dialog: MatDialog) { }
 
   ngOnInit() {
-    
+    this.classesService.getData().subscribe(classes =>{
+      this.allClass = classes;
+    });
+    this.reloadTable(1);
   }
 
-  onCancel(){
-    this.dialogRef.close();
+  applyFilter(filterValue: string){
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  onSubmit(form){
-    // this.certificateService.postData(form).subscribe(data =>{
-    //   if(data!= null){
-    //     this.snackBar.open("Success!!!", "Add", {
-    //       duration: 2000,
-    //     });
-    //   }else{
-    //     this.snackBar.open("Fail!!!", "Add", {
-    //       duration: 2000,
-    //     });
-    //   }
-    //   this.onCancel();
-    // });
+  reloadTable(id){
+    this.marksService.getDataByClass(id).subscribe(rs =>{
+      if(!rs)
+        return;
+      this.dataSource = new MatTableDataSource(rs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+
+  chooseClass(e){
+    this.reloadTable(e.target.value);
   }
 
 }
