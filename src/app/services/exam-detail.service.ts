@@ -17,6 +17,10 @@ export class ExamDetailService {
     return this.http.get<[]>('http://localhost:8080/exam-detail/' + id);
   }
 
+  getDataByExam(id): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/exam-detail/exam/' + id);
+  }
+
   deleteData(id): Observable<[]>{
     return this.http.get<[]>('http://localhost:8080/exam-detail/delete/' + id);
   }

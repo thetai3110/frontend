@@ -1,3 +1,9 @@
-<p>
-  certificate-delete works!
-</p>
+<h1 mat-dialog-title>Xóa chứng chỉ</h1>
+<div mat-dialog-content>
+  <p>Bạn muốn xóa chứng chỉ có Id là: {{ data.id }}?</p>
+</div>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button color="warn" (click)="onCancel()">Hủy</button>
+  <button mat-raised-button color="primary" (click)="onDel(data.id)">Xóa</button>
+</div>
+

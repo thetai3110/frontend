@@ -1,3 +1,48 @@
-<p>
-  certificate-dialog works!
-</p>
+<h1 mat-dialog-title>Sửa thông tin</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div mat-dialog-content>
+    <p>Bạn muốn sửa chứng chỉ có Id là: {{ data.stu.idCertificate }}?</p>
+    <!-- Kỳ thi -->
+    <mat-form-field>
+      <mat-label>Kỳ thi</mat-label>
+      <select matNativeControl formControlName="idExam">
+        <option [value]=""></option>
+        <ng-container *ngIf="allExam != null">
+          <option *ngFor="let acc of allExam " [value]="acc.idExam">{{ acc.course.course }} - {{ acc.course.level.level }} ( {{ acc.dateExam }} )</option>
+        </ng-container>
+      </select>
+    </mat-form-field>
+    <!-- Học viên -->
+    <mat-form-field>
+      <mat-label>Học viên</mat-label>
+      <select matNativeControl formControlName="idStudent">
+        <option [value]=""></option>
+        <ng-container *ngIf="allStudent != null">
+          <option *ngFor="let acc of allStudent " [value]="acc.idStudent">{{ acc.studentName }}</option>
+        </ng-container>
+      </select>
+    </mat-form-field>
+    <!-- Điểm -->
+    <mat-form-field>
+      <input matInput placeholder="Điểm*" formControlName="idMarks">
+      <mat-error *ngIf="hasError('idMarks', 'required')">Trường này  không được bỏ trống</mat-error>
+    </mat-form-field>
+    <!-- Ngày lập -->
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Ngày lập" formControlName="dateCertificate" id="date" readonly
+        (click)="picker.open()">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="hasError('dateCertificate', 'required')">Chọn ngày lập</mat-error>
+    </mat-form-field>
+    <!-- Xếp loại -->
+    <mat-form-field>
+      <input matInput placeholder="Xếp loại*" formControlName="classification">
+      <mat-error *ngIf="hasError('classification', 'required')">Trường này không được bỏ trống</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="action">
+    <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
+    <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">Sửa</button>
+  </div>
+</form>

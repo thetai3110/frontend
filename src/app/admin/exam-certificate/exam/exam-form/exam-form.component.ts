@@ -16,6 +16,7 @@ export class ExamFormComponent implements OnInit {
   form: FormGroup = new FormGroup({
     idCourse: new FormControl,
     duration: new FormControl,
+    dateExam: new FormControl,
     status: new FormControl,
   });
 
@@ -99,9 +100,8 @@ export class ExamFormComponent implements OnInit {
     });
   }
 
-
   loadDataByIdCourse(id) {
-    this.classesService.getDataByIdCourse(id).subscribe(data => {
+    this.classesService.getDataByIdCourseAndStatus(id, 1).subscribe(data => {
       if (data != null)
         this.classByCourse = data;
     });

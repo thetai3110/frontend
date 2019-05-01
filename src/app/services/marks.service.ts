@@ -29,6 +29,10 @@ export class MarksService {
     return this.http.get<[]>('http://localhost:8080/marks/class-marks/' + id);
   }
 
+  getDataByClassAndStudent(id, idStu): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/marks/class-student/' + id+"/"+idStu);
+  }
+
   deleteData(id): Observable<[]>{
     return this.http.get<[]>('http://localhost:8080/marks/delete/' + id);
   }
