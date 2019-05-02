@@ -29,12 +29,16 @@ export class ClassTableComponent implements OnInit {
   dataSource;
   result: any;
   status = 0;
+  day: any;
 
   constructor(private classesService: ClassesService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    var d = new Date();
+    d.setDate(d.getDate() + 3);
+    this.day = new Date(d).getTime();
     this.reloadTable(this.status);
   }
 

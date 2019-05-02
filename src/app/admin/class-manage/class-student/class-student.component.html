@@ -20,7 +20,7 @@
       <mat-label>Danh sách lớp học</mat-label>
       <select matNativeControl name="classes" (change)="onSelected($event);">
         <option *ngFor="let class of allClass" [value]="class.idClass">
-          {{ class.className }} ( {{ class.status == 3 ? 'Đã kết thúc' : class.status == 1 ? 'Đã mở' : 'Đang chờ đăng ký' }} )
+          {{ class.className }} ( {{ class.status == 3 ? 'Đã kết thúc' : class.status == 1 ? 'Đã mở' : class.status == 0 ? 'Đang chờ đăng ký' : 'Đã hủy' }} )
         </option>
       </select>
     </mat-form-field>

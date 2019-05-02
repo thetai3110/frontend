@@ -38,7 +38,7 @@ export class CategoriesComponent implements OnInit {
             this.img =  stu['image'] == null ? "" :  stu['image'];
         });
       }
-    });
+    }); 
     this.educationProgramService.getData().subscribe(data =>{
       if(data !=null)
         this.edu = data;
