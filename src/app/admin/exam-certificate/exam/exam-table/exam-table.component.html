@@ -52,7 +52,7 @@
           <button mat-raised-button color="primary" (click)="openDialog(item.idExam)">
             <fa-icon [icon]="faPen"></fa-icon>
           </button>
-          <button mat-raised-button color="accent" (click)="onFinish(item.idExam)">
+          <button *ngIf="status == 1"mat-raised-button color="accent" (click)="onFinish(item.idExam)">
               <fa-icon [icon]="faCalendarCheck"></fa-icon>
             </button>
           <button mat-raised-button color="warn" (click)="onDelete(item.idExam)">

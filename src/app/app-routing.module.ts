@@ -13,7 +13,6 @@ import { EmployeeManageComponent } from './admin/employee-manage/employee-manage
 import { StudentManageComponent } from './admin/student-manage/student-manage.component';
 import { LecturersManageComponent } from './admin/lecturers-manage/lecturers-manage.component';
 import { RoomManageComponent } from './admin/room-manage/room-manage.component';
-import { AccountManageComponent } from './admin/account-manage/account-manage.component';
 import { InvoiceManageComponent } from './admin/invoice-manage/invoice-manage.component';
 import { RegisterToStudyComponent } from './register-to-study/register-to-study.component';
 import { StudentFormComponent } from './admin/student-manage/student-form/student-form.component';
@@ -58,7 +57,6 @@ const routes: Routes = [
       },
       {path: 'lecturers-manage', component: LecturersManageComponent},
       {path: 'room-manage', component: RoomManageComponent},
-      {path: 'account-manage', component: AccountManageComponent},
       {path: 'invoice-manage', component: InvoiceManageComponent},
       {path: 'exam-certificate', component: ExamCertificateComponent}
     ]  

@@ -18,10 +18,8 @@ import { EmployeeManageComponent } from './employee-manage/employee-manage.compo
 import { StudentManageComponent } from './student-manage/student-manage.component';
 import { LecturersManageComponent } from './lecturers-manage/lecturers-manage.component';
 import { InvoiceManageComponent } from './invoice-manage/invoice-manage.component';
-import { AccountManageComponent } from './account-manage/account-manage.component';
 import { RoomManageComponent } from './room-manage/room-manage.component';
 import { StudentFormComponent } from './student-manage/student-form/student-form.component';
-import { AccountFormComponent } from './account-manage/account-form/account-form.component';
 import { ClassFormComponent } from './class-manage/class-form/class-form.component';
 import { CourseFormComponent } from './course-manage/course-form/course-form.component';
 import { InvoiceFormComponent } from './invoice-manage/invoice-form/invoice-form.component';
@@ -48,10 +46,6 @@ import { LessonFormComponent } from './course-manage/course-lesson/lesson-form/l
 import { LessonDialogComponent } from './course-manage/course-lesson/lesson-dialog/lesson-dialog.component';
 import { LessonDeleteComponent } from './course-manage/course-lesson/lesson-delete/lesson-delete.component';
 import { LessonTableComponent } from './course-manage/course-lesson/lesson-table/lesson-table.component';
-import { AccountTableComponent } from './account-manage/account-table/account-table.component';
-import { AccountDialogComponent } from './account-manage/account-dialog/account-dialog.component';
-import { AccountDeleteComponent } from './account-manage/account-delete/account-delete.component';
-import { AccountPermissionComponent } from './account-manage/account-permission/account-permission.component';
 import { InvoiceTableComponent } from './invoice-manage/invoice-table/invoice-table.component';
 import { InvoiceDialogComponent } from './invoice-manage/invoice-dialog/invoice-dialog.component';
 import { InvoiceDeleteComponent } from './invoice-manage/invoice-delete/invoice-delete.component';
@@ -87,10 +81,8 @@ import { DeleteRegisterComponent } from './invoice-manage/registration-infomatio
     StudentManageComponent,
     LecturersManageComponent,
     InvoiceManageComponent,
-    AccountManageComponent,
     RoomManageComponent,
     StudentFormComponent,
-    AccountFormComponent,
     ClassFormComponent,
     CourseFormComponent,
     InvoiceFormComponent,
@@ -117,10 +109,6 @@ import { DeleteRegisterComponent } from './invoice-manage/registration-infomatio
     LessonDialogComponent,
     LessonDeleteComponent,
     LessonTableComponent,
-    AccountTableComponent,
-    AccountDialogComponent,
-    AccountDeleteComponent,
-    AccountPermissionComponent,
     InvoiceTableComponent,
     InvoiceDialogComponent,
     InvoiceDeleteComponent,

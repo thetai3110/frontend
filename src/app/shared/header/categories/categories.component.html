@@ -23,7 +23,7 @@
         </li>
         <li><a [routerLink]="['/course/register']">Đăng ký ngay</a></li>
         <li><a [routerLink]="['/searchs']">Tra cứu thông tin</a></li>
-        <li *ngIf="isLogin == true"><a [routerLink]="['/admin']">Admin</a></li>
+        <li><a [routerLink]="['/admin']">Admin</a></li>
         <li *ngIf="isLogin == true;else login">
           <a href="" class="user">
             <img *ngIf="img == '' || img==null; else isImg" src="../../assets/images/img.PNG" alt="person">

@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { faPen, faTrashAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { MatDialog } from '@angular/material';
+import { faPen, faTrashAlt, faPlusCircle, faFileExcel } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.component';
 import { InvoiceDeleteComponent } from '../invoice-delete/invoice-delete.component';
 import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
@@ -20,7 +20,7 @@ export class InvoiceTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
+  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle; faFileExcel = faFileExcel;
   displayedColumns= ['id','course','student','employee','date','group','cost','payment','tool'];
   length = 100;
   pageSize = 10;
@@ -29,7 +29,8 @@ export class InvoiceTableComponent implements OnInit {
   result : any;
 
   constructor(private invoiceService: InvoiceService,
-            public dialog: MatDialog) { }
+            public dialog: MatDialog,
+            private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.reloadTable();
@@ -96,6 +97,23 @@ export class InvoiceTableComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     });
+  }
+
+  onExport(id){
+    var fileName = prompt("Nhập tên file Excel", '');
+    if(fileName != null){
+      this.invoiceService.export(id, fileName).subscribe(data =>{
+        if(Boolean(data)==true){
+          this.snackBar.open("Success!!!", "Export", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Export", {
+            duration: 2000,
+          });
+        }
+      })
+    }
   }
 
 }

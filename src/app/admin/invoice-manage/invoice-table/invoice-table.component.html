@@ -55,6 +55,9 @@
           <button mat-raised-button color="warn" (click)="onDelete(item.idInvoice)">
             <fa-icon [icon]="faTrashAlt"></fa-icon>
           </button>
+          <button mat-raised-button color="primary" (click)="onExport(item.idInvoice)">
+            In
+          </button>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns" color="primary"></tr>

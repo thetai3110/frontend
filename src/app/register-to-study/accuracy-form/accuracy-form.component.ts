@@ -22,7 +22,7 @@ export class AccuracyFormComponent implements OnInit {
   isPay = false;
   faHandshake = faHandshake;
   isFee = 0;
-  formula = "";
+  formula = "Thẻ ngân hàng";
 
   constructor(private classService: ClassesService,
     private invoiceService: InvoiceService,
@@ -95,47 +95,50 @@ export class AccuracyFormComponent implements OnInit {
   onSubmit(form) {
     form.groupNum = this.group;
     form.formula = this.formula;
-    form.idClass = this.idClass;
-    if (this.payment != 'no') {
-      form.payment = this.payment;
-      form.isFee = 1;
+    if (this.isCard == false && this.payment == "no") {
+      alert("Chưa chọn phương thức thanh toán");
     } else {
-      form.isFee = 0;
-    }
-    this.registerService.postData(form).subscribe(data => {
-      if (data != null) {
-        this.snackBar.open("Success!!!", "Add", {
-          duration: 2000,
-        });
-        this.isPay = true;
-        this.classService.getDataById(this.idClass).subscribe(classes => {
-          this.days = classes['dayStart'];
-          if (Number(form.isFee) == 1) {
-            var invoice = {
-              idClass: classes['idClass'],
-              studentName: form.nameRegister,
-              idEmployee: '',
-              dateInvoice: new Date(),
-              groupNum: form.groupNum,
-              cost: this.fee,
-              payment: form.payment,
-              idRegister: data['idRegister']
-            }
-            this.invoiceService.postData(invoice).subscribe(inv => {
-              if (inv != null) {
-                console.log("Success");
-              } else {
-                console.log("fail");
-              }
-            });
-          }
-        });
+      form.idClass = this.idClass;
+      if (this.payment != 'no') {
+        form.payment = this.payment;
+        form.isFee = 1;
       } else {
-        this.snackBar.open("Fail!!!", "Add", {
-          duration: 2000,
-        });
+        form.isFee = 0;
       }
-    });
-
+      this.registerService.postData(form).subscribe(data => {
+        if (data != null) {
+          this.snackBar.open("Success!!!", "Add", {
+            duration: 2000,
+          });
+          this.isPay = true;
+          this.classService.getDataById(this.idClass).subscribe(classes => {
+            this.days = classes['dayStart'];
+            if (Number(form.isFee) == 1) {
+              var invoice = {
+                idClass: classes['idClass'],
+                studentName: form.nameRegister,
+                idEmployee: '',
+                dateInvoice: new Date(),
+                groupNum: form.groupNum,
+                cost: this.fee,
+                payment: form.payment,
+                idRegister: data['idRegister']
+              }
+              this.invoiceService.postData(invoice).subscribe(inv => {
+                if (inv != null) {
+                  console.log("Success");
+                } else {
+                  console.log("fail");
+                }
+              });
+            }
+          });
+        } else {
+          this.snackBar.open("Fail!!!", "Add", {
+            duration: 2000,
+          });
+        }
+      });
+    }
   }
 }

@@ -33,6 +33,10 @@ export class MarksService {
     return this.http.get<[]>('http://localhost:8080/marks/class-student/' + id+"/"+idStu);
   }
 
+  getDataBNameAndCMND(name, cmnd): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/marks/name-cmnd/' + name+"/"+cmnd);
+  }
+
   deleteData(id): Observable<[]>{
     return this.http.get<[]>('http://localhost:8080/marks/delete/' + id);
   }

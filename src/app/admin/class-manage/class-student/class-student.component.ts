@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClassesService } from 'src/app/services/classes.service';
-import { MatPaginator, MatSort, MatDialog, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { StudentService } from 'src/app/services/student.service';
-import { faPlusCircle, faTrashAlt, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faTrashAlt, faPen, faFileExcel } from '@fortawesome/free-solid-svg-icons';
 import { StudentFormComponent } from '../../student-manage/student-form/student-form.component';
 import { StudentDialogComponent } from '../../student-manage/student-dialog/student-dialog.component';
 import { ClassDeleteComponent } from '../class-delete/class-delete.component';
@@ -18,7 +18,7 @@ export class ClassStudentComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle;
+  faPen = faPen; faTrashAlt = faTrashAlt; faPlusCircle = faPlusCircle; faFileExcel = faFileExcel;
   displayedColumns= ['id','name','cmnd','sex','email','phone','isFee','tool'];
   length = 100;
   pageSize = 10;
@@ -36,7 +36,8 @@ export class ClassStudentComponent implements OnInit {
 
   constructor(private classesService: ClassesService,
             private studentService: StudentService,
-            public dialog: MatDialog) { }
+            public dialog: MatDialog,
+            private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.classesService.getData().subscribe(data =>{
@@ -131,4 +132,20 @@ export class ClassStudentComponent implements OnInit {
     });
   }
   
+  onExport(){
+    var fileName = prompt("Nhập tên file Excel", '');
+    if(fileName != null){
+      this.classesService.export(this.idClass, fileName).subscribe(data =>{
+        if(Boolean(data)==true){
+          this.snackBar.open("Success!!!", "Export", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Export", {
+            duration: 2000,
+          });
+        }
+      })
+    }
+  }
 }

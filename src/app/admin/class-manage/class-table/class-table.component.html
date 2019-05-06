@@ -2,7 +2,7 @@
   <div class="card-header">
     Table
   </div>
-  <div class="card-body">
+  <div class="card-body"> 
     <mat-form-field> 
       <mat-label>Tình trạng</mat-label>
       <select matNativeControl (change)="onChangeStatus($event)">
@@ -87,15 +87,15 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
         <td mat-cell *matCellDef="let item">
           <button mat-raised-button color="primary" (click)="openDialog(item.idClass)">
-            <fa-icon [icon]="faPen"></fa-icon>
+            <fa-icon *ngIf="status == 0 || status == 1 || status == 3" [icon]="faPen"></fa-icon>
           </button>
-          <button mat-raised-button color="accent" (click)="onFinish(item.idClass, item.className)">
+          <button *ngIf="status == 1" mat-raised-button color="accent" (click)="onFinish(item.idClass, item.className)">
             <fa-icon [icon]="faCalendarCheck"></fa-icon>
           </button><br>
-          <button mat-raised-button color="warn" (click)="onDelete(item.idClass)">
+          <button *ngIf="status == 2 || status == 3" mat-raised-button color="warn" (click)="onDelete(item.idClass)">
             <fa-icon [icon]="faTrashAlt"></fa-icon>
           </button>
-          <button mat-raised-button color="basic" (click)="onCancel(item.idClass)">
+          <button *ngIf="status == 0" mat-raised-button color="basic" (click)="onCancel(item.idClass)">
             <fa-icon [icon]="faTimesCircle"></fa-icon>
           </button>
         </td>

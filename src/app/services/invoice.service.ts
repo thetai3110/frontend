@@ -33,4 +33,8 @@ export class InvoiceService {
     return this.http.post('http://localhost:8080/invoice/update/'+id, data);
   }
 
+  export(id, fileName): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/invoice/export/' + id+"/"+fileName);
+  }
 }
+

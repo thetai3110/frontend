@@ -102,4 +102,8 @@ export class ClassesService {
   cancelClass(id){
     return this.http.get('http://localhost:8080/class/cancel/'+id);
   }
+
+  export(idClass, fileName){
+    return this.http.get('http://localhost:8080/class/export/'+idClass+"/"+fileName);
+  }
 }

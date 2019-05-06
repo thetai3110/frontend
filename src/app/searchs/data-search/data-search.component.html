@@ -1,4 +1,4 @@
-<div class="info">
+<div class="info" *ngIf="key == 1">
   <h3>Thông tin</h3>
   <div class="student">
     <ul *ngFor="let stu of student; index as i">
@@ -36,6 +36,41 @@
           <td>{{ stu.size }}/{{ stu.maxsize }}</td>
           <td>{{ stu.isfee == 1 ? 'Đã đóng' : 'Chưa đóng' }}</td>
           <td>{{ stu.statusClass == 1 ? 'Đã mở' : 'Chưa mở' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="info" *ngIf="key == 0">
+  <h3>Thông tin</h3>
+  <div class="student">
+    <ul *ngFor="let stu of student; index as i">
+      <ng-container *ngIf="stu!= null && i==0">
+        <li>Tên: {{ stu.student.studentName }}</li>
+        <li>CMND: {{ stu.student.cmnd }}</li>
+        <li>Ngày sinh: {{ stu.student.studentDate | date: 'dd-MM-yyyy' }}</li>
+        <li>Giới tính: {{ stu.student.sex == 1 ? 'Nam' : 'Nữ' }}</li>
+        <li>Địa chỉ: {{ stu.student.address }}</li>
+        <li>Email: {{ stu.student.email }}</li>
+        <li>Phone: {{ stu.student.phone }}</li>
+        <li>Đối tượng: {{ stu.student.job }}</li>
+      </ng-container>
+    </ul>
+  </div>
+  <div class="course">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Khóa học</th>
+          <th>Lớp</th>
+          <th>Điểm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stu of student">
+          <td>{{ stu.clazz.course.course }}-{{ stu.clazz.course.level.level}}</td>
+          <td>{{ stu.clazz.className }}</td>
+          <td>{{ stu.marks }}</td>
         </tr>
       </tbody>
     </table>

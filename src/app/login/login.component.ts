@@ -43,21 +43,21 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form) {
-    this.loginService.postData(form).subscribe(data => {
-      this.status = Boolean(data);
-      if (this.status == true) {
-        this.onRemember(form.username, form.pass);
-        this.router.navigate(['']);
-        this.snackBar.open("Success!!!", "Login", {
-          duration: 2000,
-        });
-      }
-      else{
-        this.snackBar.open("Tài khoản hoặc mật khẩu không chính xác!!!", "Login", {
-          duration: 2000,
-        });
-      }
-    });
+    // this.loginService.postData(form).subscribe(data => {
+    //   this.status = Boolean(data);
+    //   if (this.status == true) {
+    //     this.onRemember(form.username, form.pass);
+    //     this.router.navigate(['']);
+    //     this.snackBar.open("Success!!!", "Login", {
+    //       duration: 2000,
+    //     });
+    //   }
+    //   else{
+    //     this.snackBar.open("Tài khoản hoặc mật khẩu không chính xác!!!", "Login", {
+    //       duration: 2000,
+    //     });
+    //   }
+    // });
   }
 
   public hasError = (controlName: string, errorName: string) => {

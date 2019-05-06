@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StudentService } from 'src/app/services/student.service';
-import { AccountService } from 'src/app/services/account.service';
 import { MatSnackBar } from '@angular/material';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { UploadService } from 'src/app/services/upload.service';
@@ -40,7 +39,6 @@ export class PersonalFormComponent implements OnInit {
     setTimeout(() => {
       this.form = new FormGroup({
         studentName: new FormControl(this.student != null ? this.student['studentName'] : "", [Validators.required, Validators.maxLength(30)]),
-        idAccount: new FormControl(this.student != null ? this.student['accountStu'] == null ? '' : this.student['accountStu'].idAccount : ""),
         cmnd: new FormControl(this.student != null ? this.student['cmnd'] : "", [Validators.required, Validators.pattern("[0-9]*")]),
         studentDate: new FormControl(new Date(this.student != null ? this.student['studentDate'] : ""), [Validators.required]),
         sex: new FormControl(String(this.student != null ? this.student['sex'] : ""), [Validators.required]),

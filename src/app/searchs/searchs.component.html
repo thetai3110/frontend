@@ -11,7 +11,7 @@
   </mat-form-field>
   <div [hidden]="isInfo">
     <!-- Họ tên -->
-    <form [formGroup]="form" (ngSubmit)="form.valid && onSubmit(form.value)">
+    <form  class="info" [formGroup]="form" (ngSubmit)="form.valid && onSubmit(form.value)">
       <mat-form-field>
         <input matInput placeholder="Họ tên*" formControlName="studentName">
         <mat-error *ngIf="hasError('studentName', 'required')">Tên không được bỏ trống</mat-error>
@@ -27,7 +27,29 @@
         <button mat-raised-button color="warn" type="submit">Tìm</button>
       </div>
     </form>
+    <app-data-search [student]="student" [key]="'1'" [hidden]="showData"></app-data-search>
   </div>
-  <app-data-search [student]="student" [hidden]="showData"></app-data-search>
+
+  <div [hidden]="isMarks">
+    <!-- Họ tên -->
+    <form  class="info" [formGroup]="form" (ngSubmit)="form.valid && onSubmit1(form.value)">
+      <mat-form-field>
+        <input matInput placeholder="Họ tên*" formControlName="studentName">
+        <mat-error *ngIf="hasError('studentName', 'required')">Tên không được bỏ trống</mat-error>
+        <mat-error *ngIf="hasError('studentName', 'maxlength')">Tối đa 30 ký tự</mat-error>
+      </mat-form-field>
+      <!-- CMND -->
+      <mat-form-field>
+        <input matInput placeholder="Số cmnd*" formControlName="cmnd">
+        <mat-error *ngIf="hasError('cmnd', 'required')">CMND không được bỏ trống</mat-error>
+        <mat-error *ngIf="hasError('cmnd', 'pattern')">CMND chỉ chứa kí tự từ 0->9</mat-error>
+      </mat-form-field>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button color="warn" type="submit">Tìm</button>
+      </div>
+    </form>
+    <app-data-search [student]="student" [key]="'0'" [hidden]="showData"></app-data-search>
+  </div>
+
 </div>
 <app-footer></app-footer>

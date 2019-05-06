@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { AccountService } from 'src/app/services/account.service';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
@@ -13,7 +12,8 @@ export class EmployeeFormComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     employeeName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    idAccount: new FormControl(''),
+    username: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    pass: new FormControl('', [Validators.required, Validators.minLength(5)]),
     cmnd: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     roles: new FormControl('', [Validators.required]),
     employeeDate: new FormControl(new Date(),[Validators.required]),
@@ -30,17 +30,12 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   constructor(private employeeService: EmployeeService,
-    private accountService: AccountService,
     public dialogRef: MatDialogRef<EmployeeFormComponent>,
     private snackBar: MatSnackBar) { }
 
   allAccount : any;
 
   ngOnInit() {
-    this.accountService.getData().subscribe(data=>{
-      if(data != null)
-        this.allAccount = data;
-    })
   }
 
   onCancel(){

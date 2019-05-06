@@ -8,6 +8,18 @@
       <mat-error *ngIf="hasError('employeeName', 'required')">Tên không được bỏ trống</mat-error>
       <mat-error *ngIf="hasError('employeeName', 'maxlength')">Tối đa 30 ký tự</mat-error>
     </mat-form-field>
+     <!--Tên đăng nhập -->
+     <mat-form-field>
+      <input matInput placeholder="Tên đăng nhập*" formControlName="username">
+      <mat-error *ngIf="hasError('username', 'required')">Tên không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('username', 'minLength')">Ít nhất 5 ký tự</mat-error>
+    </mat-form-field>
+     <!-- Mật khẩu -->
+     <mat-form-field>
+      <input matInput placeholder="Mật khẩu*" formControlName="pass">
+      <mat-error *ngIf="hasError('pass', 'required')">Tên không được bỏ trống</mat-error>
+      <mat-error *ngIf="hasError('pass', 'minLength')">Ít nhất 5 ký tự</mat-error>
+    </mat-form-field>
     <!-- CMND -->
     <mat-form-field>
       <input matInput placeholder="Số cmnd*" formControlName="cmnd">

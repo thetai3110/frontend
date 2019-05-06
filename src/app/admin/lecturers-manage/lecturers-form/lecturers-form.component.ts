@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LecturersService } from '../../../services/lecturers.service';
 import { MajorsService } from '../../../services/majors.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService } from 'src/app/services/account.service';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
@@ -13,13 +12,11 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
 export class LecturersFormComponent implements OnInit {
   constructor(private lecturersService: LecturersService,
     private majorsService: MajorsService, 
-    private accountService: AccountService,
     public dialogRef: MatDialogRef<LecturersFormComponent>,
     private snackBar: MatSnackBar) { }
 
   form: FormGroup = new FormGroup({
     lecturersName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    idAccount: new FormControl(''),
     idMajors: new FormControl(''),
     other: new FormControl(''),
     lecturersDate: new FormControl(new Date(), [Validators.required]),
@@ -31,16 +28,11 @@ export class LecturersFormComponent implements OnInit {
     image: new FormControl(null),
   });
 
-  allAccount: any; 
   allMajors: any;
   showMajors = true;
   showOther = false;
 
   ngOnInit() {
-    this.accountService.getData().subscribe(data =>{
-      if(data != null)
-        this.allAccount = data;
-    });
     this.majorsService.getData().subscribe(data =>{
       if(data != null)
         this.allMajors = data;

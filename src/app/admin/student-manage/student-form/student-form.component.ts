@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { StudentService } from '../../../services/student.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from 'src/app/services/account.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 
 @Component({
@@ -12,14 +11,12 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 export class StudentFormComponent implements OnInit {
  
   constructor(private studentService: StudentService,
-         private accountService: AccountService,
          public dialogRef: MatDialogRef<StudentFormComponent>,
          @Inject(MAT_DIALOG_DATA) public data: any,
          private snackBar: MatSnackBar) { }
  
   form: FormGroup = new FormGroup({ 
     studentName: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    idAccount: new FormControl(''),
     cmnd: new FormControl('', [Validators.required, Validators.pattern("[0-9]*")]),
     studentDate: new FormControl(new Date(),[Validators.required]),
     sex: new FormControl('1', [Validators.required]),
@@ -33,10 +30,6 @@ export class StudentFormComponent implements OnInit {
   allAccount: any;
 
   ngOnInit() {
-    this.accountService.getData().subscribe(data =>{
-      if(data != null)
-        this.allAccount = data;
-    });
   }
 
   onCancel(){

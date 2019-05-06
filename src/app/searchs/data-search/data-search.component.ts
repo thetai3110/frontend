@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DataSearchComponent implements OnInit {
 
   @Input() student:{};
+  @Input() key: Number;
 
   constructor() { }
 

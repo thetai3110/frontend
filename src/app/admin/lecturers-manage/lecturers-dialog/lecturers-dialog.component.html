@@ -26,17 +26,6 @@
         <mat-icon>autorenew</mat-icon>
       </a>
     </div>
-
-    <!-- Id tài khoản -->
-    <mat-form-field>
-      <mat-label>Tài khoản</mat-label>
-      <select matNativeControl formControlName="idAccount">
-        <option [value]=""></option>
-        <ng-container *ngIf="allAccount != null">
-          <option *ngFor="let acc of allAccount " [value]="acc.idAccount">{{ acc.username }}</option>
-        </ng-container>
-      </select>
-    </mat-form-field>
     <!-- Ngày sinh -->
     <mat-form-field>
       <input matInput [matDatepicker]="picker" placeholder="Ngày sinh" formControlName="lecturersDate" id="date"

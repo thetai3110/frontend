@@ -16,6 +16,7 @@
         <span>Chọn từ danh sách</span>
       </button>
     </mat-menu>
+   <div class="add">
     <mat-form-field>
       <mat-label>Danh sách lớp học</mat-label>
       <select matNativeControl name="classes" (change)="onSelected($event);">
@@ -24,6 +25,8 @@
         </option>
       </select>
     </mat-form-field>
+    <button mat-mini-fab color="primary" (click)="onExport()">In</button>
+   </div>  
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
     </mat-form-field>

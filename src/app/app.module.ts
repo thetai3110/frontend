@@ -33,9 +33,6 @@ import { LessonDialogComponent } from './admin/course-manage/course-lesson/lesso
 import { LessonFormComponent } from './admin/course-manage/course-lesson/lesson-form/lesson-form.component';
 import { LessonDeleteComponent } from './admin/course-manage/course-lesson/lesson-delete/lesson-delete.component';
 import { SharedModule } from './shared/shared.module';
-import { AccountDeleteComponent } from './admin/account-manage/account-delete/account-delete.component';
-import { AccountFormComponent } from './admin/account-manage/account-form/account-form.component';
-import { AccountDialogComponent } from './admin/account-manage/account-dialog/account-dialog.component';
 import { PersonalDialogComponent } from './personal-page/personal-dialog/personal-dialog.component';
 import { InvoiceDeleteComponent } from './admin/invoice-manage/invoice-delete/invoice-delete.component';
 import { InvoiceDialogComponent } from './admin/invoice-manage/invoice-dialog/invoice-dialog.component';
@@ -90,7 +87,6 @@ import { DeleteRegisterComponent } from './admin/invoice-manage/registration-inf
     CourseDialogComponent, CourseDeleteComponent, CourseFormComponent,
     ClassDeleteComponent, ClassDialogComponent, ClassFormComponent, TeachingAssignmentComponent,
     LessonDialogComponent, LessonFormComponent ,LessonDeleteComponent,
-    AccountDeleteComponent, AccountFormComponent, AccountDialogComponent,
     PersonalDialogComponent,
     InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent, InvoiceDetailComponent,
     ExamFormComponent, ExamDialogComponent, ExamDeleteComponent,

@@ -15,12 +15,12 @@ export class PersonalPageComponent implements OnInit {
   student = {};
 
   ngOnInit() {
-    this.studentService.getDataByUsername(localStorage.getItem("username")).subscribe(data => {
-      if (data != null) {
-        this.idStudent = data['idStudent'];
-        this.student = data;
-      }
-    });
+    // this.studentService.getDataByUsername(localStorage.getItem("username")).subscribe(data => {
+    //   if (data != null) {
+    //     this.idStudent = data['idStudent'];
+    //     this.student = data;
+    //   }
+    // });
   }
 
 }

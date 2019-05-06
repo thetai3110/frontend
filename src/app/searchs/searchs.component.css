@@ -8,3 +8,10 @@ mat-form-field{
 app-data-search{
     margin-top: 25px;
 }
+.info{
+    border: 1px solid grey;
+    width: 45%;
+    padding-left: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
