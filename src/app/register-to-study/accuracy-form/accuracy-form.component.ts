@@ -4,8 +4,9 @@ import { ClassesService } from 'src/app/services/classes.service';
 import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from 'src/app/services/register.service';
 import { MatSnackBar } from '@angular/material';
-import { faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { faHandshake, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import { SalesService } from 'src/app/services/sales.service';
 
 
 @Component({
@@ -20,11 +21,13 @@ export class AccuracyFormComponent implements OnInit {
   isPlace = true;
   group = 1;
   isPay = false;
-  faHandshake = faHandshake;
+  faHandshake = faHandshake; faTimesCircle = faTimesCircle; faCheckCircle = faCheckCircle;
   isFee = 0;
   formula = "Thẻ ngân hàng";
-
+  yes = true;
+  no = true;
   constructor(private classService: ClassesService,
+    private salesService: SalesService,
     private invoiceService: InvoiceService,
     private router: ActivatedRoute,
     private registerService: RegisterService,
@@ -141,4 +144,22 @@ export class AccuracyFormComponent implements OnInit {
       });
     }
   }
+
+  checkSales() {
+    if (this.secondFormGroup.value.idSale == "") {
+      this.yes = true;
+      this.no = true;
+    } else {
+      this.salesService.getDataByCode(this.secondFormGroup.value.idSale).subscribe(data => {
+        if (data != null) {
+          this.yes = false;
+          this.no = true;
+        } else {
+          this.yes = true;
+          this.no = false;
+        }
+      });
+    }
+  }
+
 }

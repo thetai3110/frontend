@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { EmployeeService } from '../../../services/employee.service';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-employee-dialog',
@@ -11,13 +12,14 @@ import { EmployeeService } from '../../../services/employee.service';
 export class EmployeeDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EmployeeDialogComponent>,
+    private rolesService: RolesService,
     @Inject(MAT_DIALOG_DATA) public data: any, private employeeService: EmployeeService,
     private snackBar: MatSnackBar) { }
 
     form: FormGroup = new FormGroup({
       employeeName: new FormControl(this.data.stu.employeeName, [Validators.required, Validators.maxLength(30)]),
-      username: new FormControl(this.data.stu.cmnd.username, [Validators.required, Validators.minLength(5)]),
-      pass: new FormControl(this.data.stu.cmnd.pass, [Validators.required, Validators.minLength(5)]),
+      username: new FormControl(this.data.stu.username, [Validators.required, Validators.minLength(5)]),
+      pass: new FormControl(this.data.stu.pass, [Validators.required, Validators.minLength(5)]),
       cmnd: new FormControl(this.data.stu.cmnd, [Validators.required, Validators.pattern("[0-9]*")]),
       roles: new FormControl(this.data.stu.roles, [Validators.required]),
       employeeDate: new FormControl(new Date(this.data.stu.employeeDate),[Validators.required]),
@@ -35,7 +37,14 @@ export class EmployeeDialogComponent implements OnInit {
       return this.form.controls[controlName].hasError(errorName);
     }
   
+    allRoles: any;
+
     ngOnInit() {
+      this.rolesService.getData().subscribe(data =>{
+        if(data != null){
+          this.allRoles = data;
+        }
+      });
     }
   
     onCancel(){ 

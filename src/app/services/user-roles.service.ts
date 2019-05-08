@@ -21,8 +21,8 @@ export class UserRolesService {
     return this.http.get<[]>('http://localhost:8080/user-roles/roles/' + id);
   }
 
-  getDataByEmployee(id): Observable<[]>{
-    return this.http.get<[]>('http://localhost:8080/user-roles/employee/' + id);
+  getDataByEmployee(username, pass): Observable<[]>{
+    return this.http.get<[]>('http://localhost:8080/user-roles/employee/' + username+"/"+pass);
   }
 
   deleteData(id): Observable<[]>{

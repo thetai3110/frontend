@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../../services/employee.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -30,12 +31,18 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   constructor(private employeeService: EmployeeService,
+    private rolesService: RolesService,
     public dialogRef: MatDialogRef<EmployeeFormComponent>,
     private snackBar: MatSnackBar) { }
 
-  allAccount : any;
+  allRoles : any;
 
   ngOnInit() {
+    this.rolesService.getData().subscribe(data =>{
+      if(data != null){
+        this.allRoles = data;
+      }
+    });
   }
 
   onCancel(){

@@ -18,6 +18,10 @@ export class EmployeeService {
     return this.http.get<Employee[]>('http://localhost:8080/employee/' + id);
   }
 
+  getDataByUsernameAndPass(username, pass): Observable<Employee[]>{
+    return this.http.get<Employee[]>('http://localhost:8080/employee/username/' + username+'/'+pass);
+  }
+
   deleteData(id): Observable<Employee[]>{
     return this.http.get<Employee[]>('http://localhost:8080/employee/delete/' + id);
   }

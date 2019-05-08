@@ -57,10 +57,14 @@
           <mat-error *ngIf="hasError(secondFormGroup ,'phone', 'required')">Trường này không được bỏ trống</mat-error>
           <mat-error *ngIf="hasError(secondFormGroup ,'phone', 'pattern')">Số điện thoại sai định dạng</mat-error>
         </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Mã ưu đãi" formControlName="idSale">
-        </mat-form-field>
-        <button mat-raised-button color="primary">Kiểm tra</button>
+        <div class="add">
+          <mat-form-field>
+            <input matInput placeholder="Mã ưu đãi" formControlName="idSale">
+          </mat-form-field>
+          <button [hidden]="no" mat-mini-fab color="warn"><fa-icon [icon]="faTimesCircle"></fa-icon></button>
+          <button [hidden]="yes" mat-mini-fab color="accent"><fa-icon [icon]="faCheckCircle"></fa-icon></button>
+        </div>
+        <button mat-raised-button color="primary" (click)="checkSales()">Kiểm tra</button>
         <table class="table">
           <thead>
             <tr>

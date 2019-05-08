@@ -83,47 +83,42 @@
                 <a class="dropdown-item" href="blank.html">Blank Page</a>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/admin/account-manage']">
-                <fa-icon [icon]="faUsers"></fa-icon> <span>Tài khoản</span>
-            </a>
-        </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin' || roles == 'HR'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/employee-manage']">
                 <fa-icon [icon]="faMale"></fa-icon> <span>Nhân viên</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin' || roles == 'HR'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/lecturers-manage']">
                 <fa-icon [icon]="faChalkboardTeacher"></fa-icon> <span>Giảng viên</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin' || roles == 'Class' || roles == 'Invoice'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/student-manage']">
                 <fa-icon [icon]="faUserGraduate"></fa-icon> <span>Học viên</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin' || roles == 'Educate'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/course-manage']">
                 <fa-icon [icon]="faLaptopCode"></fa-icon> <span>Khóa học</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/class-manage']">
                 <fa-icon [icon]="faDoorOpen"></fa-icon> <span>Lớp học</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin' || roles == 'Invoice'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/invoice-manage']">
                 <fa-icon [icon]="faFileInvoice"></fa-icon> <span>Hóa đơn</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin' || roles == 'Class' || roles == 'Educate'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/room-manage']">
                 <fa-icon [icon]="faWarehouse"></fa-icon> <span>Phòng</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="roles == 'Admin' || roles == 'Educate'" class="nav-item">
             <a class="nav-link" [routerLink]="['/admin/exam-certificate']">
                 <fa-icon [icon]="faCertificate"></fa-icon> <span>Kì thi và chứng chỉ</span>
             </a>

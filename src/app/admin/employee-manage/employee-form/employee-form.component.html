@@ -27,8 +27,13 @@
     </mat-form-field>
     <!-- Vai trò -->
     <mat-form-field>
-      <input matInput placeholder="Vai trò*" formControlName="roles">
-      <mat-error *ngIf="hasError('roles', 'required')">Vai trò không được bỏ trống</mat-error>
+      <mat-label>Vai trò</mat-label>
+      <select matNativeControl formControlName="roles">
+        <option [value]=""></option>
+        <ng-container *ngIf="allRoles != null">
+          <option *ngFor="let roles of allRoles " [value]="roles.nameRoles">{{ roles.nameRoles }}</option>
+        </ng-container>
+      </select>
     </mat-form-field>
     <!-- Ngày sinh -->
     <mat-form-field>

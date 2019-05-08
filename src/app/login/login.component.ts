@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../services/login.service';
 import { MatSnackBar } from '@angular/material';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-logout',
@@ -37,27 +38,28 @@ export class LoginComponent implements OnInit {
   status: boolean;
 
   constructor(private loginService: LoginService, private router: Router,
+              private employeeService: EmployeeService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
   onSubmit(form) {
-    // this.loginService.postData(form).subscribe(data => {
-    //   this.status = Boolean(data);
-    //   if (this.status == true) {
-    //     this.onRemember(form.username, form.pass);
-    //     this.router.navigate(['']);
-    //     this.snackBar.open("Success!!!", "Login", {
-    //       duration: 2000,
-    //     });
-    //   }
-    //   else{
-    //     this.snackBar.open("Tài khoản hoặc mật khẩu không chính xác!!!", "Login", {
-    //       duration: 2000,
-    //     });
-    //   }
-    // });
+    this.loginService.postData(form).subscribe(data => {
+      this.status = Boolean(data);
+      if (this.status == true) {
+        this.onRemember(form.username, form.pass);
+        this.router.navigate(['']);
+        this.snackBar.open("Success!!!", "Login", {
+          duration: 2000,
+        });
+      }
+      else{
+        this.snackBar.open("Tài khoản hoặc mật khẩu không chính xác!!!", "Login", {
+          duration: 2000,
+        });
+      }
+    });
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -68,6 +70,9 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem("username") != username && localStorage.getItem("pass") != pass) {
       localStorage.setItem("username", username);
       localStorage.setItem("pass", pass);
+      this.employeeService.getDataByUsernameAndPass(username, pass).subscribe(data =>{
+        localStorage.setItem("roles", data['roles']);
+      });
     }
   }
 }

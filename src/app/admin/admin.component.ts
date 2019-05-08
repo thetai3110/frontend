@@ -22,8 +22,12 @@ export class AdminComponent implements OnInit {
   faUserCircle = faUserCircle; faTachometerAlt = faTachometerAlt; faFolder = faFolder;
 
   isShow = true;
+  roles = "";
 
   ngOnInit() {
+    if(localStorage.getItem("roles") != null){
+      this.roles = localStorage.getItem("roles");
+    }
   }
 
   onShow(){
