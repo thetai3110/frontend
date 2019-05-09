@@ -24,9 +24,11 @@ import { SearchsComponent } from './searchs/searchs.component';
 import { AccuracyFormComponent } from './register-to-study/accuracy-form/accuracy-form.component';
 import { InfomationComponent } from './infomation/infomation.component';
 import { AcceptComponent } from './admin/class-manage/teaching-assignment/accept/accept.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
+  {path: 'feedback', component: FeedbackComponent },
   {path: 'detail/:id', component: CourseDetailComponent},
   {path: 'courses/:id', component: CoursesComponent},
   {path: 'searchs', component: SearchsComponent},

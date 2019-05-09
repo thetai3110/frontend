@@ -56,6 +56,7 @@ import { InvoiceDetailComponent } from './admin/invoice-manage/invoice-detail/in
 import { TeachingAssignmentComponent } from './admin/class-manage/teaching-assignment/teaching-assignment.component';
 import { EditRegisterComponent } from './admin/invoice-manage/registration-infomation/edit-register/edit-register.component';
 import { DeleteRegisterComponent } from './admin/invoice-manage/registration-infomation/delete-register/delete-register.component';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { DeleteRegisterComponent } from './admin/invoice-manage/registration-inf
     SearchsModule,
     CourseManagementModule,
     RegisterModule,
+    FeedbackModule,
     RegisterToStudyModule,
     CalendarOpenModule,
     InfomationModule,

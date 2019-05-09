@@ -39,6 +39,8 @@ export class AccuracyFormComponent implements OnInit {
   firstFormGroup: FormGroup;
   idClass = 0;
   days: Date;
+  kt = 0;
+  ckeck = 0;
 
   secondFormGroup: FormGroup = new FormGroup({
     nameRegister: new FormControl('', [Validators.required]),
@@ -96,6 +98,8 @@ export class AccuracyFormComponent implements OnInit {
   }
 
   onSubmit(form) {
+    this.kt = 0;
+    this.ckeck = 0;
     form.groupNum = this.group;
     form.formula = this.formula;
     if (this.isCard == false && this.payment == "no") {
@@ -145,6 +149,7 @@ export class AccuracyFormComponent implements OnInit {
     }
   }
 
+
   checkSales() {
     if (this.secondFormGroup.value.idSale == "") {
       this.yes = true;
@@ -154,7 +159,16 @@ export class AccuracyFormComponent implements OnInit {
         if (data != null) {
           this.yes = false;
           this.no = true;
+          if(this.kt == 0){
+            this.ckeck = Number(this.fee) * (Number(data['describes'])/100);
+            this.fee = Number(this.fee) - Number(this.fee) * (Number(data['describes'])/100);
+            this.kt = 1;
+          }
         } else {
+          if(this.kt == 1){
+            this.fee = Number(this.fee) + this.ckeck;
+            this.kt = 0;
+          }
           this.yes = true;
           this.no = false;
         }

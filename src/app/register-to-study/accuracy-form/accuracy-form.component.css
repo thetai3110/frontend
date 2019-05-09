@@ -16,7 +16,7 @@ table th, td{
     border: 1px solid rgb(192, 192, 192);
 }
 .add mat-form-field{
-    width: 34%;
+    width: 30%;
 }
 mat-form-field{
     width: 40%;
@@ -27,10 +27,13 @@ span{
 }
 mat-radio-button{
    display: block;
-    margin-right: 25px;
+   margin-right: 25px;
 }
 button{
-    margin-left: 10px;
+    margin-left: 5px;
+}
+.check{
+    
 }
 .actions{
     float: right;
