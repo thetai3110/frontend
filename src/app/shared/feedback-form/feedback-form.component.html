@@ -5,24 +5,40 @@
         Phản hồi
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <mat-card class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions>
-    </mat-card>
+    <form [formGroup]="form" (ngSubmit)="form.valid && onSubmit(form.value)">
+      <div mat-dialog-content>
+        <!-- Họ & Tên -->
+        <mat-form-field>
+          <input matInput placeholder="Bạn tên là?*" formControlName="studentName">
+          <mat-error *ngIf="hasError('studentName', 'required')">Trường này không được bỏ trống</mat-error>
+        </mat-form-field>
+        <!-- Khóa học -->
+        <mat-form-field>
+          <mat-label>Đã từng học khóa học</mat-label>
+          <select matNativeControl formControlName="idCourse">
+            <option [value]=""></option>
+            <ng-container *ngIf="courses != null">
+              <option *ngFor="let cour of courses " [value]="cour.idCourse">{{ cour.course }} - {{ cour.level.level }}</option>
+            </ng-container>
+          </select>
+        </mat-form-field>
+        <!-- Nội dung -->
+        <mat-form-field>
+          <textarea matInput placeholder="Bạn muốn nhận xét gì về chúng tôi?*" formControlName="content" name="" id="" cols="30" rows="3"></textarea>
+          <mat-error *ngIf="hasError('content', 'required')">Trường này không được bỏ trống</mat-error>
+        </mat-form-field>
+        <!-- Đánh giá -->
+        <div>Đánh giá : 
+          <fa-icon [icon]="faStar" [style.color]="color1" (mouseover)="onRatingOver(1)" (mouseout)="onRatingOut(1)" (click)="onRating(1)"></fa-icon>
+          <fa-icon [icon]="faStar" [style.color]="color2" (mouseover)="onRatingOver(2)" (mouseout)="onRatingOut(2)" (click)="onRating(2)"></fa-icon>
+          <fa-icon [icon]="faStar" [style.color]="color3" (mouseover)="onRatingOver(3)" (mouseout)="onRatingOut(3)" (click)="onRating(3)"></fa-icon>
+          <fa-icon [icon]="faStar" [style.color]="color4" (mouseover)="onRatingOver(4)" (mouseout)="onRatingOut(4)" (click)="onRating(4)"></fa-icon>
+          <fa-icon [icon]="faStar" [style.color]="color5" (mouseover)="onRatingOver(5)" (mouseout)="onRatingOut(5)" (click)="onRating(5)"></fa-icon>
+        </div>
+      </div>
+      <div mat-dialog-actions class="action">
+        <button mat-raised-button color="primary" type="submit">Phản hồi</button>
+      </div>
+    </form>
   </mat-expansion-panel>
 </mat-accordion>

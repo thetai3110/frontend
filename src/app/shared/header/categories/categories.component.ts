@@ -29,14 +29,6 @@ export class CategoriesComponent implements OnInit {
       this.username = localStorage.getItem("username");
       this.isLogin = true;
     }
-    // this.accountService.getDataByUsername(this.username).subscribe(data=>{
-    //   if(data != null){
-    //     this.studentService.getDataByAccount(Number(data['idAccount'])).subscribe(stu =>{
-    //       if(stu != null)
-    //         this.img =  stu['image'] == null ? "" :  stu['image'];
-    //     });
-    //   }
-    // }); 
     this.educationProgramService.getData().subscribe(data =>{
       if(data !=null)
         this.edu = data;
