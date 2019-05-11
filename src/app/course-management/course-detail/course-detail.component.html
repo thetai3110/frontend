@@ -1,5 +1,5 @@
 <app-header></app-header>
-<mat-tab-group [color]="'primary'" [backgroundColor]="'primary'">
+<!-- <mat-tab-group [color]="'primary'" [backgroundColor]="'primary'">
     <mat-tab label="Thông tin">
         <app-info [course]="course" [level]="level" [education]="education"></app-info>
     </mat-tab>
@@ -12,5 +12,47 @@
     <mat-tab label="Lớp học">
         <app-classes class="list-class" [list-class]="classes" [course]="course" [level]="level"></app-classes>
     </mat-tab>
-</mat-tab-group>
+</mat-tab-group> -->
+<div class="detail container">
+    <div class="row title">
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <img mat-card-image src="http://localhost:8080/downloadFile/{{course.image}}" alt="{{course.image}}">
+        </div>
+        <div class="info col-xs-9 col-sm-9 col-md-9">
+            <h2>{{ course.course }} - {{ level }}</h2>
+            <p>{{ course.describes }}</p>
+        </div>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header style="background-color: #FD6504">
+                <mat-panel-title>
+                    Thông tin chung
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-info [course]="course" [level]="level" [education]="education"></app-info>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header style="background-color: #FD6504">
+                <mat-panel-title>
+                    Ưu đãi của khóa học
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-sale [course]="course" [level]="level"></app-sale>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header style="background-color: #FD6504">
+                <mat-panel-title>
+                    Nội dung sẽ được học
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <app-content [course]="course" [lessons]="lessons" [level]="level"></app-content>
+            </mat-expansion-panel>
+    </mat-accordion>
+    <div class="calender">
+        <h2>Lịch khai giảng</h2>
+        <app-classes class="list-class" [list-class]="classes" [course]="course" [level]="level"></app-classes>
+    </div>
+</div>
+
 <app-footer></app-footer>

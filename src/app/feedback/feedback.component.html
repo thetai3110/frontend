@@ -1,3 +1,62 @@
 <app-header></app-header>
-a
+<div class="feedback">
+    <h1 style="color: #FD6504;">Phản hồi của học viên</h1>
+    <div class="container">
+        <div class="row">
+            <div *ngFor="let feedback of feedBacks" class="col-xs-6 col-sm-6 col-md-6 item">
+                <div class="user">
+                    <fa-icon [icon]="faUserGraduate"></fa-icon>
+                </div>
+                <p>{{ feedback.content }}</p>
+                <p style="color: #1687c5">{{ feedback.studentName }}</p>
+                <p>Đã từng học khóa học : <span style="color: #1687c5">{{ feedback.course.course }} -
+                        {{ feedback.course.level.level }}</span></p>
+                <div *ngIf="feedback.rate == 1">Đánh giá :
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                </div>
+                <div *ngIf="feedback.rate == 2">Đánh giá :
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                </div>
+                <div *ngIf="feedback.rate == 3">Đánh giá :
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                </div>
+                <div *ngIf="feedback.rate == 4">Đánh giá :
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'black'"></fa-icon>
+                </div>
+                <div *ngIf="feedback.rate == 5">Đánh giá :
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                    <fa-icon [icon]="faStar" [style.color]="'orange'"></fa-icon>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <ul>
+                <li *ngIf="page != 1"><a [routerLink]="['/feedback', 1]">Trang đầu</a></li>
+                <li *ngIf="page != 1"><a [routerLink]="['/feedback', page -1 >= 1 ? page - 1 : page]">Lùi</a></li>
+                <li *ngFor="let page of total, index as i"><a [routerLink]="['/feedback', i+1]" [routerLinkActive]="'active-link'">{{ i+1 }}</a></li>
+                <li *ngIf="page != total.length"><a [routerLink]="['/feedback', page + 1 <= total.length ? page + 1 : page]">Tiếp</a></li>
+                <li *ngIf="page != total.length"><a [routerLink]="['/feedback', total.length ]">Trang cuối</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>

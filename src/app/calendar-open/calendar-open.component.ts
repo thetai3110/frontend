@@ -16,7 +16,7 @@ export class CalendarOpenComponent implements OnInit {
   edu : String;
   ngOnInit() {
     this.activateRoute.params.subscribe(data => {
-      this.courseService.getDataByEducation(data.id).subscribe(lstCourse =>{
+      this.courseService.getDataByEducationAndStatus(data.id, 1).subscribe(lstCourse =>{
         if(lstCourse != null){
           this.courses = lstCourse;
         }

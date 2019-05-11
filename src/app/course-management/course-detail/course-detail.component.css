@@ -1,5 +1,29 @@
-mat-tab-group {
+/* mat-tab-group {
     width: 80%;
     margin: 15px auto;
     color: white;
+} */
+.title{
+    margin-bottom: 25px;
+}
+mat-panel-title{
+    color: white;
+    text-transform: uppercase;
+}
+.detail{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+img{
+    width: 100%;
+    height: 170px;
+    margin-right: 15px;
+}
+h2{
+    color: #0082c8;
+    border-bottom: 1px solid #0082c8;
+    padding-bottom: 3px;
+}
+.calender{
+    margin-top: 25px;
 }

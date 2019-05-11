@@ -79,8 +79,11 @@ export class ClassDialogComponent implements OnInit {
         this.allByClass = data;
         for (var i = 0; i < this.allByClass.length; i++) {
           this.days.push(this.allByClass[i].idSchoolday + "-" + this.allByClass[i].idCa);
-          this.classDay.push(this.allByClass[i].idClassDay);
+          this.classDay.push(this.allByClass[i].idClassday);
+          
         }
+        console.log(this.classDay);
+
       }
     });
   }
@@ -158,6 +161,8 @@ export class ClassDialogComponent implements OnInit {
   }
 
   onSubmit(form) {
+    console.log(this.classDay);
+    
     this.classesService.updateData(this.data.stu.idClass, form).subscribe(data => {
       if (data != null) {
         if (this.checkChange == true) {
@@ -177,12 +182,14 @@ export class ClassDialogComponent implements OnInit {
         } else {
           //Update lại class-day
           for (var i = 0; i < this.days.length; i++) {
-            var classDay = {
+            var classDaya = {
               idClass: this.data.stu.idClass,
               idSchoolday: this.days[i].charAt(0),
               idCa: this.days[i].charAt(2)
             }
-            this.classesService.updateClassDay(classDay, this.classDay[i]).subscribe();
+            console.log(this.classDay[i]);
+            
+            this.classesService.updateClassDay(classDaya, this.classDay[i]).subscribe();
           }
         }
         setTimeout(() => {

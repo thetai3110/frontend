@@ -23,7 +23,7 @@
         </li>
         <li><a [routerLink]="['/course/register']">Đăng ký ngay</a></li>
         <li><a [routerLink]="['/searchs']">Tra cứu thông tin</a></li>
-        <li><a [routerLink]="['/feedback']">Phản hồi</a></li>
+        <li><a [routerLink]="['/feedback', 1]">Phản hồi</a></li>
         <li *ngIf="isLogin == true"><a [routerLink]="['/admin']">Admin</a></li>
         <li *ngIf="isLogin == true;else login">
           <a href="" class="user">

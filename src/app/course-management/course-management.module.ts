@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatIconModule, MatCardModule, MatTabsModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatCardModule, MatTabsModule,
+         MatExpansionModule } from '@angular/material';
 
 import { ShowCourseComponent } from './show-course/show-course.component';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
@@ -28,7 +29,8 @@ import { SaleComponent } from './course-detail/sale/sale.component';
     MatButtonModule,
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    MatExpansionModule
   ],
   providers: [CourseService],
   exports: [

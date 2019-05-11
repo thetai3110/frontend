@@ -7,7 +7,7 @@ import { MatFormFieldModule, MatRadioModule,
           MatDatepickerModule,MatButtonModule, 
           MatInputModule, MatNativeDateModule, 
           MatSelectModule, MatStepperModule, MatTableModule,
-          MatSortModule, MatSnackBarModule, MatIconModule} from '@angular/material';
+          MatSortModule, MatSnackBarModule, MatIconModule, MatChipsModule} from '@angular/material';
 
 import { RegisterToStudyComponent } from './register-to-study.component';
 import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
@@ -36,7 +36,8 @@ import { InfomationModule } from '../infomation/infomation.module';
     MatSnackBarModule,
     FontAwesomeModule,
     InfomationModule,
-    MatIconModule
+    MatIconModule,
+    MatChipsModule
   ]
 })
 export class RegisterToStudyModule { }

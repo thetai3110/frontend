@@ -28,7 +28,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
-  {path: 'feedback', component: FeedbackComponent },
+  {path: 'feedback/:page', component: FeedbackComponent},
   {path: 'detail/:id', component: CourseDetailComponent},
   {path: 'courses/:id', component: CoursesComponent},
   {path: 'searchs', component: SearchsComponent},

@@ -6,26 +6,34 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedbackService {
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getData(): Observable<[]>{
+  getData(): Observable<[]> {
     return this.http.get<[]>('http://localhost:8080/feedback');
   }
 
-  getDataById(id): Observable<[]>{
+  getDataById(id): Observable<[]> {
     return this.http.get<[]>('http://localhost:8080/feedback/' + id);
   }
 
-   getDataByCode(id): Observable<[]>{
+  paging(page): Observable<[]> {
+    return this.http.get<[]>('http://localhost:8080/feedback/paging/' + page);
+  }
+
+  total(){
+    return this.http.get('http://localhost:8080/feedback/total');
+  }
+
+  getDataByCode(id): Observable<[]> {
     return this.http.get<[]>('http://localhost:8080/feedback/course/' + id);
   }
 
-  deleteData(id): Observable<[]>{
+  deleteData(id): Observable<[]> {
     return this.http.get<[]>('http://localhost:8080/feedback/delete/' + id);
   }
 
-  postData(data){
-    return this.http.post('http://localhost:8080/feedback/add',data);
+  postData(data) {
+    return this.http.post('http://localhost:8080/feedback/add', data);
   }
 
 }
