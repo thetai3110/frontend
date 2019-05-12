@@ -57,6 +57,10 @@ import { TeachingAssignmentComponent } from './admin/class-manage/teaching-assig
 import { EditRegisterComponent } from './admin/invoice-manage/registration-infomation/edit-register/edit-register.component';
 import { DeleteRegisterComponent } from './admin/invoice-manage/registration-infomation/delete-register/delete-register.component';
 import { FeedbackModule } from './feedback/feedback.module';
+import { NewsModule } from './news/news.module';
+import { NewsDeleteComponent } from './admin/news-manage/news-delete/news-delete.component';
+import { NewsDialogComponent } from './admin/news-manage/news-dialog/news-dialog.component';
+import { NewsFormComponent } from './admin/news-manage/news-form/news-form.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,8 @@ import { FeedbackModule } from './feedback/feedback.module';
     InfomationModule,
     HttpClientModule,
     FontAwesomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NewsModule
   ],
   entryComponents:[
     StudentDialogComponent, StudentFormComponent, StudentDeleteComponent, StudentTableComponent,
@@ -94,7 +99,8 @@ import { FeedbackModule } from './feedback/feedback.module';
     ExamFormComponent, ExamDialogComponent, ExamDeleteComponent,
     CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent,
     RoomDialogComponent, RoomDeleteComponent, RoomFormComponent,
-    EditRegisterComponent, DeleteRegisterComponent
+    EditRegisterComponent, DeleteRegisterComponent,
+    NewsDeleteComponent, NewsDialogComponent, NewsFormComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

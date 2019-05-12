@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Xóa tin</h1>
+<div mat-dialog-content>
+  <p>Bạn muốn xóa tin có Id là: {{ data.id }}?</p>
+</div>
+<div mat-dialog-actions class="action">
+  <button mat-raised-button color="warn" (click)="onCancel()">Hủy</button>
+  <button mat-raised-button color="primary" (click)="onDel(data.id)">Xóa</button>
+</div>
+

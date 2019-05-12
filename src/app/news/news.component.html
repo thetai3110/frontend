@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="section2 full-section">
+  <div class="container padding991">
+    <div class="col-md-12 col-xs-12">
+      <div class="tittle">
+        <h3>Danh mục tin tức</h3>
+      </div>
+      <div class="row content">
+        <div *ngFor="let new of news" class="col-md-4 col-sm-6 col-xs-12">
+          <div class="product">
+            <div class="images">
+              <a [routerLink]="['/news-detail', new.idNews]"><img src="http://localhost:8080/downloadFile/{{new.avatar}}"></a>
+            </div>
+            <div class="name">
+              <h4><a [routerLink]="['/news-detail', new.idNews]">{{ new.title }}</a></h4>
+              <p>{{ new.describes }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page">
+      <ul>
+          <li *ngIf="page != 1"><a [routerLink]="['/news', 1]">Trang đầu</a></li>
+          <li *ngIf="page != 1"><a [routerLink]="['/news', page -1 >= 1 ? page - 1 : page]">Lùi</a></li>
+          <li *ngFor="let page of total, index as i"><a [routerLink]="['/news', i+1]" [routerLinkActive]="'active-link'">{{ i+1 }}</a></li>
+          <li *ngIf="page != total.length"><a [routerLink]="['/news', page + 1 <= total.length ? page + 1 : page]">Tiếp</a></li>
+          <li *ngIf="page != total.length"><a [routerLink]="['/news', total.length ]">Trang cuối</a></li>
+      </ul>
+  </div>
+</div>
+<app-footer></app-footer> 

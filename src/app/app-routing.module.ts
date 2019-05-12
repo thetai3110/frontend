@@ -25,9 +25,14 @@ import { AccuracyFormComponent } from './register-to-study/accuracy-form/accurac
 import { InfomationComponent } from './infomation/infomation.component';
 import { AcceptComponent } from './admin/class-manage/teaching-assignment/accept/accept.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { NewsComponent } from './news/news.component';
+import { NewsManageComponent } from './admin/news-manage/news-manage.component';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent },
+  {path: 'news/:page', component: NewsComponent },
+  {path: 'news-detail/:id', component: NewsDetailComponent },
   {path: 'feedback/:page', component: FeedbackComponent},
   {path: 'detail/:id', component: CourseDetailComponent},
   {path: 'courses/:id', component: CoursesComponent},
@@ -60,7 +65,8 @@ const routes: Routes = [
       {path: 'lecturers-manage', component: LecturersManageComponent},
       {path: 'room-manage', component: RoomManageComponent},
       {path: 'invoice-manage', component: InvoiceManageComponent},
-      {path: 'exam-certificate', component: ExamCertificateComponent}
+      {path: 'exam-certificate', component: ExamCertificateComponent},
+      {path: 'news', component: NewsManageComponent}
     ]  
   }
 ];

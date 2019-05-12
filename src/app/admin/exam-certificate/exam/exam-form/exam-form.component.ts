@@ -101,7 +101,7 @@ export class ExamFormComponent implements OnInit {
   }
 
   loadDataByIdCourse(id) {
-    this.classesService.getDataByIdCourseAndStatus(id, 1).subscribe(data => {
+    this.classesService.getDataByIdCourseAndStatus(id, 0).subscribe(data => {
       if (data != null)
         this.classByCourse = data;
     });

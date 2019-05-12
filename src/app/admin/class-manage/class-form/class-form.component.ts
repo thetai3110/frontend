@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CourseService } from 'src/app/services/course.service';
-import { LecturersService } from 'src/app/services/lecturers.service';
 import { ClassesService } from 'src/app/services/classes.service';
 import { RoomService } from 'src/app/services/room.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
@@ -46,7 +45,7 @@ export class ClassFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.courseService.getData().subscribe(data => {
+    this.courseService.getDataByStatus(1).subscribe(data => {
       this.allCourse = data;
     });
     this.roomService.getData().subscribe(data => {

@@ -71,6 +71,11 @@ import { MarksComponent } from './exam-certificate/marks/marks.component';
 import { EditMarksComponent } from './exam-certificate/marks/edit-marks/edit-marks.component';
 import { EditRegisterComponent } from './invoice-manage/registration-infomation/edit-register/edit-register.component';
 import { DeleteRegisterComponent } from './invoice-manage/registration-infomation/delete-register/delete-register.component';
+import { NewsManageComponent } from './news-manage/news-manage.component';
+import { NewsTableComponent } from './news-manage/news-table/news-table.component';
+import { NewsFormComponent } from './news-manage/news-form/news-form.component';
+import { NewsDialogComponent } from './news-manage/news-dialog/news-dialog.component';
+import { NewsDeleteComponent } from './news-manage/news-delete/news-delete.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +138,11 @@ import { DeleteRegisterComponent } from './invoice-manage/registration-infomatio
     EditMarksComponent,
     EditRegisterComponent,
     DeleteRegisterComponent,
+    NewsManageComponent,
+    NewsTableComponent,
+    NewsFormComponent,
+    NewsDialogComponent,
+    NewsDeleteComponent,
   ],
   imports: [
     SharedModule,

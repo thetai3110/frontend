@@ -25,7 +25,8 @@
         <li><a [routerLink]="['/searchs']">Tra cứu thông tin</a></li>
         <li><a [routerLink]="['/feedback', 1]">Phản hồi</a></li>
         <li *ngIf="isLogin == true"><a [routerLink]="['/admin']">Admin</a></li>
-        <li *ngIf="isLogin == true;else login">
+        <li><a [routerLink]="['/news', 1]">Tin tức</a></li>
+        <!-- <li *ngIf="isLogin == true;else login">
           <a href="" class="user">
             <img *ngIf="img == '' || img==null; else isImg" src="../../assets/images/img.PNG" alt="person">
             <ng-template #isImg>
@@ -46,7 +47,7 @@
           <li><a [routerLink]="['/login']">
               <fa-icon [icon]="faSignInAlt"></fa-icon> Đăng nhập
             </a></li>
-        </ng-template>
+        </ng-template> -->
       </ul>
     </div>
     <div class="box">

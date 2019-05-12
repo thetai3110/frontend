@@ -123,6 +123,11 @@
                 <fa-icon [icon]="faCertificate"></fa-icon> <span>Kì thi và chứng chỉ</span>
             </a>
         </li>
+        <li *ngIf="roles == 'Admin' || roles == 'Educate'" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/news']">
+                <fa-icon [icon]="faCertificate"></fa-icon> <span>Tin tức</span>
+            </a>
+        </li>
     </ul>
     <div id="content-wrapper">
         <div class="container-fluid">
