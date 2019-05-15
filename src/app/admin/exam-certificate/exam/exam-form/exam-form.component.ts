@@ -38,6 +38,7 @@ export class ExamFormComponent implements OnInit {
   showDate = true;
   listClass = [];
   classes = [];
+  numClass = 0;
 
   ngOnInit() {
     this.courseService.getData().subscribe(data => {
@@ -63,47 +64,54 @@ export class ExamFormComponent implements OnInit {
     if (event.checked == true) {
       this.loadDataByIdClass(idClass);
       this.showDate = false;
+      this.numClass++;
     } else {
       var pos = this.listClass.indexOf(idClass);
       this.listClass.splice(pos, 1);
       this.form.removeControl("form" + idClass);
       this.form.removeControl("time" + idClass);
+      this.numClass--;
     }
   }
 
   onSubmit() {
-    this.examService.postData(this.form.value).subscribe(data => {
-      if (data != null) {
-        var list = [];
-        for (var i = 0; i < this.listClass.length; i++) {
-          var detail = {
-            idExam: data['idExam'],
-            idClass: this.listClass[i].idClass,
-            dayExam: this.form.get('form' + this.listClass[i].idClass).value,
-            timeExam: this.form.get('time' + this.listClass[i].idClass).value,
+    if (this.numClass > 0) {
+      this.examService.postData(this.form.value).subscribe(data => {
+        if (data != null) {
+          var list = [];
+          for (var i = 0; i < this.listClass.length; i++) {
+            var detail = {
+              idExam: data['idExam'],
+              idClass: this.listClass[i].idClass,
+              dayExam: this.form.get('form' + this.listClass[i].idClass).value,
+              timeExam: this.form.get('time' + this.listClass[i].idClass).value,
+            }
+            list.push(detail);
           }
-          list.push(detail);
-        }
-        this.examDetailService.postMultiData(list).subscribe(rs => {
-          if (rs != null) {
-            this.snackBar.open("Success!!!", "Add", {
-              duration: 2000,
-            });
-          } else {
-            this.snackBar.open("Fail!!!", "Add", {
-              duration: 2000,
-            });
-          }
-          this.onCancel()
-        });
-      };
-    });
+          this.examDetailService.postMultiData(list).subscribe(rs => {
+            if (rs != null) {
+              this.snackBar.open("Success!!!", "Add", {
+                duration: 2000,
+              });
+            } else {
+              this.snackBar.open("Fail!!!", "Add", {
+                duration: 2000,
+              });
+            }
+            this.onCancel()
+          });
+        };
+      });
+    } else {
+      alert("Không thể tạo kỳ thi khi không có lớp nào!!!");
+    }
   }
 
   loadDataByIdCourse(id) {
-    this.classesService.getDataByIdCourseAndStatus(id, 0).subscribe(data => {
+    this.classesService.getDataByIdCourseAndStatus(id, 1).subscribe(data => {
       if (data != null)
         this.classByCourse = data;
+      else this.classByCourse = null;
     });
   }
 

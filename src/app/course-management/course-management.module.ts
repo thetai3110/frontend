@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule, MatIconModule, MatCardModule, MatTabsModule,
          MatExpansionModule } from '@angular/material';
 
@@ -13,6 +13,10 @@ import { InfoComponent } from './course-detail/info/info.component';
 import { ContentComponent } from './course-detail/content/content.component';
 import { SaleComponent } from './course-detail/sale/sale.component';
 
+const routes: Routes = [
+  {path: 'detail/:id', component: CourseDetailComponent},
+];
+
 @NgModule({
   declarations: [
     ShowCourseComponent,
@@ -23,6 +27,7 @@ import { SaleComponent } from './course-detail/sale/sale.component';
     SaleComponent
   ],
   imports: [
+    RouterModule.forChild(routes),
     MatTabsModule,
     MatIconModule,
     MatCardModule,

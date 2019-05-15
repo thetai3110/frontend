@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDatepickerInputEvent } from '@angular/material';
 import { CaService } from 'src/app/services/ca.service';
 import { ClassesService } from 'src/app/services/classes.service';
 import { SchooldayService } from 'src/app/services/schoolday.service';
@@ -40,35 +39,44 @@ export class RoomCalenderComponent implements OnInit {
       this.schooldayService.getData().subscribe(data1 => {
         this.schoolday = data1;
         this.classesService.getClassDayByRoom(idRoom).subscribe(data2 => {
-          this.datas = data2;
-          for (let i = 0; i < this.schoolday.length; i++) {
-            for (let j = 0; j < this.cas.length; j++) {
-              var key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa;
-              var ck = 0;
-              var name = "";
-              for (var k = 0; k < this.datas.length; k++) {
-                if (key == this.datas[k].idSchoolday + "-" + this.datas[k].idCa) {
-                  ck = 1;
-                  name = this.datas[k].className;
+          if (data2 != null) {
+            this.datas = data2;
+            for (let i = 0; i < this.schoolday.length; i++) {
+              for (let j = 0; j < this.cas.length; j++) {
+                var key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa;
+                var ck = 0;
+                var name = "";
+                for (var k = 0; k < this.datas.length; k++) {
+                  if (key == this.datas[k].idSchoolday + "-" + this.datas[k].idCa) {
+                    ck = 1;
+                    name = this.datas[k].className;
+                  }
+                }
+                if (ck == 0) {
+                  key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f";
+                  classDay.push(key);
+                } else {
+                  key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f";
+                  classDay.push(key);
+                  key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-t-" + name;
+                  classDay.push(key);
                 }
               }
-              if (ck == 0) {
-                key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f";
-                classDay.push(key);
-              } else {
-                key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f";
-                classDay.push(key);
-                key = this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-t-"+ name;
-                classDay.push(key);
+            }
+            //Danh sách
+            for (let k = 0; k < this.datas.length; k++) {
+              var pos = classDay.indexOf(this.datas[k].idSchoolday + "-" + this.datas[k].idCa + "-f");
+              classDay.splice(pos, 1);
+            }
+            this.classDays.push(classDay);
+          }else{
+            for (let i = 0; i < this.schoolday.length; i++) {
+              for (let j = 0; j < this.cas.length; j++) {
+                classDay.push(this.schoolday[i].idSchoolDay + "-" + this.cas[j].idCa + "-f");
               }
             }
+            this.classDays.push(classDay);
           }
-          //Danh sách
-          for (let k = 0; k < this.datas.length; k++) {
-            var pos = classDay.indexOf(this.datas[k].idSchoolday + "-" + this.datas[k].idCa + "-f");
-            classDay.splice(pos, 1);
-          }
-          this.classDays.push(classDay);
         });
       });
     });

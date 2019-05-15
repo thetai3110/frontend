@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { MatFormFieldModule, MatRadioModule, 
           MatDatepickerModule,MatButtonModule, 
@@ -12,12 +12,17 @@ import { MatFormFieldModule, MatRadioModule,
 import { RegisterToStudyComponent } from './register-to-study.component';
 import { AccuracyFormComponent } from './accuracy-form/accuracy-form.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CalendarOpenModule } from '../calendar-open/calendar-open.module';
 import { InfomationModule } from '../infomation/infomation.module';
+
+const routes: Routes = [
+  {path: 'course/register', component: RegisterToStudyComponent},
+  {path: 'course/register/reg/:idClass', component: AccuracyFormComponent}
+]; 
 
 @NgModule({
   declarations: [RegisterToStudyComponent, AccuracyFormComponent],
   imports: [
+    RouterModule.forChild(routes),
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

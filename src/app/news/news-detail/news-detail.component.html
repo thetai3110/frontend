@@ -3,19 +3,17 @@
   <div class="container">
     <div class="col-md-12 col-xs-12">
       <div class="tittle">
-        <h3>{{ news.tsitle }}</h3>
+        <h3 style="text-align:center;">{{ news.title }}</h3>
       </div>
       <div class="content">
         <div class="namecontent">
-          <h2 style="font-size: 18px;font-weight: bold;margin: 10px 0;text-align: center;">Tiêm truyền tại nhà – gói
-            dịch vụ chất lượng tại Tâm Sen</h2>
           <p>{{ news.describes }}</p>
           <img src="http://localhost:8080/downloadFile/{{news.image}}">
           <p>{{ news.content }}</p>
         </div>
       </div>
     </div>
+    <fa-icon [icon]="faCalendar"></fa-icon> Ngày đăng: {{ news.modifyDate | date:'dd-MM-yyyy' }} | <fa-icon [icon]="faEye"></fa-icon> Lượt xem : {{ news.views }}
   </div>
-  Lượt xem : {{ news.views }}
 </div>
 <app-footer></app-footer>

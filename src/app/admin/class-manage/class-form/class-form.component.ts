@@ -100,22 +100,31 @@ export class ClassFormComponent implements OnInit {
     this.noEmptys = [];
     this.emptys = [];
     this.classesService.getClassDayByRoom(idRoom).subscribe(data => {
-      this.allByRoom = data;
-      //Danh sách các ca học đã có lớp 
-      for (var i = 0; i < this.allByRoom.length; i++) {
-        this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa);
-      }
-      //Danh sách tất cả các ca
-      for (let i = 0; i < this.schoolDays.length; i++) {
-        for (let j = 0; j < this.cas.length; j++) {
-          var key = this.schoolDays[i] + "-" + this.cas[j];
-          this.emptys.push(key);
+      if (data != null) {
+        this.allByRoom = data;
+        //Danh sách các ca học đã có lớp 
+        for (var i = 0; i < this.allByRoom.length; i++) {
+          this.noEmptys.push(this.allByRoom[i].idSchoolday + "-" + this.allByRoom[i].idCa);
         }
-      }
-      //Danh sách ca còn trống
-      for (let k = 0; k < this.noEmptys.length; k++) {
-        var pos = this.emptys.indexOf(this.noEmptys[k]);
-        this.emptys.splice(pos, 1);
+        //Danh sách tất cả các ca
+        for (let i = 0; i < this.schoolDays.length; i++) {
+          for (let j = 0; j < this.cas.length; j++) {
+            var key = this.schoolDays[i] + "-" + this.cas[j];
+            this.emptys.push(key);
+          }
+        }
+        //Danh sách ca còn trống
+        for (let k = 0; k < this.noEmptys.length; k++) {
+          var pos = this.emptys.indexOf(this.noEmptys[k]);
+          this.emptys.splice(pos, 1);
+        }
+      }else{
+        for (let i = 0; i < this.schoolDays.length; i++) {
+          for (let j = 0; j < this.cas.length; j++) {
+            var key = this.schoolDays[i] + "-" + this.cas[j];
+            this.emptys.push(key);
+          }
+        }
       }
     });
   }
@@ -129,5 +138,5 @@ export class ClassFormComponent implements OnInit {
     }
     console.log(this.days);
   }
-  
+
 }

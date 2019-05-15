@@ -28,51 +28,48 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { NewsComponent } from './news/news.component';
 import { NewsManageComponent } from './admin/news-manage/news-manage.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { AdminModule } from './admin/admin.module';
+import { NewsModule } from './news/news.module';
+import { FeedbackModule } from './feedback/feedback.module';
+import { CoursesModule } from './courses/courses.module';
+import { SearchsModule } from './searchs/searchs.module';
+import { CalendarOpenModule } from './calendar-open/calendar-open.module';
+import { RegisterToStudyModule } from './register-to-study/register-to-study.module';
+import { InfomationModule } from './infomation/infomation.module';
+import { LoginModule } from './login/login.module';
+import { HomeModule } from './home/home.module';
+import { CourseManagementModule } from './course-management/course-management.module';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent },
-  {path: 'news/:page', component: NewsComponent },
-  {path: 'news-detail/:id', component: NewsDetailComponent },
-  {path: 'feedback/:page', component: FeedbackComponent},
-  {path: 'detail/:id', component: CourseDetailComponent},
-  {path: 'courses/:id', component: CoursesComponent},
-  {path: 'searchs', component: SearchsComponent},
-  {path: 'calendar/:id', component: CalendarOpenComponent},
-  {path: 'course/register', component: RegisterToStudyComponent},
-  {path: 'course/register/reg/:idClass', component: AccuracyFormComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogOutComponent},
-  {path: 'personal', component: PersonalPageComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'information/:id', component: InfomationComponent},
-  {path: 'class/teaching-assignment/:id/:idLec', component: AcceptComponent},
-  {
-    path: 'admin', 
-    component: AdminComponent,
-    children: [
-      {path: 'course-manage', component: CourseManageComponent},
-      {path: 'class-manage', component: ClassManageComponent},
-      {
-        path: 'employee-manage',
-        component: EmployeeManageComponent,
-        children : [ {path: 'add', component: EmployeeManageComponent} ]
-      },
-      {
-        path: 'student-manage', 
-        component: StudentManageComponent,
-        children : [ {path: 'add', component: StudentFormComponent} ]
-      },
-      {path: 'lecturers-manage', component: LecturersManageComponent},
-      {path: 'room-manage', component: RoomManageComponent},
-      {path: 'invoice-manage', component: InvoiceManageComponent},
-      {path: 'exam-certificate', component: ExamCertificateComponent},
-      {path: 'news', component: NewsManageComponent}
-    ]  
-  }
+  { path: '', loadChildren: '../../src/app/home/home.module#HomeModule' },
+  { path: 'admin', loadChildren: '../../src/app/admin/admin.module#AdminModule' },
+  { path: 'news/:page', loadChildren: '../../src/app/news/news.module#NewsModule' },
+  { path: 'feedback/:page', loadChildren: '../../src/app/feedback/feedback.module#FeedbackModule' },
+  { path: 'course', loadChildren: '../../src/app/courses/courses.module#CoursesModule' },
+  { path: 'search', loadChildren: '../../src/app/searchs/searchs.module#SearchsModule' },
+  { path: 'course', loadChildren: '../../src/app/calendar-open/calendar-open.module#CalendarOpenModule' },
+  { path: 'registertostudy', loadChildren: '../../src/app/register-to-study/register-to-study.module#RegisterToStudyModule' },
+  { path: 'login', loadChildren: '../../src/app/login/login.module#LoginModule' },
+  { path: 'infomation', loadChildren: '../../src/app/login/infomation.module#InfomationModule' },
+  { path: 'home', loadChildren: '../../src/app/home/home.module#HomeModule' },
+  { path: 'coursemanagement', loadChildren: '../../src/app/course-management/course-management.module#CourseManagementModule' }  
 ];
 
 @NgModule({
-  imports: [FormsModule,RouterModule.forRoot(routes)],
+  imports: [
+    FormsModule,RouterModule.forRoot(routes), 
+    // AdminModule,
+    // NewsModule,
+    // FeedbackModule,
+    // CoursesModule,
+    // SearchsModule,
+    // CalendarOpenModule,
+    // RegisterToStudyModule,
+    // LoginModule,
+    // InfomationModule,
+    // HomeModule,
+    // CourseManagementModule,
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

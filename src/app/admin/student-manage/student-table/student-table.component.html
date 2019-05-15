@@ -3,15 +3,9 @@
     Table
   </div>
   <div class="card-body">
-    <div class="add">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
-      </mat-form-field>
-      <button *ngIf="data.method == 'choose' || data.method == 'invoice' ? isShow : !isShow" mat-mini-fab color="primary"
-        (click)="onOpenDialogAdd()">
-        <fa-icon [icon]="faPlusCircle"></fa-icon>
-      </button>
-    </div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
+    </mat-form-field>
     <table mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>

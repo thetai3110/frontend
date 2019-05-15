@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule, MatDialogModule, MatNativeDateModule,
         MatPaginatorModule, MatTableModule, MatSortModule,
@@ -9,7 +9,9 @@ import { MatInputModule, MatDialogModule, MatNativeDateModule,
         MatButtonModule, MatSelectModule, MatMenuModule,
         MatIconModule, MatExpansionModule, MatCheckboxModule,
         MatTabsModule, MatSnackBarModule, MatTooltipModule,
-        MatSlideToggleModule } from '@angular/material';
+        MatSlideToggleModule, 
+        MatDialogRef,
+        MAT_DIALOG_DATA} from '@angular/material';
 
 import { AdminComponent } from './admin.component';
 import { CourseManageComponent } from './course-manage/course-manage.component';
@@ -76,6 +78,26 @@ import { NewsTableComponent } from './news-manage/news-table/news-table.componen
 import { NewsFormComponent } from './news-manage/news-form/news-form.component';
 import { NewsDialogComponent } from './news-manage/news-dialog/news-dialog.component';
 import { NewsDeleteComponent } from './news-manage/news-delete/news-delete.component';
+import { LayoutComponent } from './layout/layout.component';
+
+const routes: Routes = [
+  // {path: 'class/teaching-assignment/:id/:idLec', component: AcceptComponent},
+  {
+    path: '', 
+    component: AdminComponent,
+     children: [
+      {path: 'course-manage', component: CourseManageComponent},
+      {path: 'class-manage', component: ClassManageComponent},
+      {path: 'employee-manage', component: EmployeeManageComponent },
+      {path: 'student-manage', component: StudentManageComponent},
+      {path: 'lecturers-manage', component: LecturersManageComponent},
+      {path: 'room-manage', component: RoomManageComponent},
+      {path: 'invoice-manage', component: InvoiceManageComponent},
+      {path: 'exam-certificate', component: ExamCertificateComponent},
+      {path: 'news', component: NewsManageComponent}
+    ]  
+  }
+]; 
 
 @NgModule({
   declarations: [
@@ -145,6 +167,7 @@ import { NewsDeleteComponent } from './news-manage/news-delete/news-delete.compo
     NewsDeleteComponent,
   ],
   imports: [
+    RouterModule.forChild(routes),
     SharedModule,
     CommonModule,
     FontAwesomeModule,
@@ -170,6 +193,25 @@ import { NewsDeleteComponent } from './news-manage/news-delete/news-delete.compo
     MatSnackBarModule,
     MatTooltipModule,
     MatSlideToggleModule
-  ]
+  ],
+  entryComponents: [
+    StudentDialogComponent, StudentFormComponent, StudentDeleteComponent, StudentTableComponent,
+    EmployeeDialogComponent, EmployeeDeleteComponent, EmployeeFormComponent,
+    LecturersFormComponent, LecturersDeleteComponent, LecturersDialogComponent,
+    CourseDialogComponent, CourseDeleteComponent, CourseFormComponent,
+    ClassDeleteComponent, ClassDialogComponent, ClassFormComponent, TeachingAssignmentComponent,
+    LessonDialogComponent, LessonFormComponent ,LessonDeleteComponent,
+    InvoiceDeleteComponent, InvoiceDialogComponent, InvoiceFormComponent, InvoiceDetailComponent,
+    ExamFormComponent, ExamDialogComponent, ExamDeleteComponent,
+    CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent,
+    RoomDialogComponent, RoomDeleteComponent, RoomFormComponent,
+    EditRegisterComponent, DeleteRegisterComponent,
+    NewsDeleteComponent, NewsDialogComponent, NewsFormComponent
+  ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ],
+  exports:[]
 })
 export class AdminModule { }
