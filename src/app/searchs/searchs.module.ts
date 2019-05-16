@@ -11,7 +11,7 @@ import { MatInputModule, MatSortModule, MatFormFieldModule,
 import { DataSearchComponent } from './data-search/data-search.component';
 
 const routes: Routes = [
-  {path: 'searchs', component: SearchsComponent}
+  {path: '', component: SearchsComponent}
 ]; 
 
 @NgModule({

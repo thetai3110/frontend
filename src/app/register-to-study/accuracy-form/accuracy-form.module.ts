@@ -2,22 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
 import { MatFormFieldModule, MatRadioModule, 
           MatDatepickerModule,MatButtonModule, 
           MatInputModule, MatNativeDateModule, 
           MatSelectModule, MatStepperModule, MatTableModule,
           MatSortModule, MatSnackBarModule, MatIconModule, MatChipsModule} from '@angular/material';
-
-import { RegisterToStudyComponent } from './register-to-study.component';
+import { AccuracyFormComponent } from './accuracy-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InfomationModule } from 'src/app/infomation/infomation.module';
 
 const routes: Routes = [
-  {path: '', component: RegisterToStudyComponent},
+  {path: '', component: AccuracyFormComponent}
 ]; 
 
 @NgModule({
-  declarations: [RegisterToStudyComponent],
+  declarations: [AccuracyFormComponent],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
@@ -38,7 +38,8 @@ const routes: Routes = [
     MatSnackBarModule,
     FontAwesomeModule,
     MatIconModule,
-    MatChipsModule
+    MatChipsModule,
+    InfomationModule
   ]
 })
-export class RegisterToStudyModule { }
+export class AccuracyModule { }

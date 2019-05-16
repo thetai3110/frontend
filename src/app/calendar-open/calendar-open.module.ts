@@ -8,7 +8,7 @@ import { MatExpansionModule, MatPaginatorModule, MatInputModule,
 import { ClassByCourseComponent } from './class-by-course/class-by-course.component';
 
 const routes: Routes = [
-  {path: 'calendar/:id', component: CalendarOpenComponent}
+  {path: '', component: CalendarOpenComponent}
 ]; 
 
 @NgModule({

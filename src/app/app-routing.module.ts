@@ -45,30 +45,21 @@ const routes: Routes = [
   { path: 'admin', loadChildren: '../../src/app/admin/admin.module#AdminModule' },
   { path: 'news/:page', loadChildren: '../../src/app/news/news.module#NewsModule' },
   { path: 'feedback/:page', loadChildren: '../../src/app/feedback/feedback.module#FeedbackModule' },
-  { path: 'course', loadChildren: '../../src/app/courses/courses.module#CoursesModule' },
-  { path: 'search', loadChildren: '../../src/app/searchs/searchs.module#SearchsModule' },
-  { path: 'course', loadChildren: '../../src/app/calendar-open/calendar-open.module#CalendarOpenModule' },
-  { path: 'registertostudy', loadChildren: '../../src/app/register-to-study/register-to-study.module#RegisterToStudyModule' },
+  { path: 'courses/:id', loadChildren: '../../src/app/courses/courses.module#CoursesModule' },
+  { path: 'searchs', loadChildren: '../../src/app/searchs/searchs.module#SearchsModule' },
+  { path: 'calendar/:id', loadChildren: '../../src/app/calendar-open/calendar-open.module#CalendarOpenModule' },
+  { path: 'course/register', loadChildren: '../../src/app/register-to-study/register-to-study.module#RegisterToStudyModule' },
+  { path: 'course/register/reg/:idClass', loadChildren: '../app/register-to-study/accuracy-form/accuracy-form.module#AccuracyModule' },
   { path: 'login', loadChildren: '../../src/app/login/login.module#LoginModule' },
-  { path: 'infomation', loadChildren: '../../src/app/login/infomation.module#InfomationModule' },
+  { path: 'infomation/:id', loadChildren: '../../src/app/infomation/infomation.module#InfomationModule' },
   { path: 'home', loadChildren: '../../src/app/home/home.module#HomeModule' },
-  { path: 'coursemanagement', loadChildren: '../../src/app/course-management/course-management.module#CourseManagementModule' }  
+  { path: 'news-detail/:id', loadChildren: '../app/news/news-detail/news-detail.module#NewsDetailModule'},
+  { path: 'search-all/:key/:page', loadChildren: '../app/search-all/search-all.module#SearchAllModule'},
 ];
 
 @NgModule({
   imports: [
-    FormsModule,RouterModule.forRoot(routes), 
-    // AdminModule,
-    // NewsModule,
-    // FeedbackModule,
-    // CoursesModule,
-    // SearchsModule,
-    // CalendarOpenModule,
-    // RegisterToStudyModule,
-    // LoginModule,
-    // InfomationModule,
-    // HomeModule,
-    // CourseManagementModule,
+    FormsModule,RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })

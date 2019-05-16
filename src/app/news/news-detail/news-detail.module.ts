@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NewsComponent } from './news.component';
-import { SharedModule } from '../shared/shared.module';
 import { RouterModule, Routes } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { NewsDetailComponent } from './news-detail.component';
 
 const routes: Routes = [
-  {path: '', component: NewsComponent },
+  {path: '', component: NewsDetailComponent },
 ]; 
 
 @NgModule({
-  declarations: [NewsComponent],
+  declarations: [NewsDetailComponent],
   imports: [
     RouterModule.forChild(routes),
     SharedModule,
@@ -19,4 +19,5 @@ const routes: Routes = [
     FontAwesomeModule
   ]
 })
-export class NewsModule { }
+
+export class NewsDetailModule { }

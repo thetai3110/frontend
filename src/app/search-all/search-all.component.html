@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="section2 full-section">
+  <div class="container padding991">
+    <div class="col-md-12 col-xs-12">
+      <div class="tittle">
+        <h3 style="padding-left: 10px;">Bạn đang tìm với từ khóa <span
+            style="text-decoration: underline; color: blue">{{ key }}</span></h3>
+      </div>
+      <div class="row">
+        <div *ngFor="let new of newsSearch">
+          <div>
+            <div class="images">
+              <a [routerLink]="['/news-detail', new.idNews]"><img
+                  src="http://localhost:8080/downloadFile/{{new.avatar}}"></a>
+            </div>
+            <div class="name">
+              <h4><a [routerLink]="['/news-detail', new.idNews]">{{ new.title }}</a></h4>
+              <p>{{ new.describes }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container padding991">
+      <div class="col-md-12 col-xs-12">
+        <div class="row">
+          <div *ngFor="let new of courseSearch">
+            <div>
+              <div class="images">
+                <a [routerLink]="['/detail', new.idCourse]"><img
+                    src="http://localhost:8080/downloadFile/{{new.image}}"></a>
+              </div>
+              <div class="name">
+                <h4><a [routerLink]="['/detail', new.idCourse]">{{ new.course }}  {{ new.level.level }}</a></h4>
+                <p>{{ new.describes }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="page">
+    <ul>
+      <li *ngIf="page != 1"><a [routerLink]="['/search-all/1', key]">Trang đầu</a></li>
+      <li *ngIf="page != 1"><a [routerLink]="['/search-all/1', key]">Lùi</a></li>
+      <li *ngFor="let page of total, index as i"><a [routerLink]="['/search-all/', key, page+1]"
+          [routerLinkActive]="'active-link'">{{ i+1 }}</a></li>
+      <li *ngIf="page != total.length"><a [routerLink]="['/search-all/1', key]">Tiếp</a>
+      </li>
+      <li *ngIf="page != total.length"><a [routerLink]="['/search-all/1', key]">Trang cuối</a></li>
+    </ul>
+  </div>
+</div>
+<!-- <p *ngFor="let item of courseSearch"> {{ item.course }}</p>
+  <p *ngFor="let item of newsSearch"> {{ item.title }}</p> -->
+<app-footer></app-footer>

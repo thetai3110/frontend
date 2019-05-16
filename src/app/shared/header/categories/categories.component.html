@@ -26,35 +26,21 @@
         <li><a [routerLink]="['/feedback', 1]">Phản hồi</a></li>
         <li *ngIf="isLogin == true"><a [routerLink]="['/admin']">Admin</a></li>
         <li><a [routerLink]="['/news', 1]">Tin tức</a></li>
-        <!-- <li *ngIf="isLogin == true;else login">
-          <a href="" class="user">
-            <img *ngIf="img == '' || img==null; else isImg" src="../../assets/images/img.PNG" alt="person">
-            <ng-template #isImg>
-              <img mat-card-avatar src="http://localhost:8080/downloadFile/{{img}}" alt="person">
-            </ng-template>
-            {{ username }}
-          </a>
-          <ul class="sub-menu">
-            <li><a [routerLink]="['/personal']">
-                <fa-icon [icon]="faUser"></fa-icon> Cá nhân
-              </a></li>
-            <li><a [routerLink]="['/logout']">
-                <fa-icon [icon]="faSignOutAlt"></fa-icon> Đăng xuất
-              </a></li>
-          </ul>
-        </li>
-        <ng-template #login>
-          <li><a [routerLink]="['/login']">
-              <fa-icon [icon]="faSignInAlt"></fa-icon> Đăng nhập
-            </a></li>
-        </ng-template> -->
       </ul>
     </div>
     <div class="box">
-      <input type="search" id="search" placeholder="Nhập từ khóa..." />
-      <button class="btn btn-danger">
+      <input type="search" id="search" (keyup)="onSearch($event)" placeholder="Nhập từ khóa..." />
+      <button class="btn btn-danger" (click)="onSubmit()">
         <fa-icon [icon]="faSearch"></fa-icon>
       </button>
+      <div [hidden]="isSearch" class="alert alert-dark data_search" role="alert">
+        <p *ngFor="let item of data_search; index as i">
+          <a [routerLink]="item.split('+')[0].split('-')[1] == 'course' ? ['/detail', item.split('+')[0].split('-')[0]] : ['/news-detail', item.split('+')[0].split('-')[0]]">
+            <img mat-card-avatar src="http://localhost:8080/downloadFile/{{ item.split('+')[item.split('+').length-1] }}" alt="{{ item.split('+')[item.split('+').length-1] }}">
+            {{ item.split('+')[1] }}
+          </a>
+        </p>
+      </div>
     </div>
   </div>
 </div>

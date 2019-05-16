@@ -7,7 +7,7 @@ import { CourseManagementModule } from '../course-management/course-management.m
 import { MatTabsModule, MatExpansionModule } from '@angular/material';
 
 const routes: Routes = [
-  {path: 'courses/:id', component: CoursesComponent},
+  {path: '', component: CoursesComponent},
 ]; 
 
 @NgModule({

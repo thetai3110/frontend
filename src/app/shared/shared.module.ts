@@ -7,7 +7,7 @@ import {
   MatFormFieldModule, MatRadioModule,
   MatButtonModule, MatInputModule,
   MatSelectModule, MatSnackBarModule,
-  MatMenuModule, MatExpansionModule
+  MatMenuModule, MatExpansionModule, MatCardModule
 } from '@angular/material';
 
 import { HeaderComponent } from './header/header.component';
@@ -32,7 +32,8 @@ import { FeedbackFormComponent } from './feedback-form/feedback-form.component';
     MatInputModule,
     MatSelectModule, 
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule
   ],
   exports: [
     HeaderComponent,
