@@ -1,0 +1,29 @@
+<h3 style="text-align:center">Tạo mã ưu đãi</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <mat-form-field>
+    <mat-label>Số lượng</mat-label>
+    <select matNativeControl formControlName="num">
+      <option [value]="5">5</option>
+      <option [value]="10">10</option>
+      <option [value]="15">15</option>
+      <option [value]="20">20</option>
+      <option [value]="25">25</option>
+      <option [value]="30">30</option>
+      <option [value]="35">35</option>
+      <option [value]="40">40</option>
+    </select>
+  </mat-form-field>
+  <!-- Vai trò -->
+  <mat-form-field>
+    <mat-label>Ưu đãi</mat-label>
+    <select matNativeControl formControlName="sales">
+      <option [value]="5">5%</option>
+      <option [value]="10">10%</option>
+      <option [value]="10">15%</option>
+      <option [value]="20">20%</option>
+    </select>
+  </mat-form-field>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button color="primary" type="submit">Tạo</button>
+  </div>
+</form>

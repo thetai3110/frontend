@@ -21,11 +21,12 @@
               </a></li>
           </ul>
         </li>
+        <li><a [routerLink]="['/news', 1]">Tin tức</a></li>
         <li><a [routerLink]="['/course/register']">Đăng ký ngay</a></li>
         <li><a [routerLink]="['/searchs']">Tra cứu thông tin</a></li>
         <li><a [routerLink]="['/feedback', 1]">Phản hồi</a></li>
         <li *ngIf="isLogin == true"><a [routerLink]="['/admin']">Admin</a></li>
-        <li><a [routerLink]="['/news', 1]">Tin tức</a></li>
+        <li *ngIf="isLogin == false"><a [routerLink]="['/login']">Đăng nhập</a></li>
       </ul>
     </div>
     <div class="box">

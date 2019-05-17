@@ -8,15 +8,9 @@ import { MatFormFieldModule, MatRadioModule,
 
 import { LoginComponent, LogOutComponent } from './login.component';
 
-const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'logout', component: LogOutComponent}
-];
-
 @NgModule({
   declarations: [LoginComponent, LogOutComponent],
   imports: [
-    RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
     CommonModule,

@@ -29,12 +29,6 @@ mat-radio-button{
    display: block;
    margin-right: 25px;
 }
-button{
-    margin-left: 5px;
-}
-.check{
-    
-}
 .actions{
     float: right;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ClassesService } from 'src/app/services/classes.service';
 
 @Component({
   selector: 'app-class-manage',
@@ -10,7 +11,7 @@ export class ClassManageComponent implements OnInit {
 
   classes : {};
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   ngOnInit() {
   }

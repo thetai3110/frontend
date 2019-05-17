@@ -148,4 +148,22 @@ export class ClassStudentComponent implements OnInit {
       })
     }
   }
+
+  onSend(){
+    var rs = confirm("Gửi thông báo đóng học phí tới học viên của lớp có :"  + this.idClass + "?");
+    if (rs == true) {
+      this.classesService.send(this.idClass).subscribe(data =>{
+        if(Boolean(data)==true){
+          this.snackBar.open("Success!!!", "Send", {
+            duration: 2000,
+          });
+        }else{
+          this.snackBar.open("Fail!!!", "Send", {
+            duration: 2000,
+          });
+        }
+      });
+    }
+  }
+
 }

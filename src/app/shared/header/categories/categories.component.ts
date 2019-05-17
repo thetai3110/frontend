@@ -46,7 +46,7 @@ export class CategoriesComponent implements OnInit {
       if (data != null)
         this.edu = data;
     });
-    this.courseService.getData().subscribe(data => {
+    this.courseService.getDataByStatus(1).subscribe(data => {
       this.courses = data;
       for (var i = 0; i < this.courses.length; i++) {
         this.searchs_id.push(this.courses[i].idCourse + "-course");

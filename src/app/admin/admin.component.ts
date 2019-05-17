@@ -4,6 +4,8 @@ import { faUser, faUsers, faMale, faChalkboardTeacher,
   faDoorOpen, faWarehouse, faCertificate, faBars, faSearch,
   faBell, faEnvelope, faUserCircle, faTachometerAlt,
   faFolder } from '@fortawesome/free-solid-svg-icons';
+import { CreateCodeComponent } from './create-code/create-code.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +14,7 @@ import { faUser, faUsers, faMale, faChalkboardTeacher,
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   faUser = faUser; faUsers = faUsers; faMale = faMale;
   faChalkboardTeacher = faChalkboardTeacher; faUserGraduate = faUserGraduate;
@@ -33,4 +35,14 @@ export class AdminComponent implements OnInit {
   onShow(){
     this.isShow = !this.isShow;
   }
+
+  createCode(){
+    const dialogRef = this.dialog.open(CreateCodeComponent, {
+      width: '400px'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+
 }

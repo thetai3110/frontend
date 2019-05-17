@@ -42,16 +42,14 @@
     </div>
   <div class="page">
     <ul>
-      <li *ngIf="page != 1"><a [routerLink]="['/search-all/1', key]">Trang đầu</a></li>
-      <li *ngIf="page != 1"><a [routerLink]="['/search-all/1', key]">Lùi</a></li>
-      <li *ngFor="let page of total, index as i"><a [routerLink]="['/search-all/', key, page+1]"
+      <li *ngIf="page != 1"><a [routerLink]="['/search-all/', key,1]">Trang đầu</a></li>
+      <li *ngIf="page != 1"><a [routerLink]="['/search-all/', key,  page -1 >= 1 ? page - 1 : page]">Lùi</a></li>
+      <li *ngFor="let page of total, index as i"><a [routerLink]="['/search-all/', key, i+1]"
           [routerLinkActive]="'active-link'">{{ i+1 }}</a></li>
-      <li *ngIf="page != total.length"><a [routerLink]="['/search-all/1', key]">Tiếp</a>
+      <li *ngIf="page != total.length"><a [routerLink]="['/search-all/', key, page + 1 <= total.length ? page  + 1 : page]">Tiếp</a>
       </li>
-      <li *ngIf="page != total.length"><a [routerLink]="['/search-all/1', key]">Trang cuối</a></li>
+      <li *ngIf="page != total.length"><a [routerLink]="['/search-all/', key, total.length]">Trang cuối</a></li>
     </ul>
   </div>
 </div>
-<!-- <p *ngFor="let item of courseSearch"> {{ item.course }}</p>
-  <p *ngFor="let item of newsSearch"> {{ item.title }}</p> -->
 <app-footer></app-footer>

@@ -25,7 +25,8 @@
         </option>
       </select>
     </mat-form-field>
-    <button mat-mini-fab color="primary" (click)="onExport()">In</button>
+    <button mat-raised-button color="primary" (click)="onExport()">In danh sách</button>
+    <button mat-raised-button color="warn" (click)="onSend()">Gửi thông báo</button>
    </div>  
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">

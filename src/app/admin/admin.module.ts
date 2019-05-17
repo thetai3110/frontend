@@ -66,7 +66,6 @@ import { RoomCalenderComponent } from './room-manage/room-calender/room-calender
 import { RoomTableComponent } from './room-manage/room-table/room-table.component';
 import { InvoiceDetailComponent } from './invoice-manage/invoice-detail/invoice-detail.component';
 import { TeachingAssignmentComponent } from './class-manage/teaching-assignment/teaching-assignment.component';
-import { AcceptComponent } from './class-manage/teaching-assignment/accept/accept.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegistrationInfomationComponent } from './invoice-manage/registration-infomation/registration-infomation.component';
 import { MarksComponent } from './exam-certificate/marks/marks.component';
@@ -78,10 +77,9 @@ import { NewsTableComponent } from './news-manage/news-table/news-table.componen
 import { NewsFormComponent } from './news-manage/news-form/news-form.component';
 import { NewsDialogComponent } from './news-manage/news-dialog/news-dialog.component';
 import { NewsDeleteComponent } from './news-manage/news-delete/news-delete.component';
-import { LayoutComponent } from './layout/layout.component';
+import { CreateCodeComponent } from './create-code/create-code.component';
 
 const routes: Routes = [
-  // {path: 'class/teaching-assignment/:id/:idLec', component: AcceptComponent},
   {
     path: '', 
     component: AdminComponent,
@@ -154,7 +152,6 @@ const routes: Routes = [
     RoomTableComponent,
     InvoiceDetailComponent,
     TeachingAssignmentComponent,
-    AcceptComponent,
     RegistrationInfomationComponent,
     MarksComponent,
     EditMarksComponent,
@@ -165,6 +162,7 @@ const routes: Routes = [
     NewsFormComponent,
     NewsDialogComponent,
     NewsDeleteComponent,
+    CreateCodeComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
@@ -206,7 +204,8 @@ const routes: Routes = [
     CertificateFormComponent, CertificateDialogComponent, CertificateDeleteComponent,
     RoomDialogComponent, RoomDeleteComponent, RoomFormComponent,
     EditRegisterComponent, DeleteRegisterComponent,
-    NewsDeleteComponent, NewsDialogComponent, NewsFormComponent
+    NewsDeleteComponent, NewsDialogComponent, NewsFormComponent,
+    CreateCodeComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
