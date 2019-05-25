@@ -10,7 +10,7 @@ import { MatFormFieldModule, MatRadioModule,
 import { AccuracyFormComponent } from './accuracy-form.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { InfomationModule } from 'src/app/infomation/infomation.module';
+import { CountDownModule } from 'src/app/infomation/countdown/countdown.module';
 
 const routes: Routes = [
   {path: '', component: AccuracyFormComponent}
@@ -39,7 +39,7 @@ const routes: Routes = [
     FontAwesomeModule,
     MatIconModule,
     MatChipsModule,
-    InfomationModule
+    CountDownModule
   ]
 })
 export class AccuracyModule { }

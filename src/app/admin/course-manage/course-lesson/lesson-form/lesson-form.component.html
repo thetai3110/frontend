@@ -18,12 +18,13 @@
     </mat-form-field>
     <!-- Nội dung -->
     <mat-form-field>
-      <input matInput placeholder="Nội dung*" formControlName="content">
+      <textarea matInput placeholder="Nội dung*" formControlName="content" name="" id="" cols="30"
+        rows="3"></textarea>
       <mat-error *ngIf="hasError('content', 'required')">Nội dung không được bỏ trống</mat-error>
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="action">
     <input type="button" class="btn btn-danger" (click)="onCancel()" value="Hủy">
     <button mat-raised-button color="primary" [disabled]="!form.valid" type="submit">Thêm</button>
-  </div>
+  </div> 
 </form>

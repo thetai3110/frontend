@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lecturers-manage',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lecturers-manage.component.css']
 })
 export class LecturersManageComponent implements OnInit {
-
-  constructor() { }
+  constructor(private router: Router) { }
+  roles = "";
 
   ngOnInit() {
-  }
+    if (localStorage.getItem("roles") != null) {
+      this.roles = localStorage.getItem("roles");
+      if (this.roles != "Admin" && this.roles != "HR") {
+        this.router.navigate([""]);
+      }
+    }
 
+  }
 }

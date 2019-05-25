@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice-manage',
@@ -10,9 +11,16 @@ export class InvoiceManageComponent implements OnInit {
 
   invoices : {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
+  roles= "";
 
   ngOnInit() {
+    if (localStorage.getItem("roles") != null) {
+      this.roles = localStorage.getItem("roles");
+      if (this.roles != "Admin" && this.roles != "Invoice") {
+        this.router.navigate([""]);
+      }
+    }
     this.getData();
   }
 

@@ -47,17 +47,21 @@ export class CategoriesComponent implements OnInit {
         this.edu = data;
     });
     this.courseService.getDataByStatus(1).subscribe(data => {
-      this.courses = data;
-      for (var i = 0; i < this.courses.length; i++) {
-        this.searchs_id.push(this.courses[i].idCourse + "-course");
-        this.searchs_title.push(this.courses[i].course + " " + this.courses[i].level.level + "+" + this.courses[i].image);
+      if (data != null) {
+        this.courses = data;
+        for (var i = 0; i < this.courses.length; i++) {
+          this.searchs_id.push(this.courses[i].idCourse + "-course");
+          this.searchs_title.push(this.courses[i].course + " " + this.courses[i].level.level + "+" + this.courses[i].image);
+        }
       }
     });
     this.newsService.getData().subscribe(data => {
-      this.news = data;
-      for (var i = 0; i < this.news.length; i++) {
-        this.searchs_id.push(this.news[i].idNews + "-news");
-        this.searchs_title.push(this.news[i].title + "+" + this.news[i].avatar);
+      if (data != null) {
+        this.news = data;
+        for (var i = 0; i < this.news.length; i++) {
+          this.searchs_id.push(this.news[i].idNews + "-news");
+          this.searchs_title.push(this.news[i].title + "+" + this.news[i].avatar);
+        }
       }
     });
   }

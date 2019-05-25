@@ -54,11 +54,11 @@
       </ng-container>
       <ng-container matColumnDef="condition">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Điều kiện</th>
-        <td mat-cell *matCellDef="let item">{{ item.conditions }}</td>
+        <td mat-cell *matCellDef="let item">{{ item.conditions.substring(0, 100) }}{{item.conditions.length > 100 ? '...' : ''  }}</td>
       </ng-container>
       <ng-container matColumnDef="describe">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Mô tả</th>
-        <td mat-cell *matCellDef="let item">{{ item.describes }}</td>
+        <td mat-cell *matCellDef="let item">{{ item.describes.substring(0, 100) }}{{item.describes.length > 100 ? '...' : ''   }}</td>
       </ng-container>
       <ng-container matColumnDef="tool">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Thao tác</th>
