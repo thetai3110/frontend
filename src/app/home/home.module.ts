@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './home.component';
 import { EducationComponent } from './education/education.component';
 import { CommonComponent } from './common/common.component';
+import { MatCardModule, MatIconModule } from '@angular/material';
 
 const routes: Routes = [
   {path: '', component: HomeComponent }
@@ -20,7 +21,9 @@ const routes: Routes = [
     SharedModule,
     CourseManagementModule,
     FontAwesomeModule,
-    RouterModule
+    RouterModule,
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class HomeModule { }

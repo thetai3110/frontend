@@ -1,6 +1,36 @@
 <app-header class="header"></app-header>
 <h1>Các khóa học hiện có tại trung tâm</h1>
 <app-show-course class="course" [courses]="courses"></app-show-course>
+<h1>Tin tức nổi bật</h1>
+<ng-container *ngIf="news != null; else isNull">
+    <div class="container course">
+        <div class="row">
+            <div class="col-sm-6 col-md-4" *ngFor="let cour of news; index as i">
+                <ng-container *ngIf="i<3">
+                    <mat-card class="card">
+                        <mat-card-header style="height: 85px;">
+                            <div mat-card-avatar class="header-image"></div>
+                            <mat-card-title>{{ cour.title }}</mat-card-title>
+                            <mat-card-subtitle>Trung tâm tin học</mat-card-subtitle>
+                        </mat-card-header>
+                        <div class="detail">
+                            <p><a [routerLink]="['/news-detail', cour.idNews]">Xem chi tiết</a></p>
+                        </div>
+                        <img mat-card-image src="http://localhost:8080/downloadFile/{{cour.avatar}}"
+                            alt="{{cour.avatar}}">
+                        <mat-card-content>
+                            <p>{{ cour.describes.substring(0, 100) }}{{cour.describes.length > 100 ? '...' : '' }}</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <mat-icon>remove_red_eye</mat-icon> {{ cour.views }} lượt xem
+                        </mat-card-actions>
+                    </mat-card>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #isNull>Loading...</ng-template>
 <app-common></app-common>
 <app-education></app-education>
 <app-footer></app-footer>
